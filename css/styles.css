@@ -326,6 +326,14 @@ header p {
   margin-bottom: 1.5rem;
 }
 
+.result-card.savings {
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.05), rgba(5, 150, 105, 0.1));
+}
+
+.result-card.savings .result-amount {
+  color: var(--color-success);
+}
+
 .result-label {
   font-size: 0.9rem;
   color: var(--color-text-muted);
