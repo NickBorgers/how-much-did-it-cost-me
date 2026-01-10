@@ -125,10 +125,9 @@ const COMPARISONS = [
   { max: Infinity, text: 'About {days} days of your annual tax contribution' }
 ];
 
-// Notable Federal Spending Items
-// These are specific, verifiable spending figures for "fun" comparisons
-// Sources should be verified monthly by the data verification workflow
-const NOTABLE_SPENDING = {
+// Permanent Spending Items - These always appear on the list
+// Classic examples of major federal spending projects
+const PERMANENT_SPENDING = {
   geraldRFordCarrier: {
     label: 'Gerald R. Ford Aircraft Carrier',
     value: 13_300_000_000,           // $13.3 billion (USS Gerald R. Ford total program cost)
@@ -136,22 +135,6 @@ const NOTABLE_SPENDING = {
     lastVerified: DATA_LAST_UPDATED,
     category: 'defense',
     notes: 'Total acquisition cost for lead ship CVN-78'
-  },
-  acaSubsidies: {
-    label: 'ACA Premium Subsidies (2024)',
-    value: 82_000_000_000,           // $82 billion (FY2024 premium tax credits)
-    source: 'Congressional Budget Office',
-    lastVerified: DATA_LAST_UPDATED,
-    category: 'medicare',
-    notes: 'Premium tax credits and cost-sharing reductions'
-  },
-  infrastructureBill: {
-    label: 'Infrastructure Investment Act',
-    value: 550_000_000_000,          // $550 billion (new spending over 5 years)
-    source: 'White House Fact Sheet',
-    lastVerified: DATA_LAST_UPDATED,
-    category: 'general',
-    notes: 'New federal investment portion of the $1.2T bill'
   },
   jamesWebbTelescope: {
     label: 'James Webb Space Telescope',
@@ -163,14 +146,50 @@ const NOTABLE_SPENDING = {
   }
 };
 
+// Trending Spending Items - Updated weekly by the trending-spending workflow
+// These rotate based on what federal spending stories are in the news
+// The workflow searches for spending scandals, controversies, and hot topics
+const TRENDING_SPENDING = {
+  trending1: {
+    label: 'DOGE Claimed Savings',
+    value: 55_000_000_000,           // $55 billion (claimed savings as of early 2025)
+    source: 'DOGE official claims',
+    lastVerified: '2025-01-10',
+    category: 'general',
+    notes: 'Claimed cost savings from Department of Government Efficiency - accuracy disputed'
+  },
+  trending2: {
+    label: 'F-35 Program (Annual)',
+    value: 12_000_000_000,           // $12 billion (approximate annual spending)
+    source: 'Department of Defense',
+    lastVerified: '2025-01-10',
+    category: 'defense',
+    notes: 'Annual F-35 Lightning II program costs - frequently debated'
+  },
+  trending3: {
+    label: 'SNAP Benefits (2024)',
+    value: 113_000_000_000,          // $113 billion (FY2024)
+    source: 'USDA',
+    lastVerified: '2025-01-10',
+    category: 'general',
+    notes: 'Supplemental Nutrition Assistance Program - often in political debates'
+  }
+};
+
+// Combined for backwards compatibility
+const NOTABLE_SPENDING = {
+  ...PERMANENT_SPENDING,
+  ...TRENDING_SPENDING
+};
+
 // Example spending amounts for the chips
+// Permanent items first (always shown), then trending items (updated weekly)
 const EXAMPLE_AMOUNTS = [
-  { label: '$1 billion', value: 1_000_000_000 },
-  { label: '$10 billion', value: 10_000_000_000 },
-  { label: '$100 billion', value: 100_000_000_000 },
-  { label: '$1 trillion', value: 1_000_000_000_000 },
-  { label: NOTABLE_SPENDING.jamesWebbTelescope.label, value: NOTABLE_SPENDING.jamesWebbTelescope.value, category: NOTABLE_SPENDING.jamesWebbTelescope.category },
-  { label: NOTABLE_SPENDING.geraldRFordCarrier.label, value: NOTABLE_SPENDING.geraldRFordCarrier.value, category: NOTABLE_SPENDING.geraldRFordCarrier.category },
-  { label: NOTABLE_SPENDING.acaSubsidies.label, value: NOTABLE_SPENDING.acaSubsidies.value, category: NOTABLE_SPENDING.acaSubsidies.category },
-  { label: NOTABLE_SPENDING.infrastructureBill.label, value: NOTABLE_SPENDING.infrastructureBill.value, category: NOTABLE_SPENDING.infrastructureBill.category }
+  // Permanent spending items - always on the list
+  { label: PERMANENT_SPENDING.jamesWebbTelescope.label, value: PERMANENT_SPENDING.jamesWebbTelescope.value, category: PERMANENT_SPENDING.jamesWebbTelescope.category },
+  { label: PERMANENT_SPENDING.geraldRFordCarrier.label, value: PERMANENT_SPENDING.geraldRFordCarrier.value, category: PERMANENT_SPENDING.geraldRFordCarrier.category },
+  // Trending spending items - rotated weekly based on news
+  { label: TRENDING_SPENDING.trending1.label, value: TRENDING_SPENDING.trending1.value, category: TRENDING_SPENDING.trending1.category },
+  { label: TRENDING_SPENDING.trending2.label, value: TRENDING_SPENDING.trending2.value, category: TRENDING_SPENDING.trending2.category },
+  { label: TRENDING_SPENDING.trending3.label, value: TRENDING_SPENDING.trending3.value, category: TRENDING_SPENDING.trending3.category }
 ];
