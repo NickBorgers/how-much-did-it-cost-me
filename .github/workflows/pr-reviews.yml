@@ -17,8 +17,44 @@ permissions:
   id-token: write
 
 jobs:
+  # Job 0: Check if PR author is authorized to trigger Claude reviews
+  # This prevents arbitrary users from submitting PRs that could trick Claude
+  # into visiting malicious URLs or executing harmful actions
+  check-author-authorization:
+    name: Check Author Authorization
+    runs-on: ubuntu-latest
+    outputs:
+      authorized: ${{ steps.check-auth.outputs.authorized }}
+    steps:
+      - name: Check if author is authorized
+        id: check-auth
+        env:
+          GH_TOKEN: ${{ secrets.WORKFLOW_PAT }}
+        run: |
+          PR_AUTHOR="${{ github.event.pull_request.user.login }}"
+          REPO="${{ github.repository }}"
+
+          echo "Checking authorization for PR author: $PR_AUTHOR"
+
+          # Check if author has write access (collaborator, member, or owner)
+          PERMISSION=$(gh api "repos/$REPO/collaborators/$PR_AUTHOR/permission" --jq '.permission' 2>/dev/null || echo "none")
+
+          echo "Author permission level: $PERMISSION"
+
+          # Authorized if author has write, maintain, or admin access
+          if [[ "$PERMISSION" == "admin" || "$PERMISSION" == "maintain" || "$PERMISSION" == "write" ]]; then
+            echo "✓ Author $PR_AUTHOR is authorized (permission: $PERMISSION)"
+            echo "authorized=true" >> $GITHUB_OUTPUT
+          else
+            echo "✗ Author $PR_AUTHOR is NOT authorized (permission: $PERMISSION)"
+            echo "authorized=false" >> $GITHUB_OUTPUT
+            echo ""
+            echo "::warning::PR author $PR_AUTHOR does not have write access. Claude review jobs will be skipped for security."
+          fi
+
   # Job 1: Run Playwright tests automatically (no Claude)
   # This runs the test script and saves results as an artifact
+  # Note: This job runs for all PRs since it only tests against localhost
   run-playwright-tests:
     name: Run Playwright Tests
     runs-on: ubuntu-latest
@@ -69,8 +105,11 @@ jobs:
   impatient-user-review:
     name: Impatient User Review
     runs-on: ubuntu-latest
-    needs: run-playwright-tests
-    if: always() && github.event.pull_request.draft != true
+    needs: [check-author-authorization, run-playwright-tests]
+    if: |
+      always() &&
+      github.event.pull_request.draft != true &&
+      needs.check-author-authorization.outputs.authorized == 'true'
 
     steps:
       - name: Checkout repository
@@ -88,6 +127,7 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.WORKFLOW_PAT }}
           prompt: |
             You are reviewing automated Playwright test results for the "How Much Did It Cost Me?" web application.
 
@@ -134,7 +174,10 @@ jobs:
   accuracy-review:
     name: Data Accuracy Review
     runs-on: ubuntu-latest
-    if: github.event.pull_request.draft != true
+    needs: check-author-authorization
+    if: |
+      github.event.pull_request.draft != true &&
+      needs.check-author-authorization.outputs.authorized == 'true'
 
     steps:
       - name: Checkout repository
@@ -162,6 +205,7 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.WORKFLOW_PAT }}
           prompt: |
             You are a data accuracy reviewer for the "How Much Did It Cost Me?" application.
 
@@ -227,19 +271,173 @@ jobs:
         run: |
           echo "No changes to js/data.js - skipping accuracy review"
 
+  # Job 4: Execute test plan from PR description
+  # If the PR has a "Test plan" section, Claude will execute those steps with Playwright
+  test-plan-executor:
+    name: Test Plan Executor
+    runs-on: ubuntu-latest
+    needs: check-author-authorization
+    if: |
+      github.event.pull_request.draft != true &&
+      needs.check-author-authorization.outputs.authorized == 'true'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.ref || github.head_ref || github.ref }}
+
+      - name: Extract test plan from PR
+        id: extract-test-plan
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          # Save PR body to file for processing
+          echo "$PR_BODY" > pr_body.txt
+
+          # Check if there's a test plan section (case insensitive)
+          # Look for "## Test plan", "## Test Plan", "### Test plan", etc.
+          if grep -qi "test plan" pr_body.txt; then
+            echo "has_test_plan=true" >> $GITHUB_OUTPUT
+
+            # Extract the test plan section (everything after "Test plan" header until next ## header or end)
+            sed -n '/[Tt]est [Pp]lan/,/^##[^#]/p' pr_body.txt | head -n -1 > test_plan.txt
+
+            # If extraction is empty, try alternative: get everything after "Test plan"
+            if [ ! -s test_plan.txt ]; then
+              sed -n '/[Tt]est [Pp]lan/,$p' pr_body.txt > test_plan.txt
+            fi
+
+            echo "Test plan found:"
+            cat test_plan.txt
+          else
+            echo "has_test_plan=false" >> $GITHUB_OUTPUT
+            echo "No test plan section found in PR description"
+          fi
+
+      - name: Setup Node.js
+        if: steps.extract-test-plan.outputs.has_test_plan == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        if: steps.extract-test-plan.outputs.has_test_plan == 'true'
+        run: |
+          npm install -g http-server
+          npm init -y
+          npm install playwright
+          npx playwright install chromium --with-deps
+
+      - name: Start local server
+        if: steps.extract-test-plan.outputs.has_test_plan == 'true'
+        run: |
+          http-server . -p 8080 &
+          sleep 3
+          curl -s http://localhost:8080 > /dev/null || (echo "Server failed to start" && exit 1)
+
+      - name: Execute test plan
+        if: steps.extract-test-plan.outputs.has_test_plan == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.WORKFLOW_PAT }}
+          model: claude-sonnet-4-20250514
+          prompt: |
+            You are a test executor. The PR author has provided a test plan that you need to execute.
+
+            The app is running at http://localhost:8080
+
+            ## Test Plan from PR Description
+
+            The following test plan was specified by the PR author:
+
+            ```
+            ${{ github.event.pull_request.body }}
+            ```
+
+            Look for the "Test plan" section in the PR description above and execute each step.
+
+            ## Your Task
+
+            1. Read and understand each test step in the test plan
+            2. Use Playwright to execute each step against the running app
+            3. Take screenshots at key points
+            4. Report whether each step passed or failed
+
+            ## Execution Guidelines
+
+            - Use the playwright-skill or write Playwright scripts to test the app
+            - The app is a single-page web application at http://localhost:8080
+            - Key elements: #income (input), #spending (input), #taxResult, #resultShare
+            - Category buttons have data-category attributes (defense, general, socialSecurity, medicare, interest)
+            - Take screenshots to document your testing
+
+            ## Reporting
+
+            After executing the test plan, post a PR comment using:
+            gh pr comment ${{ github.event.pull_request.number }} --body "YOUR_COMMENT"
+
+            Structure your comment as:
+
+            ```
+            ## Test Plan Execution
+
+            **Status**: [PASSED / FAILED / PARTIAL]
+
+            ### Steps Executed
+            [For each step in the test plan, report: ✓ Passed or ✗ Failed with details]
+
+            ### Evidence
+            [Reference screenshots taken during testing]
+
+            ### Notes
+            [Any observations or issues discovered]
+
+            ---
+            *Test plan executed by Claude*
+            ```
+
+            IMPORTANT:
+            - Execute the EXACT steps specified in the test plan
+            - Don't skip steps or make assumptions
+            - If a step is unclear, note it but attempt to execute your best interpretation
+            - Report honestly if something fails
+
+      - name: Skip if no test plan
+        if: steps.extract-test-plan.outputs.has_test_plan != 'true'
+        run: |
+          echo "No test plan section found in PR description - skipping test plan execution"
+
   # Gate job - ensures all agent reviews pass before merge
   all-agent-reviews-passed:
     name: All Agent Reviews
     runs-on: ubuntu-latest
-    needs: [run-playwright-tests, impatient-user-review, accuracy-review]
+    needs: [check-author-authorization, run-playwright-tests, impatient-user-review, accuracy-review, test-plan-executor]
     if: always()
     steps:
       - name: Check all reviews passed
         run: |
           echo "Checking results of all agent reviews..."
+          echo "check-author-authorization: ${{ needs.check-author-authorization.result }}"
           echo "run-playwright-tests: ${{ needs.run-playwright-tests.result }}"
           echo "impatient-user-review: ${{ needs.impatient-user-review.result }}"
           echo "accuracy-review: ${{ needs.accuracy-review.result }}"
+          echo "test-plan-executor: ${{ needs.test-plan-executor.result }}"
+
+          # Authorization check must pass
+          if [ "${{ needs.check-author-authorization.result }}" != "success" ]; then
+            echo "FAILED: Author authorization check did not succeed"
+            exit 1
+          fi
+
+          # Check if author was authorized
+          AUTHORIZED="${{ needs.check-author-authorization.outputs.authorized }}"
+          if [ "$AUTHORIZED" != "true" ]; then
+            echo "SKIPPED: PR author is not authorized - Claude reviews were skipped for security"
+            echo "::warning::Claude review jobs were skipped because PR author does not have write access"
+            # Still pass the gate - Playwright tests ran, just no Claude reviews
+          fi
 
           # Playwright tests must pass
           if [ "${{ needs.run-playwright-tests.result }}" != "success" ]; then
@@ -256,6 +454,12 @@ jobs:
           # Accuracy review must complete (success or skipped is ok)
           if [ "${{ needs.accuracy-review.result }}" == "failure" ]; then
             echo "FAILED: accuracy-review failed"
+            exit 1
+          fi
+
+          # Test plan executor must complete (success or skipped is ok)
+          if [ "${{ needs.test-plan-executor.result }}" == "failure" ]; then
+            echo "FAILED: test-plan-executor failed"
             exit 1
           fi
 
