@@ -125,6 +125,9 @@ jobs:
 
       - name: Review test results
         uses: anthropics/claude-code-action@v1
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GH_TOKEN: ${{ secrets.WORKFLOW_PAT }}
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.WORKFLOW_PAT }}
@@ -137,13 +140,12 @@ jobs:
             Your job is to:
             1. Read the test results JSON file
             2. Analyze what passed and what failed
-            3. Post a clear, concise PR comment summarizing the results
+            3. Post your review as a PR comment
 
-            ## Comment Format
+            ## Response Format
 
-            Post a GitHub PR comment using the gh CLI with this structure:
+            Structure your comment as:
 
-            ```
             ## Impatient User Review
 
             **Status**: [PASSED or FAILED]
@@ -157,18 +159,21 @@ jobs:
             ### Issues Found
             [List any issues, or "None" if all tests passed]
 
-            ---
-            *Automated test run at [timestamp]*
+            ## CRITICAL: Post Your Review
+
+            After analyzing the results, you MUST post your review as a comment on PR #${{ github.event.pull_request.number }} using:
+            ```
+            gh pr comment ${{ github.event.pull_request.number }} --body "YOUR_REVIEW_HERE"
             ```
 
-            Use this command to post the comment:
-            gh pr comment ${{ github.event.pull_request.number }} --body "YOUR_COMMENT_HERE"
-
-            IMPORTANT:
-            - Read the actual test results file first
-            - Base your review on the real test data, not assumptions
-            - Keep the comment concise and actionable
-            - If tests failed, explain what needs to be fixed
+            Use a heredoc for multi-line comments:
+            ```
+            gh pr comment ${{ github.event.pull_request.number }} --body "$(cat <<'EOF'
+            ## Impatient User Review
+            ...your review content...
+            EOF
+            )"
+            ```
 
   # Job 3: Accuracy review - checks if any numbers in the PR are accurate
   accuracy-review:
@@ -203,6 +208,9 @@ jobs:
       - name: Review data accuracy
         if: steps.changed-files.outputs.data_changed == 'true'
         uses: anthropics/claude-code-action@v1
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GH_TOKEN: ${{ secrets.WORKFLOW_PAT }}
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.WORKFLOW_PAT }}
@@ -220,7 +228,7 @@ jobs:
 
             1. Read js/data.js to see the current values
             2. Use web search to verify the accuracy of ANY numbers that were changed in this PR
-            3. Post a PR comment with your findings
+            3. Post your findings as a PR comment
 
             ## Verification Checklist
 
@@ -238,14 +246,10 @@ jobs:
             - Congressional Research Service reports
             - Reputable news sources
 
-            ## Comment Format
-
-            Post a GitHub PR comment using:
-            gh pr comment ${{ github.event.pull_request.number }} --body "YOUR_COMMENT"
+            ## Response Format
 
             Structure your comment as:
 
-            ```
             ## Data Accuracy Review
 
             **Status**: [VERIFIED / ISSUES FOUND / UNABLE TO VERIFY]
@@ -261,10 +265,17 @@ jobs:
 
             ---
             *Sources checked: [list sources consulted]*
-            ```
 
-            CRITICAL: Only flag issues if you find clear inaccuracies with authoritative sources.
-            Minor discrepancies due to timing (e.g., FY vs calendar year) should be noted but not flagged as errors.
+            ## CRITICAL: Post Your Review
+
+            After completing your analysis, you MUST post your review as a comment on PR #${{ github.event.pull_request.number }} using:
+            ```
+            gh pr comment ${{ github.event.pull_request.number }} --body "$(cat <<'EOF'
+            ## Data Accuracy Review
+            ...your review content...
+            EOF
+            )"
+            ```
 
       - name: Skip if no data changes
         if: steps.changed-files.outputs.data_changed != 'true'
@@ -339,10 +350,12 @@ jobs:
       - name: Execute test plan
         if: steps.extract-test-plan.outputs.has_test_plan == 'true'
         uses: anthropics/claude-code-action@v1
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GH_TOKEN: ${{ secrets.WORKFLOW_PAT }}
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.WORKFLOW_PAT }}
-          model: claude-sonnet-4-20250514
           prompt: |
             You are a test executor. The PR author has provided a test plan that you need to execute.
 
@@ -363,7 +376,7 @@ jobs:
             1. Read and understand each test step in the test plan
             2. Use Playwright to execute each step against the running app
             3. Take screenshots at key points
-            4. Report whether each step passed or failed
+            4. Post your results as a PR comment
 
             ## Execution Guidelines
 
@@ -373,14 +386,10 @@ jobs:
             - Category buttons have data-category attributes (defense, general, socialSecurity, medicare, interest)
             - Take screenshots to document your testing
 
-            ## Reporting
-
-            After executing the test plan, post a PR comment using:
-            gh pr comment ${{ github.event.pull_request.number }} --body "YOUR_COMMENT"
+            ## Response Format
 
             Structure your comment as:
 
-            ```
             ## Test Plan Execution
 
             **Status**: [PASSED / FAILED / PARTIAL]
@@ -394,8 +403,15 @@ jobs:
             ### Notes
             [Any observations or issues discovered]
 
-            ---
-            *Test plan executed by Claude*
+            ## CRITICAL: Post Your Review
+
+            After executing the test plan, you MUST post your results as a comment on PR #${{ github.event.pull_request.number }} using:
+            ```
+            gh pr comment ${{ github.event.pull_request.number }} --body "$(cat <<'EOF'
+            ## Test Plan Execution
+            ...your results...
+            EOF
+            )"
             ```
 
             IMPORTANT:
