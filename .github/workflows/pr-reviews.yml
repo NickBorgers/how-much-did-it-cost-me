@@ -88,6 +88,7 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.WORKFLOW_PAT }}
           prompt: |
             You are reviewing automated Playwright test results for the "How Much Did It Cost Me?" web application.
 
@@ -162,6 +163,7 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.WORKFLOW_PAT }}
           prompt: |
             You are a data accuracy reviewer for the "How Much Did It Cost Me?" application.
 
@@ -294,6 +296,7 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.WORKFLOW_PAT }}
           model: claude-sonnet-4-20250514
           prompt: |
             You are a test executor. The PR author has provided a test plan that you need to execute.
