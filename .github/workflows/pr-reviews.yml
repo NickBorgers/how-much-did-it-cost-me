@@ -52,7 +52,31 @@ jobs:
             echo "::warning::PR author $PR_AUTHOR does not have write access. Claude review jobs will be skipped for security."
           fi
 
-  # Job 1: Run Playwright tests automatically (no Claude)
+  # Job 1: Run unit tests for calculation logic
+  # This ensures core calculation functions are correct before any other checks
+  run-unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft != true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.ref || github.head_ref || github.ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run unit tests
+        run: npm test
+
+  # Job 2: Run Playwright tests automatically (no Claude)
   # This runs the test script and saves results as an artifact
   # Note: This job runs for all PRs since it only tests against localhost
   run-playwright-tests:
@@ -429,13 +453,14 @@ jobs:
   all-agent-reviews-passed:
     name: All Agent Reviews
     runs-on: ubuntu-latest
-    needs: [check-author-authorization, run-playwright-tests, impatient-user-review, accuracy-review, test-plan-executor]
+    needs: [check-author-authorization, run-unit-tests, run-playwright-tests, impatient-user-review, accuracy-review, test-plan-executor]
     if: always()
     steps:
       - name: Check all reviews passed
         run: |
           echo "Checking results of all agent reviews..."
           echo "check-author-authorization: ${{ needs.check-author-authorization.result }}"
+          echo "run-unit-tests: ${{ needs.run-unit-tests.result }}"
           echo "run-playwright-tests: ${{ needs.run-playwright-tests.result }}"
           echo "impatient-user-review: ${{ needs.impatient-user-review.result }}"
           echo "accuracy-review: ${{ needs.accuracy-review.result }}"
@@ -453,6 +478,12 @@ jobs:
             echo "SKIPPED: PR author is not authorized - Claude reviews were skipped for security"
             echo "::warning::Claude review jobs were skipped because PR author does not have write access"
             # Still pass the gate - Playwright tests ran, just no Claude reviews
+          fi
+
+          # Unit tests must pass
+          if [ "${{ needs.run-unit-tests.result }}" != "success" ]; then
+            echo "FAILED: Unit tests did not succeed"
+            exit 1
           fi
 
           # Playwright tests must pass
