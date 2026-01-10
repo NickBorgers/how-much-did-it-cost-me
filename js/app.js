@@ -10,7 +10,8 @@ const app = {
     ficaTax: 0,
     directTax: null, // null means calculated, number means user-entered
     spendingAmount: 0,
-    category: null
+    category: null,
+    isMultiYear: false // tracks if selected spending is multi-year
   },
 
   // Initialize the app
@@ -188,6 +189,10 @@ const app = {
     const actualAmount = billions * 1_000_000_000;
     this.state.spendingAmount = actualAmount;
 
+    // Manual input is not multi-year
+    this.state.isMultiYear = false;
+    document.getElementById('multiYearNote').style.display = 'none';
+
     // Update the hint to show the full dollar amount
     const hint = document.getElementById('spendingHint');
     if (billions > 0) {
@@ -201,8 +206,17 @@ const app = {
   },
 
   // Set spending from chip (optionally auto-select category for notable items)
-  setSpending(amount, category = null) {
+  setSpending(amount, category = null, multiYear = false) {
     this.state.spendingAmount = amount;
+    this.state.isMultiYear = multiYear;
+
+    // Show/hide multi-year note
+    const multiYearNote = document.getElementById('multiYearNote');
+    if (multiYear) {
+      multiYearNote.style.display = 'block';
+    } else {
+      multiYearNote.style.display = 'none';
+    }
 
     // Display in billions (convert from actual amount)
     const billions = amount / 1_000_000_000;
@@ -235,7 +249,7 @@ const app = {
         btn.classList.add('chip-notable');
       }
       btn.textContent = item.label;
-      btn.onclick = () => this.setSpending(item.value, item.category || null);
+      btn.onclick = () => this.setSpending(item.value, item.category || null, item.multiYear || false);
       container.appendChild(btn);
     });
   },
@@ -320,8 +334,10 @@ const app = {
 
     // Clear spending and hint
     this.state.spendingAmount = 0;
+    this.state.isMultiYear = false;
     document.getElementById('spending').value = '';
     document.getElementById('spendingHint').innerHTML = '';
+    document.getElementById('multiYearNote').style.display = 'none';
     document.getElementById('continueToStage3').disabled = true;
 
     // Scroll to stage 2
@@ -341,7 +357,8 @@ const app = {
       ficaTax: 0,
       directTax: null,
       spendingAmount: 0,
-      category: null
+      category: null,
+      isMultiYear: false
     };
 
     // Reset UI
@@ -350,6 +367,7 @@ const app = {
     document.getElementById('directTax').value = '';
     document.getElementById('spending').value = '';
     document.getElementById('spendingHint').innerHTML = '';
+    document.getElementById('multiYearNote').style.display = 'none';
     document.getElementById('taxResult').style.display = 'none';
     document.getElementById('continueToStage2').disabled = true;
     document.getElementById('continueToStage3').disabled = true;

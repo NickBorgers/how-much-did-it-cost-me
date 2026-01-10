@@ -135,7 +135,8 @@ const NOTABLE_SPENDING = {
     source: 'Congressional Research Service',
     lastVerified: DATA_LAST_UPDATED,
     category: 'defense',
-    notes: 'Total acquisition cost for lead ship CVN-78'
+    notes: 'Total acquisition cost for lead ship CVN-78',
+    multiYear: true                  // Spent over construction period, not in one year
   },
   acaSubsidies: {
     label: 'ACA Premium Subsidies (2024)',
@@ -151,7 +152,8 @@ const NOTABLE_SPENDING = {
     source: 'White House Fact Sheet',
     lastVerified: DATA_LAST_UPDATED,
     category: 'general',
-    notes: 'New federal investment portion of the $1.2T bill'
+    notes: 'New federal investment portion of the $1.2T bill',
+    multiYear: true                  // Spent over 5 years, not in one year
   },
   jamesWebbTelescope: {
     label: 'James Webb Space Telescope',
@@ -159,7 +161,8 @@ const NOTABLE_SPENDING = {
     source: 'NASA',
     lastVerified: DATA_LAST_UPDATED,
     category: 'general',
-    notes: 'Total lifecycle development cost'
+    notes: 'Total lifecycle development cost',
+    multiYear: true                  // Spent over development period, not in one year
   }
 };
 
@@ -169,8 +172,8 @@ const EXAMPLE_AMOUNTS = [
   { label: '$10 billion', value: 10_000_000_000 },
   { label: '$100 billion', value: 100_000_000_000 },
   { label: '$1 trillion', value: 1_000_000_000_000 },
-  { label: NOTABLE_SPENDING.jamesWebbTelescope.label, value: NOTABLE_SPENDING.jamesWebbTelescope.value, category: NOTABLE_SPENDING.jamesWebbTelescope.category },
-  { label: NOTABLE_SPENDING.geraldRFordCarrier.label, value: NOTABLE_SPENDING.geraldRFordCarrier.value, category: NOTABLE_SPENDING.geraldRFordCarrier.category },
-  { label: NOTABLE_SPENDING.acaSubsidies.label, value: NOTABLE_SPENDING.acaSubsidies.value, category: NOTABLE_SPENDING.acaSubsidies.category },
-  { label: NOTABLE_SPENDING.infrastructureBill.label, value: NOTABLE_SPENDING.infrastructureBill.value, category: NOTABLE_SPENDING.infrastructureBill.category }
+  { label: NOTABLE_SPENDING.jamesWebbTelescope.label, value: NOTABLE_SPENDING.jamesWebbTelescope.value, category: NOTABLE_SPENDING.jamesWebbTelescope.category, multiYear: NOTABLE_SPENDING.jamesWebbTelescope.multiYear },
+  { label: NOTABLE_SPENDING.geraldRFordCarrier.label, value: NOTABLE_SPENDING.geraldRFordCarrier.value, category: NOTABLE_SPENDING.geraldRFordCarrier.category, multiYear: NOTABLE_SPENDING.geraldRFordCarrier.multiYear },
+  { label: NOTABLE_SPENDING.acaSubsidies.label, value: NOTABLE_SPENDING.acaSubsidies.value, category: NOTABLE_SPENDING.acaSubsidies.category, multiYear: NOTABLE_SPENDING.acaSubsidies.multiYear },
+  { label: NOTABLE_SPENDING.infrastructureBill.label, value: NOTABLE_SPENDING.infrastructureBill.value, category: NOTABLE_SPENDING.infrastructureBill.category, multiYear: NOTABLE_SPENDING.infrastructureBill.multiYear }
 ];
