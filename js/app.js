@@ -402,6 +402,7 @@ const app = {
       btn.classList.toggle('active', btn.dataset.status === 'single');
     });
     document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('selected'));
+    this.clearChipSelection();
 
     // Hide stages 2, 3, 4
     document.getElementById('stage2').classList.remove('visible');
