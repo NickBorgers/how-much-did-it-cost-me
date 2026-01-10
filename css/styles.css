@@ -410,6 +410,38 @@ header p {
   text-decoration: underline;
 }
 
+/* Legal Notice */
+.legal-notice {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #fef3f2;
+  border-left: 4px solid #dc2626;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.legal-notice h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.legal-notice p {
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.legal-notice p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-notice strong {
+  font-weight: 600;
+  color: #991b1b;
+}
+
 /* Disclaimers */
 .disclaimers {
   margin-top: 2rem;
