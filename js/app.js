@@ -1,5 +1,36 @@
 // app.js - Main application logic
 
+// Utility Functions
+
+/**
+ * Format input value while preserving cursor position
+ * @param {HTMLInputElement} input - The input element to format
+ * @param {number} value - The numeric value to format
+ * @param {Function} formatter - Function to format the value
+ */
+function formatInputWithCursor(input, value, formatter) {
+  const cursorPos = input.selectionStart;
+  const oldLen = input.value.length;
+  input.value = formatter(value);
+  const newLen = input.value.length;
+
+  // Maintain cursor position accounting for length changes
+  const newPos = cursorPos + (newLen - oldLen);
+  input.setSelectionRange(newPos, newPos);
+}
+
+/**
+ * Update toggle button group to show active state
+ * @param {string} selector - CSS selector for the button group
+ * @param {string} activeValue - The value that should be active
+ * @param {string} dataAttr - Data attribute to match against (default: 'mode')
+ */
+function updateToggleGroup(selector, activeValue, dataAttr = 'mode') {
+  document.querySelectorAll(selector).forEach(btn => {
+    btn.classList.toggle('active', btn.dataset[dataAttr] === activeValue);
+  });
+}
+
 const app = {
   // Current state
   state: {
@@ -49,9 +80,7 @@ const app = {
     }
 
     // Update filing status buttons
-    document.querySelectorAll('[data-status]').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.status === this.state.filingStatus);
-    });
+    updateToggleGroup('[data-status]', this.state.filingStatus, 'status');
 
     // Show tax result and enable continue
     this.updateTaxDisplay();
@@ -65,9 +94,7 @@ const app = {
     this.state.inputMode = mode;
 
     // Update toggle buttons
-    document.querySelectorAll('[data-mode]').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.mode === mode);
-    });
+    updateToggleGroup('[data-mode]', mode);
 
     // Show/hide appropriate input
     document.getElementById('incomeInput').style.display = mode === 'income' ? 'block' : 'none';
@@ -90,9 +117,7 @@ const app = {
     this.state.filingStatus = status;
 
     // Update toggle buttons
-    document.querySelectorAll('[data-status]').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.status === status);
-    });
+    updateToggleGroup('[data-status]', status, 'status');
 
     // Recalculate tax
     this.recalculateTax();
@@ -104,16 +129,9 @@ const app = {
     const num = parseCurrencyInput(value);
     this.state.income = num;
 
-    // Format the input
+    // Format the input with cursor preservation
     const input = document.getElementById('income');
-    const cursorPos = input.selectionStart;
-    const oldLen = input.value.length;
-    input.value = this.formatNumberInput(num);
-    const newLen = input.value.length;
-
-    // Try to maintain cursor position
-    const newPos = cursorPos + (newLen - oldLen);
-    input.setSelectionRange(newPos, newPos);
+    formatInputWithCursor(input, num, this.formatNumberInput.bind(this));
 
     this.recalculateTax();
     this.saveState();
@@ -125,15 +143,9 @@ const app = {
     this.state.directTax = num;
     this.state.incomeTax = num;
 
-    // Format the input
+    // Format the input with cursor preservation
     const input = document.getElementById('directTax');
-    const cursorPos = input.selectionStart;
-    const oldLen = input.value.length;
-    input.value = this.formatNumberInput(num);
-    const newLen = input.value.length;
-
-    const newPos = cursorPos + (newLen - oldLen);
-    input.setSelectionRange(newPos, newPos);
+    formatInputWithCursor(input, num, this.formatNumberInput.bind(this));
 
     // Calculate FICA based on estimated income (rough reverse calculation)
     // This is approximate - assume ~15% effective rate to estimate income
@@ -222,6 +234,10 @@ const app = {
 
     // Clear chip selection when user types custom value
     this.clearChipSelection();
+
+    // Clear category selection since manual input shouldn't inherit category from chips
+    this.state.category = null;
+    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('selected'));
   },
 
   // Set spending from chip (optionally auto-select category for notable items)
@@ -315,6 +331,14 @@ const app = {
       spendingAmount: this.state.spendingAmount,
       category: this.state.category
     });
+
+    // Update result card styling - green for savings, blue for spending
+    const resultCard = document.querySelector('.result-card');
+    if (this.state.isSavings) {
+      resultCard.classList.add('savings');
+    } else {
+      resultCard.classList.remove('savings');
+    }
 
     // Update result display - different text for savings vs spending
     document.getElementById('resultSpendingAmount').textContent = formatLargeNumber(this.state.spendingAmount);
