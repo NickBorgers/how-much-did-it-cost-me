@@ -113,14 +113,16 @@ jobs:
                - Feature availability or limitations
                - Any numerical data that comes from external sources
 
-               **IMPORTANT - Notable Federal Spending Items**: The file js/data.js contains a
-               NOTABLE_SPENDING object with specific federal spending figures that MUST be verified:
+               **IMPORTANT - Permanent Federal Spending Items**: The file js/data.js contains a
+               PERMANENT_SPENDING object with specific federal spending figures that MUST be verified:
                - Gerald R. Ford Aircraft Carrier (CVN-78) program cost
-               - ACA Premium Subsidies for the most recent fiscal year (update year label if needed)
-               - Infrastructure Investment and Jobs Act spending
                - James Webb Space Telescope total development cost
 
-               For each notable spending item, verify:
+               NOTE: The TRENDING_SPENDING items are updated weekly by a separate workflow and
+               do NOT need accuracy verification - they intentionally reflect numbers from the news
+               which may be disputed or approximate.
+
+               For each PERMANENT spending item, verify:
                - The dollar amount is still accurate
                - The source attribution is correct
                - The notes/description remain accurate
