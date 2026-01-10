@@ -222,6 +222,10 @@ const app = {
 
     // Clear chip selection when user types custom value
     this.clearChipSelection();
+
+    // Clear category selection since manual input shouldn't inherit category from chips
+    this.state.category = null;
+    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('selected'));
   },
 
   // Set spending from chip (optionally auto-select category for notable items)
