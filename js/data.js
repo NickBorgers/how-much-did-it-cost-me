@@ -134,7 +134,8 @@ const PERMANENT_SPENDING = {
     source: 'Congressional Research Service',
     lastVerified: DATA_LAST_UPDATED,
     category: 'defense',
-    notes: 'Total acquisition cost for lead ship CVN-78'
+    notes: 'Total acquisition cost for lead ship CVN-78',
+    multiYear: true                  // Spent over construction period, not in one year
   },
   jamesWebbTelescope: {
     label: 'James Webb Space Telescope',
@@ -142,7 +143,8 @@ const PERMANENT_SPENDING = {
     source: 'NASA',
     lastVerified: DATA_LAST_UPDATED,
     category: 'general',
-    notes: 'Total lifecycle development cost'
+    notes: 'Total lifecycle development cost',
+    multiYear: true                  // Spent over development period, not in one year
   }
 };
 
@@ -186,10 +188,10 @@ const NOTABLE_SPENDING = {
 // Permanent items first (always shown), then trending items (updated weekly)
 const EXAMPLE_AMOUNTS = [
   // Permanent spending items - always on the list
-  { label: PERMANENT_SPENDING.jamesWebbTelescope.label, value: PERMANENT_SPENDING.jamesWebbTelescope.value, category: PERMANENT_SPENDING.jamesWebbTelescope.category },
-  { label: PERMANENT_SPENDING.geraldRFordCarrier.label, value: PERMANENT_SPENDING.geraldRFordCarrier.value, category: PERMANENT_SPENDING.geraldRFordCarrier.category },
+  { label: PERMANENT_SPENDING.jamesWebbTelescope.label, value: PERMANENT_SPENDING.jamesWebbTelescope.value, category: PERMANENT_SPENDING.jamesWebbTelescope.category, multiYear: PERMANENT_SPENDING.jamesWebbTelescope.multiYear },
+  { label: PERMANENT_SPENDING.geraldRFordCarrier.label, value: PERMANENT_SPENDING.geraldRFordCarrier.value, category: PERMANENT_SPENDING.geraldRFordCarrier.category, multiYear: PERMANENT_SPENDING.geraldRFordCarrier.multiYear },
   // Trending spending items - rotated weekly based on news
-  { label: TRENDING_SPENDING.trending1.label, value: TRENDING_SPENDING.trending1.value, category: TRENDING_SPENDING.trending1.category },
-  { label: TRENDING_SPENDING.trending2.label, value: TRENDING_SPENDING.trending2.value, category: TRENDING_SPENDING.trending2.category },
-  { label: TRENDING_SPENDING.trending3.label, value: TRENDING_SPENDING.trending3.value, category: TRENDING_SPENDING.trending3.category }
+  { label: TRENDING_SPENDING.trending1.label, value: TRENDING_SPENDING.trending1.value, category: TRENDING_SPENDING.trending1.category, multiYear: TRENDING_SPENDING.trending1.multiYear },
+  { label: TRENDING_SPENDING.trending2.label, value: TRENDING_SPENDING.trending2.value, category: TRENDING_SPENDING.trending2.category, multiYear: TRENDING_SPENDING.trending2.multiYear },
+  { label: TRENDING_SPENDING.trending3.label, value: TRENDING_SPENDING.trending3.value, category: TRENDING_SPENDING.trending3.category, multiYear: TRENDING_SPENDING.trending3.multiYear }
 ];

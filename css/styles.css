@@ -329,7 +329,8 @@ header p {
   font-style: italic;
 }
 
-.deficit-note {
+.deficit-note,
+.multi-year-note {
   background: rgba(217, 119, 6, 0.1);
   border-left: 3px solid var(--color-warning);
   padding: 0.75rem 1rem;
@@ -337,6 +338,10 @@ header p {
   color: var(--color-text-muted);
   margin-bottom: 1rem;
   border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.multi-year-note {
+  margin-top: 1rem;
 }
 
 /* Math Breakdown (Expandable) */
