@@ -2,7 +2,7 @@
 // Sources: IRS, CBO, Tax Foundation, U.S. Treasury Fiscal Data
 
 const DATA_YEAR = 2024;
-const DATA_LAST_UPDATED = '2024-10-15';
+const DATA_LAST_UPDATED = '2025-01-10';  // Updated verification date
 
 // Standard Deductions (2024)
 const STANDARD_DEDUCTIONS = {
