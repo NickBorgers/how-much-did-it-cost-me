@@ -98,7 +98,7 @@ jobs:
 
             YOUR TASK:
 
-            1. **SEARCH FOR TRENDING SPENDING**: Use web search to find the TOP 3 most talked-about
+            1. **SEARCH FOR TRENDING SPENDING**: Use web search to find the TOP 7 most talked-about
                federal spending topics RIGHT NOW. Look for:
                - Government spending scandals or controversies
                - Budget debates currently in Congress
@@ -116,7 +116,7 @@ jobs:
                - 'budget debate Congress billions'
                - 'federal program cost overrun news'
 
-            2. **SELECT THE TOP 3**: Choose items that are:
+            2. **SELECT THE TOP 7**: Choose items that are:
                - Currently in the news (within the last week or two)
                - Have a specific dollar amount associated with them
                - Are interesting/controversial enough that people might search for them
@@ -133,7 +133,7 @@ jobs:
                - 'interest' - Debt interest (rarely used)
 
             4. **UPDATE THE DATA FILE**: Read js/data.js and update the TRENDING_SPENDING object
-               with your 3 selected items. Keep this exact structure:
+               with your 7 selected items. Keep this exact structure:
 
                const TRENDING_SPENDING = {
                  trending1: {
@@ -145,7 +145,11 @@ jobs:
                    notes: '[Brief context - why this is in the news, accuracy note if disputed]'
                  },
                  trending2: { ... },
-                 trending3: { ... }
+                 trending3: { ... },
+                 trending4: { ... },
+                 trending5: { ... },
+                 trending6: { ... },
+                 trending7: { ... }
                };
 
                IMPORTANT NOTES ON VALUES:
@@ -174,6 +178,10 @@ jobs:
             | [Item 1] | $X billion | [category] | [brief explanation] |
             | [Item 2] | $X billion | [category] | [brief explanation] |
             | [Item 3] | $X billion | [category] | [brief explanation] |
+            | [Item 4] | $X billion | [category] | [brief explanation] |
+            | [Item 5] | $X billion | [category] | [brief explanation] |
+            | [Item 6] | $X billion | [category] | [brief explanation] |
+            | [Item 7] | $X billion | [category] | [brief explanation] |
 
             ### Permanent Items (unchanged)
             - James Webb Space Telescope (\$10 billion)

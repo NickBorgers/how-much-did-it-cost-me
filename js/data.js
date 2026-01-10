@@ -173,6 +173,38 @@ const TRENDING_SPENDING = {
     lastVerified: '2025-01-10',
     category: 'general',
     notes: 'Supplemental Nutrition Assistance Program - often in political debates'
+  },
+  trending4: {
+    label: 'Border Security (2024)',
+    value: 25_000_000_000,           // $25 billion (FY2024 estimate)
+    source: 'DHS Budget',
+    lastVerified: '2025-01-10',
+    category: 'general',
+    notes: 'Border security and immigration enforcement - ongoing political debate'
+  },
+  trending5: {
+    label: 'Ukraine Aid Package',
+    value: 61_000_000_000,           // $61 billion (2024 aid package)
+    source: 'Congressional Budget',
+    lastVerified: '2025-01-10',
+    category: 'defense',
+    notes: 'Military and economic assistance to Ukraine - contentious topic'
+  },
+  trending6: {
+    label: 'Student Loan Forgiveness',
+    value: 138_000_000_000,          // $138 billion (cumulative forgiveness 2021-2024)
+    source: 'Department of Education',
+    lastVerified: '2025-01-10',
+    category: 'general',
+    notes: 'Various student debt relief programs - politically divisive'
+  },
+  trending7: {
+    label: 'NASA Budget (2024)',
+    value: 25_000_000_000,           // $25 billion (FY2024)
+    source: 'NASA',
+    lastVerified: '2025-01-10',
+    category: 'general',
+    notes: 'Artemis program and Mars exploration - popular but debated spending'
   }
 };
 
@@ -191,5 +223,9 @@ const EXAMPLE_AMOUNTS = [
   // Trending spending items - rotated weekly based on news
   { label: TRENDING_SPENDING.trending1.label, value: TRENDING_SPENDING.trending1.value, category: TRENDING_SPENDING.trending1.category },
   { label: TRENDING_SPENDING.trending2.label, value: TRENDING_SPENDING.trending2.value, category: TRENDING_SPENDING.trending2.category },
-  { label: TRENDING_SPENDING.trending3.label, value: TRENDING_SPENDING.trending3.value, category: TRENDING_SPENDING.trending3.category }
+  { label: TRENDING_SPENDING.trending3.label, value: TRENDING_SPENDING.trending3.value, category: TRENDING_SPENDING.trending3.category },
+  { label: TRENDING_SPENDING.trending4.label, value: TRENDING_SPENDING.trending4.value, category: TRENDING_SPENDING.trending4.category },
+  { label: TRENDING_SPENDING.trending5.label, value: TRENDING_SPENDING.trending5.value, category: TRENDING_SPENDING.trending5.category },
+  { label: TRENDING_SPENDING.trending6.label, value: TRENDING_SPENDING.trending6.value, category: TRENDING_SPENDING.trending6.category },
+  { label: TRENDING_SPENDING.trending7.label, value: TRENDING_SPENDING.trending7.value, category: TRENDING_SPENDING.trending7.category }
 ];
