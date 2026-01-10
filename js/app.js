@@ -50,6 +50,9 @@ const app = {
 
     // Show tax result and enable continue
     this.updateTaxDisplay();
+
+    // Auto-advance to Stage 2 so returning users can immediately enter spending
+    this.showStage(2);
   },
 
   // Set input mode (income or direct tax)
