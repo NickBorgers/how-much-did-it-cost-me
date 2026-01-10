@@ -184,6 +184,28 @@ function formatLargeNumber(amount) {
 }
 
 /**
+ * Format a proportion in a user-friendly "1 in X" format
+ * @param {number} proportion - The proportion as a decimal (e.g., 0.0000000221)
+ * @returns {string} Formatted string like "1 in 45 million"
+ */
+function formatProportion(proportion) {
+  if (proportion <= 0) return '0';
+  if (proportion >= 1) return '100%';
+
+  const oneInX = Math.round(1 / proportion);
+
+  if (oneInX >= 1_000_000_000) {
+    return `1 in ${(oneInX / 1_000_000_000).toFixed(1)} billion`;
+  } else if (oneInX >= 1_000_000) {
+    return `1 in ${(oneInX / 1_000_000).toFixed(1)} million`;
+  } else if (oneInX >= 1_000) {
+    return `1 in ${(oneInX / 1_000).toFixed(1)} thousand`;
+  } else {
+    return `1 in ${oneInX.toLocaleString()}`;
+  }
+}
+
+/**
  * Parse a currency string to a number
  * @param {string} str - String like "$1,000,000" or "1000000"
  * @returns {number} Parsed number
