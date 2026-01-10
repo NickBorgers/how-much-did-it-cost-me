@@ -73,28 +73,28 @@ const FEDERAL_BUDGET = {
 const FUNDING_CATEGORIES = {
   defense: {
     name: 'Defense & Military',
-    examples: 'Pentagon, weapons systems, VA',
+    examples: 'Pentagon, weapons systems, military bases, VA healthcare & benefits',
     taxSource: 'income',
     budgetPool: FEDERAL_BUDGET.spending.defense,
     revenuePool: FEDERAL_BUDGET.revenue.individualIncomeTax
   },
   general: {
     name: 'General Government',
-    examples: 'Agencies, transportation, education, research',
+    examples: 'SNAP, WIC, TANF, child care (CCAP/CCDBG), education grants, housing assistance, transportation, federal agencies, research',
     taxSource: 'income',
     budgetPool: FEDERAL_BUDGET.spending.otherDiscretionary + FEDERAL_BUDGET.spending.otherMandatory,
     revenuePool: FEDERAL_BUDGET.revenue.individualIncomeTax
   },
   socialSecurity: {
     name: 'Social Security',
-    examples: 'SS benefits, SS administration',
+    examples: 'Retirement benefits, disability (SSDI), survivors benefits',
     taxSource: 'fica',
     budgetPool: FEDERAL_BUDGET.spending.socialSecurity,
     revenuePool: FEDERAL_BUDGET.revenue.payrollTax
   },
   medicare: {
     name: 'Medicare & Medicaid',
-    examples: 'Healthcare programs',
+    examples: 'Medicare, Medicaid, CHIP, ACA marketplace subsidies',
     taxSource: 'mixed',
     budgetPool: FEDERAL_BUDGET.spending.medicareMedicaid,
     // Mixed: ~60% from general funds, ~40% from payroll
@@ -104,7 +104,7 @@ const FUNDING_CATEGORIES = {
   },
   interest: {
     name: 'Interest on Debt',
-    examples: 'Debt payments to bondholders',
+    examples: 'Treasury bond payments, debt service',
     taxSource: 'income',
     budgetPool: FEDERAL_BUDGET.spending.netInterest,
     revenuePool: FEDERAL_BUDGET.revenue.individualIncomeTax
