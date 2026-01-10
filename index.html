@@ -16,7 +16,7 @@
 
     <!-- Returning User Banner (hidden by default) -->
     <div id="returningBanner" class="returning-banner" style="display: none;">
-      <span>Welcome back! Using your saved income. Enter a spending amount below.</span>
+      <span>Welcome back! Using your saved income. Select a spending item below.</span>
       <button type="button" onclick="app.clearAndReset()">Start fresh</button>
     </div>
 
@@ -75,11 +75,15 @@
     <section id="stage2" class="stage">
       <h2><span class="stage-number">2</span> The Spending Amount</h2>
       <p style="color: var(--color-text-muted); margin-bottom: 1rem; font-size: 0.9rem;">
-        Enter an amount of federal spending you heard about:
+        Select a recent spending item, or enter your own amount:
       </p>
 
+      <div id="spendingChips" class="example-chips" aria-label="Example amounts">
+        <!-- Chips rendered dynamically from EXAMPLE_AMOUNTS in data.js -->
+      </div>
+
       <div class="input-group">
-        <label for="spending">Spending Amount <span class="input-unit">(in billions)</span></label>
+        <label for="spending">Or enter an amount <span class="input-unit">(in billions)</span></label>
         <div class="input-wrapper input-wrapper-billions">
           <span class="prefix">$</span>
           <input type="text" id="spending" inputmode="decimal" placeholder="10"
@@ -87,10 +91,6 @@
           <span class="suffix">billion</span>
         </div>
         <div class="input-hint" id="spendingHint"></div>
-      </div>
-
-      <div id="spendingChips" class="example-chips" aria-label="Example amounts">
-        <!-- Chips rendered dynamically from EXAMPLE_AMOUNTS in data.js -->
       </div>
 
       <div id="multiYearNote" class="multi-year-note" style="display: none;">
