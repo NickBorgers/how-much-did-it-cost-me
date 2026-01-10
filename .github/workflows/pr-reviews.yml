@@ -128,7 +128,7 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.WORKFLOW_PAT }}
-          additional_permissions: "gh pr:write, gh api:write"
+          use_sticky_comment: true
           prompt: |
             You are reviewing automated Playwright test results for the "How Much Did It Cost Me?" web application.
 
@@ -138,13 +138,12 @@ jobs:
             Your job is to:
             1. Read the test results JSON file
             2. Analyze what passed and what failed
-            3. Post a clear, concise PR comment summarizing the results
+            3. Provide a clear summary of the results
 
-            ## Comment Format
+            ## Response Format
 
-            Post a GitHub PR comment using the gh CLI with this structure:
+            Structure your response as:
 
-            ```
             ## Impatient User Review
 
             **Status**: [PASSED or FAILED]
@@ -158,18 +157,10 @@ jobs:
             ### Issues Found
             [List any issues, or "None" if all tests passed]
 
-            ---
-            *Automated test run at [timestamp]*
-            ```
-
-            Use this command to post the comment:
-            gh pr comment ${{ github.event.pull_request.number }} --body "YOUR_COMMENT_HERE"
-
             IMPORTANT:
             - Read the actual test results file first
             - Base your review on the real test data, not assumptions
-            - Keep the comment concise and actionable
-            - If tests failed, explain what needs to be fixed
+            - Keep the response concise and actionable
 
   # Job 3: Accuracy review - checks if any numbers in the PR are accurate
   accuracy-review:
@@ -207,7 +198,7 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.WORKFLOW_PAT }}
-          additional_permissions: "gh pr:write, gh api:write"
+          use_sticky_comment: true
           prompt: |
             You are a data accuracy reviewer for the "How Much Did It Cost Me?" application.
 
@@ -222,7 +213,7 @@ jobs:
 
             1. Read js/data.js to see the current values
             2. Use web search to verify the accuracy of ANY numbers that were changed in this PR
-            3. Post a PR comment with your findings
+            3. Provide a summary of your findings
 
             ## Verification Checklist
 
@@ -240,14 +231,10 @@ jobs:
             - Congressional Research Service reports
             - Reputable news sources
 
-            ## Comment Format
+            ## Response Format
 
-            Post a GitHub PR comment using:
-            gh pr comment ${{ github.event.pull_request.number }} --body "YOUR_COMMENT"
+            Structure your response as:
 
-            Structure your comment as:
-
-            ```
             ## Data Accuracy Review
 
             **Status**: [VERIFIED / ISSUES FOUND / UNABLE TO VERIFY]
@@ -263,10 +250,8 @@ jobs:
 
             ---
             *Sources checked: [list sources consulted]*
-            ```
 
             CRITICAL: Only flag issues if you find clear inaccuracies with authoritative sources.
-            Minor discrepancies due to timing (e.g., FY vs calendar year) should be noted but not flagged as errors.
 
       - name: Skip if no data changes
         if: steps.changed-files.outputs.data_changed != 'true'
@@ -344,7 +329,7 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.WORKFLOW_PAT }}
-          additional_permissions: "gh pr:write, gh api:write"
+          use_sticky_comment: true
           prompt: |
             You are a test executor. The PR author has provided a test plan that you need to execute.
 
@@ -375,14 +360,10 @@ jobs:
             - Category buttons have data-category attributes (defense, general, socialSecurity, medicare, interest)
             - Take screenshots to document your testing
 
-            ## Reporting
+            ## Response Format
 
-            After executing the test plan, post a PR comment using:
-            gh pr comment ${{ github.event.pull_request.number }} --body "YOUR_COMMENT"
+            After executing the test plan, provide your results in this format:
 
-            Structure your comment as:
-
-            ```
             ## Test Plan Execution
 
             **Status**: [PASSED / FAILED / PARTIAL]
@@ -395,10 +376,6 @@ jobs:
 
             ### Notes
             [Any observations or issues discovered]
-
-            ---
-            *Test plan executed by Claude*
-            ```
 
             IMPORTANT:
             - Execute the EXACT steps specified in the test plan
