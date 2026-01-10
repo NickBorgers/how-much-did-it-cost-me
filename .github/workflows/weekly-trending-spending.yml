@@ -142,7 +142,8 @@ jobs:
                    source: '[Where the number comes from]',
                    lastVerified: '[today's date YYYY-MM-DD]',
                    category: '[one of: defense, general, medicare, socialSecurity, interest]',
-                   notes: '[Brief context - why this is in the news, accuracy note if disputed]'
+                   notes: '[Brief context - why this is in the news, accuracy note if disputed]',
+                   isSavings: [true if this is a SAVINGS/reduction claim, omit or false for spending]
                  },
                  trending2: { ... },
                  trending3: { ... },
@@ -160,6 +161,13 @@ jobs:
                - We don't care if it's perfectly accurate - the point is to show what the
                  headline number would mean to an individual taxpayer
 
+               SAVINGS vs SPENDING:
+               - If an item represents CLAIMED SAVINGS (like DOGE efficiency claims, program
+                 cuts, or cost reductions), add 'isSavings: true' to that item
+               - Savings items are displayed with a different style (green) to distinguish
+                 them from regular spending
+               - Most items will NOT have isSavings - only add it for actual savings/reductions
+
             5. **CREATE A PR**: After updating the file:
                a. Create a new branch: git checkout -b trending-spending/weekly-\$(date +%Y-%m-%d)
                b. Commit the changes: git commit with descriptive message
@@ -173,15 +181,15 @@ jobs:
 
             ### This Week's Trending Items
 
-            | Item | Amount | Category | Why It's Trending |
-            |------|--------|----------|-------------------|
-            | [Item 1] | $X billion | [category] | [brief explanation] |
-            | [Item 2] | $X billion | [category] | [brief explanation] |
-            | [Item 3] | $X billion | [category] | [brief explanation] |
-            | [Item 4] | $X billion | [category] | [brief explanation] |
-            | [Item 5] | $X billion | [category] | [brief explanation] |
-            | [Item 6] | $X billion | [category] | [brief explanation] |
-            | [Item 7] | $X billion | [category] | [brief explanation] |
+            | Item | Amount | Category | Type | Why It's Trending |
+            |------|--------|----------|------|-------------------|
+            | [Item 1] | $X billion | [category] | [Spending/Savings] | [brief explanation] |
+            | [Item 2] | $X billion | [category] | [Spending/Savings] | [brief explanation] |
+            | [Item 3] | $X billion | [category] | [Spending/Savings] | [brief explanation] |
+            | [Item 4] | $X billion | [category] | [Spending/Savings] | [brief explanation] |
+            | [Item 5] | $X billion | [category] | [Spending/Savings] | [brief explanation] |
+            | [Item 6] | $X billion | [category] | [Spending/Savings] | [brief explanation] |
+            | [Item 7] | $X billion | [category] | [Spending/Savings] | [brief explanation] |
 
             ### Permanent Items (unchanged)
             - James Webb Space Telescope (\$10 billion)
