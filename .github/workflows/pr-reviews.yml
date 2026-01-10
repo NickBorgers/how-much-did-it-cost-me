@@ -227,11 +227,145 @@ jobs:
         run: |
           echo "No changes to js/data.js - skipping accuracy review"
 
+  # Job 4: Execute test plan from PR description
+  # If the PR has a "Test plan" section, Claude will execute those steps with Playwright
+  test-plan-executor:
+    name: Test Plan Executor
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft != true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.ref || github.head_ref || github.ref }}
+
+      - name: Extract test plan from PR
+        id: extract-test-plan
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          # Save PR body to file for processing
+          echo "$PR_BODY" > pr_body.txt
+
+          # Check if there's a test plan section (case insensitive)
+          # Look for "## Test plan", "## Test Plan", "### Test plan", etc.
+          if grep -qi "test plan" pr_body.txt; then
+            echo "has_test_plan=true" >> $GITHUB_OUTPUT
+
+            # Extract the test plan section (everything after "Test plan" header until next ## header or end)
+            sed -n '/[Tt]est [Pp]lan/,/^##[^#]/p' pr_body.txt | head -n -1 > test_plan.txt
+
+            # If extraction is empty, try alternative: get everything after "Test plan"
+            if [ ! -s test_plan.txt ]; then
+              sed -n '/[Tt]est [Pp]lan/,$p' pr_body.txt > test_plan.txt
+            fi
+
+            echo "Test plan found:"
+            cat test_plan.txt
+          else
+            echo "has_test_plan=false" >> $GITHUB_OUTPUT
+            echo "No test plan section found in PR description"
+          fi
+
+      - name: Setup Node.js
+        if: steps.extract-test-plan.outputs.has_test_plan == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        if: steps.extract-test-plan.outputs.has_test_plan == 'true'
+        run: |
+          npm install -g http-server
+          npm init -y
+          npm install playwright
+          npx playwright install chromium --with-deps
+
+      - name: Start local server
+        if: steps.extract-test-plan.outputs.has_test_plan == 'true'
+        run: |
+          http-server . -p 8080 &
+          sleep 3
+          curl -s http://localhost:8080 > /dev/null || (echo "Server failed to start" && exit 1)
+
+      - name: Execute test plan
+        if: steps.extract-test-plan.outputs.has_test_plan == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          model: claude-sonnet-4-20250514
+          prompt: |
+            You are a test executor. The PR author has provided a test plan that you need to execute.
+
+            The app is running at http://localhost:8080
+
+            ## Test Plan from PR Description
+
+            The following test plan was specified by the PR author:
+
+            ```
+            ${{ github.event.pull_request.body }}
+            ```
+
+            Look for the "Test plan" section in the PR description above and execute each step.
+
+            ## Your Task
+
+            1. Read and understand each test step in the test plan
+            2. Use Playwright to execute each step against the running app
+            3. Take screenshots at key points
+            4. Report whether each step passed or failed
+
+            ## Execution Guidelines
+
+            - Use the playwright-skill or write Playwright scripts to test the app
+            - The app is a single-page web application at http://localhost:8080
+            - Key elements: #income (input), #spending (input), #taxResult, #resultShare
+            - Category buttons have data-category attributes (defense, general, socialSecurity, medicare, interest)
+            - Take screenshots to document your testing
+
+            ## Reporting
+
+            After executing the test plan, post a PR comment using:
+            gh pr comment ${{ github.event.pull_request.number }} --body "YOUR_COMMENT"
+
+            Structure your comment as:
+
+            ```
+            ## Test Plan Execution
+
+            **Status**: [PASSED / FAILED / PARTIAL]
+
+            ### Steps Executed
+            [For each step in the test plan, report: ✓ Passed or ✗ Failed with details]
+
+            ### Evidence
+            [Reference screenshots taken during testing]
+
+            ### Notes
+            [Any observations or issues discovered]
+
+            ---
+            *Test plan executed by Claude*
+            ```
+
+            IMPORTANT:
+            - Execute the EXACT steps specified in the test plan
+            - Don't skip steps or make assumptions
+            - If a step is unclear, note it but attempt to execute your best interpretation
+            - Report honestly if something fails
+
+      - name: Skip if no test plan
+        if: steps.extract-test-plan.outputs.has_test_plan != 'true'
+        run: |
+          echo "No test plan section found in PR description - skipping test plan execution"
+
   # Gate job - ensures all agent reviews pass before merge
   all-agent-reviews-passed:
     name: All Agent Reviews
     runs-on: ubuntu-latest
-    needs: [run-playwright-tests, impatient-user-review, accuracy-review]
+    needs: [run-playwright-tests, impatient-user-review, accuracy-review, test-plan-executor]
     if: always()
     steps:
       - name: Check all reviews passed
@@ -240,6 +374,7 @@ jobs:
           echo "run-playwright-tests: ${{ needs.run-playwright-tests.result }}"
           echo "impatient-user-review: ${{ needs.impatient-user-review.result }}"
           echo "accuracy-review: ${{ needs.accuracy-review.result }}"
+          echo "test-plan-executor: ${{ needs.test-plan-executor.result }}"
 
           # Playwright tests must pass
           if [ "${{ needs.run-playwright-tests.result }}" != "success" ]; then
@@ -256,6 +391,12 @@ jobs:
           # Accuracy review must complete (success or skipped is ok)
           if [ "${{ needs.accuracy-review.result }}" == "failure" ]; then
             echo "FAILED: accuracy-review failed"
+            exit 1
+          fi
+
+          # Test plan executor must complete (success or skipped is ok)
+          if [ "${{ needs.test-plan-executor.result }}" == "failure" ]; then
+            echo "FAILED: test-plan-executor failed"
             exit 1
           fi
 
