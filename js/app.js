@@ -11,7 +11,8 @@ const app = {
     directTax: null, // null means calculated, number means user-entered
     spendingAmount: 0,
     category: null,
-    isMultiYear: false // tracks if selected spending is multi-year
+    isMultiYear: false, // tracks if selected spending is multi-year
+    isSavings: false    // tracks if selected item is a savings (vs spending)
   },
 
   // Initialize the app
@@ -189,8 +190,9 @@ const app = {
     const actualAmount = billions * 1_000_000_000;
     this.state.spendingAmount = actualAmount;
 
-    // Manual input is not multi-year
+    // Manual input is not multi-year and not savings
     this.state.isMultiYear = false;
+    this.state.isSavings = false;
     document.getElementById('multiYearNote').style.display = 'none';
 
     // Update the hint to show the full dollar amount
@@ -209,9 +211,10 @@ const app = {
   },
 
   // Set spending from chip (optionally auto-select category for notable items)
-  setSpending(amount, category = null, multiYear = false) {
+  setSpending(amount, category = null, multiYear = false, isSavings = false) {
     this.state.spendingAmount = amount;
     this.state.isMultiYear = multiYear;
+    this.state.isSavings = isSavings;
 
     // Show/hide multi-year note
     const multiYearNote = document.getElementById('multiYearNote');
@@ -247,17 +250,18 @@ const app = {
     EXAMPLE_AMOUNTS.forEach((item, index) => {
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = 'chip';
+      btn.className = item.isSavings ? 'chip savings' : 'chip';
       btn.dataset.index = index;
       btn.dataset.value = item.value;
+      btn.dataset.savings = item.isSavings ? 'true' : 'false';
       btn.textContent = item.label;
-      btn.onclick = () => this.selectChip(index, item.value, item.category || null, item.multiYear || false);
+      btn.onclick = () => this.selectChip(index, item.value, item.category || null, item.multiYear || false, item.isSavings || false);
       container.appendChild(btn);
     });
   },
 
   // Select a chip and highlight it
-  selectChip(index, amount, category, multiYear = false) {
+  selectChip(index, amount, category, multiYear = false, isSavings = false) {
     // Update visual selection
     document.querySelectorAll('#spendingChips .chip').forEach(chip => {
       chip.classList.toggle('selected', chip.dataset.index === String(index));
@@ -265,7 +269,7 @@ const app = {
     this.state.selectedChipIndex = index;
 
     // Set the spending amount
-    this.setSpending(amount, category, multiYear);
+    this.setSpending(amount, category, multiYear, isSavings);
   },
 
   // Clear chip selection (when user types custom value)
@@ -298,9 +302,13 @@ const app = {
       category: this.state.category
     });
 
-    // Update result display
+    // Update result display - different text for savings vs spending
     document.getElementById('resultSpendingAmount').textContent = formatLargeNumber(this.state.spendingAmount);
-    document.getElementById('resultCategory').textContent = result.category.toLowerCase();
+    if (this.state.isSavings) {
+      document.getElementById('resultCategory').textContent = 'claimed savings';
+    } else {
+      document.getElementById('resultCategory').textContent = result.category.toLowerCase();
+    }
     document.getElementById('resultShare').textContent = formatCurrency(result.yourShare);
 
     // Get comparison
@@ -380,7 +388,8 @@ const app = {
       directTax: null,
       spendingAmount: 0,
       category: null,
-      isMultiYear: false
+      isMultiYear: false,
+      isSavings: false
     };
 
     // Reset UI

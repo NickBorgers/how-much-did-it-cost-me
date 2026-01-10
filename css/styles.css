@@ -253,6 +253,23 @@ header p {
   color: var(--color-primary);
 }
 
+.chip.savings {
+  background: rgba(5, 150, 105, 0.1);
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+.chip.savings:hover {
+  background: rgba(5, 150, 105, 0.15);
+  border-color: var(--color-success);
+}
+
+.chip.savings.selected {
+  background: rgba(5, 150, 105, 0.2);
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
 /* Category Selector */
 .category-grid {
   display: grid;
