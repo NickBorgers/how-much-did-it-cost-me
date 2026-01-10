@@ -15,6 +15,9 @@ const app = {
 
   // Initialize the app
   init() {
+    // Render spending chips from data
+    this.renderSpendingChips();
+
     // Check for returning user
     const saved = loadUserData();
     if (saved && saved.income) {
@@ -175,30 +178,66 @@ const app = {
     }
   },
 
-  // Handle spending input
+  // Handle spending input (in billions)
   handleSpendingInput(value) {
-    const num = parseCurrencyInput(value);
-    this.state.spendingAmount = num;
+    // Parse as a decimal number (user enters billions)
+    const billionsStr = value.replace(/[^0-9.]/g, '');
+    const billions = parseFloat(billionsStr) || 0;
 
-    // Format the input
-    const input = document.getElementById('spending');
-    const cursorPos = input.selectionStart;
-    const oldLen = input.value.length;
-    input.value = this.formatNumberInput(num);
-    const newLen = input.value.length;
+    // Convert to actual dollar amount
+    const actualAmount = billions * 1_000_000_000;
+    this.state.spendingAmount = actualAmount;
 
-    const newPos = cursorPos + (newLen - oldLen);
-    input.setSelectionRange(newPos, newPos);
+    // Update the hint to show the full dollar amount
+    const hint = document.getElementById('spendingHint');
+    if (billions > 0) {
+      hint.innerHTML = `= <strong>${formatLargeNumber(actualAmount)}</strong>`;
+    } else {
+      hint.innerHTML = '';
+    }
 
     // Enable continue if valid
-    document.getElementById('continueToStage3').disabled = num <= 0;
+    document.getElementById('continueToStage3').disabled = billions <= 0;
   },
 
-  // Set spending from chip
-  setSpending(amount) {
+  // Set spending from chip (optionally auto-select category for notable items)
+  setSpending(amount, category = null) {
     this.state.spendingAmount = amount;
-    document.getElementById('spending').value = this.formatNumberInput(amount);
+
+    // Display in billions (convert from actual amount)
+    const billions = amount / 1_000_000_000;
+    document.getElementById('spending').value = billions % 1 === 0 ? billions.toString() : billions.toFixed(1);
+
+    // Update the hint to show the full dollar amount
+    const hint = document.getElementById('spendingHint');
+    hint.innerHTML = `= <strong>${formatLargeNumber(amount)}</strong>`;
+
     document.getElementById('continueToStage3').disabled = false;
+
+    // If a category is provided (from notable spending items), auto-advance
+    if (category && FUNDING_CATEGORIES[category]) {
+      this.showStage(3);
+      this.selectCategory(category);
+    }
+  },
+
+  // Render spending chips from EXAMPLE_AMOUNTS data
+  renderSpendingChips() {
+    const container = document.getElementById('spendingChips');
+    if (!container) return;
+
+    container.innerHTML = '';
+    EXAMPLE_AMOUNTS.forEach(item => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'chip';
+      if (item.category) {
+        btn.classList.add('chip-notable');
+      }
+      btn.textContent = item.label;
+      btn.onclick = () => this.setSpending(item.value, item.category || null);
+      container.appendChild(btn);
+    });
   },
 
   // Select funding category
@@ -279,9 +318,10 @@ const app = {
     // Hide stage 3
     document.getElementById('stage3').classList.remove('visible');
 
-    // Clear spending
+    // Clear spending and hint
     this.state.spendingAmount = 0;
     document.getElementById('spending').value = '';
+    document.getElementById('spendingHint').innerHTML = '';
     document.getElementById('continueToStage3').disabled = true;
 
     // Scroll to stage 2
@@ -309,6 +349,7 @@ const app = {
     document.getElementById('income').value = '';
     document.getElementById('directTax').value = '';
     document.getElementById('spending').value = '';
+    document.getElementById('spendingHint').innerHTML = '';
     document.getElementById('taxResult').style.display = 'none';
     document.getElementById('continueToStage2').disabled = true;
     document.getElementById('continueToStage3').disabled = true;
