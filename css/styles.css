@@ -140,6 +140,41 @@ header p {
   border-color: var(--color-primary);
 }
 
+.input-wrapper-billions {
+  position: relative;
+}
+
+.input-wrapper-billions input {
+  padding-right: 5rem;
+}
+
+.input-wrapper .suffix {
+  position: absolute;
+  right: 1rem;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.input-unit {
+  font-weight: 400;
+  color: var(--color-primary);
+  font-size: 0.85rem;
+}
+
+.input-hint {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+  min-height: 1.2rem;
+}
+
+.input-hint strong {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
 /* Toggle Buttons (Filing Status, Input Mode) */
 .toggle-group {
   display: flex;
@@ -210,6 +245,16 @@ header p {
 .chip:hover {
   background: rgba(37, 99, 235, 0.1);
   border-color: var(--color-primary);
+}
+
+.chip-notable {
+  background: rgba(37, 99, 235, 0.08);
+  border-color: var(--color-primary);
+  font-weight: 500;
+}
+
+.chip-notable:hover {
+  background: rgba(37, 99, 235, 0.15);
 }
 
 /* Category Selector */

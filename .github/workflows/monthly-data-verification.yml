@@ -113,6 +113,19 @@ jobs:
                - Feature availability or limitations
                - Any numerical data that comes from external sources
 
+               **IMPORTANT - Notable Federal Spending Items**: The file js/data.js contains a
+               NOTABLE_SPENDING object with specific federal spending figures that MUST be verified:
+               - Gerald R. Ford Aircraft Carrier (CVN-78) program cost
+               - ACA Premium Subsidies for the most recent fiscal year (update year label if needed)
+               - Infrastructure Investment and Jobs Act spending
+               - James Webb Space Telescope total development cost
+
+               For each notable spending item, verify:
+               - The dollar amount is still accurate
+               - The source attribution is correct
+               - The notes/description remain accurate
+               - Update the lastVerified date when confirming accuracy
+
             3. **WEB SEARCH VERIFICATION**: Use your web search capabilities to verify each
                identifiable claim against current information. Search for:
                - Official documentation or pricing pages

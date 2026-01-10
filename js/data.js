@@ -125,11 +125,52 @@ const COMPARISONS = [
   { max: Infinity, text: 'About {days} days of your annual tax contribution' }
 ];
 
+// Notable Federal Spending Items
+// These are specific, verifiable spending figures for "fun" comparisons
+// Sources should be verified monthly by the data verification workflow
+const NOTABLE_SPENDING = {
+  geraldRFordCarrier: {
+    label: 'Gerald R. Ford Aircraft Carrier',
+    value: 13_300_000_000,           // $13.3 billion (USS Gerald R. Ford total program cost)
+    source: 'Congressional Research Service',
+    lastVerified: DATA_LAST_UPDATED,
+    category: 'defense',
+    notes: 'Total acquisition cost for lead ship CVN-78'
+  },
+  acaSubsidies: {
+    label: 'ACA Premium Subsidies (2024)',
+    value: 82_000_000_000,           // $82 billion (FY2024 premium tax credits)
+    source: 'Congressional Budget Office',
+    lastVerified: DATA_LAST_UPDATED,
+    category: 'medicare',
+    notes: 'Premium tax credits and cost-sharing reductions'
+  },
+  infrastructureBill: {
+    label: 'Infrastructure Investment Act',
+    value: 550_000_000_000,          // $550 billion (new spending over 5 years)
+    source: 'White House Fact Sheet',
+    lastVerified: DATA_LAST_UPDATED,
+    category: 'general',
+    notes: 'New federal investment portion of the $1.2T bill'
+  },
+  jamesWebbTelescope: {
+    label: 'James Webb Space Telescope',
+    value: 10_000_000_000,           // $10 billion (total development cost)
+    source: 'NASA',
+    lastVerified: DATA_LAST_UPDATED,
+    category: 'general',
+    notes: 'Total lifecycle development cost'
+  }
+};
+
 // Example spending amounts for the chips
 const EXAMPLE_AMOUNTS = [
-  { label: '$1 million', value: 1_000_000 },
-  { label: '$100 million', value: 100_000_000 },
   { label: '$1 billion', value: 1_000_000_000 },
   { label: '$10 billion', value: 10_000_000_000 },
-  { label: '$100 billion', value: 100_000_000_000 }
+  { label: '$100 billion', value: 100_000_000_000 },
+  { label: '$1 trillion', value: 1_000_000_000_000 },
+  { label: NOTABLE_SPENDING.jamesWebbTelescope.label, value: NOTABLE_SPENDING.jamesWebbTelescope.value, category: NOTABLE_SPENDING.jamesWebbTelescope.category },
+  { label: NOTABLE_SPENDING.geraldRFordCarrier.label, value: NOTABLE_SPENDING.geraldRFordCarrier.value, category: NOTABLE_SPENDING.geraldRFordCarrier.category },
+  { label: NOTABLE_SPENDING.acaSubsidies.label, value: NOTABLE_SPENDING.acaSubsidies.value, category: NOTABLE_SPENDING.acaSubsidies.category },
+  { label: NOTABLE_SPENDING.infrastructureBill.label, value: NOTABLE_SPENDING.infrastructureBill.value, category: NOTABLE_SPENDING.infrastructureBill.category }
 ];

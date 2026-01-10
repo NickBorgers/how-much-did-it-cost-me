@@ -79,20 +79,18 @@
       </p>
 
       <div class="input-group">
-        <label for="spending">Spending Amount</label>
-        <div class="input-wrapper">
+        <label for="spending">Spending Amount <span class="input-unit">(in billions)</span></label>
+        <div class="input-wrapper input-wrapper-billions">
           <span class="prefix">$</span>
-          <input type="text" id="spending" inputmode="numeric" placeholder="1,000,000,000"
+          <input type="text" id="spending" inputmode="decimal" placeholder="10"
                  oninput="app.handleSpendingInput(this.value)">
+          <span class="suffix">billion</span>
         </div>
+        <div class="input-hint" id="spendingHint"></div>
       </div>
 
-      <div class="example-chips" aria-label="Example amounts">
-        <button type="button" class="chip" onclick="app.setSpending(1000000)">$1 million</button>
-        <button type="button" class="chip" onclick="app.setSpending(100000000)">$100 million</button>
-        <button type="button" class="chip" onclick="app.setSpending(1000000000)">$1 billion</button>
-        <button type="button" class="chip" onclick="app.setSpending(10000000000)">$10 billion</button>
-        <button type="button" class="chip" onclick="app.setSpending(100000000000)">$100 billion</button>
+      <div id="spendingChips" class="example-chips" aria-label="Example amounts">
+        <!-- Chips rendered dynamically from EXAMPLE_AMOUNTS in data.js -->
       </div>
 
       <button type="button" id="continueToStage3" class="continue-btn" disabled onclick="app.showStage(3)">
