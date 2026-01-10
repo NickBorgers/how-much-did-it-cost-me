@@ -125,10 +125,12 @@ jobs:
 
       - name: Review test results
         uses: anthropics/claude-code-action@v1
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GH_TOKEN: ${{ secrets.WORKFLOW_PAT }}
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.WORKFLOW_PAT }}
-          use_sticky_comment: true
           prompt: |
             You are reviewing automated Playwright test results for the "How Much Did It Cost Me?" web application.
 
@@ -138,11 +140,11 @@ jobs:
             Your job is to:
             1. Read the test results JSON file
             2. Analyze what passed and what failed
-            3. Provide a clear summary of the results
+            3. Post your review as a PR comment
 
             ## Response Format
 
-            Structure your response as:
+            Structure your comment as:
 
             ## Impatient User Review
 
@@ -157,10 +159,21 @@ jobs:
             ### Issues Found
             [List any issues, or "None" if all tests passed]
 
-            IMPORTANT:
-            - Read the actual test results file first
-            - Base your review on the real test data, not assumptions
-            - Keep the response concise and actionable
+            ## CRITICAL: Post Your Review
+
+            After analyzing the results, you MUST post your review as a comment on PR #${{ github.event.pull_request.number }} using:
+            ```
+            gh pr comment ${{ github.event.pull_request.number }} --body "YOUR_REVIEW_HERE"
+            ```
+
+            Use a heredoc for multi-line comments:
+            ```
+            gh pr comment ${{ github.event.pull_request.number }} --body "$(cat <<'EOF'
+            ## Impatient User Review
+            ...your review content...
+            EOF
+            )"
+            ```
 
   # Job 3: Accuracy review - checks if any numbers in the PR are accurate
   accuracy-review:
@@ -195,10 +208,12 @@ jobs:
       - name: Review data accuracy
         if: steps.changed-files.outputs.data_changed == 'true'
         uses: anthropics/claude-code-action@v1
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GH_TOKEN: ${{ secrets.WORKFLOW_PAT }}
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.WORKFLOW_PAT }}
-          use_sticky_comment: true
           prompt: |
             You are a data accuracy reviewer for the "How Much Did It Cost Me?" application.
 
@@ -213,7 +228,7 @@ jobs:
 
             1. Read js/data.js to see the current values
             2. Use web search to verify the accuracy of ANY numbers that were changed in this PR
-            3. Provide a summary of your findings
+            3. Post your findings as a PR comment
 
             ## Verification Checklist
 
@@ -233,7 +248,7 @@ jobs:
 
             ## Response Format
 
-            Structure your response as:
+            Structure your comment as:
 
             ## Data Accuracy Review
 
@@ -251,7 +266,16 @@ jobs:
             ---
             *Sources checked: [list sources consulted]*
 
-            CRITICAL: Only flag issues if you find clear inaccuracies with authoritative sources.
+            ## CRITICAL: Post Your Review
+
+            After completing your analysis, you MUST post your review as a comment on PR #${{ github.event.pull_request.number }} using:
+            ```
+            gh pr comment ${{ github.event.pull_request.number }} --body "$(cat <<'EOF'
+            ## Data Accuracy Review
+            ...your review content...
+            EOF
+            )"
+            ```
 
       - name: Skip if no data changes
         if: steps.changed-files.outputs.data_changed != 'true'
@@ -326,10 +350,12 @@ jobs:
       - name: Execute test plan
         if: steps.extract-test-plan.outputs.has_test_plan == 'true'
         uses: anthropics/claude-code-action@v1
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GH_TOKEN: ${{ secrets.WORKFLOW_PAT }}
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.WORKFLOW_PAT }}
-          use_sticky_comment: true
           prompt: |
             You are a test executor. The PR author has provided a test plan that you need to execute.
 
@@ -350,7 +376,7 @@ jobs:
             1. Read and understand each test step in the test plan
             2. Use Playwright to execute each step against the running app
             3. Take screenshots at key points
-            4. Report whether each step passed or failed
+            4. Post your results as a PR comment
 
             ## Execution Guidelines
 
@@ -362,7 +388,7 @@ jobs:
 
             ## Response Format
 
-            After executing the test plan, provide your results in this format:
+            Structure your comment as:
 
             ## Test Plan Execution
 
@@ -376,6 +402,17 @@ jobs:
 
             ### Notes
             [Any observations or issues discovered]
+
+            ## CRITICAL: Post Your Review
+
+            After executing the test plan, you MUST post your results as a comment on PR #${{ github.event.pull_request.number }} using:
+            ```
+            gh pr comment ${{ github.event.pull_request.number }} --body "$(cat <<'EOF'
+            ## Test Plan Execution
+            ...your results...
+            EOF
+            )"
+            ```
 
             IMPORTANT:
             - Execute the EXACT steps specified in the test plan
