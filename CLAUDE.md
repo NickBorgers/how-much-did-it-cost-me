@@ -38,6 +38,16 @@ Use the playwright skill for browser automation and testing screenshots.
 - **Also:** Auto-resolves new issues by creating PRs
 - Responds to user requests and implements changes
 
+### PR Reviews (`pr-reviews.yml`)
+- **Trigger:** Pull requests (opened, synchronize, ready_for_review, reopened)
+- **Purpose:** AI-powered behavioral testing of the web application
+- **Merge Requirement:** Add "All Agent Reviews" as a required status check
+- Contains the following review agents:
+  - **Impatient User Review**: Uses Playwright to test the app as a real user would
+    - First visit: Enters income, goes through full calculation flow
+    - Second visit: Verifies the app remembers income for faster repeat use
+    - Validates the returning user experience is faster than first visit
+
 ### Monthly Data Verification (`monthly-data-verification.yml`)
 - **Schedule:** 1st of each month at 9am UTC
 - **Purpose:** Verifies all data in the repository is still accurate
