@@ -248,20 +248,15 @@ jobs:
 
             ## Response Format
 
+            BE CONCISE. Keep the entire comment under 15 lines. Avoid bullet points and detailed step counts.
+
             Structure your comment as:
 
             ## Impatient User Review
 
-            **Status**: [PASSED or FAILED]
+            **Status**: ✅ PASSED or ❌ FAILED
 
-            ### First Visit (New User Flow)
-            [Summary of first visit test - what worked, what didn't]
-
-            ### Second Visit (Returning User Flow)
-            [Summary of second visit test - was income remembered? Did the welcome banner appear?]
-
-            ### Issues Found
-            [List any issues, or 'None' if all tests passed]
+            [2-3 sentence summary of results. Only mention issues or notable findings.]
 
             ## CRITICAL: Post Your Review
 
@@ -385,23 +380,17 @@ jobs:
 
             ## Response Format
 
+            BE CONCISE. Keep the entire comment under 15 lines.
+
             Structure your comment as:
 
             ## Data Accuracy Review
 
-            **Status**: [VERIFIED / ISSUES FOUND / UNABLE TO VERIFY]
+            **Status**: ✅ VERIFIED or ❌ ISSUES FOUND
 
-            ### Changes Reviewed
-            [List the specific data changes in this PR]
+            [2-3 sentences summarizing what was checked and the result. Only detail discrepancies if found.]
 
-            ### Verification Results
-            [For each changed value, state whether it's accurate and cite your source]
-
-            ### Recommendations
-            [Any suggested corrections or additional verification needed]
-
-            ---
-            *Sources checked: [list sources consulted]*
+            *Sources: [brief list of sources]*
 
             ## CRITICAL: Post Your Review
 
@@ -553,20 +542,19 @@ jobs:
 
             ## Response Format
 
+            BE CONCISE. Keep the entire comment under 20 lines. No verbose CSS details or step-by-step narration.
+
             Structure your comment as:
 
             ## Test Plan Execution
 
-            **Status**: [PASSED / FAILED / PARTIAL]
+            **Status**: ✅ PASSED or ❌ FAILED
 
-            ### Steps Executed
-            [For each step in the test plan, report: Passed or Failed with details]
+            ### Results
+            [One line per test step: ✓ or ✗ with brief result. No detailed explanations unless something failed.]
 
-            ### Evidence
-            [Reference screenshots taken during testing]
-
-            ### Notes
-            [Any observations or issues discovered]
+            ### Issues
+            [Only if failures occurred. Otherwise omit this section entirely.]
 
             ## CRITICAL: Post Your Review
 
