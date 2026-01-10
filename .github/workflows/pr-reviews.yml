@@ -76,11 +76,9 @@ jobs:
             4. Enter an income of $85,000 in the income field
             5. Verify the tax calculation appears showing the estimated federal income tax
             6. Click Continue to proceed to Stage 2
-            7. Enter a spending amount of $1,000,000,000 (1 billion) or click the "$1 billion" chip
-            8. Click Continue to proceed to Stage 3
-            9. Select "General Government" as the funding category
-            10. Verify Stage 4 shows the results with "Your Personal Share" amount
-            11. Note down how many steps this took and what information was shown
+            7. Click the "James Webb Space Telescope" chip (this auto-selects the spending amount and category)
+            8. Verify Stage 4 shows the results with "Your Personal Share" amount
+            9. Note down how many steps this took and what information was shown
 
             ### Second Visit (Returning User Experience)
             Use Playwright to:
