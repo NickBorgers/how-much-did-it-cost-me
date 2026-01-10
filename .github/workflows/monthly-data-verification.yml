@@ -87,7 +87,7 @@ jobs:
               --output-format stream-json \
               --model opus \
               --dangerously-skip-permissions \
-              --max-turns 300 \
+              --max-turns 600 \
               "You are a DATA ACCURACY VERIFICATION agent for the ${REPO} repository.
 
             This is a monthly automated check to ensure all data in the repository is still accurate
@@ -170,7 +170,7 @@ jobs:
             - Prefer authoritative sources (official docs, pricing pages) over third-party sites
             - If a data point cannot be verified (no reliable source found), note this but don't change it
 
-            Start by exploring the repository structure to understand what data exists." < /dev/null 2>&1 | tee /workspaces/how-much-did-it-cost-me/verification-output.jsonl
+            Start by exploring the repository structure to understand what data exists." < /dev/null 2>&1 | tee ./verification-output.jsonl
 
       - name: Upload verification output
         uses: actions/upload-artifact@v4
