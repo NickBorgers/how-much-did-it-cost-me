@@ -203,6 +203,9 @@ const app = {
 
     // Enable continue if valid
     document.getElementById('continueToStage3').disabled = billions <= 0;
+
+    // Clear chip selection when user types custom value
+    this.clearChipSelection();
   },
 
   // Set spending from chip (optionally auto-select category for notable items)
@@ -241,17 +244,36 @@ const app = {
     if (!container) return;
 
     container.innerHTML = '';
-    EXAMPLE_AMOUNTS.forEach(item => {
+    EXAMPLE_AMOUNTS.forEach((item, index) => {
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'chip';
-      if (item.category) {
-        btn.classList.add('chip-notable');
-      }
+      btn.dataset.index = index;
+      btn.dataset.value = item.value;
       btn.textContent = item.label;
-      btn.onclick = () => this.setSpending(item.value, item.category || null, item.multiYear || false);
+      btn.onclick = () => this.selectChip(index, item.value, item.category || null, item.multiYear || false);
       container.appendChild(btn);
     });
+  },
+
+  // Select a chip and highlight it
+  selectChip(index, amount, category, multiYear = false) {
+    // Update visual selection
+    document.querySelectorAll('#spendingChips .chip').forEach(chip => {
+      chip.classList.toggle('selected', chip.dataset.index === String(index));
+    });
+    this.state.selectedChipIndex = index;
+
+    // Set the spending amount
+    this.setSpending(amount, category, multiYear);
+  },
+
+  // Clear chip selection (when user types custom value)
+  clearChipSelection() {
+    document.querySelectorAll('#spendingChips .chip').forEach(chip => {
+      chip.classList.remove('selected');
+    });
+    this.state.selectedChipIndex = null;
   },
 
   // Select funding category

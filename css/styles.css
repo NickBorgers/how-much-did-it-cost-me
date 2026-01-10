@@ -247,14 +247,10 @@ header p {
   border-color: var(--color-primary);
 }
 
-.chip-notable {
-  background: rgba(37, 99, 235, 0.08);
+.chip.selected {
+  background: rgba(37, 99, 235, 0.1);
   border-color: var(--color-primary);
-  font-weight: 500;
-}
-
-.chip-notable:hover {
-  background: rgba(37, 99, 235, 0.15);
+  color: var(--color-primary);
 }
 
 /* Category Selector */
