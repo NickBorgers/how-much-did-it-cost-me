@@ -17,12 +17,10 @@ permissions:
   id-token: write
 
 jobs:
-  # Impatient User Review - Tests the app using Playwright as a real user would
-  # This reviewer simulates a user who:
-  # 1. First visit: Inputs their income and goes through the full calculation flow
-  # 2. Second visit: Expects the app to remember their income for faster use
-  impatient-user-review:
-    name: Impatient User Review
+  # Job 1: Run Playwright tests automatically (no Claude)
+  # This runs the test script and saves results as an artifact
+  run-playwright-tests:
+    name: Run Playwright Tests
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft != true
 
@@ -37,11 +35,9 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install http-server
-        run: npm install -g http-server
-
-      - name: Install Playwright
+      - name: Install dependencies
         run: |
+          npm install -g http-server
           npm init -y
           npm install playwright
           npx playwright install chromium --with-deps
@@ -49,87 +45,217 @@ jobs:
       - name: Start local server
         run: |
           http-server . -p 8080 &
-          # Wait for server to be ready
           sleep 3
           curl -s http://localhost:8080 > /dev/null || (echo "Server failed to start" && exit 1)
 
-      - name: Run Impatient User Review
-        id: impatient-user
+      - name: Run Playwright tests
+        run: |
+          mkdir -p test-results
+          node tests/impatient-user-test.js
+        env:
+          TEST_URL: http://localhost:8080
+          SCREENSHOTS_DIR: ./test-results/screenshots
+          RESULTS_FILE: ./test-results/results.json
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-test-results
+          path: test-results/
+          retention-days: 7
+
+  # Job 2: Claude reviews the Playwright test results and posts a comment
+  impatient-user-review:
+    name: Impatient User Review
+    runs-on: ubuntu-latest
+    needs: run-playwright-tests
+    if: always() && github.event.pull_request.draft != true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.ref || github.head_ref || github.ref }}
+
+      - name: Download test results
+        uses: actions/download-artifact@v4
+        with:
+          name: playwright-test-results
+          path: test-results/
+
+      - name: Review test results
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           prompt: |
-            You are an "Impatient User" reviewer testing the "How Much Did It Cost Me?" web application.
-            The app is running at http://localhost:8080
+            You are reviewing automated Playwright test results for the "How Much Did It Cost Me?" web application.
 
-            Your job is to test the app from the perspective of an impatient user who:
-            1. Wants to quickly check how much federal spending costs them personally
-            2. Expects the app to remember their information for faster repeat visits
+            The test results are in test-results/results.json. Read this file to understand what happened.
+            Screenshots from the test are in test-results/screenshots/.
 
-            ## Test Scenario
+            Your job is to:
+            1. Read the test results JSON file
+            2. Analyze what passed and what failed
+            3. Post a clear, concise PR comment summarizing the results
 
-            ### First Visit (New User Experience)
-            Use Playwright to:
-            1. Navigate to http://localhost:8080
-            2. Verify the page loads and shows "How Much Did It Cost Me?" title
-            3. Verify no "Welcome back" banner is shown (this is a fresh visit)
-            4. Enter an income of $85,000 in the income field
-            5. Verify the tax calculation appears showing the estimated federal income tax
-            6. Click Continue to proceed to Stage 2
-            7. Click the "James Webb Space Telescope" chip (this auto-selects the spending amount and category)
-            8. Verify Stage 4 shows the results with "Your Personal Share" amount
-            9. Note down how many steps this took and what information was shown
+            ## Comment Format
 
-            ### Second Visit (Returning User Experience)
-            Use Playwright to:
-            1. Navigate to http://localhost:8080 again (simulating a return visit - localStorage persists)
-            2. Verify the "Welcome back! Using your saved income." banner IS visible
-            3. Verify the income field is pre-filled with the previously entered amount ($85,000)
-            4. Verify the tax calculation is already shown
-            5. Verify the Continue button is already enabled (no need to re-enter income)
-            6. This should be MUCH faster - user can go directly to entering spending amount
+            Post a GitHub PR comment using the gh CLI with this structure:
 
-            ## Review Criteria
+            ```
+            ## Impatient User Review
 
-            Your review should PASS if:
-            - The first visit flow works correctly through all 4 stages
-            - The second visit correctly shows the returning user banner
-            - The second visit has the income pre-filled and tax pre-calculated
-            - The returning user experience is noticeably faster (fewer steps to get to spending entry)
+            **Status**: [PASSED or FAILED]
 
-            Your review should FAIL if:
-            - The app doesn't load or has JavaScript errors
-            - The income is not saved between visits
-            - The returning user banner doesn't appear on the second visit
-            - The tax calculation doesn't work
-            - Any stage transition fails
+            ### First Visit (New User Flow)
+            [Summary of first visit test - what worked, what didn't]
 
-            ## Output Format
+            ### Second Visit (Returning User Flow)
+            [Summary of second visit test - was income remembered? Did the welcome banner appear?]
 
-            Provide your review as a GitHub PR comment with:
-            1. **Status**: PASSED or FAILED
-            2. **First Visit Summary**: What you observed during the new user flow
-            3. **Second Visit Summary**: What you observed during the returning user flow
-            4. **User Experience Notes**: How the returning user experience compared to first visit
-            5. **Issues Found**: Any bugs or problems discovered (if any)
-            6. **Screenshots**: Include relevant screenshots from your Playwright session
+            ### Issues Found
+            [List any issues, or "None" if all tests passed]
 
-            Begin your testing now using the playwright-skill.
+            ---
+            *Automated test run at [timestamp]*
+            ```
+
+            Use this command to post the comment:
+            gh pr comment ${{ github.event.pull_request.number }} --body "YOUR_COMMENT_HERE"
+
+            IMPORTANT:
+            - Read the actual test results file first
+            - Base your review on the real test data, not assumptions
+            - Keep the comment concise and actionable
+            - If tests failed, explain what needs to be fixed
+
+  # Job 3: Accuracy review - checks if any numbers in the PR are accurate
+  accuracy-review:
+    name: Data Accuracy Review
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft != true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.ref || github.head_ref || github.ref }}
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        run: |
+          # Get the list of changed files in this PR
+          git diff --name-only origin/${{ github.base_ref }}...HEAD > changed_files.txt
+          cat changed_files.txt
+
+          # Check if data.js was modified
+          if grep -q "js/data.js" changed_files.txt; then
+            echo "data_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "data_changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Review data accuracy
+        if: steps.changed-files.outputs.data_changed == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            You are a data accuracy reviewer for the "How Much Did It Cost Me?" application.
+
+            This PR modifies js/data.js which contains critical financial data:
+            - Federal income tax brackets and rates
+            - Standard deduction amounts
+            - FICA/payroll tax rates and thresholds
+            - Federal budget figures (revenue and spending)
+            - Notable spending examples with their costs
+
+            ## Your Task
+
+            1. Read js/data.js to see the current values
+            2. Use web search to verify the accuracy of ANY numbers that were changed in this PR
+            3. Post a PR comment with your findings
+
+            ## Verification Checklist
+
+            For tax data, verify against:
+            - IRS official publications for the tax year specified
+            - Tax Foundation or similar authoritative sources
+
+            For budget data, verify against:
+            - Congressional Budget Office (CBO) reports
+            - U.S. Treasury fiscal data
+            - OMB budget documents
+
+            For spending examples, verify against:
+            - Official government sources (NASA, DoD, USDA, etc.)
+            - Congressional Research Service reports
+            - Reputable news sources
+
+            ## Comment Format
+
+            Post a GitHub PR comment using:
+            gh pr comment ${{ github.event.pull_request.number }} --body "YOUR_COMMENT"
+
+            Structure your comment as:
+
+            ```
+            ## Data Accuracy Review
+
+            **Status**: [VERIFIED / ISSUES FOUND / UNABLE TO VERIFY]
+
+            ### Changes Reviewed
+            [List the specific data changes in this PR]
+
+            ### Verification Results
+            [For each changed value, state whether it's accurate and cite your source]
+
+            ### Recommendations
+            [Any suggested corrections or additional verification needed]
+
+            ---
+            *Sources checked: [list sources consulted]*
+            ```
+
+            CRITICAL: Only flag issues if you find clear inaccuracies with authoritative sources.
+            Minor discrepancies due to timing (e.g., FY vs calendar year) should be noted but not flagged as errors.
+
+      - name: Skip if no data changes
+        if: steps.changed-files.outputs.data_changed != 'true'
+        run: |
+          echo "No changes to js/data.js - skipping accuracy review"
 
   # Gate job - ensures all agent reviews pass before merge
   all-agent-reviews-passed:
     name: All Agent Reviews
     runs-on: ubuntu-latest
-    needs: [impatient-user-review]
+    needs: [run-playwright-tests, impatient-user-review, accuracy-review]
     if: always()
     steps:
       - name: Check all reviews passed
         run: |
           echo "Checking results of all agent reviews..."
+          echo "run-playwright-tests: ${{ needs.run-playwright-tests.result }}"
           echo "impatient-user-review: ${{ needs.impatient-user-review.result }}"
+          echo "accuracy-review: ${{ needs.accuracy-review.result }}"
 
-          if [ "${{ needs.impatient-user-review.result }}" != "success" ]; then
-            echo "FAILED: impatient-user-review did not succeed"
+          # Playwright tests must pass
+          if [ "${{ needs.run-playwright-tests.result }}" != "success" ]; then
+            echo "FAILED: Playwright tests did not succeed"
+            exit 1
+          fi
+
+          # Impatient user review must complete (success or skipped is ok)
+          if [ "${{ needs.impatient-user-review.result }}" == "failure" ]; then
+            echo "FAILED: impatient-user-review failed"
+            exit 1
+          fi
+
+          # Accuracy review must complete (success or skipped is ok)
+          if [ "${{ needs.accuracy-review.result }}" == "failure" ]; then
+            echo "FAILED: accuracy-review failed"
             exit 1
           fi
 
