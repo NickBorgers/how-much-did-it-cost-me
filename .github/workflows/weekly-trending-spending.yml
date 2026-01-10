@@ -1,0 +1,205 @@
+name: Weekly Trending Federal Spending Update
+
+# Runs weekly to find the most talked-about federal spending items in the news
+# Uses Claude Code to search for spending controversies, scandals, and hot topics
+# Opens a PR with updated trending spending items
+
+on:
+  schedule:
+    # Run at 9am UTC every Monday
+    - cron: '0 9 * * 1'
+  # Allow manual triggering for testing
+  workflow_dispatch:
+
+env:
+  # Note: must be lowercase for Docker compatibility
+  DEVCONTAINER_IMAGE: ghcr.io/nickborgers/how-much-did-it-cost-me-devcontainer
+
+jobs:
+  # Build and cache devcontainer image
+  build-devcontainer:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push devcontainer
+        uses: devcontainers/ci@v0.3
+        with:
+          imageName: ${{ env.DEVCONTAINER_IMAGE }}
+          cacheFrom: ${{ env.DEVCONTAINER_IMAGE }}
+          push: always
+
+  # Find trending spending topics and update data
+  update-trending:
+    needs: build-devcontainer
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+      packages: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create gh config directory for devcontainer mount
+        run: mkdir -p ~/.config/gh
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Find trending spending topics with Claude
+        uses: devcontainers/ci@v0.3
+        with:
+          imageName: ${{ env.DEVCONTAINER_IMAGE }}
+          cacheFrom: ${{ env.DEVCONTAINER_IMAGE }}
+          push: never
+          env: |
+            CLAUDE_CODE_OAUTH_TOKEN=${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+            GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+            REPO=${{ github.repository }}
+          runCmd: |
+            # Run Claude Code to find trending federal spending topics
+            claude --print \
+              --verbose \
+              --output-format stream-json \
+              --model opus \
+              --dangerously-skip-permissions \
+              --max-turns 600 \
+              "You are a TRENDING FEDERAL SPENDING agent for the ${REPO} repository.
+
+            This is a weekly automated job to find the most talked-about federal spending items
+            in the news. We want to surface spending that is currently controversial, scandalous,
+            or being debated in the media. The goal is to show users how these headline numbers
+            affect them personally - even if the numbers being reported aren't accurate!
+
+            The point is: big numbers get thrown around in the news and people don't understand
+            what they mean. This app helps contextualize ANY spending figure.
+
+            YOUR TASK:
+
+            1. **SEARCH FOR TRENDING SPENDING**: Use web search to find the TOP 3 most talked-about
+               federal spending topics RIGHT NOW. Look for:
+               - Government spending scandals or controversies
+               - Budget debates currently in Congress
+               - Wasteful spending reports or investigations
+               - DOGE (Department of Government Efficiency) claims and activities
+               - Military spending controversies
+               - Social program debates (SNAP, Medicare, etc.)
+               - Infrastructure or project cost overruns
+               - Any federal spending making headlines this week
+
+               Search queries to try:
+               - 'federal spending controversy this week'
+               - 'government waste scandal news'
+               - 'DOGE government spending news'
+               - 'budget debate Congress billions'
+               - 'federal program cost overrun news'
+
+            2. **SELECT THE TOP 3**: Choose items that are:
+               - Currently in the news (within the last week or two)
+               - Have a specific dollar amount associated with them
+               - Are interesting/controversial enough that people might search for them
+               - Cover different spending categories if possible (defense, social, general)
+
+               IMPORTANT: Do NOT select the Gerald R. Ford Aircraft Carrier or James Webb
+               Space Telescope - these are PERMANENT items that always stay on the list.
+
+            3. **DETERMINE THE CATEGORY**: Each spending item must be assigned to one of:
+               - 'defense' - Military, Pentagon, weapons systems
+               - 'general' - Most discretionary spending, agencies, programs
+               - 'medicare' - Healthcare programs (Medicare, Medicaid, ACA)
+               - 'socialSecurity' - Social Security programs
+               - 'interest' - Debt interest (rarely used)
+
+            4. **UPDATE THE DATA FILE**: Read js/data.js and update the TRENDING_SPENDING object
+               with your 3 selected items. Keep this exact structure:
+
+               const TRENDING_SPENDING = {
+                 trending1: {
+                   label: '[Short descriptive name]',
+                   value: [amount in dollars as number, e.g., 55_000_000_000],
+                   source: '[Where the number comes from]',
+                   lastVerified: '[today's date YYYY-MM-DD]',
+                   category: '[one of: defense, general, medicare, socialSecurity, interest]',
+                   notes: '[Brief context - why this is in the news, accuracy note if disputed]'
+                 },
+                 trending2: { ... },
+                 trending3: { ... }
+               };
+
+               IMPORTANT NOTES ON VALUES:
+               - Use JavaScript numeric separators for readability: 55_000_000_000 not 55000000000
+               - Convert all amounts to dollars (not billions/trillions)
+               - If a range is given, use the higher number
+               - If the number is disputed or approximate, note this in the 'notes' field
+               - We don't care if it's perfectly accurate - the point is to show what the
+                 headline number would mean to an individual taxpayer
+
+            5. **CREATE A PR**: After updating the file:
+               a. Create a new branch: git checkout -b trending-spending/weekly-\$(date +%Y-%m-%d)
+               b. Commit the changes: git commit with descriptive message
+               c. Push the branch: git push -u origin trending-spending/weekly-\$(date +%Y-%m-%d)
+               d. Create a PR with this format:
+
+               gh pr create --title 'Weekly Trending Spending Update - \$(date +%B %d, %Y)' --body \"\$(cat <<'PR_BODY'
+            ## Weekly Trending Federal Spending Update
+
+            This PR updates the trending spending items based on what's currently in the news.
+
+            ### This Week's Trending Items
+
+            | Item | Amount | Category | Why It's Trending |
+            |------|--------|----------|-------------------|
+            | [Item 1] | $X billion | [category] | [brief explanation] |
+            | [Item 2] | $X billion | [category] | [brief explanation] |
+            | [Item 3] | $X billion | [category] | [brief explanation] |
+
+            ### Permanent Items (unchanged)
+            - James Webb Space Telescope (\$10 billion)
+            - Gerald R. Ford Aircraft Carrier (\$13.3 billion)
+
+            ### Sources
+            [List sources used for each trending item]
+
+            ### Notes
+            - These amounts may be disputed or approximate - that's OK!
+            - The goal is to help users understand headline numbers, not verify accuracy
+
+            ---
+            🤖 Generated by Weekly Trending Federal Spending workflow
+            PR_BODY
+            )\"
+
+            ALWAYS create a PR with the updated trending items, even if some items are similar
+            to the previous week. The lastVerified date should always be updated.
+
+            Start by searching for current federal spending news." < /dev/null 2>&1 | tee ./trending-output.jsonl
+
+      - name: Upload trending search output
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: weekly-trending-output
+          path: trending-output.jsonl
+          retention-days: 30
