@@ -320,6 +320,14 @@ const app = {
       category: this.state.category
     });
 
+    // Update result card styling - green for savings, blue for spending
+    const resultCard = document.querySelector('.result-card');
+    if (this.state.isSavings) {
+      resultCard.classList.add('savings');
+    } else {
+      resultCard.classList.remove('savings');
+    }
+
     // Update result display - different text for savings vs spending
     document.getElementById('resultSpendingAmount').textContent = formatLargeNumber(this.state.spendingAmount);
     if (this.state.isSavings) {
