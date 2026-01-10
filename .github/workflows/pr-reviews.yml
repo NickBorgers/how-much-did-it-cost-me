@@ -15,8 +15,41 @@ permissions:
   pull-requests: write
   issues: read
   id-token: write
+  packages: write
+
+env:
+  # Note: must be lowercase for Docker compatibility
+  DEVCONTAINER_IMAGE: ghcr.io/nickborgers/how-much-did-it-cost-me-devcontainer
 
 jobs:
+  # Job: Build and cache devcontainer image
+  # This saves time in subsequent jobs by reusing the prebuilt image
+  build-devcontainer:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.ref || github.head_ref || github.ref }}
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push devcontainer
+        uses: devcontainers/ci@v0.3
+        with:
+          imageName: ${{ env.DEVCONTAINER_IMAGE }}
+          cacheFrom: ${{ env.DEVCONTAINER_IMAGE }}
+          push: always
+
   # Job 0: Check if PR author is authorized to trigger Claude reviews
   # This prevents arbitrary users from submitting PRs that could trick Claude
   # into visiting malicious URLs or executing harmful actions
@@ -54,10 +87,15 @@ jobs:
 
   # Job 1: Run unit tests for calculation logic
   # This ensures core calculation functions are correct before any other checks
+  # Uses devcontainer with Node.js pre-installed
   run-unit-tests:
     name: Unit Tests
     runs-on: ubuntu-latest
+    needs: build-devcontainer
     if: github.event.pull_request.draft != true
+    permissions:
+      contents: read
+      packages: read
 
     steps:
       - name: Checkout repository
@@ -65,24 +103,34 @@ jobs:
         with:
           ref: ${{ github.event.inputs.ref || github.head_ref || github.ref }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
         with:
-          node-version: '22'
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run unit tests
-        run: npm test
+      - name: Run unit tests in devcontainer
+        uses: devcontainers/ci@v0.3
+        with:
+          imageName: ${{ env.DEVCONTAINER_IMAGE }}
+          cacheFrom: ${{ env.DEVCONTAINER_IMAGE }}
+          push: never
+          runCmd: |
+            npm install
+            npm test
 
   # Job 2: Run Playwright tests automatically (no Claude)
   # This runs the test script and saves results as an artifact
-  # Note: This job runs for all PRs since it only tests against localhost
+  # Uses prebuilt devcontainer with Playwright already installed
   run-playwright-tests:
     name: Run Playwright Tests
     runs-on: ubuntu-latest
+    needs: build-devcontainer
     if: github.event.pull_request.draft != true
+    permissions:
+      contents: read
+      packages: read
 
     steps:
       - name: Checkout repository
@@ -90,32 +138,32 @@ jobs:
         with:
           ref: ${{ github.event.inputs.ref || github.head_ref || github.ref }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
         with:
-          node-version: '22'
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install dependencies
-        run: |
-          npm install -g http-server
-          npm init -y
-          npm install playwright
-          npx playwright install chromium --with-deps
+      - name: Run Playwright tests in devcontainer
+        uses: devcontainers/ci@v0.3
+        with:
+          imageName: ${{ env.DEVCONTAINER_IMAGE }}
+          cacheFrom: ${{ env.DEVCONTAINER_IMAGE }}
+          push: never
+          env: |
+            TEST_URL=http://localhost:8080
+            SCREENSHOTS_DIR=./test-results/screenshots
+            RESULTS_FILE=./test-results/results.json
+          runCmd: |
+            # Start local server in background
+            http-server . -p 8080 &
+            sleep 3
+            curl -s http://localhost:8080 > /dev/null || (echo "Server failed to start" && exit 1)
 
-      - name: Start local server
-        run: |
-          http-server . -p 8080 &
-          sleep 3
-          curl -s http://localhost:8080 > /dev/null || (echo "Server failed to start" && exit 1)
-
-      - name: Run Playwright tests
-        run: |
-          mkdir -p test-results
-          node tests/impatient-user-test.js
-        env:
-          TEST_URL: http://localhost:8080
-          SCREENSHOTS_DIR: ./test-results/screenshots
-          RESULTS_FILE: ./test-results/results.json
+            # Run Playwright tests
+            mkdir -p test-results
+            node tests/impatient-user-test.js
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
@@ -125,15 +173,21 @@ jobs:
           path: test-results/
           retention-days: 7
 
-  # Job 2: Claude reviews the Playwright test results and posts a comment
+  # Job 3: Claude reviews the Playwright test results and posts a comment
+  # Uses prebuilt devcontainer with Claude CLI already installed
   impatient-user-review:
     name: Impatient User Review
     runs-on: ubuntu-latest
-    needs: [check-author-authorization, run-playwright-tests]
+    needs: [check-author-authorization, build-devcontainer, run-playwright-tests]
     if: |
       always() &&
       github.event.pull_request.draft != true &&
-      needs.check-author-authorization.outputs.authorized == 'true'
+      needs.check-author-authorization.outputs.authorized == 'true' &&
+      needs.build-devcontainer.result == 'success'
+    permissions:
+      contents: read
+      pull-requests: write
+      packages: read
 
     steps:
       - name: Checkout repository
@@ -147,17 +201,33 @@ jobs:
           name: playwright-test-results
           path: test-results/
 
-      - name: Review test results
-        uses: anthropics/claude-code-action@v1
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          GH_TOKEN: ${{ secrets.WORKFLOW_PAT }}
+      - name: Create gh config directory for devcontainer mount
+        run: mkdir -p ~/.config/gh
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
         with:
-          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          github_token: ${{ secrets.WORKFLOW_PAT }}
-          claude_args: "--dangerously-skip-permissions"
-          prompt: |
-            You are reviewing automated Playwright test results for the "How Much Did It Cost Me?" web application.
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Review test results with Claude
+        uses: devcontainers/ci@v0.3
+        with:
+          imageName: ${{ env.DEVCONTAINER_IMAGE }}
+          cacheFrom: ${{ env.DEVCONTAINER_IMAGE }}
+          push: never
+          env: |
+            CLAUDE_CODE_OAUTH_TOKEN=${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+            GH_TOKEN=${{ secrets.WORKFLOW_PAT }}
+            PR_NUMBER=${{ github.event.pull_request.number }}
+          runCmd: |
+            claude --print \
+              --output-format stream-json \
+              --model sonnet \
+              --dangerously-skip-permissions \
+              --max-turns 50 \
+              "You are reviewing automated Playwright test results for the 'How Much Did It Cost Me?' web application.
 
             The test results are in test-results/results.json. Read this file to understand what happened.
             Screenshots from the test are in test-results/screenshots/.
@@ -182,32 +252,46 @@ jobs:
             [Summary of second visit test - was income remembered? Did the welcome banner appear?]
 
             ### Issues Found
-            [List any issues, or "None" if all tests passed]
+            [List any issues, or 'None' if all tests passed]
 
             ## CRITICAL: Post Your Review
 
-            After analyzing the results, you MUST post your review as a comment on PR #${{ github.event.pull_request.number }} using:
-            ```
-            gh pr comment ${{ github.event.pull_request.number }} --body "YOUR_REVIEW_HERE"
-            ```
+            After analyzing the results, you MUST post your review as a comment on PR #${PR_NUMBER} using:
+            \`\`\`
+            gh pr comment ${PR_NUMBER} --body 'YOUR_REVIEW_HERE'
+            \`\`\`
 
             Use a heredoc for multi-line comments:
-            ```
-            gh pr comment ${{ github.event.pull_request.number }} --body "$(cat <<'EOF'
+            \`\`\`
+            gh pr comment ${PR_NUMBER} --body \"\$(cat <<'EOF'
             ## Impatient User Review
             ...your review content...
             EOF
-            )"
-            ```
+            )\"
+            \`\`\`" < /dev/null 2>&1 | tee ./impatient-review-output.jsonl
 
-  # Job 3: Accuracy review - checks if any numbers in the PR are accurate
+      - name: Upload review output
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: impatient-review-output
+          path: impatient-review-output.jsonl
+          retention-days: 7
+
+  # Job 4: Accuracy review - checks if any numbers in the PR are accurate
+  # Uses prebuilt devcontainer with Claude CLI already installed
   accuracy-review:
     name: Data Accuracy Review
     runs-on: ubuntu-latest
-    needs: check-author-authorization
+    needs: [check-author-authorization, build-devcontainer]
     if: |
       github.event.pull_request.draft != true &&
-      needs.check-author-authorization.outputs.authorized == 'true'
+      needs.check-author-authorization.outputs.authorized == 'true' &&
+      needs.build-devcontainer.result == 'success'
+    permissions:
+      contents: read
+      pull-requests: write
+      packages: read
 
     steps:
       - name: Checkout repository
@@ -230,18 +314,36 @@ jobs:
             echo "data_changed=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Review data accuracy
+      - name: Create gh config directory for devcontainer mount
         if: steps.changed-files.outputs.data_changed == 'true'
-        uses: anthropics/claude-code-action@v1
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          GH_TOKEN: ${{ secrets.WORKFLOW_PAT }}
+        run: mkdir -p ~/.config/gh
+
+      - name: Log in to GHCR
+        if: steps.changed-files.outputs.data_changed == 'true'
+        uses: docker/login-action@v3
         with:
-          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          github_token: ${{ secrets.WORKFLOW_PAT }}
-          claude_args: "--dangerously-skip-permissions"
-          prompt: |
-            You are a data accuracy reviewer for the "How Much Did It Cost Me?" application.
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Review data accuracy with Claude
+        if: steps.changed-files.outputs.data_changed == 'true'
+        uses: devcontainers/ci@v0.3
+        with:
+          imageName: ${{ env.DEVCONTAINER_IMAGE }}
+          cacheFrom: ${{ env.DEVCONTAINER_IMAGE }}
+          push: never
+          env: |
+            CLAUDE_CODE_OAUTH_TOKEN=${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+            GH_TOKEN=${{ secrets.WORKFLOW_PAT }}
+            PR_NUMBER=${{ github.event.pull_request.number }}
+          runCmd: |
+            claude --print \
+              --output-format stream-json \
+              --model sonnet \
+              --dangerously-skip-permissions \
+              --max-turns 100 \
+              "You are a data accuracy reviewer for the 'How Much Did It Cost Me?' application.
 
             This PR modifies js/data.js which contains critical financial data:
             - Federal income tax brackets and rates
@@ -294,29 +396,43 @@ jobs:
 
             ## CRITICAL: Post Your Review
 
-            After completing your analysis, you MUST post your review as a comment on PR #${{ github.event.pull_request.number }} using:
-            ```
-            gh pr comment ${{ github.event.pull_request.number }} --body "$(cat <<'EOF'
+            After completing your analysis, you MUST post your review as a comment on PR #${PR_NUMBER} using:
+            \`\`\`
+            gh pr comment ${PR_NUMBER} --body \"\$(cat <<'EOF'
             ## Data Accuracy Review
             ...your review content...
             EOF
-            )"
-            ```
+            )\"
+            \`\`\`" < /dev/null 2>&1 | tee ./accuracy-review-output.jsonl
+
+      - name: Upload review output
+        uses: actions/upload-artifact@v4
+        if: steps.changed-files.outputs.data_changed == 'true'
+        with:
+          name: accuracy-review-output
+          path: accuracy-review-output.jsonl
+          retention-days: 7
 
       - name: Skip if no data changes
         if: steps.changed-files.outputs.data_changed != 'true'
         run: |
           echo "No changes to js/data.js - skipping accuracy review"
 
-  # Job 4: Execute test plan from PR description
+  # Job 5: Execute test plan from PR description
   # If the PR has a "Test plan" section, Claude will execute those steps with Playwright
+  # Uses prebuilt devcontainer with Claude CLI and Playwright already installed
   test-plan-executor:
     name: Test Plan Executor
     runs-on: ubuntu-latest
-    needs: check-author-authorization
+    needs: [check-author-authorization, build-devcontainer]
     if: |
       github.event.pull_request.draft != true &&
-      needs.check-author-authorization.outputs.authorized == 'true'
+      needs.check-author-authorization.outputs.authorized == 'true' &&
+      needs.build-devcontainer.result == 'success'
+    permissions:
+      contents: read
+      pull-requests: write
+      packages: read
 
     steps:
       - name: Checkout repository
@@ -352,39 +468,52 @@ jobs:
             echo "No test plan section found in PR description"
           fi
 
-      - name: Setup Node.js
+      - name: Create gh config directory for devcontainer mount
         if: steps.extract-test-plan.outputs.has_test_plan == 'true'
-        uses: actions/setup-node@v4
+        run: mkdir -p ~/.config/gh
+
+      - name: Log in to GHCR
+        if: steps.extract-test-plan.outputs.has_test_plan == 'true'
+        uses: docker/login-action@v3
         with:
-          node-version: '22'
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install dependencies
+      - name: Write PR body to file for devcontainer
         if: steps.extract-test-plan.outputs.has_test_plan == 'true'
-        run: |
-          npm install -g http-server
-          npm init -y
-          npm install playwright
-          npx playwright install chromium --with-deps
-
-      - name: Start local server
-        if: steps.extract-test-plan.outputs.has_test_plan == 'true'
-        run: |
-          http-server . -p 8080 &
-          sleep 3
-          curl -s http://localhost:8080 > /dev/null || (echo "Server failed to start" && exit 1)
-
-      - name: Execute test plan
-        if: steps.extract-test-plan.outputs.has_test_plan == 'true'
-        uses: anthropics/claude-code-action@v1
         env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          GH_TOKEN: ${{ secrets.WORKFLOW_PAT }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          echo "$PR_BODY" > pr_body_for_claude.txt
+
+      - name: Execute test plan with Claude in devcontainer
+        if: steps.extract-test-plan.outputs.has_test_plan == 'true'
+        uses: devcontainers/ci@v0.3
         with:
-          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          github_token: ${{ secrets.WORKFLOW_PAT }}
-          claude_args: "--dangerously-skip-permissions"
-          prompt: |
-            You are a test executor. The PR author has provided a test plan that you need to execute.
+          imageName: ${{ env.DEVCONTAINER_IMAGE }}
+          cacheFrom: ${{ env.DEVCONTAINER_IMAGE }}
+          push: never
+          env: |
+            CLAUDE_CODE_OAUTH_TOKEN=${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+            GH_TOKEN=${{ secrets.WORKFLOW_PAT }}
+            PR_NUMBER=${{ github.event.pull_request.number }}
+          runCmd: |
+            # Start local server in background
+            http-server . -p 8080 &
+            sleep 3
+            curl -s http://localhost:8080 > /dev/null || (echo "Server failed to start" && exit 1)
+
+            # Read PR body for the prompt
+            PR_BODY_CONTENT=$(cat pr_body_for_claude.txt)
+
+            # Run Claude to execute the test plan
+            claude --print \
+              --output-format stream-json \
+              --model sonnet \
+              --dangerously-skip-permissions \
+              --max-turns 200 \
+              "You are a test executor. The PR author has provided a test plan that you need to execute.
 
             The app is running at http://localhost:8080
 
@@ -392,11 +521,11 @@ jobs:
 
             The following test plan was specified by the PR author:
 
-            ```
-            ${{ github.event.pull_request.body }}
-            ```
+            \`\`\`
+            ${PR_BODY_CONTENT}
+            \`\`\`
 
-            Look for the "Test plan" section in the PR description above and execute each step.
+            Look for the 'Test plan' section in the PR description above and execute each step.
 
             ## Your Task
 
@@ -422,7 +551,7 @@ jobs:
             **Status**: [PASSED / FAILED / PARTIAL]
 
             ### Steps Executed
-            [For each step in the test plan, report: ✓ Passed or ✗ Failed with details]
+            [For each step in the test plan, report: Passed or Failed with details]
 
             ### Evidence
             [Reference screenshots taken during testing]
@@ -432,20 +561,28 @@ jobs:
 
             ## CRITICAL: Post Your Review
 
-            After executing the test plan, you MUST post your results as a comment on PR #${{ github.event.pull_request.number }} using:
-            ```
-            gh pr comment ${{ github.event.pull_request.number }} --body "$(cat <<'EOF'
+            After executing the test plan, you MUST post your results as a comment on PR #${PR_NUMBER} using:
+            \`\`\`
+            gh pr comment ${PR_NUMBER} --body \"\$(cat <<'EOF'
             ## Test Plan Execution
             ...your results...
             EOF
-            )"
-            ```
+            )\"
+            \`\`\`
 
             IMPORTANT:
             - Execute the EXACT steps specified in the test plan
             - Don't skip steps or make assumptions
             - If a step is unclear, note it but attempt to execute your best interpretation
-            - Report honestly if something fails
+            - Report honestly if something fails" < /dev/null 2>&1 | tee ./test-plan-output.jsonl
+
+      - name: Upload test plan output
+        uses: actions/upload-artifact@v4
+        if: steps.extract-test-plan.outputs.has_test_plan == 'true'
+        with:
+          name: test-plan-output
+          path: test-plan-output.jsonl
+          retention-days: 7
 
       - name: Skip if no test plan
         if: steps.extract-test-plan.outputs.has_test_plan != 'true'
@@ -456,13 +593,14 @@ jobs:
   all-agent-reviews-passed:
     name: All Agent Reviews
     runs-on: ubuntu-latest
-    needs: [check-author-authorization, run-unit-tests, run-playwright-tests, impatient-user-review, accuracy-review, test-plan-executor]
+    needs: [check-author-authorization, build-devcontainer, run-unit-tests, run-playwright-tests, impatient-user-review, accuracy-review, test-plan-executor]
     if: always()
     steps:
       - name: Check all reviews passed
         run: |
           echo "Checking results of all agent reviews..."
           echo "check-author-authorization: ${{ needs.check-author-authorization.result }}"
+          echo "build-devcontainer: ${{ needs.build-devcontainer.result }}"
           echo "run-unit-tests: ${{ needs.run-unit-tests.result }}"
           echo "run-playwright-tests: ${{ needs.run-playwright-tests.result }}"
           echo "impatient-user-review: ${{ needs.impatient-user-review.result }}"
@@ -472,6 +610,12 @@ jobs:
           # Authorization check must pass
           if [ "${{ needs.check-author-authorization.result }}" != "success" ]; then
             echo "FAILED: Author authorization check did not succeed"
+            exit 1
+          fi
+
+          # Devcontainer build must pass
+          if [ "${{ needs.build-devcontainer.result }}" != "success" ]; then
+            echo "FAILED: Devcontainer build did not succeed"
             exit 1
           fi
 

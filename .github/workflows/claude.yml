@@ -10,8 +10,13 @@ on:
   pull_request_review:
     types: [submitted]
 
+env:
+  # Note: must be lowercase for Docker compatibility
+  DEVCONTAINER_IMAGE: ghcr.io/nickborgers/how-much-did-it-cost-me-devcontainer
+
 jobs:
-  claude:
+  # Build and cache devcontainer image
+  build-devcontainer:
     if: |
       (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
       (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
@@ -20,20 +25,169 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: read
-      issues: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push devcontainer
+        uses: devcontainers/ci@v0.3
+        with:
+          imageName: ${{ env.DEVCONTAINER_IMAGE }}
+          cacheFrom: ${{ env.DEVCONTAINER_IMAGE }}
+          push: always
+
+  # Respond to @claude mentions in comments
+  claude:
+    needs: build-devcontainer
+    if: |
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
+      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
       id-token: write
-      actions: read # Required for Claude to read CI results on PRs
+      actions: read
+      packages: read
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
 
-      - name: Run Claude Code
-        id: claude
-        uses: anthropics/claude-code-action@v1
+      - name: Create gh config directory for devcontainer mount
+        run: mkdir -p ~/.config/gh
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
         with:
-          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          claude_args: "--dangerously-skip-permissions"
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Determine context and prompt
+        id: context
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          REVIEW_BODY: ${{ github.event.review.body }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          PR_NUMBER: ${{ github.event.issue.number || github.event.pull_request.number }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          # Determine the user request based on event type
+          if [ "$EVENT_NAME" == "issue_comment" ] || [ "$EVENT_NAME" == "pull_request_review_comment" ]; then
+            echo "REQUEST<<EOF" >> $GITHUB_OUTPUT
+            echo "$COMMENT_BODY" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+            echo "context_type=comment" >> $GITHUB_OUTPUT
+          elif [ "$EVENT_NAME" == "pull_request_review" ]; then
+            echo "REQUEST<<EOF" >> $GITHUB_OUTPUT
+            echo "$REVIEW_BODY" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+            echo "context_type=review" >> $GITHUB_OUTPUT
+          elif [ "$EVENT_NAME" == "issues" ]; then
+            echo "REQUEST<<EOF" >> $GITHUB_OUTPUT
+            echo "Issue Title: $ISSUE_TITLE" >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+            echo "$ISSUE_BODY" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+            echo "context_type=issue" >> $GITHUB_OUTPUT
+          fi
+
+          # Set the PR or issue number for responses
+          if [ -n "$PR_NUMBER" ]; then
+            echo "number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          elif [ -n "$ISSUE_NUMBER" ]; then
+            echo "number=$ISSUE_NUMBER" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Write request to file
+        run: |
+          cat > user_request.txt << 'EOF'
+          ${{ steps.context.outputs.REQUEST }}
+          EOF
+
+      - name: Run Claude Code in devcontainer
+        uses: devcontainers/ci@v0.3
+        with:
+          imageName: ${{ env.DEVCONTAINER_IMAGE }}
+          cacheFrom: ${{ env.DEVCONTAINER_IMAGE }}
+          push: never
+          env: |
+            CLAUDE_CODE_OAUTH_TOKEN=${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+            GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+            CONTEXT_TYPE=${{ steps.context.outputs.context_type }}
+            CONTEXT_NUMBER=${{ steps.context.outputs.number }}
+            REPO=${{ github.repository }}
+          runCmd: |
+            USER_REQUEST=$(cat user_request.txt)
+
+            claude --print \
+              --verbose \
+              --output-format stream-json \
+              --model opus \
+              --dangerously-skip-permissions \
+              --max-turns 400 \
+              "You are Claude, an AI assistant helping with the ${REPO} repository.
+
+            A user has tagged you in a GitHub ${CONTEXT_TYPE}. Here is their request:
+
+            ---
+            ${USER_REQUEST}
+            ---
+
+            ## Your Task
+
+            Analyze the request and help the user. You have full access to:
+            - Read and modify files in the repository
+            - Run bash commands and tests
+            - Use the gh CLI to interact with GitHub (comment on issues/PRs, create branches, etc.)
+            - Use Playwright via the playwright-skill for browser automation testing
+
+            ## Guidelines
+
+            1. If this is a code change request:
+               - Make the requested changes
+               - Test your changes if applicable
+               - Commit and push to the appropriate branch
+               - Comment on the issue/PR with a summary of what you did
+
+            2. If this is a question:
+               - Research the codebase to find the answer
+               - Respond with a clear, helpful answer via gh CLI
+
+            3. If this is a bug report or issue:
+               - Investigate the issue
+               - If you can fix it, create a branch, fix it, and open a PR
+               - Comment with your findings
+
+            ## Responding
+
+            Use the gh CLI to respond. Examples:
+            - For issues: gh issue comment ${CONTEXT_NUMBER} --body 'Your response'
+            - For PRs: gh pr comment ${CONTEXT_NUMBER} --body 'Your response'
+
+            Start by understanding the request and taking appropriate action." < /dev/null 2>&1 | tee ./claude-output.jsonl
+
+      - name: Upload Claude output
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: claude-output
+          path: claude-output.jsonl
+          retention-days: 7
