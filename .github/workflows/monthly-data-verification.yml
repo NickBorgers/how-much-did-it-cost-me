@@ -1,0 +1,181 @@
+name: Monthly Data Accuracy Verification
+
+# Runs monthly to verify repository data is still accurate
+# Uses Claude Code to review data files and perform web searches
+# Opens a PR if any inaccuracies are detected
+
+on:
+  schedule:
+    # Run at 9am UTC on the 1st of each month
+    - cron: '0 9 1 * *'
+  # Allow manual triggering for testing
+  workflow_dispatch:
+
+env:
+  # Note: must be lowercase for Docker compatibility
+  DEVCONTAINER_IMAGE: ghcr.io/nickborgers/how-much-did-it-cost-me-devcontainer
+
+jobs:
+  # Build and cache devcontainer image
+  build-devcontainer:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push devcontainer
+        uses: devcontainers/ci@v0.3
+        with:
+          imageName: ${{ env.DEVCONTAINER_IMAGE }}
+          cacheFrom: ${{ env.DEVCONTAINER_IMAGE }}
+          push: always
+
+  # Verify data accuracy using Claude Code
+  verify-data:
+    needs: build-devcontainer
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+      packages: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create gh config directory for devcontainer mount
+        run: mkdir -p ~/.config/gh
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify data accuracy with Claude
+        uses: devcontainers/ci@v0.3
+        with:
+          imageName: ${{ env.DEVCONTAINER_IMAGE }}
+          cacheFrom: ${{ env.DEVCONTAINER_IMAGE }}
+          push: never
+          env: |
+            CLAUDE_CODE_OAUTH_TOKEN=${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+            GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+            REPO=${{ github.repository }}
+            RUN_DATE=${{ github.event.schedule && 'scheduled' || 'manual' }}
+          runCmd: |
+            # Run Claude Code to verify data accuracy
+            # Claude has web search capabilities to verify information
+            claude --print \
+              --verbose \
+              --output-format stream-json \
+              --model opus \
+              --dangerously-skip-permissions \
+              --max-turns 300 \
+              "You are a DATA ACCURACY VERIFICATION agent for the ${REPO} repository.
+
+            This is a monthly automated check to ensure all data in the repository is still accurate
+            and up-to-date. This repository is a GitHub Pages web application that likely contains
+            data that users rely on for accuracy.
+
+            YOUR TASK:
+
+            1. **DISCOVER DATA FILES**: Explore the repository to find all files containing data
+               that could become outdated. Look for:
+               - JSON data files
+               - JavaScript/TypeScript files with hardcoded data
+               - HTML files with data content
+               - Configuration files with external references
+               - Any files containing prices, rates, URLs, API references, version numbers, etc.
+
+            2. **IDENTIFY VERIFIABLE CLAIMS**: For each data file, identify specific claims or
+               data points that can be verified against external sources:
+               - Prices or costs (these change frequently!)
+               - API endpoints or URLs (services change their APIs)
+               - Version numbers of libraries or services
+               - Company names, product names (rebranding happens)
+               - Feature availability or limitations
+               - Any numerical data that comes from external sources
+
+            3. **WEB SEARCH VERIFICATION**: Use your web search capabilities to verify each
+               identifiable claim against current information. Search for:
+               - Official documentation or pricing pages
+               - Recent news about changes to services
+               - Current API documentation
+               - Product update announcements
+
+            4. **DOCUMENT FINDINGS**: Keep track of:
+               - What data you verified
+               - What sources you used
+               - Any discrepancies found
+               - Confidence level in your findings
+
+            5. **IF INACCURACIES FOUND**:
+               a. Create a new branch: git checkout -b data-update/monthly-$(date +%Y-%m)
+               b. Make the necessary corrections to the data files
+               c. Commit with a descriptive message explaining what was updated and why
+               d. Push the branch: git push -u origin data-update/monthly-$(date +%Y-%m)
+               e. Create a PR with detailed findings:
+
+               gh pr create --title 'Data Update: Monthly Accuracy Verification - $(date +%B %Y)' --body \"\$(cat <<'PR_BODY'
+            ## Monthly Data Accuracy Verification
+
+            This PR contains corrections identified during the automated monthly data verification.
+
+            ### Summary of Changes
+            [List each file changed and what was updated]
+
+            ### Verification Details
+            [For each change, explain:]
+            - **What was incorrect**: [old value/information]
+            - **What it should be**: [new value/information]
+            - **Source**: [URL or reference used to verify]
+            - **Confidence**: [High/Medium/Low]
+
+            ### Files Modified
+            [List of files]
+
+            ### Verification Date
+            $(date +%Y-%m-%d)
+
+            ---
+            🤖 Generated by Monthly Data Accuracy Verification workflow
+            PR_BODY
+            )\"
+
+            6. **IF NO INACCURACIES FOUND**:
+               Simply output a summary of what you verified and confirm all data appears accurate.
+               Do not create a branch or PR if nothing needs to be changed.
+
+            IMPORTANT NOTES:
+            - Be thorough but reasonable - focus on data that is likely to change
+            - Prioritize user-facing data that affects the application's usefulness
+            - Include confidence levels - if you're uncertain about a finding, note it
+            - Prefer authoritative sources (official docs, pricing pages) over third-party sites
+            - If a data point cannot be verified (no reliable source found), note this but don't change it
+
+            Start by exploring the repository structure to understand what data exists." < /dev/null 2>&1 | tee /workspaces/how-much-did-it-cost-me/verification-output.jsonl
+
+      - name: Upload verification output
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: monthly-verification-output
+          path: verification-output.jsonl
+          retention-days: 30

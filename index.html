@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Much Did It Cost Me?</title>
+  <meta name="description" content="Find out how much federal spending actually costs you personally based on your tax contribution.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>How Much Did It Cost Me?</h1>
+      <p>See how federal spending affects your wallet</p>
+    </header>
+
+    <!-- Returning User Banner (hidden by default) -->
+    <div id="returningBanner" class="returning-banner" style="display: none;">
+      <span>Welcome back! Using your saved income.</span>
+      <button type="button" onclick="app.clearAndReset()">Start fresh</button>
+    </div>
+
+    <!-- Stage 1: Tax Input -->
+    <section id="stage1" class="stage visible">
+      <h2><span class="stage-number">1</span> Your Tax Contribution</h2>
+
+      <div class="toggle-group" role="group" aria-label="Input method">
+        <button type="button" class="toggle-btn active" data-mode="income" onclick="app.setInputMode('income')">
+          I know my income
+        </button>
+        <button type="button" class="toggle-btn" data-mode="tax" onclick="app.setInputMode('tax')">
+          I know my tax
+        </button>
+      </div>
+
+      <div id="incomeInput" class="input-group">
+        <label for="income">Annual Income</label>
+        <div class="input-wrapper">
+          <span class="prefix">$</span>
+          <input type="text" id="income" inputmode="numeric" placeholder="75,000"
+                 oninput="app.handleIncomeInput(this.value)" aria-describedby="incomeHelp">
+        </div>
+      </div>
+
+      <div id="directTaxInput" class="input-group" style="display: none;">
+        <label for="directTax">Federal Income Tax Paid</label>
+        <div class="input-wrapper">
+          <span class="prefix">$</span>
+          <input type="text" id="directTax" inputmode="numeric" placeholder="9,400"
+                 oninput="app.handleDirectTaxInput(this.value)">
+        </div>
+      </div>
+
+      <div class="toggle-group" role="group" aria-label="Filing status">
+        <button type="button" class="toggle-btn active" data-status="single" onclick="app.setFilingStatus('single')">
+          Single
+        </button>
+        <button type="button" class="toggle-btn" data-status="married" onclick="app.setFilingStatus('married')">
+          Married Filing Jointly
+        </button>
+      </div>
+
+      <div id="taxResult" class="tax-result" style="display: none;">
+        <div class="label">Estimated Federal Income Tax</div>
+        <div class="amount" id="calculatedTax">$0</div>
+        <div class="label" id="taxPercent"></div>
+      </div>
+
+      <button type="button" id="continueToStage2" class="continue-btn" disabled onclick="app.showStage(2)">
+        Continue
+      </button>
+    </section>
+
+    <!-- Stage 2: Spending Input -->
+    <section id="stage2" class="stage">
+      <h2><span class="stage-number">2</span> The Spending Amount</h2>
+      <p style="color: var(--color-text-muted); margin-bottom: 1rem; font-size: 0.9rem;">
+        Enter an amount of federal spending you heard about:
+      </p>
+
+      <div class="input-group">
+        <label for="spending">Spending Amount</label>
+        <div class="input-wrapper">
+          <span class="prefix">$</span>
+          <input type="text" id="spending" inputmode="numeric" placeholder="1,000,000,000"
+                 oninput="app.handleSpendingInput(this.value)">
+        </div>
+      </div>
+
+      <div class="example-chips" aria-label="Example amounts">
+        <button type="button" class="chip" onclick="app.setSpending(1000000)">$1 million</button>
+        <button type="button" class="chip" onclick="app.setSpending(100000000)">$100 million</button>
+        <button type="button" class="chip" onclick="app.setSpending(1000000000)">$1 billion</button>
+        <button type="button" class="chip" onclick="app.setSpending(10000000000)">$10 billion</button>
+        <button type="button" class="chip" onclick="app.setSpending(100000000000)">$100 billion</button>
+      </div>
+
+      <button type="button" id="continueToStage3" class="continue-btn" disabled onclick="app.showStage(3)">
+        Continue
+      </button>
+    </section>
+
+    <!-- Stage 3: Funding Source -->
+    <section id="stage3" class="stage">
+      <h2><span class="stage-number">3</span> Where Did It Come From?</h2>
+      <p style="color: var(--color-text-muted); margin-bottom: 1rem; font-size: 0.9rem;">
+        Different programs are funded by different taxes. Select the category:
+      </p>
+
+      <div class="category-grid" role="group" aria-label="Funding category">
+        <button type="button" class="category-btn" data-category="defense" onclick="app.selectCategory('defense')">
+          <span class="name">Defense & Military</span>
+          <span class="examples">Pentagon, weapons systems, VA</span>
+          <span class="tax-source">Funded by: Income Tax</span>
+        </button>
+
+        <button type="button" class="category-btn" data-category="general" onclick="app.selectCategory('general')">
+          <span class="name">General Government</span>
+          <span class="examples">Agencies, transportation, education, research</span>
+          <span class="tax-source">Funded by: Income Tax</span>
+        </button>
+
+        <button type="button" class="category-btn" data-category="socialSecurity" onclick="app.selectCategory('socialSecurity')">
+          <span class="name">Social Security</span>
+          <span class="examples">SS benefits, SS administration</span>
+          <span class="tax-source">Funded by: Payroll Tax (FICA)</span>
+        </button>
+
+        <button type="button" class="category-btn" data-category="medicare" onclick="app.selectCategory('medicare')">
+          <span class="name">Medicare & Medicaid</span>
+          <span class="examples">Healthcare programs</span>
+          <span class="tax-source">Funded by: Mixed (Income + FICA)</span>
+        </button>
+
+        <button type="button" class="category-btn" data-category="interest" onclick="app.selectCategory('interest')">
+          <span class="name">Interest on Debt</span>
+          <span class="examples">Debt payments to bondholders</span>
+          <span class="tax-source">Funded by: Income Tax</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Stage 4: Results -->
+    <section id="stage4" class="stage">
+      <h2><span class="stage-number">4</span> Your Personal Share</h2>
+
+      <div class="result-card">
+        <div class="result-label">
+          Of <span id="resultSpendingAmount">$0</span> in <span id="resultCategory">spending</span>
+        </div>
+        <div class="result-amount" id="resultShare">$0.00</div>
+        <div class="result-comparison" id="resultComparison"></div>
+      </div>
+
+      <div class="deficit-note">
+        Note: About 28% of federal spending is deficit-financed (borrowed), not directly from current taxes.
+      </div>
+
+      <div class="math-breakdown">
+        <button type="button" class="math-toggle" onclick="app.toggleMath()">
+          <span id="mathToggleText">Show the math</span>
+          <span id="mathToggleIcon">+</span>
+        </button>
+        <div id="mathDetails" class="math-details">
+          <div class="math-row">
+            <span>Your tax contribution</span>
+            <span id="mathYourTax">$0</span>
+          </div>
+          <div class="math-row">
+            <span>Tax type</span>
+            <span id="mathTaxType">Income Tax</span>
+          </div>
+          <div class="math-row">
+            <span>Total federal revenue (this type)</span>
+            <span id="mathTotalRevenue">$0</span>
+          </div>
+          <div class="math-row">
+            <span>Your proportion</span>
+            <span id="mathProportion">0%</span>
+          </div>
+          <div class="math-row">
+            <span>Spending amount</span>
+            <span id="mathSpending">$0</span>
+          </div>
+          <div class="math-row">
+            <span>Your share</span>
+            <span id="mathShare">$0</span>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="continue-btn" onclick="app.tryAnother()" style="background: var(--color-text-muted);">
+        Try Another Amount
+      </button>
+    </section>
+
+    <button type="button" class="reset-btn" onclick="app.clearAndReset()">
+      Start Over
+    </button>
+
+    <footer class="disclaimers">
+      <p>This estimate uses the standard deduction. Your actual tax may differ due to itemized deductions, credits, and other factors.</p>
+      <p>Based on FY 2024 federal budget data from CBO and IRS.</p>
+      <p>For educational purposes only. Consult a tax professional for your specific situation.</p>
+    </footer>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/calculations.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

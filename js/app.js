@@ -1,0 +1,360 @@
+// app.js - Main application logic
+
+const app = {
+  // Current state
+  state: {
+    inputMode: 'income', // 'income' or 'tax'
+    filingStatus: 'single',
+    income: 0,
+    incomeTax: 0,
+    ficaTax: 0,
+    directTax: null, // null means calculated, number means user-entered
+    spendingAmount: 0,
+    category: null
+  },
+
+  // Initialize the app
+  init() {
+    // Check for returning user
+    const saved = loadUserData();
+    if (saved && saved.income) {
+      this.loadSavedData(saved);
+    }
+  },
+
+  // Load saved data for returning user
+  loadSavedData(saved) {
+    // Show returning banner
+    document.getElementById('returningBanner').style.display = 'flex';
+
+    // Restore state
+    this.state.inputMode = saved.inputMode || 'income';
+    this.state.filingStatus = saved.filingStatus || 'single';
+    this.state.income = saved.income || 0;
+    this.state.directTax = saved.directTax || null;
+
+    // Update UI to reflect saved state
+    if (this.state.inputMode === 'tax' && this.state.directTax !== null) {
+      this.setInputMode('tax');
+      document.getElementById('directTax').value = this.formatNumberInput(this.state.directTax);
+      this.state.incomeTax = this.state.directTax;
+    } else {
+      document.getElementById('income').value = this.formatNumberInput(this.state.income);
+      this.recalculateTax();
+    }
+
+    // Update filing status buttons
+    document.querySelectorAll('[data-status]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.status === this.state.filingStatus);
+    });
+
+    // Show tax result and enable continue
+    this.updateTaxDisplay();
+  },
+
+  // Set input mode (income or direct tax)
+  setInputMode(mode) {
+    this.state.inputMode = mode;
+
+    // Update toggle buttons
+    document.querySelectorAll('[data-mode]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.mode === mode);
+    });
+
+    // Show/hide appropriate input
+    document.getElementById('incomeInput').style.display = mode === 'income' ? 'block' : 'none';
+    document.getElementById('directTaxInput').style.display = mode === 'tax' ? 'block' : 'none';
+
+    // Recalculate based on current values
+    if (mode === 'income') {
+      this.state.directTax = null;
+      this.recalculateTax();
+    } else {
+      const val = parseCurrencyInput(document.getElementById('directTax').value);
+      if (val > 0) {
+        this.handleDirectTaxInput(document.getElementById('directTax').value);
+      }
+    }
+  },
+
+  // Set filing status
+  setFilingStatus(status) {
+    this.state.filingStatus = status;
+
+    // Update toggle buttons
+    document.querySelectorAll('[data-status]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.status === status);
+    });
+
+    // Recalculate tax
+    this.recalculateTax();
+    this.saveState();
+  },
+
+  // Handle income input
+  handleIncomeInput(value) {
+    const num = parseCurrencyInput(value);
+    this.state.income = num;
+
+    // Format the input
+    const input = document.getElementById('income');
+    const cursorPos = input.selectionStart;
+    const oldLen = input.value.length;
+    input.value = this.formatNumberInput(num);
+    const newLen = input.value.length;
+
+    // Try to maintain cursor position
+    const newPos = cursorPos + (newLen - oldLen);
+    input.setSelectionRange(newPos, newPos);
+
+    this.recalculateTax();
+    this.saveState();
+  },
+
+  // Handle direct tax input
+  handleDirectTaxInput(value) {
+    const num = parseCurrencyInput(value);
+    this.state.directTax = num;
+    this.state.incomeTax = num;
+
+    // Format the input
+    const input = document.getElementById('directTax');
+    const cursorPos = input.selectionStart;
+    const oldLen = input.value.length;
+    input.value = this.formatNumberInput(num);
+    const newLen = input.value.length;
+
+    const newPos = cursorPos + (newLen - oldLen);
+    input.setSelectionRange(newPos, newPos);
+
+    // Calculate FICA based on estimated income (rough reverse calculation)
+    // This is approximate - assume ~15% effective rate to estimate income
+    const estimatedIncome = num / 0.15;
+    this.state.income = estimatedIncome;
+    const fica = calculateFICA(estimatedIncome, this.state.filingStatus);
+    this.state.ficaTax = fica.total;
+
+    this.updateTaxDisplay();
+    this.saveState();
+  },
+
+  // Recalculate tax from income
+  recalculateTax() {
+    if (this.state.inputMode === 'tax') return;
+
+    this.state.incomeTax = calculateIncomeTax(this.state.income, this.state.filingStatus);
+    const fica = calculateFICA(this.state.income, this.state.filingStatus);
+    this.state.ficaTax = fica.total;
+
+    this.updateTaxDisplay();
+  },
+
+  // Update the tax display
+  updateTaxDisplay() {
+    const taxResultEl = document.getElementById('taxResult');
+    const continueBtn = document.getElementById('continueToStage2');
+
+    if (this.state.incomeTax > 0 || this.state.directTax > 0) {
+      taxResultEl.style.display = 'block';
+      document.getElementById('calculatedTax').textContent = formatCurrency(this.state.incomeTax);
+
+      if (this.state.income > 0) {
+        const percent = ((this.state.incomeTax / this.state.income) * 100).toFixed(1);
+        document.getElementById('taxPercent').textContent = `(${percent}% effective rate)`;
+      } else {
+        document.getElementById('taxPercent').textContent = '';
+      }
+
+      continueBtn.disabled = false;
+    } else {
+      taxResultEl.style.display = 'none';
+      continueBtn.disabled = true;
+    }
+  },
+
+  // Handle spending input
+  handleSpendingInput(value) {
+    const num = parseCurrencyInput(value);
+    this.state.spendingAmount = num;
+
+    // Format the input
+    const input = document.getElementById('spending');
+    const cursorPos = input.selectionStart;
+    const oldLen = input.value.length;
+    input.value = this.formatNumberInput(num);
+    const newLen = input.value.length;
+
+    const newPos = cursorPos + (newLen - oldLen);
+    input.setSelectionRange(newPos, newPos);
+
+    // Enable continue if valid
+    document.getElementById('continueToStage3').disabled = num <= 0;
+  },
+
+  // Set spending from chip
+  setSpending(amount) {
+    this.state.spendingAmount = amount;
+    document.getElementById('spending').value = this.formatNumberInput(amount);
+    document.getElementById('continueToStage3').disabled = false;
+  },
+
+  // Select funding category
+  selectCategory(category) {
+    this.state.category = category;
+
+    // Update category buttons
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.classList.toggle('selected', btn.dataset.category === category);
+    });
+
+    // Calculate and show results
+    this.calculateAndShowResults();
+  },
+
+  // Calculate and display results
+  calculateAndShowResults() {
+    const result = calculateShare({
+      incomeTax: this.state.incomeTax,
+      ficaTax: this.state.ficaTax,
+      spendingAmount: this.state.spendingAmount,
+      category: this.state.category
+    });
+
+    // Update result display
+    document.getElementById('resultSpendingAmount').textContent = formatLargeNumber(this.state.spendingAmount);
+    document.getElementById('resultCategory').textContent = result.category.toLowerCase();
+    document.getElementById('resultShare').textContent = formatCurrency(result.yourShare);
+
+    // Get comparison
+    const annualTax = this.state.incomeTax + this.state.ficaTax;
+    const comparison = getComparison(result.yourShare, annualTax);
+    document.getElementById('resultComparison').textContent = comparison;
+
+    // Update math breakdown
+    document.getElementById('mathYourTax').textContent = formatCurrency(result.breakdown.yourTax);
+    document.getElementById('mathTaxType').textContent = result.breakdown.taxType;
+    document.getElementById('mathTotalRevenue').textContent = formatLargeNumber(result.breakdown.totalRevenue || FEDERAL_BUDGET.revenue.individualIncomeTax);
+    document.getElementById('mathProportion').textContent = (result.breakdown.proportion * 100).toExponential(2) + '%';
+    document.getElementById('mathSpending').textContent = formatLargeNumber(this.state.spendingAmount);
+    document.getElementById('mathShare').textContent = formatCurrency(result.yourShare);
+
+    // Show stage 4
+    this.showStage(4);
+  },
+
+  // Show a specific stage
+  showStage(stageNum) {
+    const stage = document.getElementById(`stage${stageNum}`);
+    stage.classList.add('visible');
+
+    // Smooth scroll into view
+    setTimeout(() => {
+      stage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  },
+
+  // Toggle math details
+  toggleMath() {
+    const details = document.getElementById('mathDetails');
+    const text = document.getElementById('mathToggleText');
+    const icon = document.getElementById('mathToggleIcon');
+
+    const isVisible = details.classList.toggle('visible');
+    text.textContent = isVisible ? 'Hide the math' : 'Show the math';
+    icon.textContent = isVisible ? '-' : '+';
+  },
+
+  // Try another amount
+  tryAnother() {
+    // Hide stage 4
+    document.getElementById('stage4').classList.remove('visible');
+
+    // Clear category selection
+    this.state.category = null;
+    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('selected'));
+
+    // Hide stage 3
+    document.getElementById('stage3').classList.remove('visible');
+
+    // Clear spending
+    this.state.spendingAmount = 0;
+    document.getElementById('spending').value = '';
+    document.getElementById('continueToStage3').disabled = true;
+
+    // Scroll to stage 2
+    document.getElementById('stage2').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  },
+
+  // Clear data and reset
+  clearAndReset() {
+    clearUserData();
+
+    // Reset state
+    this.state = {
+      inputMode: 'income',
+      filingStatus: 'single',
+      income: 0,
+      incomeTax: 0,
+      ficaTax: 0,
+      directTax: null,
+      spendingAmount: 0,
+      category: null
+    };
+
+    // Reset UI
+    document.getElementById('returningBanner').style.display = 'none';
+    document.getElementById('income').value = '';
+    document.getElementById('directTax').value = '';
+    document.getElementById('spending').value = '';
+    document.getElementById('taxResult').style.display = 'none';
+    document.getElementById('continueToStage2').disabled = true;
+    document.getElementById('continueToStage3').disabled = true;
+
+    // Reset toggles
+    document.querySelectorAll('[data-mode]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.mode === 'income');
+    });
+    document.querySelectorAll('[data-status]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.status === 'single');
+    });
+    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('selected'));
+
+    // Hide stages 2, 3, 4
+    document.getElementById('stage2').classList.remove('visible');
+    document.getElementById('stage3').classList.remove('visible');
+    document.getElementById('stage4').classList.remove('visible');
+
+    // Reset input mode display
+    document.getElementById('incomeInput').style.display = 'block';
+    document.getElementById('directTaxInput').style.display = 'none';
+
+    // Reset math toggle
+    document.getElementById('mathDetails').classList.remove('visible');
+    document.getElementById('mathToggleText').textContent = 'Show the math';
+    document.getElementById('mathToggleIcon').textContent = '+';
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  },
+
+  // Save current state to localStorage
+  saveState() {
+    saveUserData({
+      inputMode: this.state.inputMode,
+      filingStatus: this.state.filingStatus,
+      income: this.state.income,
+      directTax: this.state.directTax
+    });
+  },
+
+  // Format number for input display
+  formatNumberInput(num) {
+    if (num === 0 || isNaN(num)) return '';
+    return num.toLocaleString('en-US', { maximumFractionDigits: 0 });
+  }
+};
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+  app.init();
+});

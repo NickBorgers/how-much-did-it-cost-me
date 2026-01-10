@@ -1,0 +1,37 @@
+{
+  "name": "How Much Did It Cost Me",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "moby": "false"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "bradlc.vscode-tailwindcss",
+        "bierner.markdown-mermaid"
+      ]
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "postStartCommand": "bash .devcontainer/fix-dns-order.sh",
+  "forwardPorts": [3000, 5173, 8080],
+  "portsAttributes": {
+    "3000": { "label": "Dev Server" },
+    "5173": { "label": "Vite Dev" },
+    "8080": { "label": "HTTP Server" }
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.config/gh,target=/home/node/.config/gh,type=bind"
+  ],
+  "remoteEnv": {
+    "SSH_AUTH_SOCK": ""
+  },
+  "remoteUser": "node"
+}
