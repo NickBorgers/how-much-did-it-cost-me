@@ -254,19 +254,23 @@ header p {
 }
 
 .chip.savings {
-  background: rgba(5, 150, 105, 0.1);
-  border-color: var(--color-success);
-  color: var(--color-success);
+  background: var(--color-bg);
+  border-color: var(--color-border);
+  border-style: dashed;
+  color: inherit;
 }
 
 .chip.savings:hover {
-  background: rgba(5, 150, 105, 0.15);
+  background: rgba(5, 150, 105, 0.1);
   border-color: var(--color-success);
+  border-style: solid;
+  color: var(--color-success);
 }
 
 .chip.savings.selected {
-  background: rgba(5, 150, 105, 0.2);
+  background: rgba(5, 150, 105, 0.15);
   border-color: var(--color-success);
+  border-style: solid;
   color: var(--color-success);
 }
 
