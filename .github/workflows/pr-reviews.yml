@@ -1,0 +1,140 @@
+name: PR Reviews
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review, reopened]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Git ref to test (branch, tag, or SHA)'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: read
+  id-token: write
+
+jobs:
+  # Impatient User Review - Tests the app using Playwright as a real user would
+  # This reviewer simulates a user who:
+  # 1. First visit: Inputs their income and goes through the full calculation flow
+  # 2. Second visit: Expects the app to remember their income for faster use
+  impatient-user-review:
+    name: Impatient User Review
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft != true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.ref || github.head_ref || github.ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install http-server
+        run: npm install -g http-server
+
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm install playwright
+          npx playwright install chromium --with-deps
+
+      - name: Start local server
+        run: |
+          http-server . -p 8080 &
+          # Wait for server to be ready
+          sleep 3
+          curl -s http://localhost:8080 > /dev/null || (echo "Server failed to start" && exit 1)
+
+      - name: Run Impatient User Review
+        id: impatient-user
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          direct_prompt: |
+            You are an "Impatient User" reviewer testing the "How Much Did It Cost Me?" web application.
+            The app is running at http://localhost:8080
+
+            Your job is to test the app from the perspective of an impatient user who:
+            1. Wants to quickly check how much federal spending costs them personally
+            2. Expects the app to remember their information for faster repeat visits
+
+            ## Test Scenario
+
+            ### First Visit (New User Experience)
+            Use Playwright to:
+            1. Navigate to http://localhost:8080
+            2. Verify the page loads and shows "How Much Did It Cost Me?" title
+            3. Verify no "Welcome back" banner is shown (this is a fresh visit)
+            4. Enter an income of $85,000 in the income field
+            5. Verify the tax calculation appears showing the estimated federal income tax
+            6. Click Continue to proceed to Stage 2
+            7. Enter a spending amount of $1,000,000,000 (1 billion) or click the "$1 billion" chip
+            8. Click Continue to proceed to Stage 3
+            9. Select "General Government" as the funding category
+            10. Verify Stage 4 shows the results with "Your Personal Share" amount
+            11. Note down how many steps this took and what information was shown
+
+            ### Second Visit (Returning User Experience)
+            Use Playwright to:
+            1. Navigate to http://localhost:8080 again (simulating a return visit - localStorage persists)
+            2. Verify the "Welcome back! Using your saved income." banner IS visible
+            3. Verify the income field is pre-filled with the previously entered amount ($85,000)
+            4. Verify the tax calculation is already shown
+            5. Verify the Continue button is already enabled (no need to re-enter income)
+            6. This should be MUCH faster - user can go directly to entering spending amount
+
+            ## Review Criteria
+
+            Your review should PASS if:
+            - The first visit flow works correctly through all 4 stages
+            - The second visit correctly shows the returning user banner
+            - The second visit has the income pre-filled and tax pre-calculated
+            - The returning user experience is noticeably faster (fewer steps to get to spending entry)
+
+            Your review should FAIL if:
+            - The app doesn't load or has JavaScript errors
+            - The income is not saved between visits
+            - The returning user banner doesn't appear on the second visit
+            - The tax calculation doesn't work
+            - Any stage transition fails
+
+            ## Output Format
+
+            Provide your review as a GitHub PR comment with:
+            1. **Status**: PASSED or FAILED
+            2. **First Visit Summary**: What you observed during the new user flow
+            3. **Second Visit Summary**: What you observed during the returning user flow
+            4. **User Experience Notes**: How the returning user experience compared to first visit
+            5. **Issues Found**: Any bugs or problems discovered (if any)
+            6. **Screenshots**: Include relevant screenshots from your Playwright session
+
+            Begin your testing now using the playwright-skill.
+          allowed_tools: "Bash,Read,Glob,Grep,WebFetch,mcp__playwright__*"
+          timeout_minutes: 15
+
+  # Gate job - ensures all agent reviews pass before merge
+  all-agent-reviews-passed:
+    name: All Agent Reviews
+    runs-on: ubuntu-latest
+    needs: [impatient-user-review]
+    if: always()
+    steps:
+      - name: Check all reviews passed
+        run: |
+          echo "Checking results of all agent reviews..."
+          echo "impatient-user-review: ${{ needs.impatient-user-review.result }}"
+
+          if [ "${{ needs.impatient-user-review.result }}" != "success" ]; then
+            echo "FAILED: impatient-user-review did not succeed"
+            exit 1
+          fi
+
+          echo "All agent reviews passed!"
