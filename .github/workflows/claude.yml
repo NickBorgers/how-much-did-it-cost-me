@@ -10,38 +10,8 @@ on:
   pull_request_review:
     types: [submitted]
 
-env:
-  # Note: must be lowercase for Docker compatibility
-  DEVCONTAINER_IMAGE: ghcr.io/nickborgers/how-much-did-it-cost-me-devcontainer
-
 jobs:
-  # Build and cache devcontainer image first
-  build-devcontainer:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Log in to GHCR
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and push devcontainer
-        uses: devcontainers/ci@v0.3
-        with:
-          imageName: ${{ env.DEVCONTAINER_IMAGE }}
-          cacheFrom: ${{ env.DEVCONTAINER_IMAGE }}
-          push: always
-
   claude:
-    needs: build-devcontainer
     if: |
       (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
       (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
@@ -49,273 +19,32 @@ jobs:
       (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pull-requests: write
-      issues: write
+      contents: read
+      pull-requests: read
+      issues: read
       id-token: write
-      actions: read
-      packages: read
-
-    steps:
-      - name: Get PR context
-        id: pr-context
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          # Determine if this is a PR comment and get PR details
-          IS_PR="false"
-          PR_HEAD_REF=""
-          PR_NUMBER=""
-
-          if [ "${{ github.event_name }}" = "pull_request_review_comment" ]; then
-            IS_PR="true"
-            PR_NUMBER="${{ github.event.pull_request.number }}"
-            PR_HEAD_REF="${{ github.event.pull_request.head.ref }}"
-          elif [ "${{ github.event_name }}" = "pull_request_review" ]; then
-            IS_PR="true"
-            PR_NUMBER="${{ github.event.pull_request.number }}"
-            PR_HEAD_REF="${{ github.event.pull_request.head.ref }}"
-          elif [ "${{ github.event_name }}" = "issue_comment" ]; then
-            # Check if the issue is actually a PR
-            if [ -n "${{ github.event.issue.pull_request }}" ]; then
-              IS_PR="true"
-              PR_NUMBER="${{ github.event.issue.number }}"
-              # Fetch PR details to get head ref
-              PR_HEAD_REF=$(gh api repos/${{ github.repository }}/pulls/${PR_NUMBER} --jq '.head.ref')
-            fi
-          fi
-
-          echo "is_pr=$IS_PR" >> $GITHUB_OUTPUT
-          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
-          echo "pr_head_ref=$PR_HEAD_REF" >> $GITHUB_OUTPUT
-          echo "Detected: IS_PR=$IS_PR, PR_NUMBER=$PR_NUMBER, PR_HEAD_REF=$PR_HEAD_REF"
-
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-          ref: ${{ steps.pr-context.outputs.is_pr == 'true' && steps.pr-context.outputs.pr_head_ref || github.ref }}
-
-      - name: Create gh config directory for devcontainer mount
-        run: mkdir -p ~/.config/gh
-
-      - name: Extract comment body
-        id: comment
-        env:
-          EVENT_NAME: ${{ github.event_name }}
-          COMMENT_BODY: ${{ github.event.comment.body }}
-          REVIEW_BODY: ${{ github.event.review.body }}
-          ISSUE_BODY: ${{ github.event.issue.body }}
-        run: |
-          # Use environment variables to avoid shell escaping issues with special characters
-          echo "body<<EOF" >> $GITHUB_OUTPUT
-          if [ "$EVENT_NAME" = "issue_comment" ]; then
-            echo "$COMMENT_BODY" >> $GITHUB_OUTPUT
-          elif [ "$EVENT_NAME" = "pull_request_review_comment" ]; then
-            echo "$COMMENT_BODY" >> $GITHUB_OUTPUT
-          elif [ "$EVENT_NAME" = "pull_request_review" ]; then
-            echo "$REVIEW_BODY" >> $GITHUB_OUTPUT
-          else
-            echo "$ISSUE_BODY" >> $GITHUB_OUTPUT
-          fi
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Log in to GHCR
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Run Claude in devcontainer
-        uses: devcontainers/ci@v0.3
-        with:
-          imageName: ${{ env.DEVCONTAINER_IMAGE }}
-          cacheFrom: ${{ env.DEVCONTAINER_IMAGE }}
-          push: never
-          env: |
-            CLAUDE_CODE_OAUTH_TOKEN=${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-            GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
-            COMMENT_BODY=${{ steps.comment.outputs.body }}
-            ISSUE_NUMBER=${{ github.event.issue.number || github.event.pull_request.number }}
-            REPO=${{ github.repository }}
-            CLAUDE_CONFIG_DIR=/workspaces/how-much-did-it-cost-me/.claude-session
-            IS_PR=${{ steps.pr-context.outputs.is_pr }}
-            PR_HEAD_REF=${{ steps.pr-context.outputs.pr_head_ref }}
-          runCmd: |
-            # Run Claude Code inside the devcontainer with full tool access
-            mkdir -p "${CLAUDE_CONFIG_DIR}"
-
-            # Build the prompt based on whether this is a PR or issue comment
-            if [ "$IS_PR" = "true" ]; then
-              PROMPT="You are an autonomous agent responding to a request on PR #${ISSUE_NUMBER} in ${REPO}.
-
-            The user said: ${COMMENT_BODY}
-
-            YOUR TASK: IMPLEMENT the requested changes. Do NOT just provide review comments or suggestions.
-
-            WORKFLOW:
-            1. Read the user's request carefully
-            2. If they reference another comment, fetch it: gh api repos/${REPO}/issues/${ISSUE_NUMBER}/comments
-            3. Understand what changes are needed
-            4. Implement the changes in the code
-            5. Run any tests or builds if applicable
-            6. Commit your changes with a descriptive message
-            7. Push to the PR branch: git push origin ${PR_HEAD_REF}
-            8. Post a summary comment: gh pr comment ${ISSUE_NUMBER} --body 'YOUR_SUMMARY'
-
-            IMPORTANT: This is a GitHub Pages static web application. There is no server-side code.
-
-            You are on branch ${PR_HEAD_REF}. Make the changes, commit, and push them."
-            else
-              PROMPT="You are responding to a request in ${REPO} issue #${ISSUE_NUMBER}.
-
-            The user said: ${COMMENT_BODY}
-
-            IMPORTANT: This is a GitHub Pages static web application. There is no server-side code.
-
-            Complete the user's request. If you make changes, create a branch, commit them, and open a PR.
-            Reply to the user using: gh issue comment ${ISSUE_NUMBER} --body 'YOUR_RESPONSE'"
-            fi
-
-            claude --print \
-              --verbose \
-              --output-format stream-json \
-              --model opus \
-              --dangerously-skip-permissions \
-              --max-turns 400 \
-              "$PROMPT" < /dev/null 2>&1 | tee /workspaces/how-much-did-it-cost-me/claude-conversation.jsonl
-
-      - name: Upload Claude conversation log
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: claude-conversation-log
-          path: claude-conversation.jsonl
-          retention-days: 7
-
-      - name: Upload Claude session data
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: claude-session-data
-          path: .claude-session/
-          retention-days: 7
-          if-no-files-found: ignore
-
-  # Auto-resolve new issues by opening a PR
-  resolve-issue:
-    needs: build-devcontainer
-    if: github.event_name == 'issues' && github.event.action == 'opened'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-      issues: write
-      id-token: write
-      packages: read
-
+      actions: read # Required for Claude to read CI results on PRs
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
 
-      - name: Create gh config directory for devcontainer mount
-        run: mkdir -p ~/.config/gh
-
-      - name: Label issue as claude-started
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          # Create the label if it doesn't exist (ignore error if it does)
-          gh label create "claude-started" --color "7057ff" --description "Claude Code is working on this issue" --repo ${{ github.repository }} 2>/dev/null || true
-          # Add the label to the issue
-          gh issue edit ${{ github.event.issue.number }} --add-label "claude-started" --repo ${{ github.repository }}
-
-      - name: Log in to GHCR
-        uses: docker/login-action@v3
+      - name: Run Claude Code
+        id: claude
+        uses: anthropics/claude-code-action@v1
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
 
-      - name: Resolve issue in devcontainer
-        uses: devcontainers/ci@v0.3
-        with:
-          imageName: ${{ env.DEVCONTAINER_IMAGE }}
-          cacheFrom: ${{ env.DEVCONTAINER_IMAGE }}
-          push: never
-          env: |
-            CLAUDE_CODE_OAUTH_TOKEN=${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-            GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
-            ISSUE_NUMBER=${{ github.event.issue.number }}
-            ISSUE_TITLE=${{ github.event.issue.title }}
-            REPO=${{ github.repository }}
-            CLAUDE_CONFIG_DIR=/workspaces/how-much-did-it-cost-me/.claude-session
-          runCmd: |
-            mkdir -p "${CLAUDE_CONFIG_DIR}"
+          # This is an optional setting that allows Claude to read CI results on PRs
+          additional_permissions: |
+            actions: read
 
-            # Fetch issue body via API to avoid multi-line env var escaping issues
-            ISSUE_BODY=$(gh api "repos/${REPO}/issues/${ISSUE_NUMBER}" --jq '.body')
+          # Optional: Give a custom prompt to Claude. If this is not specified, Claude will perform the instructions specified in the comment that tagged it.
+          # prompt: 'Update the pull request description to include a summary of changes.'
 
-            claude --print \
-              --verbose \
-              --output-format stream-json \
-              --model opus \
-              --dangerously-skip-permissions \
-              --max-turns 600 \
-              "You are an autonomous agent tasked with resolving GitHub issue #${ISSUE_NUMBER}.
+          # Optional: Add claude_args to customize behavior and configuration
+          # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
+          # or https://code.claude.com/docs/en/cli-reference for available options
+          # claude_args: '--allowed-tools Bash(gh pr:*)'
 
-            ISSUE TITLE: ${ISSUE_TITLE}
-
-            ISSUE BODY:
-            ${ISSUE_BODY}
-
-            YOUR TASK:
-            1. Analyze the issue and understand what needs to be done
-            2. Explore the codebase to find relevant files
-            3. Implement the fix or feature
-            4. Test your changes locally if possible (http-server for static site testing)
-            5. Create a branch, commit your changes, and open a PR
-
-            IMPORTANT: This is a GitHub Pages static web application. There is no server-side code.
-            All functionality must run client-side in the browser.
-
-            BRANCH NAMING: Use \`claude/issue-${ISSUE_NUMBER}\` as the branch name.
-
-            PR CREATION:
-            gh pr create --title 'Fix #${ISSUE_NUMBER}: <brief description>' \\
-              --body 'Resolves #${ISSUE_NUMBER}
-
-            ## Summary
-            <describe what you changed>
-
-            ## Test Plan
-            <how to verify the fix>
-
-            🤖 Generated with Claude Code' \\
-              --head claude/issue-${ISSUE_NUMBER}
-
-            If you cannot resolve the issue (unclear requirements, needs human decision, etc.),
-            comment on the issue explaining what clarification is needed:
-            gh issue comment ${ISSUE_NUMBER} --body 'YOUR_EXPLANATION'" < /dev/null 2>&1 | tee /workspaces/how-much-did-it-cost-me/resolve-issue-conversation.jsonl
-
-      - name: Upload issue resolution conversation log
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: resolve-issue-conversation-log
-          path: resolve-issue-conversation.jsonl
-          retention-days: 7
-
-      - name: Upload Claude session data
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: resolve-issue-session-data
-          path: .claude-session/
-          retention-days: 7
-          if-no-files-found: ignore
