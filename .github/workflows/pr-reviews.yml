@@ -155,7 +155,7 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.WORKFLOW_PAT }}
-          additional_permissions: "Bash(gh pr:*)"
+          claude_args: "--dangerously-skip-permissions"
           prompt: |
             You are reviewing automated Playwright test results for the "How Much Did It Cost Me?" web application.
 
@@ -239,7 +239,7 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.WORKFLOW_PAT }}
-          additional_permissions: "Bash(gh pr:*)"
+          claude_args: "--dangerously-skip-permissions"
           prompt: |
             You are a data accuracy reviewer for the "How Much Did It Cost Me?" application.
 
@@ -382,7 +382,7 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.WORKFLOW_PAT }}
-          additional_permissions: "Bash(gh pr:*)"
+          claude_args: "--dangerously-skip-permissions"
           prompt: |
             You are a test executor. The PR author has provided a test plan that you need to execute.
 
