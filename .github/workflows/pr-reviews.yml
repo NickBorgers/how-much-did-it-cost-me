@@ -120,6 +120,8 @@ jobs:
           cacheFrom: ${{ env.DEVCONTAINER_IMAGE }}
           push: never
           runCmd: |
+            # Clean install to handle cross-platform package-lock.json
+            rm -rf node_modules
             npm install
             npm test
 
@@ -162,7 +164,8 @@ jobs:
             SCREENSHOTS_DIR=./test-results/screenshots
             RESULTS_FILE=./test-results/results.json
           runCmd: |
-            # Install dependencies
+            # Clean install to handle cross-platform package-lock.json
+            rm -rf node_modules
             npm install
 
             # Start local server in background
