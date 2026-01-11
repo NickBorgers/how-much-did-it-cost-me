@@ -219,6 +219,7 @@ header p {
   font-size: 0.9rem;
   font-weight: 500;
   transition: all 0.2s;
+  color: var(--color-text);
 }
 
 .toggle-btn:hover {
@@ -319,6 +320,7 @@ header p {
   cursor: pointer;
   text-align: left;
   transition: all 0.2s;
+  color: var(--color-text);
 }
 
 .category-btn:hover {
