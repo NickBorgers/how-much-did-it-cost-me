@@ -1,6 +1,7 @@
 // Impatient User Test - Automated Playwright test for PR reviews
 // This test simulates a user who wants to quickly check federal spending costs
 // and expects the app to remember their information for faster repeat visits
+// Tests both light and dark mode to ensure proper theming support
 
 import { chromium } from 'playwright';
 import fs from 'fs';
@@ -9,17 +10,18 @@ import path from 'path';
 const BASE_URL = process.env.TEST_URL || 'http://localhost:8080';
 const SCREENSHOTS_DIR = process.env.SCREENSHOTS_DIR || './test-screenshots';
 const RESULTS_FILE = process.env.RESULTS_FILE || './test-results.json';
+const COLOR_SCHEMES = ['light', 'dark'];
 
-(async () => {
-  // Ensure screenshots directory exists
-  if (!fs.existsSync(SCREENSHOTS_DIR)) {
-    fs.mkdirSync(SCREENSHOTS_DIR, { recursive: true });
-  }
+async function runTestForColorScheme(browser, colorScheme, allResults) {
+  const schemePrefix = colorScheme === 'dark' ? 'dark-' : '';
+  const schemeName = colorScheme.charAt(0).toUpperCase() + colorScheme.slice(1);
+
+  console.log(`\n${'='.repeat(60)}`);
+  console.log(`  TESTING ${schemeName.toUpperCase()} MODE`);
+  console.log(`${'='.repeat(60)}`);
 
   const results = {
-    status: 'PASSED',
-    timestamp: new Date().toISOString(),
-    baseUrl: BASE_URL,
+    colorScheme,
     firstVisit: {
       steps: [],
       success: true
@@ -32,13 +34,15 @@ const RESULTS_FILE = process.env.RESULTS_FILE || './test-results.json';
     screenshots: []
   };
 
-  const browser = await chromium.launch({ headless: true });
-  const context = await browser.newContext({ viewport: { width: 1280, height: 720 } });
+  const context = await browser.newContext({
+    viewport: { width: 1280, height: 720 },
+    colorScheme: colorScheme
+  });
   const page = await context.newPage();
 
   // Helper to take screenshot and record it
   async function screenshot(name) {
-    const filename = `${name}.png`;
+    const filename = `${schemePrefix}${name}.png`;
     const filepath = path.join(SCREENSHOTS_DIR, filename);
     await page.screenshot({ path: filepath, fullPage: true });
     results.screenshots.push(filename);
@@ -48,21 +52,20 @@ const RESULTS_FILE = process.env.RESULTS_FILE || './test-results.json';
   // Helper to add step result
   function addStep(visit, message, success = true) {
     results[visit].steps.push({ message, success, timestamp: new Date().toISOString() });
-    console.log(`[${visit}] ${success ? '✓' : '✗'} ${message}`);
+    console.log(`[${schemeName}/${visit}] ${success ? '✓' : '✗'} ${message}`);
     if (!success) {
       results[visit].success = false;
-      results.status = 'FAILED';
     }
   }
 
   // Helper to add issue
   function addIssue(issue) {
-    results.issues.push(issue);
-    console.log(`[ISSUE] ${issue}`);
+    results.issues.push(`[${schemeName}] ${issue}`);
+    console.log(`[${schemeName}/ISSUE] ${issue}`);
   }
 
   try {
-    console.log('\n=== FIRST VISIT (New User Experience) ===\n');
+    console.log(`\n=== ${schemeName.toUpperCase()} MODE: FIRST VISIT (New User Experience) ===\n`);
 
     // Step 1: Navigate to the app
     await page.goto(BASE_URL, { waitUntil: 'networkidle' });
@@ -169,7 +172,7 @@ const RESULTS_FILE = process.env.RESULTS_FILE || './test-results.json';
       addIssue('Results page should show personal share amount');
     }
 
-    console.log('\n=== SECOND VISIT (Returning User Experience) ===\n');
+    console.log(`\n=== ${schemeName.toUpperCase()} MODE: SECOND VISIT (Returning User Experience) ===\n`);
 
     // Navigate back to simulate return visit (localStorage persists in same context)
     await page.goto(BASE_URL, { waitUntil: 'networkidle' });
@@ -216,19 +219,18 @@ const RESULTS_FILE = process.env.RESULTS_FILE || './test-results.json';
     addStep('secondVisit', 'Returning user can immediately proceed to spending selection');
 
   } catch (error) {
-    results.status = 'FAILED';
     addIssue(`Test error: ${error.message}`);
-    console.error('Test error:', error);
+    console.error(`[${schemeName}] Test error:`, error);
     try {
       await screenshot('error');
     } catch (e) {
       // Ignore screenshot errors
     }
   } finally {
-    await browser.close();
+    await context.close();
   }
 
-  // Calculate summary
+  // Calculate summary for this color scheme
   results.summary = {
     firstVisitSteps: results.firstVisit.steps.length,
     firstVisitPassed: results.firstVisit.success,
@@ -238,11 +240,62 @@ const RESULTS_FILE = process.env.RESULTS_FILE || './test-results.json';
     screenshotCount: results.screenshots.length
   };
 
+  return results;
+}
+
+// Main test runner
+(async () => {
+  // Ensure screenshots directory exists
+  if (!fs.existsSync(SCREENSHOTS_DIR)) {
+    fs.mkdirSync(SCREENSHOTS_DIR, { recursive: true });
+  }
+
+  const browser = await chromium.launch({ headless: true });
+  const allResults = {
+    status: 'PASSED',
+    timestamp: new Date().toISOString(),
+    baseUrl: BASE_URL,
+    colorSchemes: {},
+    issues: [],
+    screenshots: []
+  };
+
+  // Run tests for each color scheme
+  for (const colorScheme of COLOR_SCHEMES) {
+    const schemeResults = await runTestForColorScheme(browser, colorScheme, allResults);
+    allResults.colorSchemes[colorScheme] = schemeResults;
+    allResults.screenshots.push(...schemeResults.screenshots);
+    allResults.issues.push(...schemeResults.issues);
+
+    // If any color scheme fails, mark overall as failed
+    if (!schemeResults.firstVisit.success || !schemeResults.secondVisit.success) {
+      allResults.status = 'FAILED';
+    }
+  }
+
+  await browser.close();
+
+  // Calculate overall summary
+  allResults.summary = {
+    colorSchemesTested: COLOR_SCHEMES.length,
+    lightModePassed: allResults.colorSchemes.light?.firstVisit.success && allResults.colorSchemes.light?.secondVisit.success,
+    darkModePassed: allResults.colorSchemes.dark?.firstVisit.success && allResults.colorSchemes.dark?.secondVisit.success,
+    totalIssues: allResults.issues.length,
+    screenshotCount: allResults.screenshots.length
+  };
+
   // Write results to file
-  fs.writeFileSync(RESULTS_FILE, JSON.stringify(results, null, 2));
-  console.log(`\n=== TEST ${results.status} ===`);
-  console.log(`Results saved to: ${RESULTS_FILE}`);
+  fs.writeFileSync(RESULTS_FILE, JSON.stringify(allResults, null, 2));
+
+  console.log(`\n${'='.repeat(60)}`);
+  console.log(`  OVERALL TEST ${allResults.status}`);
+  console.log(`${'='.repeat(60)}`);
+  console.log(`Light Mode: ${allResults.summary.lightModePassed ? '✓ PASSED' : '✗ FAILED'}`);
+  console.log(`Dark Mode:  ${allResults.summary.darkModePassed ? '✓ PASSED' : '✗ FAILED'}`);
+  console.log(`Total Issues: ${allResults.summary.totalIssues}`);
+  console.log(`Screenshots: ${allResults.summary.screenshotCount}`);
+  console.log(`\nResults saved to: ${RESULTS_FILE}`);
   console.log(`Screenshots saved to: ${SCREENSHOTS_DIR}/`);
 
-  process.exit(results.status === 'PASSED' ? 0 : 1);
+  process.exit(allResults.status === 'PASSED' ? 0 : 1);
 })();

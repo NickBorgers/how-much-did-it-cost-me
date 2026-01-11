@@ -16,6 +16,11 @@ Most of us can't easily translate billions of dollars into something personally 
 
 **How Much Did It Cost Me?** translates federal spending into **your personal share** based on your actual tax contribution.
 
+<p align="center">
+  <img src="docs/screenshots/light-mode.png" alt="Light Mode Screenshot" width="45%">
+  <img src="docs/screenshots/dark-mode.png" alt="Dark Mode Screenshot" width="45%">
+</p>
+
 Instead of abstract billions, you'll see:
 - "That $1 billion in waste cost you **$2.37**"
 - "That $50 billion infrastructure package cost you **$118.50**"

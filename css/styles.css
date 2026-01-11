@@ -11,12 +11,37 @@
   --color-success: #059669;
   --color-warning: #d97706;
   --color-result: #1e40af;
+  --color-legal-bg: #fef3f2;
+  --color-legal-border: #dc2626;
+  --color-legal-accent: #991b1b;
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
   --radius: 8px;
   --radius-lg: 12px;
   --max-width: 640px;
+}
+
+/* Dark mode - automatically detected from system preferences */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f172a;
+    --color-surface: #1e293b;
+    --color-primary: #3b82f6;
+    --color-primary-hover: #60a5fa;
+    --color-text: #f1f5f9;
+    --color-text-muted: #94a3b8;
+    --color-border: #334155;
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-result: #60a5fa;
+    --color-legal-bg: #450a0a;
+    --color-legal-border: #ef4444;
+    --color-legal-accent: #fca5a5;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+  }
 }
 
 * {
@@ -134,6 +159,8 @@ header p {
   border-radius: var(--radius);
   outline: none;
   transition: border-color 0.2s;
+  background: var(--color-surface);
+  color: var(--color-text);
 }
 
 .input-wrapper input:focus {
@@ -192,6 +219,7 @@ header p {
   font-size: 0.9rem;
   font-weight: 500;
   transition: all 0.2s;
+  color: var(--color-text);
 }
 
 .toggle-btn:hover {
@@ -240,6 +268,7 @@ header p {
   cursor: pointer;
   font-size: 0.875rem;
   transition: all 0.2s;
+  color: var(--color-text);
 }
 
 .chip:hover {
@@ -291,6 +320,7 @@ header p {
   cursor: pointer;
   text-align: left;
   transition: all 0.2s;
+  color: var(--color-text);
 }
 
 .category-btn:hover {
@@ -489,8 +519,8 @@ header p {
 .legal-notice {
   margin-top: 2rem;
   padding: 1.5rem;
-  background: #fef3f2;
-  border-left: 4px solid #dc2626;
+  background: var(--color-legal-bg);
+  border-left: 4px solid var(--color-legal-border);
   border-radius: var(--radius);
   font-size: 0.85rem;
   line-height: 1.6;
@@ -514,7 +544,7 @@ header p {
 
 .legal-notice strong {
   font-weight: 600;
-  color: #991b1b;
+  color: var(--color-legal-accent);
 }
 
 /* Disclaimers */
