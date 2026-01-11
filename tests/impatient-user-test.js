@@ -2,9 +2,9 @@
 // This test simulates a user who wants to quickly check federal spending costs
 // and expects the app to remember their information for faster repeat visits
 
-const { chromium } = require('playwright');
-const fs = require('fs');
-const path = require('path');
+import { chromium } from 'playwright';
+import fs from 'fs';
+import path from 'path';
 
 const BASE_URL = process.env.TEST_URL || 'http://localhost:8080';
 const SCREENSHOTS_DIR = process.env.SCREENSHOTS_DIR || './test-screenshots';
