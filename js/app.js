@@ -126,6 +126,12 @@ const app = {
 
   // Handle income input
   handleIncomeInput(value) {
+    // If user has already selected a spending amount, reset everything instead of recalculating
+    if (this.state.spendingAmount > 0) {
+      this.clearAndReset();
+      return;
+    }
+
     const num = parseCurrencyInput(value);
     this.state.income = num;
 
@@ -139,6 +145,12 @@ const app = {
 
   // Handle direct tax input
   handleDirectTaxInput(value) {
+    // If user has already selected a spending amount, reset everything instead of recalculating
+    if (this.state.spendingAmount > 0) {
+      this.clearAndReset();
+      return;
+    }
+
     const num = parseCurrencyInput(value);
     this.state.directTax = num;
     this.state.incomeTax = num;
@@ -155,7 +167,6 @@ const app = {
     this.state.ficaTax = fica.total;
 
     this.updateTaxDisplay();
-    this.recalculateResultsIfNeeded();
     this.saveState();
   },
 
@@ -168,7 +179,6 @@ const app = {
     this.state.ficaTax = fica.total;
 
     this.updateTaxDisplay();
-    this.recalculateResultsIfNeeded();
   },
 
   // Update the tax display
@@ -191,18 +201,6 @@ const app = {
     } else {
       taxResultEl.style.display = 'none';
       continueBtn.disabled = true;
-    }
-  },
-
-  // Recalculate results if user has already progressed to Stage 4
-  recalculateResultsIfNeeded() {
-    const stage4 = document.getElementById('stage4');
-
-    // Only recalculate if results are currently visible and we have all necessary data
-    if (stage4.classList.contains('visible') &&
-        this.state.spendingAmount > 0 &&
-        this.state.category) {
-      this.calculateAndShowResults();
     }
   },
 
