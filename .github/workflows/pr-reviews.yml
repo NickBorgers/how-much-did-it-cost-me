@@ -162,6 +162,9 @@ jobs:
             SCREENSHOTS_DIR=./test-results/screenshots
             RESULTS_FILE=./test-results/results.json
           runCmd: |
+            # Install dependencies
+            npm install
+
             # Start local server in background
             http-server . -p 8080 &
             sleep 3
