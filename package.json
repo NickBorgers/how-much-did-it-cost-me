@@ -6,9 +6,12 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "screenshots": "node scripts/generate-screenshots.js",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "husky": "^9.0.0",
     "playwright": "^1.40.0",
     "vitest": "^2.1.0"
   }
