@@ -358,7 +358,7 @@ const app = {
     document.getElementById('mathYourTax').textContent = formatCurrency(result.breakdown.yourTax);
     document.getElementById('mathTaxType').textContent = result.breakdown.taxType;
     document.getElementById('mathTotalRevenue').textContent = formatLargeNumber(result.breakdown.totalRevenue || FEDERAL_BUDGET.revenue.individualIncomeTax);
-    document.getElementById('mathProportion').textContent = (result.breakdown.proportion * 100).toExponential(2) + '%';
+    document.getElementById('mathProportion').textContent = formatProportion(result.breakdown.proportion);
     document.getElementById('mathSpending').textContent = formatLargeNumber(this.state.spendingAmount);
     document.getElementById('mathShare').textContent = formatCurrency(result.yourShare);
 
