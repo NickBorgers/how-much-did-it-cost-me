@@ -121,7 +121,7 @@ jobs:
           push: never
           runCmd: |
             # Clean install to handle cross-platform package-lock.json
-            rm -rf node_modules
+            rm -rf node_modules package-lock.json
             npm install
             npm test
 
@@ -165,7 +165,7 @@ jobs:
             RESULTS_FILE=./test-results/results.json
           runCmd: |
             # Clean install to handle cross-platform package-lock.json
-            rm -rf node_modules
+            rm -rf node_modules package-lock.json
             npm install
 
             # Start local server in background
