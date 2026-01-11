@@ -126,6 +126,12 @@ const app = {
 
   // Handle income input
   handleIncomeInput(value) {
+    // If user has already selected a spending amount, reset everything instead of recalculating
+    if (this.state.spendingAmount > 0) {
+      this.clearAndReset();
+      return;
+    }
+
     const num = parseCurrencyInput(value);
     this.state.income = num;
 
@@ -139,6 +145,12 @@ const app = {
 
   // Handle direct tax input
   handleDirectTaxInput(value) {
+    // If user has already selected a spending amount, reset everything instead of recalculating
+    if (this.state.spendingAmount > 0) {
+      this.clearAndReset();
+      return;
+    }
+
     const num = parseCurrencyInput(value);
     this.state.directTax = num;
     this.state.incomeTax = num;
