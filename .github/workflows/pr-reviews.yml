@@ -232,6 +232,7 @@ jobs:
             PR_NUMBER=${{ github.event.pull_request.number }}
           runCmd: |
             claude --print \
+              --verbose \
               --output-format stream-json \
               --model sonnet \
               --dangerously-skip-permissions \
@@ -343,6 +344,7 @@ jobs:
             PR_NUMBER=${{ github.event.pull_request.number }}
           runCmd: |
             claude --print \
+              --verbose \
               --output-format stream-json \
               --model sonnet \
               --dangerously-skip-permissions \
@@ -507,6 +509,7 @@ jobs:
 
             # Run Claude to execute the test plan
             claude --print \
+              --verbose \
               --output-format stream-json \
               --model sonnet \
               --dangerously-skip-permissions \
