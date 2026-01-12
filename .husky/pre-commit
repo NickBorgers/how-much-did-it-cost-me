@@ -1,0 +1,2 @@
+npm test
+./scripts/pre-commit-screenshots.sh
