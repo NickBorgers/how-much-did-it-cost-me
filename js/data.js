@@ -154,60 +154,60 @@ const PERMANENT_SPENDING = {
 const TRENDING_SPENDING = {
   trending1: {
     label: 'DOGE Claimed Savings',
-    value: 55_000_000_000,           // $55 billion (claimed savings as of early 2025)
-    source: 'DOGE official claims',
-    lastVerified: '2025-01-10',
+    value: 214_000_000_000,          // $214 billion (claimed savings as of Oct 2025)
+    source: 'DOGE official website (doge.gov)',
+    lastVerified: '2026-01-12',
     category: 'general',
-    notes: 'Claimed cost savings from Department of Government Efficiency - accuracy disputed',
+    notes: 'Claimed savings from Department of Government Efficiency - disputed by analysts who estimate actual savings at $2B',
     isSavings: true                  // This is a savings amount, not spending
   },
   trending2: {
-    label: 'F-35 Program (Annual)',
-    value: 12_000_000_000,           // $12 billion (approximate annual spending)
-    source: 'Department of Defense',
-    lastVerified: '2025-01-10',
-    category: 'defense',
-    notes: 'Annual F-35 Lightning II program costs - frequently debated'
+    label: 'Medicaid Cuts (10-year)',
+    value: 900_000_000_000,          // $900 billion (H.R. 1 cuts over 10 years)
+    source: 'Congressional Budget Office',
+    lastVerified: '2026-01-12',
+    category: 'medicare',
+    notes: 'Largest Medicaid funding cut in history from One Big Beautiful Bill Act - CBO projects 5.8M losing coverage'
   },
   trending3: {
-    label: 'SNAP Benefits (2024)',
-    value: 113_000_000_000,          // $113 billion (FY2024)
-    source: 'USDA',
-    lastVerified: '2025-01-10',
+    label: 'ICE Expansion Funding',
+    value: 75_000_000_000,           // $75 billion (4-year allocation)
+    source: 'One Big Beautiful Bill Act',
+    lastVerified: '2026-01-12',
     category: 'general',
-    notes: 'Supplemental Nutrition Assistance Program - often in political debates'
+    notes: 'Part of $170B immigration enforcement package - ICE budget tripling to $30B annually'
   },
   trending4: {
-    label: 'Border Security (2024)',
-    value: 25_000_000_000,           // $25 billion (FY2024 estimate)
-    source: 'DHS Budget',
-    lastVerified: '2025-01-10',
+    label: 'Minnesota Fraud (Alleged)',
+    value: 9_000_000_000,            // $9 billion (federal prosecutor estimate)
+    source: 'First Assistant US Attorney Joe Thompson',
+    lastVerified: '2026-01-12',
     category: 'general',
-    notes: 'Border security and immigration enforcement - ongoing political debate'
+    notes: 'Alleged fraud in daycare/Medicaid programs - Gov. Walz dropped reelection bid; figure disputed'
   },
   trending5: {
-    label: 'Ukraine Aid Package',
-    value: 61_000_000_000,           // $61 billion (2024 aid package)
-    source: 'Congressional Budget',
-    lastVerified: '2025-01-10',
-    category: 'defense',
-    notes: 'Military and economic assistance to Ukraine - contentious topic'
+    label: 'Border Wall Construction',
+    value: 46_500_000_000,           // $46.5 billion (new construction funding)
+    source: 'House Homeland Security Committee',
+    lastVerified: '2026-01-12',
+    category: 'general',
+    notes: 'Funding for 700 additional miles of wall, 900 miles river barriers, 630 miles secondary walls'
   },
   trending6: {
-    label: 'Student Loan Forgiveness',
-    value: 138_000_000_000,          // $138 billion (cumulative forgiveness 2021-2024)
-    source: 'Department of Education',
-    lastVerified: '2025-01-10',
+    label: 'CA High-Speed Rail (Total)',
+    value: 128_000_000_000,          // $128 billion (current total estimate)
+    source: 'CA High-Speed Rail Authority',
+    lastVerified: '2026-01-12',
     category: 'general',
-    notes: 'Various student debt relief programs - politically divisive'
+    notes: 'Originally $33B in 2008 - Trump admin cut $4B federal funds; only 119 miles completed after $13.8B spent'
   },
   trending7: {
-    label: 'NASA Budget (2024)',
-    value: 25_000_000_000,           // $25 billion (FY2024)
-    source: 'NASA',
-    lastVerified: '2025-01-10',
-    category: 'general',
-    notes: 'Artemis program and Mars exploration - popular but debated spending'
+    label: 'Federal Debt Interest (FY26)',
+    value: 1_000_000_000_000,        // $1 trillion (projected FY2026)
+    source: 'Congressional Budget Office',
+    lastVerified: '2026-01-12',
+    category: 'interest',
+    notes: 'Now 2nd largest spending category after Social Security - tripled since 2020'
   }
 };
 
