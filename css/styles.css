@@ -418,7 +418,7 @@ header p {
   color: var(--color-primary);
 }
 
-.result-card.savings ~ .time-breakdown .time-amount {
+.time-breakdown.savings .time-amount {
   color: var(--color-success);
 }
 

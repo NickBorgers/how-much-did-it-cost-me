@@ -332,10 +332,13 @@ const app = {
 
     // Update result card styling - green for savings, blue for spending
     const resultCard = document.querySelector('.result-card');
+    const timeBreakdown = document.querySelector('.time-breakdown');
     if (this.state.isSavings) {
       resultCard.classList.add('savings');
+      timeBreakdown.classList.add('savings');
     } else {
       resultCard.classList.remove('savings');
+      timeBreakdown.classList.remove('savings');
     }
 
     // Update result display - different text for savings vs spending
