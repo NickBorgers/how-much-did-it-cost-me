@@ -388,6 +388,40 @@ header p {
   font-style: italic;
 }
 
+/* Time Breakdown */
+.time-breakdown {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.time-breakdown-item {
+  background: var(--color-bg);
+  border-radius: var(--radius);
+  padding: 1rem;
+  text-align: center;
+}
+
+.time-label {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.time-amount {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.time-breakdown.savings .time-amount {
+  color: var(--color-success);
+}
+
 .deficit-note,
 .multi-year-note {
   background: rgba(217, 119, 6, 0.1);
@@ -596,6 +630,14 @@ header p {
 
   .toggle-group {
     flex-direction: column;
+  }
+
+  .time-breakdown {
+    grid-template-columns: 1fr;
+  }
+
+  .time-amount {
+    font-size: 1.25rem;
   }
 }
 

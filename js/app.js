@@ -332,10 +332,13 @@ const app = {
 
     // Update result card styling - green for savings, blue for spending
     const resultCard = document.querySelector('.result-card');
+    const timeBreakdown = document.querySelector('.time-breakdown');
     if (this.state.isSavings) {
       resultCard.classList.add('savings');
+      timeBreakdown.classList.add('savings');
     } else {
       resultCard.classList.remove('savings');
+      timeBreakdown.classList.remove('savings');
     }
 
     // Update result display - different text for savings vs spending
@@ -351,6 +354,10 @@ const app = {
     const annualTax = this.state.incomeTax + this.state.ficaTax;
     const comparison = getComparison(result.yourShare, annualTax);
     document.getElementById('resultComparison').textContent = comparison;
+
+    // Update time breakdown (annual and monthly)
+    document.getElementById('annualAmount').textContent = formatCurrency(result.yourShare);
+    document.getElementById('monthlyAmount').textContent = formatCurrency(result.yourShare / 12);
 
     // Update math breakdown
     document.getElementById('mathYourTax').textContent = formatCurrency(result.breakdown.yourTax);
