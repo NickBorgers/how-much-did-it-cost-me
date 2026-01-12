@@ -352,6 +352,10 @@ const app = {
     const comparison = getComparison(result.yourShare, annualTax);
     document.getElementById('resultComparison').textContent = comparison;
 
+    // Update time breakdown (annual and monthly)
+    document.getElementById('annualAmount').textContent = formatCurrency(result.yourShare);
+    document.getElementById('monthlyAmount').textContent = formatCurrency(result.yourShare / 12);
+
     // Update math breakdown
     document.getElementById('mathYourTax').textContent = formatCurrency(result.breakdown.yourTax);
     document.getElementById('mathTaxType').textContent = result.breakdown.taxType;
