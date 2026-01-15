@@ -76,10 +76,17 @@ jobs:
           push: never
           env: |
             CLAUDE_CODE_OAUTH_TOKEN=${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-            GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+            GH_TOKEN=${{ secrets.WORKFLOW_PAT }}
             REPO=${{ github.repository }}
             RUN_DATE=${{ github.event.schedule && 'scheduled' || 'manual' }}
           runCmd: |
+            # Configure git identity for commits
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git config --global user.name "github-actions[bot]"
+
+            # Authenticate gh CLI with the GitHub token
+            echo "$GH_TOKEN" | gh auth login --with-token
+
             # Run Claude Code to verify data accuracy
             # Claude has web search capabilities to verify information
             claude --print \
@@ -184,6 +191,7 @@ jobs:
             - Include confidence levels - if you're uncertain about a finding, note it
             - Prefer authoritative sources (official docs, pricing pages) over third-party sites
             - If a data point cannot be verified (no reliable source found), note this but don't change it
+            - NEVER modify files in .github/workflows/ - the GITHUB_TOKEN cannot push workflow changes
 
             Start by exploring the repository structure to understand what data exists." < /dev/null 2>&1 | tee ./verification-output.jsonl
 
