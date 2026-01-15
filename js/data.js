@@ -2,7 +2,7 @@
 // Sources: IRS, CBO, Tax Foundation, U.S. Treasury Fiscal Data
 
 const DATA_YEAR = 2024;
-const DATA_LAST_UPDATED = '2025-01-10';  // Updated verification date
+const DATA_LAST_UPDATED = '2026-01-15';  // Updated verification date
 
 // Standard Deductions (2024)
 const STANDARD_DEDUCTIONS = {
@@ -66,7 +66,7 @@ const FEDERAL_BUDGET = {
     otherMandatory: 1_000_000_000_000,      // $1.0 trillion
     netInterest: 900_000_000_000            // $0.9 trillion
   },
-  deficit: 1_900_000_000_000                // $1.9 trillion (~28% of spending)
+  deficit: 1_800_000_000_000                // $1.8 trillion (~26% of spending)
 };
 
 // Funding source categories for the selector
