@@ -118,3 +118,5 @@ Open an [issue](https://github.com/NickBorgers/how-much-did-it-cost-me/issues) o
 ---
 
 *Made with the goal of making government spending more relatable and understandable for everyday citizens.*
+
+<!-- Test comment from automated test plan execution -->
