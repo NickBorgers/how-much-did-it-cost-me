@@ -153,61 +153,63 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'DOGE Claimed Savings',
-    value: 55_000_000_000,           // $55 billion (claimed savings as of early 2025)
-    source: 'DOGE official claims',
-    lastVerified: '2025-01-10',
-    category: 'general',
-    notes: 'Claimed cost savings from Department of Government Efficiency - accuracy disputed',
-    isSavings: true                  // This is a savings amount, not spending
+    label: 'Trump $1.5T Defense Budget',
+    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
+    source: 'White House / CRFB analysis',
+    lastVerified: '2026-01-15',
+    category: 'defense',
+    notes: 'Trump proposed increasing defense budget from $1T to $1.5T - would add $5.8T to debt over decade'
   },
   trending2: {
-    label: 'F-35 Program (Annual)',
-    value: 12_000_000_000,           // $12 billion (approximate annual spending)
-    source: 'Department of Defense',
-    lastVerified: '2025-01-10',
-    category: 'defense',
-    notes: 'Annual F-35 Lightning II program costs - frequently debated'
+    label: 'DOGE Claimed Savings (1 Year)',
+    value: 214_000_000_000,          // $214 billion (claimed savings after one year)
+    source: 'DOGE official claims',
+    lastVerified: '2026-01-15',
+    category: 'general',
+    notes: 'Claimed savings from DOGE first year - fell far short of $1T goal, accuracy disputed',
+    isSavings: true                  // This is a savings amount, not spending
   },
   trending3: {
-    label: 'SNAP Benefits (2024)',
-    value: 113_000_000_000,          // $113 billion (FY2024)
-    source: 'USDA',
-    lastVerified: '2025-01-10',
-    category: 'general',
-    notes: 'Supplemental Nutrition Assistance Program - often in political debates'
+    label: 'Medicaid Cuts (10-Year)',
+    value: 911_000_000_000,          // $911 billion (cuts through 2034)
+    source: 'Congressional Budget Office',
+    lastVerified: '2026-01-15',
+    category: 'medicare',
+    notes: 'One Big Beautiful Bill Act cuts - 11.8 million projected to lose coverage',
+    isSavings: true                  // These are spending reductions
   },
   trending4: {
-    label: 'Border Security (2024)',
-    value: 25_000_000_000,           // $25 billion (FY2024 estimate)
-    source: 'DHS Budget',
-    lastVerified: '2025-01-10',
+    label: 'ICE Enforcement Funding',
+    value: 75_000_000_000,           // $75 billion (allocated through 2029)
+    source: 'One Big Beautiful Bill Act',
+    lastVerified: '2026-01-15',
     category: 'general',
-    notes: 'Border security and immigration enforcement - ongoing political debate'
+    notes: 'Massive increase for deportation operations - 400% increase from prior year'
   },
   trending5: {
-    label: 'Ukraine Aid Package',
-    value: 61_000_000_000,           // $61 billion (2024 aid package)
-    source: 'Congressional Budget',
-    lastVerified: '2025-01-10',
-    category: 'defense',
-    notes: 'Military and economic assistance to Ukraine - contentious topic'
+    label: 'CA High-Speed Rail (Spent)',
+    value: 15_000_000_000,           // $15 billion (total spent to date)
+    source: 'U.S. Department of Transportation',
+    lastVerified: '2026-01-15',
+    category: 'general',
+    notes: '16 years, $15B spent, 119 miles built of 800-mile project - Trump pulled remaining $4B federal funds'
   },
   trending6: {
-    label: 'Student Loan Forgiveness',
-    value: 138_000_000_000,          // $138 billion (cumulative forgiveness 2021-2024)
-    source: 'Department of Education',
-    lastVerified: '2025-01-10',
+    label: 'Fed Building Renovation',
+    value: 2_500_000_000,            // $2.5 billion (renovation cost)
+    source: 'Federal Reserve / Bloomberg',
+    lastVerified: '2026-01-15',
     category: 'general',
-    notes: 'Various student debt relief programs - politically divisive'
+    notes: 'DOJ investigating Powell over cost overruns - rose from $1.9B to $2.5B (not taxpayer funded)'
   },
   trending7: {
-    label: 'NASA Budget (2024)',
-    value: 25_000_000_000,           // $25 billion (FY2024)
-    source: 'NASA',
-    lastVerified: '2025-01-10',
+    label: 'SNAP Cuts (10-Year)',
+    value: 186_000_000_000,          // $186 billion (cuts through 2034)
+    source: 'Congressional Budget Office',
+    lastVerified: '2026-01-15',
     category: 'general',
-    notes: 'Artemis program and Mars exploration - popular but debated spending'
+    notes: 'Largest food assistance cut in history - 4 million projected to lose benefits',
+    isSavings: true                  // These are spending reductions
   }
 };
 
