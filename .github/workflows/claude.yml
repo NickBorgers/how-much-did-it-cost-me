@@ -130,11 +130,18 @@ jobs:
           push: never
           env: |
             CLAUDE_CODE_OAUTH_TOKEN=${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-            GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+            GH_TOKEN=${{ secrets.WORKFLOW_PAT }}
             CONTEXT_TYPE=${{ steps.context.outputs.context_type }}
             CONTEXT_NUMBER=${{ steps.context.outputs.number }}
             REPO=${{ github.repository }}
           runCmd: |
+            # Configure git identity for commits
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git config --global user.name "github-actions[bot]"
+
+            # Authenticate gh CLI with the GitHub token
+            echo "$GH_TOKEN" | gh auth login --with-token
+
             USER_REQUEST=$(cat user_request.txt)
 
             claude --print \
