@@ -419,7 +419,7 @@ describe('calculateShare', () => {
     });
 
     it('flags when spending exceeds budget pool', () => {
-      // Defense budget is $900 billion
+      // Defense budget is $872 billion
       const bigSpending = context.calculateShare({
         incomeTax: testTaxes.incomeTax,
         ficaTax: testTaxes.ficaTax,
@@ -447,7 +447,7 @@ describe('calculateShare', () => {
         category: 'defense'
       });
 
-      expect(result.deficitNote).toContain('28%');
+      expect(result.deficitNote).toContain('26%');
       expect(result.deficitNote).toContain('deficit');
     });
   });

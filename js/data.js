@@ -49,22 +49,23 @@ const FICA = {
 };
 
 // FY 2024 Federal Budget (in dollars)
+// Source: CBO Monthly Budget Review FY 2024
 const FEDERAL_BUDGET = {
   revenue: {
     total: 4_900_000_000_000,              // $4.9 trillion
-    individualIncomeTax: 2_400_000_000_000, // $2.4 trillion
-    payrollTax: 1_700_000_000_000,          // $1.7 trillion (FICA)
-    corporateTax: 500_000_000_000,          // $0.5 trillion
-    other: 300_000_000_000                  // $0.3 trillion
+    individualIncomeTax: 2_400_000_000_000, // $2.4 trillion (49% of revenue)
+    payrollTax: 1_700_000_000_000,          // $1.7 trillion (35% of revenue, FICA)
+    corporateTax: 500_000_000_000,          // $0.5 trillion (11% of revenue)
+    other: 300_000_000_000                  // $0.3 trillion (5% of revenue)
   },
   spending: {
-    total: 6_800_000_000_000,               // $6.8 trillion
-    socialSecurity: 1_400_000_000_000,      // $1.4 trillion
-    medicareMedicaid: 1_700_000_000_000,    // $1.7 trillion
-    defense: 900_000_000_000,               // $0.9 trillion
-    otherDiscretionary: 900_000_000_000,    // $0.9 trillion
-    otherMandatory: 1_000_000_000_000,      // $1.0 trillion
-    netInterest: 900_000_000_000            // $0.9 trillion
+    total: 6_900_000_000_000,               // $6.9 trillion (CBO FY2024)
+    socialSecurity: 1_500_000_000_000,      // $1.5 trillion (21% of budget)
+    medicareMedicaid: 1_700_000_000_000,    // $1.7 trillion (24% of budget)
+    defense: 872_000_000_000,               // $872 billion (13% of budget)
+    otherDiscretionary: 928_000_000_000,    // ~$928 billion (remainder of $1.8T discretionary)
+    otherMandatory: 951_000_000_000,        // ~$951 billion (remainder of mandatory)
+    netInterest: 949_000_000_000            // $949 billion (net interest on debt)
   },
   deficit: 1_800_000_000_000                // $1.8 trillion (~26% of spending)
 };
