@@ -154,60 +154,61 @@ const PERMANENT_SPENDING = {
 const TRENDING_SPENDING = {
   trending1: {
     label: 'DOGE Claimed Savings',
-    value: 55_000_000_000,           // $55 billion (claimed savings as of early 2025)
-    source: 'DOGE official claims',
-    lastVerified: '2025-01-10',
+    value: 214_000_000_000,          // $214 billion (claimed savings as of Oct 2025)
+    source: 'DOGE official claims via Washington Times',
+    lastVerified: '2026-01-15',
     category: 'general',
-    notes: 'Claimed cost savings from Department of Government Efficiency - accuracy disputed',
+    notes: 'DOGE claims $214B saved after 1 year, though Brookings analysis shows federal outlays increased 6%. Musk left in June 2025.',
     isSavings: true                  // This is a savings amount, not spending
   },
   trending2: {
-    label: 'F-35 Program (Annual)',
-    value: 12_000_000_000,           // $12 billion (approximate annual spending)
-    source: 'Department of Defense',
-    lastVerified: '2025-01-10',
-    category: 'defense',
-    notes: 'Annual F-35 Lightning II program costs - frequently debated'
+    label: 'Minnesota Medicaid Fraud',
+    value: 9_000_000_000,            // $9 billion (estimated fraud since 2018)
+    source: 'U.S. Attorney Joe Thompson',
+    lastVerified: '2026-01-15',
+    category: 'medicare',
+    notes: 'Federal prosecutors estimate $9B fraud in MN Medicaid programs. Gov. Walz disputes figure. Trump withholding $2B+ in funding.'
   },
   trending3: {
-    label: 'SNAP Benefits (2024)',
-    value: 113_000_000_000,          // $113 billion (FY2024)
-    source: 'USDA',
-    lastVerified: '2025-01-10',
+    label: 'Fed Building Renovation',
+    value: 2_500_000_000,            // $2.5 billion (current estimate)
+    source: 'Federal Reserve / Bloomberg',
+    lastVerified: '2026-01-15',
     category: 'general',
-    notes: 'Supplemental Nutrition Assistance Program - often in political debates'
+    notes: 'DOJ investigating Fed Chair Powell over cost overruns. Originally $1.9B, now $2.5B. Powell says probe is political retaliation.'
   },
   trending4: {
-    label: 'Border Security (2024)',
-    value: 25_000_000_000,           // $25 billion (FY2024 estimate)
-    source: 'DHS Budget',
-    lastVerified: '2025-01-10',
+    label: 'ICE Detention (4-Year)',
+    value: 45_000_000_000,           // $45 billion (FY2026-2029)
+    source: 'One Big Beautiful Bill Act / Human Rights First',
+    lastVerified: '2026-01-15',
     category: 'general',
-    notes: 'Border security and immigration enforcement - ongoing political debate'
+    notes: 'Congress allocated $45B for ICE detention through FY2029. Part of $75B total for ICE over 4 years. Highly controversial.'
   },
   trending5: {
-    label: 'Ukraine Aid Package',
-    value: 61_000_000_000,           // $61 billion (2024 aid package)
-    source: 'Congressional Budget',
-    lastVerified: '2025-01-10',
-    category: 'defense',
-    notes: 'Military and economic assistance to Ukraine - contentious topic'
+    label: 'Annual Interest on Debt',
+    value: 1_220_000_000_000,        // $1.22 trillion (FY2025)
+    source: 'Sen. Rand Paul Festivus Report / Treasury',
+    lastVerified: '2026-01-15',
+    category: 'interest',
+    notes: 'Record interest payments highlighted in Rand Paul\'s 2025 Festivus Report. Now 3rd largest federal expense after SS and Medicare.'
   },
   trending6: {
-    label: 'Student Loan Forgiveness',
-    value: 138_000_000_000,          // $138 billion (cumulative forgiveness 2021-2024)
-    source: 'Department of Education',
-    lastVerified: '2025-01-10',
-    category: 'general',
-    notes: 'Various student debt relief programs - politically divisive'
+    label: 'Trump FY2027 Defense Ask',
+    value: 1_500_000_000_000,        // $1.5 trillion (proposed for FY2027)
+    source: 'White House / CRFB',
+    lastVerified: '2026-01-15',
+    category: 'defense',
+    notes: 'Trump calls for $1.5T defense budget for FY2027 - 50% increase from current $900B. Would add $5.8T to debt through 2035.'
   },
   trending7: {
-    label: 'NASA Budget (2024)',
-    value: 25_000_000_000,           // $25 billion (FY2024)
-    source: 'NASA',
-    lastVerified: '2025-01-10',
+    label: 'IRS Budget Cut',
+    value: 1_100_000_000,            // $1.1 billion cut
+    source: 'FY2026 Appropriations / Federal News Network',
+    lastVerified: '2026-01-15',
     category: 'general',
-    notes: 'Artemis program and Mars exploration - popular but debated spending'
+    notes: 'IRS getting $11.2B budget - a $1.1B (9%) cut. Fourth consecutive year of cuts. Trump had sought 20% reduction.',
+    isSavings: true                  // This is a budget reduction/savings
   }
 };
 
