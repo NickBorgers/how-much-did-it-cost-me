@@ -153,61 +153,61 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'DOGE Claimed Savings',
-    value: 55_000_000_000,           // $55 billion (claimed savings as of early 2025)
-    source: 'DOGE official claims',
-    lastVerified: '2025-01-10',
+    label: 'Minnesota Welfare Fraud',
+    value: 9_000_000_000,            // $9 billion (federal prosecutors estimate)
+    source: 'U.S. Department of Treasury',
+    lastVerified: '2026-01-15',
     category: 'general',
-    notes: 'Claimed cost savings from Department of Government Efficiency - accuracy disputed',
-    isSavings: true                  // This is a savings amount, not spending
+    notes: 'Estimated fraud across multiple MN social programs - Gov. Walz dropped reelection bid over scandal'
   },
   trending2: {
-    label: 'F-35 Program (Annual)',
-    value: 12_000_000_000,           // $12 billion (approximate annual spending)
-    source: 'Department of Defense',
-    lastVerified: '2025-01-10',
-    category: 'defense',
-    notes: 'Annual F-35 Lightning II program costs - frequently debated'
+    label: 'ICE Detention Budget (FY26)',
+    value: 30_000_000_000,           // $30 billion (tripled from previous year)
+    source: 'DHS Budget / Brennan Center',
+    lastVerified: '2026-01-15',
+    category: 'general',
+    notes: 'ICE budget tripled to $30B - massive expansion of immigration detention controversial'
   },
   trending3: {
-    label: 'SNAP Benefits (2024)',
-    value: 113_000_000_000,          // $113 billion (FY2024)
-    source: 'USDA',
-    lastVerified: '2025-01-10',
+    label: 'DOGE Claimed Savings',
+    value: 214_000_000_000,          // $214 billion (official DOGE claims)
+    source: 'DOGE.gov / Partnership for Public Service',
+    lastVerified: '2026-01-15',
     category: 'general',
-    notes: 'Supplemental Nutrition Assistance Program - often in political debates'
+    notes: 'DOGE claims $214B saved but analysis says actions may have cost taxpayers $135B',
+    isSavings: true
   },
   trending4: {
-    label: 'Border Security (2024)',
-    value: 25_000_000_000,           // $25 billion (FY2024 estimate)
-    source: 'DHS Budget',
-    lastVerified: '2025-01-10',
-    category: 'general',
-    notes: 'Border security and immigration enforcement - ongoing political debate'
+    label: 'F-35 Program (FY26)',
+    value: 10_900_000_000,           // $10.9 billion (FY2026 procurement)
+    source: 'GAO / Department of Defense',
+    lastVerified: '2026-01-15',
+    category: 'defense',
+    notes: 'F-35 total lifecycle now exceeds $2 trillion - 80% over budget, 10 years late'
   },
   trending5: {
-    label: 'Ukraine Aid Package',
-    value: 61_000_000_000,           // $61 billion (2024 aid package)
-    source: 'Congressional Budget',
-    lastVerified: '2025-01-10',
+    label: 'Trump Defense Budget (FY27)',
+    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027)
+    source: 'White House / Committee for Responsible Federal Budget',
+    lastVerified: '2026-01-15',
     category: 'defense',
-    notes: 'Military and economic assistance to Ukraine - contentious topic'
+    notes: 'Trump proposes 50% increase to $1.5T - would add $5.8T to debt over decade'
   },
   trending6: {
-    label: 'Student Loan Forgiveness',
-    value: 138_000_000_000,          // $138 billion (cumulative forgiveness 2021-2024)
-    source: 'Department of Education',
-    lastVerified: '2025-01-10',
-    category: 'general',
-    notes: 'Various student debt relief programs - politically divisive'
+    label: 'SAMHSA Mental Health Grants',
+    value: 2_000_000_000,            // $2 billion (cut then reversed)
+    source: 'HHS / NPR',
+    lastVerified: '2026-01-15',
+    category: 'medicare',
+    notes: 'Administration cut $2B in mental health/addiction grants, reversed within 24 hours after backlash'
   },
   trending7: {
-    label: 'NASA Budget (2024)',
-    value: 25_000_000_000,           // $25 billion (FY2024)
-    source: 'NASA',
-    lastVerified: '2025-01-10',
-    category: 'general',
-    notes: 'Artemis program and Mars exploration - popular but debated spending'
+    label: 'Medicare Automatic Cuts',
+    value: 536_000_000_000,          // $536 billion (over 10 years due to PAYGO)
+    source: 'Congressional Budget Office',
+    lastVerified: '2026-01-15',
+    category: 'medicare',
+    notes: 'CBO: Big Beautiful Bill triggers $536B Medicare cuts over decade via PAYGO rules'
   }
 };
 
