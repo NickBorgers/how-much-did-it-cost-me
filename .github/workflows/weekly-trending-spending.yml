@@ -150,6 +150,7 @@ jobs:
                    label: '[Short descriptive name]',
                    value: [amount in dollars as number, e.g., 55_000_000_000],
                    source: '[Where the number comes from]',
+                   sourceUrl: '[URL to source document/page - REQUIRED when available]',
                    lastVerified: '[today's date YYYY-MM-DD]',
                    category: '[one of: defense, general, medicare, socialSecurity, interest]',
                    notes: '[Brief context - why this is in the news, accuracy note if disputed]',
@@ -162,6 +163,13 @@ jobs:
                  trending6: { ... },
                  trending7: { ... }
                };
+
+               IMPORTANT: sourceUrl field:
+               - Include a URL to the source document, report, or official page whenever possible
+               - Use official government sites (.gov) when available
+               - If multiple sources, link to the most authoritative or recent one
+               - For news-based items, link to the news article or the primary source it cites
+               - URLs must be valid HTTPS links
 
                IMPORTANT NOTES ON VALUES:
                - Use JavaScript numeric separators for readability: 55_000_000_000 not 55000000000

@@ -132,6 +132,7 @@ const PERMANENT_SPENDING = {
     label: 'Gerald R. Ford Aircraft Carrier',
     value: 13_300_000_000,           // $13.3 billion (USS Gerald R. Ford total program cost)
     source: 'Congressional Research Service',
+    sourceUrl: 'https://crsreports.congress.gov/product/pdf/RS/RS20643',
     lastVerified: DATA_LAST_UPDATED,
     category: 'defense',
     notes: 'Total acquisition cost for lead ship CVN-78',
@@ -141,6 +142,7 @@ const PERMANENT_SPENDING = {
     label: 'James Webb Space Telescope',
     value: 10_000_000_000,           // $10 billion (total development cost)
     source: 'NASA',
+    sourceUrl: 'https://www.nasa.gov/mission_pages/webb/about/index.html',
     lastVerified: DATA_LAST_UPDATED,
     category: 'general',
     notes: 'Total lifecycle development cost',
@@ -156,6 +158,7 @@ const TRENDING_SPENDING = {
     label: 'Minnesota Welfare Fraud',
     value: 9_000_000_000,            // $9 billion (federal prosecutors estimate)
     source: 'U.S. Department of Treasury',
+    sourceUrl: 'https://www.treasury.gov/',
     lastVerified: '2026-01-15',
     category: 'general',
     notes: 'Estimated fraud across multiple MN social programs - Gov. Walz dropped reelection bid over scandal'
@@ -164,6 +167,7 @@ const TRENDING_SPENDING = {
     label: 'ICE Detention Budget (FY26)',
     value: 30_000_000_000,           // $30 billion (tripled from previous year)
     source: 'DHS Budget / Brennan Center',
+    sourceUrl: 'https://www.brennancenter.org/',
     lastVerified: '2026-01-15',
     category: 'general',
     notes: 'ICE budget tripled to $30B - massive expansion of immigration detention controversial'
@@ -172,6 +176,7 @@ const TRENDING_SPENDING = {
     label: 'DOGE Claimed Savings',
     value: 214_000_000_000,          // $214 billion (official DOGE claims)
     source: 'DOGE.gov / Partnership for Public Service',
+    sourceUrl: 'https://www.doge.gov/',
     lastVerified: '2026-01-15',
     category: 'general',
     notes: 'DOGE claims $214B saved but analysis says actions may have cost taxpayers $135B',
@@ -181,6 +186,7 @@ const TRENDING_SPENDING = {
     label: 'F-35 Program (FY26)',
     value: 10_900_000_000,           // $10.9 billion (FY2026 procurement)
     source: 'GAO / Department of Defense',
+    sourceUrl: 'https://www.gao.gov/products/gao-24-106458',
     lastVerified: '2026-01-15',
     category: 'defense',
     notes: 'F-35 total lifecycle now exceeds $2 trillion - 80% over budget, 10 years late'
@@ -189,6 +195,7 @@ const TRENDING_SPENDING = {
     label: 'Trump Defense Budget (FY27)',
     value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027)
     source: 'White House / Committee for Responsible Federal Budget',
+    sourceUrl: 'https://www.crfb.org/',
     lastVerified: '2026-01-15',
     category: 'defense',
     notes: 'Trump proposes 50% increase to $1.5T - would add $5.8T to debt over decade'
@@ -197,6 +204,7 @@ const TRENDING_SPENDING = {
     label: 'SAMHSA Mental Health Grants',
     value: 2_000_000_000,            // $2 billion (cut then reversed)
     source: 'HHS / NPR',
+    sourceUrl: 'https://www.samhsa.gov/',
     lastVerified: '2026-01-15',
     category: 'medicare',
     notes: 'Administration cut $2B in mental health/addiction grants, reversed within 24 hours after backlash'
@@ -205,6 +213,7 @@ const TRENDING_SPENDING = {
     label: 'Medicare Automatic Cuts',
     value: 536_000_000_000,          // $536 billion (over 10 years due to PAYGO)
     source: 'Congressional Budget Office',
+    sourceUrl: 'https://www.cbo.gov/',
     lastVerified: '2026-01-15',
     category: 'medicare',
     notes: 'CBO: Big Beautiful Bill triggers $536B Medicare cuts over decade via PAYGO rules'
