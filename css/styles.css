@@ -416,6 +416,17 @@ header p {
   font-weight: 500;
 }
 
+.source-text a {
+  color: var(--color-primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.source-text a:hover {
+  border-bottom-color: var(--color-primary);
+}
+
 .source-verified {
   font-size: 0.75rem;
   color: var(--color-text-muted);

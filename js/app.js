@@ -299,7 +299,12 @@ const app = {
         btn.dataset.source = sourceInfo.source;
         btn.dataset.lastVerified = sourceInfo.lastVerified;
         btn.dataset.notes = sourceInfo.notes || '';
-        btn.title = `Source: ${sourceInfo.source}\nLast verified: ${sourceInfo.lastVerified}`;
+        btn.dataset.sourceUrl = sourceInfo.sourceUrl || '';
+        let tooltip = `Source: ${sourceInfo.source}\nLast verified: ${sourceInfo.lastVerified}`;
+        if (sourceInfo.sourceUrl) {
+          tooltip += `\nURL: ${sourceInfo.sourceUrl}`;
+        }
+        btn.title = tooltip;
       }
 
       btn.textContent = item.label;
@@ -374,9 +379,13 @@ const app = {
     // Update source information if available
     const sourceEl = document.getElementById('resultSource');
     if (this.state.selectedItemSource && this.state.selectedItemSource.source) {
+      const sourceText = this.state.selectedItemSource.sourceUrl
+        ? `<a href="${this.state.selectedItemSource.sourceUrl}" target="_blank" rel="noopener noreferrer">${this.state.selectedItemSource.source}</a>`
+        : this.state.selectedItemSource.source;
+
       sourceEl.innerHTML = `
         <div class="source-label">Source:</div>
-        <div class="source-text">${this.state.selectedItemSource.source}</div>
+        <div class="source-text">${sourceText}</div>
         <div class="source-verified">Last verified: ${this.state.selectedItemSource.lastVerified}</div>
         ${this.state.selectedItemSource.notes ? `<div class="source-notes">${this.state.selectedItemSource.notes}</div>` : ''}
       `;
