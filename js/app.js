@@ -43,7 +43,8 @@ const app = {
     spendingAmount: 0,
     category: null,
     isMultiYear: false, // tracks if selected spending is multi-year
-    isSavings: false    // tracks if selected item is a savings (vs spending)
+    isSavings: false,   // tracks if selected item is a savings (vs spending)
+    selectedItemSource: null // tracks source info for selected item
   },
 
   // Initialize the app
@@ -214,9 +215,10 @@ const app = {
     const actualAmount = billions * 1_000_000_000;
     this.state.spendingAmount = actualAmount;
 
-    // Manual input is not multi-year and not savings
+    // Manual input is not multi-year, not savings, and has no source
     this.state.isMultiYear = false;
     this.state.isSavings = false;
+    this.state.selectedItemSource = null;
     document.getElementById('multiYearNote').style.display = 'none';
 
     // Update the hint to show the full dollar amount
@@ -276,25 +278,44 @@ const app = {
 
     container.innerHTML = '';
     EXAMPLE_AMOUNTS.forEach((item, index) => {
+      // Find the corresponding entry in NOTABLE_SPENDING to get source info
+      let sourceInfo = null;
+      for (const key in NOTABLE_SPENDING) {
+        if (NOTABLE_SPENDING[key].label === item.label) {
+          sourceInfo = NOTABLE_SPENDING[key];
+          break;
+        }
+      }
+
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = item.isSavings ? 'chip savings' : 'chip';
       btn.dataset.index = index;
       btn.dataset.value = item.value;
       btn.dataset.savings = item.isSavings ? 'true' : 'false';
+
+      // Add source information as data attribute and tooltip
+      if (sourceInfo) {
+        btn.dataset.source = sourceInfo.source;
+        btn.dataset.lastVerified = sourceInfo.lastVerified;
+        btn.dataset.notes = sourceInfo.notes || '';
+        btn.title = `Source: ${sourceInfo.source}\nLast verified: ${sourceInfo.lastVerified}`;
+      }
+
       btn.textContent = item.label;
-      btn.onclick = () => this.selectChip(index, item.value, item.category || null, item.multiYear || false, item.isSavings || false);
+      btn.onclick = () => this.selectChip(index, item.value, item.category || null, item.multiYear || false, item.isSavings || false, sourceInfo);
       container.appendChild(btn);
     });
   },
 
   // Select a chip and highlight it
-  selectChip(index, amount, category, multiYear = false, isSavings = false) {
+  selectChip(index, amount, category, multiYear = false, isSavings = false, sourceInfo = null) {
     // Update visual selection
     document.querySelectorAll('#spendingChips .chip').forEach(chip => {
       chip.classList.toggle('selected', chip.dataset.index === String(index));
     });
     this.state.selectedChipIndex = index;
+    this.state.selectedItemSource = sourceInfo;
 
     // Set the spending amount
     this.setSpending(amount, category, multiYear, isSavings);
@@ -349,6 +370,20 @@ const app = {
       document.getElementById('resultCategory').textContent = result.category.toLowerCase();
     }
     document.getElementById('resultShare').textContent = formatCurrency(result.yourShare);
+
+    // Update source information if available
+    const sourceEl = document.getElementById('resultSource');
+    if (this.state.selectedItemSource && this.state.selectedItemSource.source) {
+      sourceEl.innerHTML = `
+        <div class="source-label">Source:</div>
+        <div class="source-text">${this.state.selectedItemSource.source}</div>
+        <div class="source-verified">Last verified: ${this.state.selectedItemSource.lastVerified}</div>
+        ${this.state.selectedItemSource.notes ? `<div class="source-notes">${this.state.selectedItemSource.notes}</div>` : ''}
+      `;
+      sourceEl.style.display = 'block';
+    } else {
+      sourceEl.style.display = 'none';
+    }
 
     // Get comparison
     const annualTax = this.state.incomeTax + this.state.ficaTax;
@@ -432,7 +467,8 @@ const app = {
       spendingAmount: 0,
       category: null,
       isMultiYear: false,
-      isSavings: false
+      isSavings: false,
+      selectedItemSource: null
     };
 
     // Reset UI

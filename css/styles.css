@@ -269,6 +269,7 @@ header p {
   font-size: 0.875rem;
   transition: all 0.2s;
   color: var(--color-text);
+  position: relative;
 }
 
 .chip:hover {
@@ -301,6 +302,11 @@ header p {
   border-color: var(--color-success);
   border-style: solid;
   color: var(--color-success);
+}
+
+/* Chip tooltips - browser native title attribute will be used */
+.chip[title] {
+  cursor: help;
 }
 
 /* Category Selector */
@@ -386,6 +392,45 @@ header p {
   color: var(--color-text);
   margin-top: 1rem;
   font-style: italic;
+}
+
+.result-source {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.source-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.source-text {
+  font-size: 0.875rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.source-verified {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 0.25rem;
+}
+
+.source-notes {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+  font-style: italic;
+  padding: 0.5rem;
+  background: var(--color-bg);
+  border-radius: 4px;
+  border-left: 2px solid var(--color-primary);
 }
 
 /* Time Breakdown */
