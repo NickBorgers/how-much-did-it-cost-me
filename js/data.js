@@ -158,65 +158,65 @@ const TRENDING_SPENDING = {
     label: 'Minnesota Welfare Fraud',
     value: 9_000_000_000,            // $9 billion (federal prosecutors estimate)
     source: 'U.S. Department of Treasury',
-    sourceUrl: 'https://www.treasury.gov/',
-    lastVerified: '2026-01-15',
+    sourceUrl: 'https://home.treasury.gov/news/press-releases/sb0354',
+    lastVerified: '2026-01-19',
     category: 'general',
-    notes: 'Estimated fraud across multiple MN social programs - Gov. Walz dropped reelection bid over scandal'
+    notes: 'FBI deployed to MN - fraud across Medicaid, SNAP, PPP, childcare programs; Gov. Walz dropped reelection bid'
   },
   trending2: {
-    label: 'ICE Detention Budget (FY26)',
-    value: 30_000_000_000,           // $30 billion (tripled from previous year)
-    source: 'DHS Budget / Brennan Center',
-    sourceUrl: 'https://www.brennancenter.org/',
-    lastVerified: '2026-01-15',
-    category: 'general',
-    notes: 'ICE budget tripled to $30B - massive expansion of immigration detention controversial'
-  },
-  trending3: {
     label: 'DOGE Claimed Savings',
     value: 214_000_000_000,          // $214 billion (official DOGE claims)
     source: 'DOGE.gov / Partnership for Public Service',
-    sourceUrl: 'https://www.doge.gov/',
-    lastVerified: '2026-01-15',
+    sourceUrl: 'https://doge.gov/savings',
+    lastVerified: '2026-01-19',
     category: 'general',
-    notes: 'DOGE claims $214B saved but analysis says actions may have cost taxpayers $135B',
+    notes: 'DOGE claims $214B saved; disputed - analysis says cuts may have cost $135B instead',
     isSavings: true
   },
+  trending3: {
+    label: 'ICE Budget (FY26)',
+    value: 28_700_000_000,           // $28.7 billion (nearly tripled from FY24)
+    source: 'DHS Budget / Brennan Center',
+    sourceUrl: 'https://www.brennancenter.org/our-work/analysis-opinion/big-budget-act-creates-deportation-industrial-complex',
+    lastVerified: '2026-01-19',
+    category: 'general',
+    notes: 'ICE budget nearly tripled from $10B to $28.7B; detention capacity expanded to 100K+ beds'
+  },
   trending4: {
-    label: 'F-35 Program (FY26)',
-    value: 10_900_000_000,           // $10.9 billion (FY2026 procurement)
-    source: 'GAO / Department of Defense',
-    sourceUrl: 'https://www.gao.gov/products/gao-24-106458',
-    lastVerified: '2026-01-15',
-    category: 'defense',
-    notes: 'F-35 total lifecycle now exceeds $2 trillion - 80% over budget, 10 years late'
-  },
-  trending5: {
-    label: 'Trump Defense Budget (FY27)',
-    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027)
-    source: 'White House / Committee for Responsible Federal Budget',
-    sourceUrl: 'https://www.crfb.org/',
-    lastVerified: '2026-01-15',
-    category: 'defense',
-    notes: 'Trump proposes 50% increase to $1.5T - would add $5.8T to debt over decade'
-  },
-  trending6: {
-    label: 'SAMHSA Mental Health Grants',
-    value: 2_000_000_000,            // $2 billion (cut then reversed)
-    source: 'HHS / NPR',
-    sourceUrl: 'https://www.samhsa.gov/',
-    lastVerified: '2026-01-15',
-    category: 'medicare',
-    notes: 'Administration cut $2B in mental health/addiction grants, reversed within 24 hours after backlash'
-  },
-  trending7: {
-    label: 'Medicare Automatic Cuts',
-    value: 536_000_000_000,          // $536 billion (over 10 years due to PAYGO)
+    label: 'Medicaid Cuts (OBBBA)',
+    value: 1_000_000_000_000,        // $1 trillion (over 10 years)
     source: 'Congressional Budget Office',
     sourceUrl: 'https://www.cbo.gov/',
-    lastVerified: '2026-01-15',
+    lastVerified: '2026-01-19',
     category: 'medicare',
-    notes: 'CBO: Big Beautiful Bill triggers $536B Medicare cuts over decade via PAYGO rules'
+    notes: 'One Big Beautiful Bill cuts $1T from Medicaid over decade; CBO: 11.8M to lose coverage'
+  },
+  trending5: {
+    label: 'Federal Improper Payments',
+    value: 236_000_000_000,          // $236 billion (FY 2023)
+    source: 'Government Accountability Office',
+    sourceUrl: 'https://www.gao.gov/blog/federal-government-made-236-billion-improper-payments-last-fiscal-year',
+    lastVerified: '2026-01-19',
+    category: 'general',
+    notes: 'GAO: $236B in overpayments/errors in FY23; 79% in Medicare, Medicaid, and pandemic programs'
+  },
+  trending6: {
+    label: 'IRS Budget (FY26)',
+    value: 11_200_000_000,           // $11.2 billion (9% cut from FY25)
+    source: 'House Appropriations / CNBC',
+    sourceUrl: 'https://www.cnbc.com/2026/01/14/irs-budget-cut-2026.html',
+    lastVerified: '2026-01-19',
+    category: 'general',
+    notes: 'IRS cut 9% to $11.2B - 4th consecutive cut; agency lost 25% of workforce since Jan 2025'
+  },
+  trending7: {
+    label: 'Mississippi Welfare Fraud',
+    value: 77_000_000,               // $77 million (fraud amount in trial)
+    source: 'Fox News / Mississippi Today',
+    sourceUrl: 'https://www.foxnews.com/media/mississippi-auditor-warns-welfare-fraud-incredibly-easy-77m-trial-begins',
+    lastVerified: '2026-01-19',
+    category: 'general',
+    notes: 'Largest state embezzlement case; trial ongoing - TANF funds to wrestlers, volleyball stadium'
   }
 };
 
