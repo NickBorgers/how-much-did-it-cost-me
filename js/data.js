@@ -2,7 +2,7 @@
 // Sources: IRS, CBO, Tax Foundation, U.S. Treasury Fiscal Data
 
 const DATA_YEAR = 2024;
-const DATA_LAST_UPDATED = '2025-01-10';  // Updated verification date
+const DATA_LAST_UPDATED = '2026-02-01';  // Updated verification date
 
 // Standard Deductions (2024)
 const STANDARD_DEDUCTIONS = {
@@ -59,14 +59,14 @@ const FEDERAL_BUDGET = {
   },
   spending: {
     total: 6_800_000_000_000,               // $6.8 trillion
-    socialSecurity: 1_400_000_000_000,      // $1.4 trillion
+    socialSecurity: 1_500_000_000_000,      // $1.5 trillion
     medicareMedicaid: 1_700_000_000_000,    // $1.7 trillion
     defense: 900_000_000_000,               // $0.9 trillion
     otherDiscretionary: 900_000_000_000,    // $0.9 trillion
     otherMandatory: 1_000_000_000_000,      // $1.0 trillion
     netInterest: 900_000_000_000            // $0.9 trillion
   },
-  deficit: 1_900_000_000_000                // $1.9 trillion (~28% of spending)
+  deficit: 1_800_000_000_000                // $1.8 trillion (~26% of spending)
 };
 
 // Funding source categories for the selector
