@@ -111,7 +111,7 @@ function calculateShare({ incomeTax, ficaTax, spendingAmount, category }) {
     budgetPool: categoryData.budgetPool,
     breakdown: breakdown,
     exceedsBudget: spendingAmount > categoryData.budgetPool,
-    deficitNote: 'About 28% of federal spending is deficit-financed (borrowed), not directly from current taxes.'
+    deficitNote: 'About 26% of federal spending is deficit-financed (borrowed), not directly from current taxes.'
   };
 }
 
