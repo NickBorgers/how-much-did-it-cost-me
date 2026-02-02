@@ -155,68 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Minnesota Welfare Fraud',
-    value: 9_000_000_000,            // $9 billion (federal prosecutors estimate)
-    source: 'U.S. Department of Treasury',
-    sourceUrl: 'https://home.treasury.gov/news/press-releases/sb0354',
-    lastVerified: '2026-01-19',
-    category: 'general',
-    notes: 'FBI deployed to MN - fraud across Medicaid, SNAP, PPP, childcare programs; Gov. Walz dropped reelection bid'
+    label: 'FY26 Pentagon Defense Bill',
+    value: 839_000_000_000,          // $839 billion (FY2026 defense appropriations)
+    source: 'Defense News / Breaking Defense',
+    sourceUrl: 'https://www.defensenews.com/congress/2026/01/20/us-lawmakers-release-839b-compromise-defense-spending-bill/',
+    lastVerified: '2026-02-02',
+    category: 'defense',
+    notes: 'Passed House during shutdown; $8.4B above White House request; includes Ukraine aid, F-35s, ship building'
   },
   trending2: {
-    label: 'DOGE Claimed Savings',
-    value: 214_000_000_000,          // $214 billion (official DOGE claims)
-    source: 'DOGE.gov / Partnership for Public Service',
-    sourceUrl: 'https://doge.gov/savings',
-    lastVerified: '2026-01-19',
-    category: 'general',
-    notes: 'DOGE claims $214B saved; disputed - analysis says cuts may have cost $135B instead',
-    isSavings: true
+    label: 'Medicare Advantage Overpayments',
+    value: 76_000_000_000,           // $76 billion (projected overpayments this year)
+    source: 'MedPAC / Common Dreams',
+    sourceUrl: 'https://www.commondreams.org/news/medicare-advantage-fraud',
+    lastVerified: '2026-02-02',
+    category: 'medicare',
+    notes: 'MedPAC: $76B in overpayments projected for 2026; Kaiser Permanente paid record $556M fraud settlement'
   },
   trending3: {
-    label: 'ICE Budget (FY26)',
-    value: 28_700_000_000,           // $28.7 billion (nearly tripled from FY24)
-    source: 'DHS Budget / Brennan Center',
-    sourceUrl: 'https://www.brennancenter.org/our-work/analysis-opinion/big-budget-act-creates-deportation-industrial-complex',
-    lastVerified: '2026-01-19',
-    category: 'general',
-    notes: 'ICE budget nearly tripled from $10B to $28.7B; detention capacity expanded to 100K+ beds'
+    label: 'National Debt Interest (FY26)',
+    value: 1_000_000_000_000,        // $1 trillion (projected interest payments)
+    source: 'Congressional Budget Office / CRFB',
+    sourceUrl: 'https://www.crfb.org/blogs/interest-debt-grow-past-1-trillion-next-year',
+    lastVerified: '2026-02-02',
+    category: 'interest',
+    notes: 'First time interest payments hit $1T; now 2nd largest budget category after Social Security'
   },
   trending4: {
-    label: 'Medicaid Cuts (OBBBA)',
-    value: 1_000_000_000_000,        // $1 trillion (over 10 years)
-    source: 'Congressional Budget Office',
-    sourceUrl: 'https://www.cbo.gov/',
-    lastVerified: '2026-01-19',
-    category: 'medicare',
-    notes: 'One Big Beautiful Bill cuts $1T from Medicaid over decade; CBO: 11.8M to lose coverage'
+    label: 'ICE/DHS Enforcement Budget',
+    value: 28_700_000_000,           // $28.7 billion (FY26 ICE funding)
+    source: 'DHS Budget / Brennan Center',
+    sourceUrl: 'https://www.brennancenter.org/our-work/analysis-opinion/big-budget-act-creates-deportation-industrial-complex',
+    lastVerified: '2026-02-02',
+    category: 'general',
+    notes: 'Central to shutdown fight; DHS funding separated after Minneapolis shooting controversy'
   },
   trending5: {
-    label: 'Federal Improper Payments',
-    value: 236_000_000_000,          // $236 billion (FY 2023)
-    source: 'Government Accountability Office',
-    sourceUrl: 'https://www.gao.gov/blog/federal-government-made-236-billion-improper-payments-last-fiscal-year',
-    lastVerified: '2026-01-19',
+    label: 'Minnesota Welfare Fraud',
+    value: 9_000_000_000,            // $9 billion (federal prosecutors estimate)
+    source: 'U.S. Department of Treasury / Washington Post',
+    sourceUrl: 'https://www.washingtonpost.com/ripple/2026/01/20/somali-fraud-minnesota-government-health-programs-medicare-medicaid/',
+    lastVerified: '2026-02-02',
     category: 'general',
-    notes: 'GAO: $236B in overpayments/errors in FY23; 79% in Medicare, Medicaid, and pandemic programs'
+    notes: 'FBI deployed to MN; $2B Medicaid withheld; fraud across healthcare and childcare programs'
   },
   trending6: {
-    label: 'IRS Budget (FY26)',
-    value: 11_200_000_000,           // $11.2 billion (9% cut from FY25)
-    source: 'House Appropriations / CNBC',
-    sourceUrl: 'https://www.cnbc.com/2026/01/14/irs-budget-cut-2026.html',
-    lastVerified: '2026-01-19',
+    label: 'DOGE Claimed Savings',
+    value: 215_000_000_000,          // $215 billion (official DOGE claims as of Jan 2026)
+    source: 'DOGE.gov / CBS News',
+    sourceUrl: 'https://www.cbsnews.com/news/doge-cuts-cost-135-billion-analysis-elon-musk-department-of-government-efficiency/',
+    lastVerified: '2026-02-02',
     category: 'general',
-    notes: 'IRS cut 9% to $11.2B - 4th consecutive cut; agency lost 25% of workforce since Jan 2025'
+    notes: 'DOGE claims $215B saved; highly disputed - analysis says cuts may have cost $135B; agency now defunct',
+    isSavings: true
   },
   trending7: {
-    label: 'Mississippi Welfare Fraud',
-    value: 77_000_000,               // $77 million (fraud amount in trial)
-    source: 'Fox News / Mississippi Today',
-    sourceUrl: 'https://www.foxnews.com/media/mississippi-auditor-warns-welfare-fraud-incredibly-easy-77m-trial-begins',
-    lastVerified: '2026-01-19',
+    label: 'Foreign Aid Budget (FY26)',
+    value: 50_000_000_000,           // $50 billion (bipartisan FY26 allocation)
+    source: 'Foreign Policy / NPR',
+    sourceUrl: 'https://foreignpolicy.com/2026/01/13/congress-foreign-aid-spending-appropriations-bill-trump-elon-musk-doge-cuts/',
+    lastVerified: '2026-02-02',
     category: 'general',
-    notes: 'Largest state embezzlement case; trial ongoing - TANF funds to wrestlers, volleyball stadium'
+    notes: 'Congress rejected Trump 84% cuts; down from $68B in 2024 after USAID dismantled in July 2025'
   }
 };
 
