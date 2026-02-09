@@ -155,68 +155,70 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'FY26 Pentagon Defense Bill',
-    value: 839_000_000_000,          // $839 billion (FY2026 defense appropriations)
-    source: 'Defense News / Breaking Defense',
-    sourceUrl: 'https://www.defensenews.com/congress/2026/01/20/us-lawmakers-release-839b-compromise-defense-spending-bill/',
-    lastVerified: '2026-02-02',
-    category: 'defense',
-    notes: 'Passed House during shutdown; $8.4B above White House request; includes Ukraine aid, F-35s, ship building'
+    label: 'Government Shutdown Cost',
+    value: 85_000_000_000,           // $85 billion (estimated cost of 43-day shutdown)
+    source: 'Senator Lankford Federal Fumbles Report',
+    sourceUrl: 'https://www.lankford.senate.gov/news/press-releases/lankford-releases-ninth-edition-of-federal-fumbles/',
+    lastVerified: '2026-02-09',
+    category: 'general',
+    notes: 'Senator Lankford estimates $74-85B cost for fall 2025 43-day shutdown; called costliest fumble of the year'
   },
   trending2: {
-    label: 'Medicare Advantage Overpayments',
-    value: 76_000_000_000,           // $76 billion (projected overpayments this year)
-    source: 'MedPAC / Common Dreams',
-    sourceUrl: 'https://www.commondreams.org/news/medicare-advantage-fraud',
-    lastVerified: '2026-02-02',
+    label: 'Minnesota Medicaid Fraud',
+    value: 9_000_000_000,            // $9 billion (federal prosecutors estimate)
+    source: 'Georgetown CCF / Washington Post',
+    sourceUrl: 'https://ccf.georgetown.edu/2026/01/16/cms-weaponizes-fraud-against-medicaid-in-minnesota/',
+    lastVerified: '2026-02-09',
     category: 'medicare',
-    notes: 'MedPAC: $76B in overpayments projected for 2026; Kaiser Permanente paid record $556M fraud settlement'
+    notes: 'Federal prosecutors estimate $9B fraud; CMS withholds $515M quarterly; first time nuclear option used on a state'
   },
   trending3: {
-    label: 'National Debt Interest (FY26)',
-    value: 1_000_000_000_000,        // $1 trillion (projected interest payments)
-    source: 'Congressional Budget Office / CRFB',
-    sourceUrl: 'https://www.crfb.org/blogs/interest-debt-grow-past-1-trillion-next-year',
-    lastVerified: '2026-02-02',
-    category: 'interest',
-    notes: 'First time interest payments hit $1T; now 2nd largest budget category after Social Security'
+    label: 'IRS Funding Rescinded (IRA)',
+    value: 11_600_000_000,           // $11.6 billion rescinded from IRA funds
+    source: 'BDO / CNBC',
+    sourceUrl: 'https://www.bdo.com/insights/tax/legislative-roundup-final-spending-bills-cut-irs-funding-and-omit-tax-priorities',
+    lastVerified: '2026-02-09',
+    category: 'general',
+    notes: 'Spending deal rescinded $11.6B of IRA modernization funds; plus $1.1B annual budget cut; IRS lost 25% of workforce',
+    isSavings: true
   },
   trending4: {
-    label: 'ICE/DHS Enforcement Budget',
-    value: 28_700_000_000,           // $28.7 billion (FY26 ICE funding)
-    source: 'DHS Budget / Brennan Center',
-    sourceUrl: 'https://www.brennancenter.org/our-work/analysis-opinion/big-budget-act-creates-deportation-industrial-complex',
-    lastVerified: '2026-02-02',
-    category: 'general',
-    notes: 'Central to shutdown fight; DHS funding separated after Minneapolis shooting controversy'
-  },
-  trending5: {
-    label: 'Minnesota Welfare Fraud',
-    value: 9_000_000_000,            // $9 billion (federal prosecutors estimate)
-    source: 'U.S. Department of Treasury / Washington Post',
-    sourceUrl: 'https://www.washingtonpost.com/ripple/2026/01/20/somali-fraud-minnesota-government-health-programs-medicare-medicaid/',
-    lastVerified: '2026-02-02',
-    category: 'general',
-    notes: 'FBI deployed to MN; $2B Medicaid withheld; fraud across healthcare and childcare programs'
-  },
-  trending6: {
     label: 'DOGE Claimed Savings',
     value: 215_000_000_000,          // $215 billion (official DOGE claims as of Jan 2026)
     source: 'DOGE.gov / CBS News',
     sourceUrl: 'https://www.cbsnews.com/news/doge-cuts-cost-135-billion-analysis-elon-musk-department-of-government-efficiency/',
-    lastVerified: '2026-02-02',
+    lastVerified: '2026-02-09',
     category: 'general',
-    notes: 'DOGE claims $215B saved; highly disputed - analysis says cuts may have cost $135B; agency now defunct',
+    notes: 'DOGE claims $215B saved; highly disputed - analysis says cuts cost $135B; IRS predicts $500B revenue loss; agency disbanded',
     isSavings: true
   },
-  trending7: {
+  trending5: {
     label: 'Foreign Aid Budget (FY26)',
     value: 50_000_000_000,           // $50 billion (bipartisan FY26 allocation)
     source: 'Foreign Policy / NPR',
-    sourceUrl: 'https://foreignpolicy.com/2026/01/13/congress-foreign-aid-spending-appropriations-bill-trump-elon-musk-doge-cuts/',
-    lastVerified: '2026-02-02',
+    sourceUrl: 'https://www.npr.org/2026/02/06/nx-s1-5702252/foreign-aid-trump-cuts',
+    lastVerified: '2026-02-09',
     category: 'general',
-    notes: 'Congress rejected Trump 84% cuts; down from $68B in 2024 after USAID dismantled in July 2025'
+    notes: 'Congress passed $50B despite Trump push for 47% cuts; 16% down from 2025 after USAID dismantled'
+  },
+  trending6: {
+    label: 'SBA 8(a) Contract Fraud',
+    value: 5_000_000_000,            // $5 billion in contracts to suspended firms
+    source: 'SBA / Treasury',
+    sourceUrl: 'https://www.sba.gov/article/2026/01/28/sba-suspends-over-1000-8a-firms-program-following-december-document-request',
+    lastVerified: '2026-02-09',
+    category: 'general',
+    notes: 'Over 1,000 firms suspended from 8(a) program; received $5B+ in contracts over 4 years; Treasury auditing $9B'
+  },
+  trending7: {
+    label: 'F-35 Lifetime Program Cost',
+    value: 2_100_000_000_000,        // $2.1 trillion (estimated lifetime cost)
+    source: 'Air & Space Forces Magazine',
+    sourceUrl: 'https://www.airandspaceforces.com/f-35-office-2-1-trillion-cost/',
+    lastVerified: '2026-02-09',
+    category: 'defense',
+    notes: 'Total lifetime cost; Air Force halved FY26 buy to 24 jets; Musk called crewed fighters obsolete',
+    multiYear: true
   }
 };
 
