@@ -155,68 +155,70 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'FY26 Pentagon Defense Bill',
-    value: 839_000_000_000,          // $839 billion (FY2026 defense appropriations)
-    source: 'Defense News / Breaking Defense',
-    sourceUrl: 'https://www.defensenews.com/congress/2026/01/20/us-lawmakers-release-839b-compromise-defense-spending-bill/',
-    lastVerified: '2026-02-02',
-    category: 'defense',
-    notes: 'Passed House during shutdown; $8.4B above White House request; includes Ukraine aid, F-35s, ship building'
+    label: 'FY2026 Budget Deficit',
+    value: 1_900_000_000_000,        // $1.9 trillion (CBO projected deficit for FY2026)
+    source: 'Congressional Budget Office',
+    sourceUrl: 'https://www.cbo.gov/publication/61882',
+    lastVerified: '2026-02-16',
+    category: 'general',
+    notes: 'CBO Feb 2026 projection; deficit 5.8% of GDP; debt projected to hit 120% of GDP by 2036'
   },
   trending2: {
-    label: 'Medicare Advantage Overpayments',
-    value: 76_000_000_000,           // $76 billion (projected overpayments this year)
-    source: 'MedPAC / Common Dreams',
-    sourceUrl: 'https://www.commondreams.org/news/medicare-advantage-fraud',
-    lastVerified: '2026-02-02',
-    category: 'medicare',
-    notes: 'MedPAC: $76B in overpayments projected for 2026; Kaiser Permanente paid record $556M fraud settlement'
+    label: 'DHS Shutdown / ICE Funding',
+    value: 64_400_000_000,           // $64.4 billion (DHS appropriations including ~$10B ICE)
+    source: 'Federal News Network / TIME',
+    sourceUrl: 'https://time.com/7357264/ice-funding-bill-dhs-congress/',
+    lastVerified: '2026-02-16',
+    category: 'general',
+    notes: 'Third shutdown this year; Democrats demand ICE reforms after Minneapolis shootings; DHS funding separated from main package'
   },
   trending3: {
-    label: 'National Debt Interest (FY26)',
-    value: 1_000_000_000_000,        // $1 trillion (projected interest payments)
-    source: 'Congressional Budget Office / CRFB',
-    sourceUrl: 'https://www.crfb.org/blogs/interest-debt-grow-past-1-trillion-next-year',
-    lastVerified: '2026-02-02',
-    category: 'interest',
-    notes: 'First time interest payments hit $1T; now 2nd largest budget category after Social Security'
+    label: 'IRS Funding Rescission',
+    value: 11_600_000_000,           // $11.6 billion (clawback from IRA modernization funds)
+    source: 'Bloomberg Tax / CNBC',
+    sourceUrl: 'https://news.bloombergtax.com/daily-tax-report/lawmakers-ax-11-6-billion-more-in-irs-funding-in-spending-plan',
+    lastVerified: '2026-02-16',
+    category: 'general',
+    notes: 'Fourth consecutive year of IRS cuts; original $80B IRA funding now down to ~$26B; IRS lost 25% of staff',
+    isSavings: true
   },
   trending4: {
-    label: 'ICE/DHS Enforcement Budget',
-    value: 28_700_000_000,           // $28.7 billion (FY26 ICE funding)
-    source: 'DHS Budget / Brennan Center',
-    sourceUrl: 'https://www.brennancenter.org/our-work/analysis-opinion/big-budget-act-creates-deportation-industrial-complex',
-    lastVerified: '2026-02-02',
-    category: 'general',
-    notes: 'Central to shutdown fight; DHS funding separated after Minneapolis shooting controversy'
+    label: 'Medicare Advantage Upcoding',
+    value: 88_000_000_000,           // $88 billion (overpayments vs traditional Medicare)
+    source: 'Washington Monthly / CMS',
+    sourceUrl: 'https://washingtonmonthly.com/2026/02/03/cms-medicare-advantage-fraud-crackdown/',
+    lastVerified: '2026-02-16',
+    category: 'medicare',
+    notes: 'CMS cracking down on MA upcoding; UnitedHealth stock dropped 20% in one day; new OIG guidance issued Feb 2026'
   },
   trending5: {
-    label: 'Minnesota Welfare Fraud',
-    value: 9_000_000_000,            // $9 billion (federal prosecutors estimate)
-    source: 'U.S. Department of Treasury / Washington Post',
-    sourceUrl: 'https://www.washingtonpost.com/ripple/2026/01/20/somali-fraud-minnesota-government-health-programs-medicare-medicaid/',
-    lastVerified: '2026-02-02',
+    label: 'One Big Beautiful Bill (10-yr)',
+    value: 3_400_000_000_000,        // $3.4 trillion (CBO 10-year deficit increase)
+    source: 'Congressional Budget Office',
+    sourceUrl: 'https://www.cbo.gov/publication/61486',
+    lastVerified: '2026-02-16',
     category: 'general',
-    notes: 'FBI deployed to MN; $2B Medicaid withheld; fraud across healthcare and childcare programs'
+    notes: 'CBO estimate of 10-year deficit impact; includes $5T in tax cuts, Medicaid/SNAP cuts, deportation funding'
   },
   trending6: {
     label: 'DOGE Claimed Savings',
-    value: 215_000_000_000,          // $215 billion (official DOGE claims as of Jan 2026)
-    source: 'DOGE.gov / CBS News',
-    sourceUrl: 'https://www.cbsnews.com/news/doge-cuts-cost-135-billion-analysis-elon-musk-department-of-government-efficiency/',
-    lastVerified: '2026-02-02',
+    value: 150_000_000_000,          // $150 billion (Musk April 2025 claim)
+    source: 'CNN / Wikipedia',
+    sourceUrl: 'https://en.wikipedia.org/wiki/Department_of_Government_Efficiency',
+    lastVerified: '2026-02-16',
     category: 'general',
-    notes: 'DOGE claims $215B saved; highly disputed - analysis says cuts may have cost $135B; agency now defunct',
+    notes: 'Highly disputed; House DOGE caucus called it "massive exaggeration"; analysis says cuts may have cost taxpayers $135B',
     isSavings: true
   },
   trending7: {
-    label: 'Foreign Aid Budget (FY26)',
-    value: 50_000_000_000,           // $50 billion (bipartisan FY26 allocation)
-    source: 'Foreign Policy / NPR',
-    sourceUrl: 'https://foreignpolicy.com/2026/01/13/congress-foreign-aid-spending-appropriations-bill-trump-elon-musk-doge-cuts/',
-    lastVerified: '2026-02-02',
+    label: 'SNAP Cuts (OBBBA)',
+    value: 106_000_000_000,          // $106 billion (10-year reduction in SNAP spending)
+    source: 'Center for American Progress / CT Mirror',
+    sourceUrl: 'https://www.americanprogress.org/article/the-implementation-timeline-of-the-one-big-beautiful-bill-act/',
+    lastVerified: '2026-02-16',
     category: 'general',
-    notes: 'Congress rejected Trump 84% cuts; down from $68B in 2024 after USAID dismantled in July 2025'
+    notes: 'New work requirements for ages 55-64; 2.4M fewer participants; states must absorb more admin costs starting Oct 2026',
+    isSavings: true
   }
 };
 
