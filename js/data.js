@@ -155,68 +155,70 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'FY26 Pentagon Defense Bill',
-    value: 839_000_000_000,          // $839 billion (FY2026 defense appropriations)
-    source: 'Defense News / Breaking Defense',
-    sourceUrl: 'https://www.defensenews.com/congress/2026/01/20/us-lawmakers-release-839b-compromise-defense-spending-bill/',
-    lastVerified: '2026-02-02',
+    label: 'Trump FY27 Defense Proposal',
+    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
+    source: 'Bloomberg / CRFB',
+    sourceUrl: 'https://www.crfb.org/blogs/15-trillion-military-budget-would-add-58-trillion-debt-over-decade',
+    lastVerified: '2026-02-23',
     category: 'defense',
-    notes: 'Passed House during shutdown; $8.4B above White House request; includes Ukraine aid, F-35s, ship building'
+    notes: 'Controversial 50% increase over FY26; largest single-year jump since Korean War; would add $5.8T to debt over decade'
   },
   trending2: {
-    label: 'Medicare Advantage Overpayments',
-    value: 76_000_000_000,           // $76 billion (projected overpayments this year)
-    source: 'MedPAC / Common Dreams',
-    sourceUrl: 'https://www.commondreams.org/news/medicare-advantage-fraud',
-    lastVerified: '2026-02-02',
+    label: 'One Big Beautiful Bill - Medicaid Cuts',
+    value: 1_000_000_000_000,        // $1 trillion (10-year Medicaid cuts)
+    source: 'Congressional Budget Office / Center for American Progress',
+    sourceUrl: 'https://www.americanprogress.org/article/the-truth-about-the-one-big-beautiful-bill-acts-cuts-to-medicaid-and-medicare/',
+    lastVerified: '2026-02-23',
     category: 'medicare',
-    notes: 'MedPAC: $76B in overpayments projected for 2026; Kaiser Permanente paid record $556M fraud settlement'
-  },
-  trending3: {
-    label: 'National Debt Interest (FY26)',
-    value: 1_000_000_000_000,        // $1 trillion (projected interest payments)
-    source: 'Congressional Budget Office / CRFB',
-    sourceUrl: 'https://www.crfb.org/blogs/interest-debt-grow-past-1-trillion-next-year',
-    lastVerified: '2026-02-02',
-    category: 'interest',
-    notes: 'First time interest payments hit $1T; now 2nd largest budget category after Social Security'
-  },
-  trending4: {
-    label: 'ICE/DHS Enforcement Budget',
-    value: 28_700_000_000,           // $28.7 billion (FY26 ICE funding)
-    source: 'DHS Budget / Brennan Center',
-    sourceUrl: 'https://www.brennancenter.org/our-work/analysis-opinion/big-budget-act-creates-deportation-industrial-complex',
-    lastVerified: '2026-02-02',
-    category: 'general',
-    notes: 'Central to shutdown fight; DHS funding separated after Minneapolis shooting controversy'
-  },
-  trending5: {
-    label: 'Minnesota Welfare Fraud',
-    value: 9_000_000_000,            // $9 billion (federal prosecutors estimate)
-    source: 'U.S. Department of Treasury / Washington Post',
-    sourceUrl: 'https://www.washingtonpost.com/ripple/2026/01/20/somali-fraud-minnesota-government-health-programs-medicare-medicaid/',
-    lastVerified: '2026-02-02',
-    category: 'general',
-    notes: 'FBI deployed to MN; $2B Medicaid withheld; fraud across healthcare and childcare programs'
-  },
-  trending6: {
-    label: 'DOGE Claimed Savings',
-    value: 215_000_000_000,          // $215 billion (official DOGE claims as of Jan 2026)
-    source: 'DOGE.gov / CBS News',
-    sourceUrl: 'https://www.cbsnews.com/news/doge-cuts-cost-135-billion-analysis-elon-musk-department-of-government-efficiency/',
-    lastVerified: '2026-02-02',
-    category: 'general',
-    notes: 'DOGE claims $215B saved; highly disputed - analysis says cuts may have cost $135B; agency now defunct',
+    notes: 'CBO: 11.8 million to lose coverage; work requirements taking effect Dec 2026; 300+ rural hospitals at closure risk',
     isSavings: true
   },
-  trending7: {
-    label: 'Foreign Aid Budget (FY26)',
-    value: 50_000_000_000,           // $50 billion (bipartisan FY26 allocation)
-    source: 'Foreign Policy / NPR',
-    sourceUrl: 'https://foreignpolicy.com/2026/01/13/congress-foreign-aid-spending-appropriations-bill-trump-elon-musk-doge-cuts/',
-    lastVerified: '2026-02-02',
+  trending3: {
+    label: 'IRS Funding Rescission',
+    value: 11_600_000_000,           // $11.6 billion (clawed back IRS modernization funds)
+    source: 'Bloomberg Tax / Grant Thornton',
+    sourceUrl: 'https://news.bloombergtax.com/daily-tax-report/lawmakers-ax-11-6-billion-more-in-irs-funding-in-spending-plan',
+    lastVerified: '2026-02-23',
     category: 'general',
-    notes: 'Congress rejected Trump 84% cuts; down from $68B in 2024 after USAID dismantled in July 2025'
+    notes: 'Latest rescission of IRA funds; CBO: will cost $38B in lost enforcement revenue over 10 years; total IRA clawbacks now $53B',
+    isSavings: true
+  },
+  trending4: {
+    label: 'Pentagon Classified Budget',
+    value: 90_000_000_000,           // $90 billion (fully classified spend plan)
+    source: 'Stars and Stripes / Military.com',
+    sourceUrl: 'https://www.stripes.com/theaters/us/2026-02-04/senators-transparency-pentagon-classified-spending-20625172.html',
+    lastVerified: '2026-02-23',
+    category: 'defense',
+    notes: 'Senators demand answers on fully classified spending plan; unprecedented departure from standard practice; includes routine items like barracks'
+  },
+  trending5: {
+    label: 'DOGE Claimed Savings (Disputed)',
+    value: 160_000_000_000,          // $160 billion (DOGE claimed savings)
+    source: 'CBS News / DOGE.gov',
+    sourceUrl: 'https://www.cbsnews.com/news/doge-cuts-cost-135-billion-analysis-elon-musk-department-of-government-efficiency/',
+    lastVerified: '2026-02-23',
+    category: 'general',
+    notes: 'DOGE claims $160B saved; analysis says cuts actually cost $135B; IRS projects $500B+ revenue loss; Congress rejected most proposals',
+    isSavings: true
+  },
+  trending6: {
+    label: 'Federal Improper Payments (FY24)',
+    value: 162_000_000_000,          // $162 billion (FY2024 improper payments)
+    source: 'Government Accountability Office',
+    sourceUrl: 'https://www.gao.gov/blog/federal-government-made-236-billion-improper-payments-last-fiscal-year',
+    lastVerified: '2026-02-23',
+    category: 'general',
+    notes: 'Down from $236B in FY23; 74% were overpayments; concentrated in Medicare, Medicaid, unemployment programs'
+  },
+  trending7: {
+    label: 'Ukraine Security Aid (FY26)',
+    value: 220_000_000,              // $220 million (FY2026 Ukraine aid allocation)
+    source: 'Defense News / Pentagon Report',
+    sourceUrl: 'https://www.defensenews.com/global/europe/2026/01/16/eu-mandates-buy-european-preference-in-new-ukraine-assistance-package/',
+    lastVerified: '2026-02-23',
+    category: 'defense',
+    notes: 'Down 40-fold from peak; FY25 was $3.92B; Europe now bearing primary burden; Ukraine says needs $120B for 2026 defense'
   }
 };
 
