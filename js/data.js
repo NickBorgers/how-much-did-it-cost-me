@@ -155,70 +155,72 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Trump FY27 Defense Proposal',
-    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
-    source: 'Bloomberg / CRFB',
-    sourceUrl: 'https://www.crfb.org/blogs/15-trillion-military-budget-would-add-58-trillion-debt-over-decade',
-    lastVerified: '2026-02-23',
+    label: 'Golden Dome Missile Defense (FY26)',
+    value: 23_000_000_000,           // $23 billion (FY2026 mandatory funding)
+    source: 'Defense One / Congressional Appropriations',
+    sourceUrl: 'https://www.defenseone.com/policy/2026/01/wheres-all-golden-dome-money-going-lawmakers-want-know/410828/',
+    lastVerified: '2026-03-02',
     category: 'defense',
-    notes: 'Controversial 50% increase over FY26; largest single-year jump since Korean War; would add $5.8T to debt over decade'
+    notes: 'Lawmakers demand answers on $23B with no master schedule or cost metrics provided; CBO estimates could cost $542B-$3.6T over 20 years'
   },
   trending2: {
-    label: 'One Big Beautiful Bill - Medicaid Cuts',
-    value: 1_000_000_000_000,        // $1 trillion (10-year Medicaid cuts)
-    source: 'Congressional Budget Office / Center for American Progress',
-    sourceUrl: 'https://www.americanprogress.org/article/the-truth-about-the-one-big-beautiful-bill-acts-cuts-to-medicaid-and-medicare/',
-    lastVerified: '2026-02-23',
-    category: 'medicare',
-    notes: 'CBO: 11.8 million to lose coverage; work requirements taking effect Dec 2026; 300+ rural hospitals at closure risk',
+    label: 'DOGE Claimed Savings (Disputed)',
+    value: 215_000_000_000,          // $215 billion (DOGE claimed savings as of disbanding)
+    source: 'CBS News / TIME',
+    sourceUrl: 'https://www.cbsnews.com/news/doge-cuts-cost-135-billion-analysis-elon-musk-department-of-government-efficiency/',
+    lastVerified: '2026-03-02',
+    category: 'general',
+    notes: 'DOGE disbanded after claiming $215B saved; analysis says cuts actually cost $135B; IRS projects $500B+ revenue loss; fell far short of $1T goal',
     isSavings: true
   },
   trending3: {
-    label: 'IRS Funding Rescission',
-    value: 11_600_000_000,           // $11.6 billion (clawed back IRS modernization funds)
-    source: 'Bloomberg Tax / Grant Thornton',
-    sourceUrl: 'https://news.bloombergtax.com/daily-tax-report/lawmakers-ax-11-6-billion-more-in-irs-funding-in-spending-plan',
-    lastVerified: '2026-02-23',
-    category: 'general',
-    notes: 'Latest rescission of IRA funds; CBO: will cost $38B in lost enforcement revenue over 10 years; total IRA clawbacks now $53B',
-    isSavings: true
+    label: 'Social Security Overpayment Clawbacks',
+    value: 23_000_000_000,           // $23 billion (uncollected overpayment balance)
+    source: 'SSA Office of Inspector General / CBS News',
+    sourceUrl: 'https://www.cbsnews.com/news/social-security-overpayment-clawback-change-50-percent-doge/',
+    lastVerified: '2026-03-02',
+    category: 'socialSecurity',
+    notes: 'New 50% withholding rate (up from 10%) to recover $23B in overpayments; affects 1M+ beneficiaries; 73K errors were SSA calculation mistakes'
   },
   trending4: {
-    label: 'Pentagon Classified Budget',
-    value: 90_000_000_000,           // $90 billion (fully classified spend plan)
-    source: 'Stars and Stripes / Military.com',
-    sourceUrl: 'https://www.stripes.com/theaters/us/2026-02-04/senators-transparency-pentagon-classified-spending-20625172.html',
-    lastVerified: '2026-02-23',
-    category: 'defense',
-    notes: 'Senators demand answers on fully classified spending plan; unprecedented departure from standard practice; includes routine items like barracks'
+    label: 'One Big Beautiful Bill - Medicaid Cuts',
+    value: 1_000_000_000_000,        // $1 trillion (10-year Medicaid cuts)
+    source: 'Congressional Budget Office / KFF',
+    sourceUrl: 'https://www.kff.org/medicaid/medicaid-what-to-watch-in-2026/',
+    lastVerified: '2026-03-02',
+    category: 'medicare',
+    notes: 'CBO: 11.8M to lose coverage; enhanced FMAP ended Jan 2026; work requirements begin Dec 2026; 300+ rural hospitals at closure risk',
+    isSavings: true
   },
   trending5: {
-    label: 'DOGE Claimed Savings (Disputed)',
-    value: 160_000_000_000,          // $160 billion (DOGE claimed savings)
-    source: 'CBS News / DOGE.gov',
-    sourceUrl: 'https://www.cbsnews.com/news/doge-cuts-cost-135-billion-analysis-elon-musk-department-of-government-efficiency/',
-    lastVerified: '2026-02-23',
+    label: 'Administration Impoundments (FY25)',
+    value: 26_000_000_000,           // $26 billion (withheld below expected pace)
+    source: 'Center on Budget and Policy Priorities',
+    sourceUrl: 'https://www.cbpp.org/research/federal-budget/new-data-show-trump-administrations-illegal-targeted-withholding-of-funds',
+    lastVerified: '2026-03-02',
     category: 'general',
-    notes: 'DOGE claims $160B saved; analysis says cuts actually cost $135B; IRS projects $500B+ revenue loss; Congress rejected most proposals',
+    notes: 'GAO investigating 39 potentially illegal impoundments; total frozen/cancelled funds exceed $410B per congressional estimates',
     isSavings: true
   },
   trending6: {
-    label: 'Federal Improper Payments (FY24)',
-    value: 162_000_000_000,          // $162 billion (FY2024 improper payments)
-    source: 'Government Accountability Office',
-    sourceUrl: 'https://www.gao.gov/blog/federal-government-made-236-billion-improper-payments-last-fiscal-year',
-    lastVerified: '2026-02-23',
+    label: 'Artemis Moon Program (Cumulative)',
+    value: 93_000_000_000,           // $93 billion (2012-2025 total program cost)
+    source: 'NASA OIG / GAO',
+    sourceUrl: 'https://www.gao.gov/products/gao-25-107591',
+    lastVerified: '2026-03-02',
     category: 'general',
-    notes: 'Down from $236B in FY23; 74% were overpayments; concentrated in Medicare, Medicaid, unemployment programs'
+    notes: 'NASA announces major overhaul Feb 2026; $6.8B in cost overruns on 3 projects; $4.2B per launch for first 4 missions',
+    multiYear: true
   },
   trending7: {
-    label: 'Ukraine Security Aid (FY26)',
-    value: 220_000_000,              // $220 million (FY2026 Ukraine aid allocation)
-    source: 'Defense News / Pentagon Report',
-    sourceUrl: 'https://www.defensenews.com/global/europe/2026/01/16/eu-mandates-buy-european-preference-in-new-ukraine-assistance-package/',
-    lastVerified: '2026-02-23',
-    category: 'defense',
-    notes: 'Down 40-fold from peak; FY25 was $3.92B; Europe now bearing primary burden; Ukraine says needs $120B for 2026 defense'
+    label: 'IRS Funding Rescission',
+    value: 11_600_000_000,           // $11.6 billion (clawed back IRS modernization funds)
+    source: 'Federal News Network / CBO',
+    sourceUrl: 'https://federalnewsnetwork.com/government-shutdown/2026/02/house-passes-spending-deal-to-end-partial-shutdown-securing-back-pay-for-furloughed-feds/',
+    lastVerified: '2026-03-02',
+    category: 'general',
+    notes: 'Latest rescission of IRA funds; CBO: will cost $38B in lost enforcement revenue over 10 years; total IRA clawbacks now $53B',
+    isSavings: true
   }
 };
 
