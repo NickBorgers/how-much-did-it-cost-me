@@ -142,7 +142,7 @@ const PERMANENT_SPENDING = {
     label: 'James Webb Space Telescope',
     value: 10_000_000_000,           // $10 billion (total development cost)
     source: 'NASA',
-    sourceUrl: 'https://www.nasa.gov/mission_pages/webb/about/index.html',
+    sourceUrl: 'https://science.nasa.gov/mission/webb/about-overview/',
     lastVerified: DATA_LAST_UPDATED,
     category: 'general',
     notes: 'Total lifecycle development cost',
