@@ -155,70 +155,71 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Trump FY27 Defense Proposal',
-    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
-    source: 'Bloomberg / CRFB',
-    sourceUrl: 'https://www.crfb.org/blogs/15-trillion-military-budget-would-add-58-trillion-debt-over-decade',
-    lastVerified: '2026-02-23',
+    label: 'F-35 Readiness Funding Request',
+    value: 12_000_000_000,           // $12 billion (additional F-35 sustainment through 2031)
+    source: 'Bloomberg / GAO',
+    sourceUrl: 'https://www.bloomberg.com/news/articles/2026-03-05/pentagon-seeks-an-extra-12-billion-to-bolster-f-35-jet-program',
+    lastVerified: '2026-03-09',
     category: 'defense',
-    notes: 'Controversial 50% increase over FY26; largest single-year jump since Korean War; would add $5.8T to debt over decade'
+    notes: 'Pentagon requests $12B more for spare parts; readiness rates as low as 22-28% for some models; adds to $1.2T lifetime support cost'
   },
   trending2: {
-    label: 'One Big Beautiful Bill - Medicaid Cuts',
-    value: 1_000_000_000_000,        // $1 trillion (10-year Medicaid cuts)
-    source: 'Congressional Budget Office / Center for American Progress',
-    sourceUrl: 'https://www.americanprogress.org/article/the-truth-about-the-one-big-beautiful-bill-acts-cuts-to-medicaid-and-medicare/',
-    lastVerified: '2026-02-23',
-    category: 'medicare',
-    notes: 'CBO: 11.8 million to lose coverage; work requirements taking effect Dec 2026; 300+ rural hospitals at closure risk',
-    isSavings: true
+    label: 'Pentagon Reconciliation Spending',
+    value: 152_000_000_000,          // $152 billion (FY26 reconciliation spending)
+    source: 'Breaking Defense / Federal News Network',
+    sourceUrl: 'https://breakingdefense.com/2026/02/reconciliation-revealed-how-the-pentagon-plans-to-spend-all-152-billion-in-fy26/',
+    lastVerified: '2026-03-09',
+    category: 'defense',
+    notes: 'DoD plans to spend entire $152B in one year; originally planned $113B; critics call it oversight-evading slush fund'
   },
   trending3: {
-    label: 'IRS Funding Rescission',
-    value: 11_600_000_000,           // $11.6 billion (clawed back IRS modernization funds)
-    source: 'Bloomberg Tax / Grant Thornton',
-    sourceUrl: 'https://news.bloombergtax.com/daily-tax-report/lawmakers-ax-11-6-billion-more-in-irs-funding-in-spending-plan',
-    lastVerified: '2026-02-23',
+    label: 'USAID Cuts Death Toll (Estimated)',
+    value: 50_000_000_000,           // ~$50 billion (approximate annual USAID budget that was cut)
+    source: 'The Lancet / Harvard Public Health',
+    sourceUrl: 'https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)01186-9/fulltext',
+    lastVerified: '2026-03-09',
     category: 'general',
-    notes: 'Latest rescission of IRA funds; CBO: will cost $38B in lost enforcement revenue over 10 years; total IRA clawbacks now $53B',
+    notes: 'Lancet: 9.4M deaths projected by 2030; 600,000 already died per estimates; agency reduced from 10,000 to 15 staff',
     isSavings: true
   },
   trending4: {
-    label: 'Pentagon Classified Budget',
-    value: 90_000_000_000,           // $90 billion (fully classified spend plan)
-    source: 'Stars and Stripes / Military.com',
-    sourceUrl: 'https://www.stripes.com/theaters/us/2026-02-04/senators-transparency-pentagon-classified-spending-20625172.html',
-    lastVerified: '2026-02-23',
-    category: 'defense',
-    notes: 'Senators demand answers on fully classified spending plan; unprecedented departure from standard practice; includes routine items like barracks'
+    label: 'One Big Beautiful Bill - Medicaid Cuts',
+    value: 1_000_000_000_000,        // $1 trillion (10-year Medicaid cuts)
+    source: 'Congressional Budget Office / KFF',
+    sourceUrl: 'https://www.kff.org/medicaid/medicaid-what-to-watch-in-2026/',
+    lastVerified: '2026-03-09',
+    category: 'medicare',
+    notes: 'CBO: 11.8M to lose coverage; work requirements starting May 2026 in Nebraska; enhanced FMAP ends Jan 2026',
+    isSavings: true
   },
   trending5: {
     label: 'DOGE Claimed Savings (Disputed)',
     value: 160_000_000_000,          // $160 billion (DOGE claimed savings)
-    source: 'CBS News / DOGE.gov',
+    source: 'CBS News / Brookings',
     sourceUrl: 'https://www.cbsnews.com/news/doge-cuts-cost-135-billion-analysis-elon-musk-department-of-government-efficiency/',
-    lastVerified: '2026-02-23',
+    lastVerified: '2026-03-09',
     category: 'general',
-    notes: 'DOGE claims $160B saved; analysis says cuts actually cost $135B; IRS projects $500B+ revenue loss; Congress rejected most proposals',
+    notes: 'DOGE claims $160B saved; independent analysis says cuts cost $135B; Brookings estimates actual savings ~$20B; Congress rejected most cuts',
     isSavings: true
   },
   trending6: {
+    label: 'IRS Funding Rescission',
+    value: 11_600_000_000,           // $11.6 billion (clawed back IRS modernization funds)
+    source: 'Tax Law Center / BDO',
+    sourceUrl: 'https://taxlawcenter.org/blog/cuts-to-irs-budget-base-fy2026-appropriations',
+    lastVerified: '2026-03-09',
+    category: 'general',
+    notes: 'Latest rescission of IRA funds; agency workforce down 25% to 76,000; only able to answer 16% of calls in 2026 filing season',
+    isSavings: true
+  },
+  trending7: {
     label: 'Federal Improper Payments (FY24)',
     value: 162_000_000_000,          // $162 billion (FY2024 improper payments)
     source: 'Government Accountability Office',
-    sourceUrl: 'https://www.gao.gov/blog/federal-government-made-236-billion-improper-payments-last-fiscal-year',
-    lastVerified: '2026-02-23',
+    sourceUrl: 'https://www.gao.gov/products/gao-25-107753',
+    lastVerified: '2026-03-09',
     category: 'general',
-    notes: 'Down from $236B in FY23; 74% were overpayments; concentrated in Medicare, Medicaid, unemployment programs'
-  },
-  trending7: {
-    label: 'Ukraine Security Aid (FY26)',
-    value: 220_000_000,              // $220 million (FY2026 Ukraine aid allocation)
-    source: 'Defense News / Pentagon Report',
-    sourceUrl: 'https://www.defensenews.com/global/europe/2026/01/16/eu-mandates-buy-european-preference-in-new-ukraine-assistance-package/',
-    lastVerified: '2026-02-23',
-    category: 'defense',
-    notes: 'Down 40-fold from peak; FY25 was $3.92B; Europe now bearing primary burden; Ukraine says needs $120B for 2026 defense'
+    notes: 'Down from $236B in FY23; 74% were overpayments; $2.7T in improper payments since FY2004; Medicare/Medicaid biggest sources'
   }
 };
 
