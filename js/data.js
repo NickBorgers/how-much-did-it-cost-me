@@ -155,71 +155,70 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'F-35 Readiness Funding Request',
-    value: 12_000_000_000,           // $12 billion (additional F-35 sustainment through 2031)
-    source: 'Bloomberg / GAO',
-    sourceUrl: 'https://www.bloomberg.com/news/articles/2026-03-05/pentagon-seeks-an-extra-12-billion-to-bolster-f-35-jet-program',
-    lastVerified: '2026-03-09',
+    label: 'Iran War Cost (So Far)',
+    value: 12_000_000_000,           // $12 billion (cost of Iran strikes as of March 15)
+    source: 'White House NEC / Al Jazeera',
+    sourceUrl: 'https://www.aljazeera.com/news/2026/3/15/top-trump-advisor-says-iran-war-price-tag-at-approximately-12bn-so-far',
+    lastVerified: '2026-03-16',
     category: 'defense',
-    notes: 'Pentagon requests $12B more for spare parts; readiness rates as low as 22-28% for some models; adds to $1.2T lifetime support cost'
+    notes: 'Trump adviser Hassett says $12B spent; Pentagon used $5.6B in munitions in first 2 days; estimated $1-2B/day ongoing; Democrats link cost to domestic cuts'
   },
   trending2: {
     label: 'Pentagon Reconciliation Spending',
     value: 152_000_000_000,          // $152 billion (FY26 reconciliation spending)
     source: 'Breaking Defense / Federal News Network',
     sourceUrl: 'https://breakingdefense.com/2026/02/reconciliation-revealed-how-the-pentagon-plans-to-spend-all-152-billion-in-fy26/',
-    lastVerified: '2026-03-09',
+    lastVerified: '2026-03-16',
     category: 'defense',
-    notes: 'DoD plans to spend entire $152B in one year; originally planned $113B; critics call it oversight-evading slush fund'
+    notes: 'DoD plans to spend entire $152B in one year; originally planned $113B; total FY26 defense budget is $1.01T; critics call it oversight-evading'
   },
   trending3: {
-    label: 'USAID Cuts Death Toll (Estimated)',
-    value: 50_000_000_000,           // ~$50 billion (approximate annual USAID budget that was cut)
-    source: 'The Lancet / Harvard Public Health',
-    sourceUrl: 'https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)01186-9/fulltext',
-    lastVerified: '2026-03-09',
-    category: 'general',
-    notes: 'Lancet: 9.4M deaths projected by 2030; 600,000 already died per estimates; agency reduced from 10,000 to 15 staff',
-    isSavings: true
+    label: 'Debt Interest Payments (FY26 Pace)',
+    value: 1_040_000_000_000,        // ~$1.04 trillion (annualized from $433B in first 5 months)
+    source: 'CBO Monthly Budget Review / Fortune',
+    sourceUrl: 'https://www.cbo.gov/publication/61978',
+    lastVerified: '2026-03-16',
+    category: 'interest',
+    notes: '$433B in interest paid in first 5 months of FY26; on pace to exceed $1T for full year; national debt nearing $38.9T; US borrowing $50B/week'
   },
   trending4: {
     label: 'One Big Beautiful Bill - Medicaid Cuts',
-    value: 1_000_000_000_000,        // $1 trillion (10-year Medicaid cuts)
-    source: 'Congressional Budget Office / KFF',
-    sourceUrl: 'https://www.kff.org/medicaid/medicaid-what-to-watch-in-2026/',
-    lastVerified: '2026-03-09',
+    value: 665_000_000_000,          // $665 billion (state Medicaid budget decline over 10 years)
+    source: 'Stateline / CBO',
+    sourceUrl: 'https://stateline.org/2026/03/04/state-medicaid-budgets-will-decline-by-665-billion-under-new-federal-law-report-finds/',
+    lastVerified: '2026-03-16',
     category: 'medicare',
-    notes: 'CBO: 11.8M to lose coverage; work requirements starting May 2026 in Nebraska; enhanced FMAP ends Jan 2026',
+    notes: 'Now law (signed July 2025); CBO: 10.5M lose coverage; hospitals closing maternity wards; work requirements start Dec 2026; CBO total federal cuts $1.02T',
     isSavings: true
   },
   trending5: {
     label: 'DOGE Claimed Savings (Disputed)',
-    value: 160_000_000_000,          // $160 billion (DOGE claimed savings)
-    source: 'CBS News / Brookings',
-    sourceUrl: 'https://www.cbsnews.com/news/doge-cuts-cost-135-billion-analysis-elon-musk-department-of-government-efficiency/',
-    lastVerified: '2026-03-09',
+    value: 215_000_000_000,          // $215 billion (DOGE claimed savings as of Jan 2026)
+    source: 'DOGE.gov / WBUR / NPR',
+    sourceUrl: 'https://doge.gov/savings',
+    lastVerified: '2026-03-16',
     category: 'general',
-    notes: 'DOGE claims $160B saved; independent analysis says cuts cost $135B; Brookings estimates actual savings ~$20B; Congress rejected most cuts',
+    notes: 'DOGE website claims $215B saved; NPR found only ~$2B verifiable early on; systematic errors like counting same contract 3x; critics say cuts now hampering Iran response',
     isSavings: true
   },
   trending6: {
-    label: 'IRS Funding Rescission',
-    value: 11_600_000_000,           // $11.6 billion (clawed back IRS modernization funds)
-    source: 'Tax Law Center / BDO',
-    sourceUrl: 'https://taxlawcenter.org/blog/cuts-to-irs-budget-base-fy2026-appropriations',
-    lastVerified: '2026-03-09',
-    category: 'general',
-    notes: 'Latest rescission of IRA funds; agency workforce down 25% to 76,000; only able to answer 16% of calls in 2026 filing season',
-    isSavings: true
+    label: 'Pentagon Backdoor Earmarks (FY26)',
+    value: 34_000_000_000,           // $34 billion (congressional additions to Pentagon budget)
+    source: 'Taxpayers for Common Sense',
+    sourceUrl: 'https://www.taxpayer.net/national-security/backdoor-earmarks-in-the-fy2026-pentagon-budget/',
+    lastVerified: '2026-03-16',
+    category: 'defense',
+    notes: '1,090 anonymous program increases; 60% cost increase since FY24; 3/4 funded projects Pentagon never requested; lawmakers take credit for defense spending in their districts'
   },
   trending7: {
-    label: 'Federal Improper Payments (FY24)',
-    value: 162_000_000_000,          // $162 billion (FY2024 improper payments)
-    source: 'Government Accountability Office',
-    sourceUrl: 'https://www.gao.gov/products/gao-25-107753',
-    lastVerified: '2026-03-09',
+    label: 'USAID Gutted (Annual Budget)',
+    value: 50_000_000_000,           // ~$50 billion (approximate annual USAID budget that was cut)
+    source: 'CNN / The Lancet',
+    sourceUrl: 'https://www.cnn.com/2026/03/10/politics/doge-government-spending-cuts-iran-war',
+    lastVerified: '2026-03-16',
     category: 'general',
-    notes: 'Down from $236B in FY23; 74% were overpayments; $2.7T in improper payments since FY2004; Medicare/Medicaid biggest sources'
+    notes: 'Agency reduced from 10,000 to ~15 staff; now hampering Iran crisis response; State Dept lost 25% of foreign service since Jan 2025; Lancet projects 9.4M deaths by 2030',
+    isSavings: true
   }
 };
 
