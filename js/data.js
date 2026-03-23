@@ -155,71 +155,69 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'F-35 Readiness Funding Request',
-    value: 12_000_000_000,           // $12 billion (additional F-35 sustainment through 2031)
-    source: 'Bloomberg / GAO',
-    sourceUrl: 'https://www.bloomberg.com/news/articles/2026-03-05/pentagon-seeks-an-extra-12-billion-to-bolster-f-35-jet-program',
-    lastVerified: '2026-03-09',
+    label: 'Iran War Supplemental Budget Request',
+    value: 200_000_000_000,          // $200 billion (Pentagon supplemental request for Iran war)
+    source: 'Washington Post / CNBC',
+    sourceUrl: 'https://www.washingtonpost.com/national-security/2026/03/18/iran-cost-budget-pentagon/',
+    lastVerified: '2026-03-23',
     category: 'defense',
-    notes: 'Pentagon requests $12B more for spare parts; readiness rates as low as 22-28% for some models; adds to $1.2T lifetime support cost'
+    notes: 'Pentagon asks for $200B supplemental for Iran war; on top of $1.5T FY27 base request; bipartisan pushback from lawmakers; Hegseth says no timeframe for war'
   },
   trending2: {
-    label: 'Pentagon Reconciliation Spending',
-    value: 152_000_000_000,          // $152 billion (FY26 reconciliation spending)
-    source: 'Breaking Defense / Federal News Network',
-    sourceUrl: 'https://breakingdefense.com/2026/02/reconciliation-revealed-how-the-pentagon-plans-to-spend-all-152-billion-in-fy26/',
-    lastVerified: '2026-03-09',
+    label: 'Iran War Cost (First 12 Days)',
+    value: 16_500_000_000,           // $16.5 billion (CSIS estimate through day 12)
+    source: 'CSIS / NBC News',
+    sourceUrl: 'https://www.nbcnews.com/politics/congress/first-6-days-iran-war-cost-11-billion-pentagon-tells-senators-rcna263060',
+    lastVerified: '2026-03-23',
     category: 'defense',
-    notes: 'DoD plans to spend entire $152B in one year; originally planned $113B; critics call it oversight-evading slush fund'
+    notes: 'CSIS estimates $16.5B by day 12; burn rate of $800M-$2B per day; includes $5.6B in interceptors/missiles, $2.3B air ops; DOGE cuts hampered war readiness per CNN'
   },
   trending3: {
-    label: 'USAID Cuts Death Toll (Estimated)',
-    value: 50_000_000_000,           // ~$50 billion (approximate annual USAID budget that was cut)
-    source: 'The Lancet / Harvard Public Health',
-    sourceUrl: 'https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)01186-9/fulltext',
-    lastVerified: '2026-03-09',
-    category: 'general',
-    notes: 'Lancet: 9.4M deaths projected by 2030; 600,000 already died per estimates; agency reduced from 10,000 to 15 staff',
-    isSavings: true
+    label: 'National Debt Interest Payments (FY26)',
+    value: 1_040_000_000_000,        // $1.04 trillion (CBO projected net interest FY2026)
+    source: 'Congressional Budget Office / PGPF',
+    sourceUrl: 'https://www.pgpf.org/programs-and-projects/fiscal-policy/monthly-interest-tracker-national-debt/',
+    lastVerified: '2026-03-23',
+    category: 'interest',
+    notes: 'First time exceeding $1T; $7,700 per household; 3rd-largest spending category; projected to reach $2.1T by 2036; national debt crossed $39T on March 17'
   },
   trending4: {
     label: 'One Big Beautiful Bill - Medicaid Cuts',
-    value: 1_000_000_000_000,        // $1 trillion (10-year Medicaid cuts)
-    source: 'Congressional Budget Office / KFF',
-    sourceUrl: 'https://www.kff.org/medicaid/medicaid-what-to-watch-in-2026/',
-    lastVerified: '2026-03-09',
+    value: 911_000_000_000,          // $911 billion (10-year Medicaid cuts under OBBBA)
+    source: 'KFF / Georgetown CCF',
+    sourceUrl: 'https://www.kff.org/medicaid/a-closer-look-at-the-work-requirement-provisions-in-the-2025-federal-budget-reconciliation-law/',
+    lastVerified: '2026-03-23',
     category: 'medicare',
-    notes: 'CBO: 11.8M to lose coverage; work requirements starting May 2026 in Nebraska; enhanced FMAP ends Jan 2026',
+    notes: 'AMA: 11.8M to lose coverage; work requirements rule due June 2026; Nebraska enforcing early May 2026; $326B from work requirements alone; states scrambling to fill budget holes',
     isSavings: true
   },
   trending5: {
     label: 'DOGE Claimed Savings (Disputed)',
-    value: 160_000_000_000,          // $160 billion (DOGE claimed savings)
-    source: 'CBS News / Brookings',
-    sourceUrl: 'https://www.cbsnews.com/news/doge-cuts-cost-135-billion-analysis-elon-musk-department-of-government-efficiency/',
-    lastVerified: '2026-03-09',
+    value: 110_000_000_000,          // ~$110 billion (current DOGE website total)
+    source: 'Fortune / CBS News',
+    sourceUrl: 'https://fortune.com/2026/03/16/doge-employee-deposition-lawsuit-federal-deficit-elon-musk-spending/',
+    lastVerified: '2026-03-23',
     category: 'general',
-    notes: 'DOGE claims $160B saved; independent analysis says cuts cost $135B; Brookings estimates actual savings ~$20B; Congress rejected most cuts',
+    notes: 'DOGE employee admitted savings did nothing for deficit; goal dropped from $2T to $150B; NPR verified only $2.3B; IRS predicts $500B+ revenue loss from DOGE cuts; cuts hampered Iran war readiness',
     isSavings: true
   },
   trending6: {
-    label: 'IRS Funding Rescission',
-    value: 11_600_000_000,           // $11.6 billion (clawed back IRS modernization funds)
-    source: 'Tax Law Center / BDO',
-    sourceUrl: 'https://taxlawcenter.org/blog/cuts-to-irs-budget-base-fy2026-appropriations',
-    lastVerified: '2026-03-09',
+    label: 'NIH Funding Withheld by White House',
+    value: 47_200_000_000,           // $47.2 billion (FY26 NIH appropriation stalled)
+    source: 'Nature / Science / STAT News',
+    sourceUrl: 'https://www.nature.com/articles/d41586-026-00601-0',
+    lastVerified: '2026-03-23',
     category: 'general',
-    notes: 'Latest rescission of IRA funds; agency workforce down 25% to 76,000; only able to answer 16% of calls in 2026 filing season',
-    isSavings: true
+    notes: 'Congress approved $47.2B rejecting Trump 40% cut; White House stalling release; 8.6% drop in grants; 74,000 clinical trial participants affected; 19 Nobel laureates protested; labs shutting down'
   },
   trending7: {
-    label: 'Federal Improper Payments (FY24)',
-    value: 162_000_000_000,          // $162 billion (FY2024 improper payments)
-    source: 'Government Accountability Office',
-    sourceUrl: 'https://www.gao.gov/products/gao-25-107753',
-    lastVerified: '2026-03-09',
+    label: 'Hidden OTA Spending (GAO Exposed)',
+    value: 77_500_000_000,           // $77.5 billion (undisclosed Other Transaction Agreements FY21-25)
+    source: 'GAO / Sen. Ernst',
+    sourceUrl: 'https://www.ernst.senate.gov/news/press-releases/ernst-shines-the-light-on-government-spending',
+    lastVerified: '2026-03-23',
     category: 'general',
-    notes: 'Down from $236B in FY23; 74% were overpayments; $2.7T in improper payments since FY2004; Medicare/Medicaid biggest sources'
+    notes: 'GAO found $77.5B in hidden spending via OTAs from FY21-25; $18B+ in 2025 alone; Treasury claimed no reporting required; Ernst COST Act introduced; Pentagon IG launching review'
   }
 };
 
