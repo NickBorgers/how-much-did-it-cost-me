@@ -155,71 +155,70 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'F-35 Readiness Funding Request',
-    value: 12_000_000_000,           // $12 billion (additional F-35 sustainment through 2031)
-    source: 'Bloomberg / GAO',
-    sourceUrl: 'https://www.bloomberg.com/news/articles/2026-03-05/pentagon-seeks-an-extra-12-billion-to-bolster-f-35-jet-program',
-    lastVerified: '2026-03-09',
+    label: 'DHS Shutdown - TSA Back Pay Crisis',
+    value: 1_000_000_000,            // ~$1 billion (unpaid TSA wages during DHS shutdown)
+    source: 'TSA Congressional Testimony / TheStreet',
+    sourceUrl: 'https://www.tsa.gov/news/press/testimony/2026/03/25/oversight-hearing-dhs-shutdown-impacts',
+    lastVerified: '2026-03-30',
     category: 'defense',
-    notes: 'Pentagon requests $12B more for spare parts; readiness rates as low as 22-28% for some models; adds to $1.2T lifetime support cost'
+    notes: 'DHS shutdown since Feb 14; 61,000 TSA workers unpaid; 480+ officers lost; 4.5-hour airport waits; 500% increase in officer assaults'
   },
   trending2: {
-    label: 'Pentagon Reconciliation Spending',
-    value: 152_000_000_000,          // $152 billion (FY26 reconciliation spending)
-    source: 'Breaking Defense / Federal News Network',
-    sourceUrl: 'https://breakingdefense.com/2026/02/reconciliation-revealed-how-the-pentagon-plans-to-spend-all-152-billion-in-fy26/',
-    lastVerified: '2026-03-09',
-    category: 'defense',
-    notes: 'DoD plans to spend entire $152B in one year; originally planned $113B; critics call it oversight-evading slush fund'
+    label: 'National Debt Interest Payments (FY26)',
+    value: 1_040_000_000_000,        // $1.04 trillion (projected FY2026 net interest)
+    source: 'Congressional Budget Office / Peter G. Peterson Foundation',
+    sourceUrl: 'https://www.pgpf.org/programs-and-projects/fiscal-policy/monthly-interest-tracker-national-debt/',
+    lastVerified: '2026-03-30',
+    category: 'interest',
+    notes: 'First time exceeding $1T; tripled since 2020; $7,700 per household; will surpass Medicare spending by FY2028'
   },
   trending3: {
-    label: 'USAID Cuts Death Toll (Estimated)',
-    value: 50_000_000_000,           // ~$50 billion (approximate annual USAID budget that was cut)
-    source: 'The Lancet / Harvard Public Health',
-    sourceUrl: 'https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)01186-9/fulltext',
-    lastVerified: '2026-03-09',
+    label: 'DOGE Claimed Savings (Disputed)',
+    value: 215_000_000_000,          // $215 billion (DOGE claimed savings as of Jan 2026)
+    source: 'DOGE.gov / NPR / Yahoo News',
+    sourceUrl: 'https://doge.gov/savings',
+    lastVerified: '2026-03-30',
     category: 'general',
-    notes: 'Lancet: 9.4M deaths projected by 2030; 600,000 already died per estimates; agency reduced from 10,000 to 15 staff',
+    notes: 'DOGE claims $215B saved; NPR analysis finds ~$2B verifiable; independent estimate says cuts cost $135B; 40% of listed contracts already fulfilled',
     isSavings: true
   },
   trending4: {
-    label: 'One Big Beautiful Bill - Medicaid Cuts',
-    value: 1_000_000_000_000,        // $1 trillion (10-year Medicaid cuts)
-    source: 'Congressional Budget Office / KFF',
-    sourceUrl: 'https://www.kff.org/medicaid/medicaid-what-to-watch-in-2026/',
-    lastVerified: '2026-03-09',
-    category: 'medicare',
-    notes: 'CBO: 11.8M to lose coverage; work requirements starting May 2026 in Nebraska; enhanced FMAP ends Jan 2026',
-    isSavings: true
+    label: 'One Big Beautiful Bill - Debt Impact',
+    value: 4_100_000_000_000,        // $4.1 trillion (added to national debt over 10 years)
+    source: 'Congressional Budget Office',
+    sourceUrl: 'https://www.cbo.gov/publication/61459',
+    lastVerified: '2026-03-30',
+    category: 'general',
+    notes: 'CBO dynamic score: $4.7T with economic effects; includes $5.9T in tax cuts offset by $2.5T in cuts; signed July 4, 2025; double the size of American Rescue Plan'
   },
   trending5: {
-    label: 'DOGE Claimed Savings (Disputed)',
-    value: 160_000_000_000,          // $160 billion (DOGE claimed savings)
-    source: 'CBS News / Brookings',
-    sourceUrl: 'https://www.cbsnews.com/news/doge-cuts-cost-135-billion-analysis-elon-musk-department-of-government-efficiency/',
-    lastVerified: '2026-03-09',
-    category: 'general',
-    notes: 'DOGE claims $160B saved; independent analysis says cuts cost $135B; Brookings estimates actual savings ~$20B; Congress rejected most cuts',
+    label: 'Medicaid Cuts (Reconciliation Law)',
+    value: 1_035_000_000_000,        // $1.035 trillion (10-year Medicaid spending reduction)
+    source: 'Georgetown CCF / Congressional Budget Office',
+    sourceUrl: 'https://ccf.georgetown.edu/2025/07/22/medicaid-chip-and-affordable-care-act-marketplace-cuts-and-other-health-provisions-in-the-budget-reconciliation-law-explained/',
+    lastVerified: '2026-03-30',
+    category: 'medicare',
+    notes: 'CBO: 11.8M lose coverage; work requirements take effect Dec 2026; 6-month redeterminations start Oct 2026; projected 1.22M job losses',
     isSavings: true
   },
   trending6: {
-    label: 'IRS Funding Rescission',
-    value: 11_600_000_000,           // $11.6 billion (clawed back IRS modernization funds)
-    source: 'Tax Law Center / BDO',
-    sourceUrl: 'https://taxlawcenter.org/blog/cuts-to-irs-budget-base-fy2026-appropriations',
-    lastVerified: '2026-03-09',
+    label: 'Federal Deficit - $50B/Week Borrowing',
+    value: 1_900_000_000_000,        // $1.9 trillion (projected FY2026 deficit)
+    source: 'CBO Monthly Budget Review / CRFB',
+    sourceUrl: 'https://www.crfb.org/press-releases/cbo-estimates-1-trillion-deficit-first-five-months-fy-2026',
+    lastVerified: '2026-03-30',
     category: 'general',
-    notes: 'Latest rescission of IRA funds; agency workforce down 25% to 76,000; only able to answer 16% of calls in 2026 filing season',
-    isSavings: true
+    notes: 'Already $1T deficit in first 5 months; borrowing $50B/week; $308B in February alone; debt hit $39T on March 17'
   },
   trending7: {
-    label: 'Federal Improper Payments (FY24)',
-    value: 162_000_000_000,          // $162 billion (FY2024 improper payments)
-    source: 'Government Accountability Office',
-    sourceUrl: 'https://www.gao.gov/products/gao-25-107753',
-    lastVerified: '2026-03-09',
+    label: 'Admin Impoundment of Foreign Aid',
+    value: 5_000_000_000,            // ~$5 billion (withheld foreign assistance funds)
+    source: 'Center on Budget and Policy Priorities',
+    sourceUrl: 'https://www.cbpp.org/research/federal-budget/2026-appropriations-must-protect-against-further-partisan-cuts-and-illegal',
+    lastVerified: '2026-03-30',
     category: 'general',
-    notes: 'Down from $236B in FY23; 74% were overpayments; $2.7T in improper payments since FY2004; Medicare/Medicaid biggest sources'
+    notes: 'Admin used pocket rescission to withhold ~$5B in foreign aid; first partisan use of Impoundment Control Act; constitutional controversy over executive spending authority',
+    isSavings: true
   }
 };
 
