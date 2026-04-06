@@ -57,10 +57,18 @@ ENV TMPDIR=/home/node/.claude/tmp
 RUN claude plugin marketplace add lackeyjb/playwright-skill \
     && claude plugin install playwright-skill@playwright-skill
 
-# Install Playwright npm dependencies and browser
+# Install Playwright npm dependencies and browser for the plugin
 RUN cd ~/.claude/plugins/cache/playwright-skill/playwright-skill/*/skills/playwright-skill \
     && npm install \
     && npx playwright install chromium
+
+# Pre-install project-level Playwright browsers so CI jobs don't need to download them
+# Copy package.json to install dependencies and cache browser binaries in the image
+COPY --chown=node:node package.json /tmp/project-deps/package.json
+RUN cd /tmp/project-deps \
+    && npm install \
+    && npx playwright install chromium \
+    && rm -rf /tmp/project-deps
 
 # Switch back to root for any remaining operations
 USER root
