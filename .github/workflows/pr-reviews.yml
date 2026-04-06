@@ -167,6 +167,8 @@ jobs:
             # Clean install to handle cross-platform package-lock.json
             rm -rf node_modules package-lock.json
             npm install
+            # Ensure Playwright browser binaries match the installed version
+            npx playwright install chromium
 
             # Start local server in background
             http-server . -p 8080 &
