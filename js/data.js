@@ -155,70 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'DHS Shutdown - TSA Back Pay Crisis',
-    value: 1_000_000_000,            // ~$1 billion (unpaid TSA wages during DHS shutdown)
-    source: 'TSA Congressional Testimony / TheStreet',
-    sourceUrl: 'https://www.tsa.gov/news/press/testimony/2026/03/25/oversight-hearing-dhs-shutdown-impacts',
-    lastVerified: '2026-03-30',
+    label: 'Iran War - Operation Epic Fury (So Far)',
+    value: 45_000_000_000,           // ~$45 billion (direct military + economic costs through April 4)
+    source: 'CSIS / Pentagon / European Business Magazine',
+    sourceUrl: 'https://www.csis.org/analysis/iran-war-cost-estimate-update-113-billion-day-6-165-billion-day-12',
+    lastVerified: '2026-04-06',
     category: 'defense',
-    notes: 'DHS shutdown since Feb 14; 61,000 TSA workers unpaid; 480+ officers lost; 4.5-hour airport waits; 500% increase in officer assaults'
+    notes: 'Operation Epic Fury began Feb 28; $11.3B in first 6 days; burning ~$1-2B/day; 13 US service members killed; Penn Wharton projects $65B if war continues; Brent crude up 55%+'
   },
   trending2: {
+    label: 'F-15E Rescue Mission with FARP in Iran',
+    value: 2_000_000_000,            // ~$2 billion (estimated cost of rescue including lost aircraft)
+    source: 'Defence Security Asia / The Aviationist / Washington Post',
+    sourceUrl: 'https://defencesecurityasia.com/en/us-2-billion-burned-iran-f15e-rescue-mission-hc130-helicopter-losses/',
+    lastVerified: '2026-04-06',
+    category: 'defense',
+    notes: 'Costliest rescue mission in history; FARP set up deep inside Iran near Isfahan; lost F-15E, 2 MC-130Js, MH-6 Little Birds, A-10; WSO evaded capture 24+ hours in mountains; 160th SOAR Night Stalkers deployed'
+  },
+  trending3: {
+    label: 'Trump FY2027 Defense Budget Proposal',
+    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
+    source: 'NPR / Breaking Defense / Washington Post',
+    sourceUrl: 'https://www.npr.org/2026/04/03/nx-s1-5772701/trump-budget-defense-spending',
+    lastVerified: '2026-04-06',
+    category: 'defense',
+    notes: 'Largest defense request in history; 44% increase over FY26; $1.15T base + $350B reconciliation; first time base budget exceeds $1T; accompanied by 10% nondefense cuts'
+  },
+  trending4: {
+    label: 'DOGE Claimed Savings (Disputed)',
+    value: 214_000_000_000,          // $214 billion (DOGE claimed savings as of April 2026)
+    source: 'DOGE.gov / CBS News',
+    sourceUrl: 'https://doge.gov/savings',
+    lastVerified: '2026-04-06',
+    category: 'general',
+    notes: 'DOGE claims $214B saved (~$1,400/taxpayer); CBS analysis finds cuts actually cost $135B; 13,440 contract + 15,887 grant terminations; Musk dropped goal from $2T to $150B',
+    isSavings: true
+  },
+  trending5: {
     label: 'National Debt Interest Payments (FY26)',
     value: 1_040_000_000_000,        // $1.04 trillion (projected FY2026 net interest)
     source: 'Congressional Budget Office / Peter G. Peterson Foundation',
     sourceUrl: 'https://www.pgpf.org/programs-and-projects/fiscal-policy/monthly-interest-tracker-national-debt/',
-    lastVerified: '2026-03-30',
+    lastVerified: '2026-04-06',
     category: 'interest',
-    notes: 'First time exceeding $1T; tripled since 2020; $7,700 per household; will surpass Medicare spending by FY2028'
-  },
-  trending3: {
-    label: 'DOGE Claimed Savings (Disputed)',
-    value: 215_000_000_000,          // $215 billion (DOGE claimed savings as of Jan 2026)
-    source: 'DOGE.gov / NPR / Yahoo News',
-    sourceUrl: 'https://doge.gov/savings',
-    lastVerified: '2026-03-30',
-    category: 'general',
-    notes: 'DOGE claims $215B saved; NPR analysis finds ~$2B verifiable; independent estimate says cuts cost $135B; 40% of listed contracts already fulfilled',
-    isSavings: true
-  },
-  trending4: {
-    label: 'One Big Beautiful Bill - Debt Impact',
-    value: 4_100_000_000_000,        // $4.1 trillion (added to national debt over 10 years)
-    source: 'Congressional Budget Office',
-    sourceUrl: 'https://www.cbo.gov/publication/61459',
-    lastVerified: '2026-03-30',
-    category: 'general',
-    notes: 'CBO dynamic score: $4.7T with economic effects; includes $5.9T in tax cuts offset by $2.5T in cuts; signed July 4, 2025; double the size of American Rescue Plan'
-  },
-  trending5: {
-    label: 'Medicaid Cuts (Reconciliation Law)',
-    value: 1_035_000_000_000,        // $1.035 trillion (10-year Medicaid spending reduction)
-    source: 'Georgetown CCF / Congressional Budget Office',
-    sourceUrl: 'https://ccf.georgetown.edu/2025/07/22/medicaid-chip-and-affordable-care-act-marketplace-cuts-and-other-health-provisions-in-the-budget-reconciliation-law-explained/',
-    lastVerified: '2026-03-30',
-    category: 'medicare',
-    notes: 'CBO: 11.8M lose coverage; work requirements take effect Dec 2026; 6-month redeterminations start Oct 2026; projected 1.22M job losses',
-    isSavings: true
+    notes: 'First time exceeding $1T; tripled since 2020; $7,700 per household; will surpass Medicare spending by FY2028; debt past $39T'
   },
   trending6: {
-    label: 'Federal Deficit - $50B/Week Borrowing',
-    value: 1_900_000_000_000,        // $1.9 trillion (projected FY2026 deficit)
-    source: 'CBO Monthly Budget Review / CRFB',
-    sourceUrl: 'https://www.crfb.org/press-releases/cbo-estimates-1-trillion-deficit-first-five-months-fy-2026',
-    lastVerified: '2026-03-30',
-    category: 'general',
-    notes: 'Already $1T deficit in first 5 months; borrowing $50B/week; $308B in February alone; debt hit $39T on March 17'
+    label: 'DHS Shutdown - TSA Back Pay Crisis',
+    value: 1_000_000_000,            // ~$1 billion (unpaid TSA wages during DHS shutdown)
+    source: 'TSA Congressional Testimony / TheStreet',
+    sourceUrl: 'https://www.tsa.gov/news/press/testimony/2026/03/25/oversight-hearing-dhs-shutdown-impacts',
+    lastVerified: '2026-04-06',
+    category: 'defense',
+    notes: 'DHS shutdown since Feb 14; 61,000 TSA workers unpaid; 480+ officers lost; 4.5-hour airport waits; only unfunded department while Iran war rages'
   },
   trending7: {
-    label: 'Admin Impoundment of Foreign Aid',
-    value: 5_000_000_000,            // ~$5 billion (withheld foreign assistance funds)
-    source: 'Center on Budget and Policy Priorities',
-    sourceUrl: 'https://www.cbpp.org/research/federal-budget/2026-appropriations-must-protect-against-further-partisan-cuts-and-illegal',
-    lastVerified: '2026-03-30',
+    label: 'Iran War Gas Price Surge - Consumer Cost',
+    value: 150_000_000_000,          // ~$150 billion (estimated annualized extra consumer fuel cost)
+    source: 'CNBC / Center for American Progress / PBS',
+    sourceUrl: 'https://www.americanprogress.org/article/the-war-in-iran-will-raise-fuel-prices-and-costs-throughout-the-economy/',
+    lastVerified: '2026-04-06',
     category: 'general',
-    notes: 'Admin used pocket rescission to withhold ~$5B in foreign aid; first partisan use of Impoundment Control Act; constitutional controversy over executive spending authority',
-    isSavings: true
+    notes: 'Gas hit $4/gal nationally (up $1+ since Feb 28); diesel at $5.45 (up 45%); Strait of Hormuz disrupted; analysts warn Brent could hit $120-200/barrel; recession fears mounting'
   }
 };
 
