@@ -63,12 +63,11 @@ RUN cd ~/.claude/plugins/cache/playwright-skill/playwright-skill/*/skills/playwr
     && npx playwright install chromium
 
 # Pre-install project-level Playwright browsers so CI jobs don't need to download them
-# Copy package.json to install dependencies and cache browser binaries in the image
-COPY --chown=node:node package.json /tmp/project-deps/package.json
-RUN cd /tmp/project-deps \
-    && npm install \
+# Install the same version range used in package.json and cache browser binaries
+RUN cd /tmp \
+    && npm install playwright@^1.57.0 \
     && npx playwright install chromium \
-    && rm -rf /tmp/project-deps
+    && rm -rf /tmp/node_modules /tmp/package.json /tmp/package-lock.json
 
 # Switch back to root for any remaining operations
 USER root
