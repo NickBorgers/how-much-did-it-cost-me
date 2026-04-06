@@ -156,67 +156,68 @@ const PERMANENT_SPENDING = {
 const TRENDING_SPENDING = {
   trending1: {
     label: 'Iran War - Operation Epic Fury (So Far)',
-    value: 45_000_000_000,           // ~$45 billion (direct military + economic costs through April 4)
-    source: 'CSIS / Pentagon / European Business Magazine',
-    sourceUrl: 'https://www.csis.org/analysis/iran-war-cost-estimate-update-113-billion-day-6-165-billion-day-12',
+    value: 45_000_000_000,           // ~$45 billion (direct military + economic costs through ~Day 36)
+    source: 'CSIS / Pentagon / Newsweek',
+    sourceUrl: 'https://www.newsweek.com/iran-war-cost-tracker-how-much-us-has-spent-11692991',
     lastVerified: '2026-04-06',
     category: 'defense',
-    notes: 'Operation Epic Fury began Feb 28; $11.3B in first 6 days; burning ~$1-2B/day; 13 US service members killed; Penn Wharton projects $65B if war continues; Brent crude up 55%+'
+    notes: 'Operation Epic Fury began Feb 28; ~$1B/day burn rate; $11.3B in first 6 days alone; Pentagon requesting $200B supplemental; Penn Wharton projects $65B+ if war continues'
   },
   trending2: {
-    label: 'F-15E Rescue Mission with FARP in Iran',
-    value: 2_000_000_000,            // ~$2 billion (estimated cost of rescue including lost aircraft)
-    source: 'Defence Security Asia / The Aviationist / Washington Post',
-    sourceUrl: 'https://defencesecurityasia.com/en/us-2-billion-burned-iran-f15e-rescue-mission-hc130-helicopter-losses/',
+    label: 'Pentagon Iran War Supplemental Request',
+    value: 200_000_000_000,          // $200 billion (Pentagon supplemental budget request to Congress)
+    source: 'Washington Post / Time / Military.com',
+    sourceUrl: 'https://www.washingtonpost.com/national-security/2026/03/18/iran-cost-budget-pentagon/',
     lastVerified: '2026-04-06',
     category: 'defense',
-    notes: 'Costliest rescue mission in history; FARP set up deep inside Iran near Isfahan; lost F-15E, 2 MC-130Js, MH-6 Little Birds, A-10; WSO evaded capture 24+ hours in mountains; 160th SOAR Night Stalkers deployed'
+    notes: 'Pentagon asked White House to approve $200B request to Congress; bipartisan opposition; Schumer called it "preposterous"; GOP lacks votes even within own party; no clear war timeline'
   },
   trending3: {
     label: 'Trump FY2027 Defense Budget Proposal',
     value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
-    source: 'NPR / Breaking Defense / Washington Post',
+    source: 'NPR / Federal News Network',
     sourceUrl: 'https://www.npr.org/2026/04/03/nx-s1-5772701/trump-budget-defense-spending',
     lastVerified: '2026-04-06',
     category: 'defense',
-    notes: 'Largest defense request in history; 44% increase over FY26; $1.15T base + $350B reconciliation; first time base budget exceeds $1T; accompanied by 10% nondefense cuts'
+    notes: 'Released April 3; largest defense request in history; 44% increase over FY26; $1.15T base + $350B reconciliation; accompanied by 10% ($73B) nondefense cuts; Trump said "can\'t take care of daycare" while fighting wars'
   },
   trending4: {
     label: 'DOGE Claimed Savings (Disputed)',
-    value: 214_000_000_000,          // $214 billion (DOGE claimed savings as of April 2026)
-    source: 'DOGE.gov / CBS News',
+    value: 215_000_000_000,          // $215 billion (DOGE claimed savings as of early 2026)
+    source: 'DOGE.gov / CBS News / Fortune',
     sourceUrl: 'https://doge.gov/savings',
     lastVerified: '2026-04-06',
     category: 'general',
-    notes: 'DOGE claims $214B saved (~$1,400/taxpayer); CBS analysis finds cuts actually cost $135B; 13,440 contract + 15,887 grant terminations; Musk dropped goal from $2T to $150B',
+    notes: 'DOGE claims ~$215B saved; independent analyses say cuts actually cost $135B+; IRS predicts $500B+ revenue loss from DOGE-driven cuts; 300,000+ federal jobs eliminated; Musk dropped goal from $2T to $150B',
     isSavings: true
   },
   trending5: {
-    label: 'National Debt Interest Payments (FY26)',
-    value: 1_040_000_000_000,        // $1.04 trillion (projected FY2026 net interest)
-    source: 'Congressional Budget Office / Peter G. Peterson Foundation',
-    sourceUrl: 'https://www.pgpf.org/programs-and-projects/fiscal-policy/monthly-interest-tracker-national-debt/',
+    label: 'One Big Beautiful Bill - Medicaid Cuts',
+    value: 1_020_000_000_000,        // $1.02 trillion (Medicaid cuts over 10 years from OBBBA)
+    source: 'CBO / Center for American Progress',
+    sourceUrl: 'https://www.americanprogress.org/article/the-truth-about-the-one-big-beautiful-bill-acts-cuts-to-medicaid-and-medicare/',
     lastVerified: '2026-04-06',
-    category: 'interest',
-    notes: 'First time exceeding $1T; tripled since 2020; $7,700 per household; will surpass Medicare spending by FY2028; debt past $39T'
+    category: 'medicare',
+    notes: 'Signed July 4, 2025; $1.02T in Medicaid cuts over 10 years; CBO estimates 11.8M lose coverage; work requirements ($326B), provider tax limits ($191B); states now grappling with rural health impacts'
   },
   trending6: {
     label: 'DHS Shutdown - TSA Back Pay Crisis',
-    value: 1_000_000_000,            // ~$1 billion (unpaid TSA wages during DHS shutdown)
-    source: 'TSA Congressional Testimony / TheStreet',
-    sourceUrl: 'https://www.tsa.gov/news/press/testimony/2026/03/25/oversight-hearing-dhs-shutdown-impacts',
+    value: 1_000_000_000,            // ~$1 billion (unpaid TSA wages during record DHS shutdown)
+    source: 'CNBC / TSA Congressional Testimony',
+    sourceUrl: 'https://www.cnbc.com/2026/04/01/tsa-trump-dhs-shutdown-airports.html',
     lastVerified: '2026-04-06',
     category: 'defense',
-    notes: 'DHS shutdown since Feb 14; 61,000 TSA workers unpaid; 480+ officers lost; 4.5-hour airport waits; only unfunded department while Iran war rages'
+    notes: 'DHS shutdown since Feb 14 (49+ days, record-setting); ~$1B unpaid payroll; 460+ officers lost; 11% call-out rate (up from 4%); 4.5-hour airport waits; House rejected Senate funding deal'
   },
   trending7: {
-    label: 'Iran War Gas Price Surge - Consumer Cost',
-    value: 150_000_000_000,          // ~$150 billion (estimated annualized extra consumer fuel cost)
-    source: 'CNBC / Center for American Progress / PBS',
-    sourceUrl: 'https://www.americanprogress.org/article/the-war-in-iran-will-raise-fuel-prices-and-costs-throughout-the-economy/',
+    label: 'FY2027 Science & Environment Cuts (NSF + EPA)',
+    value: 9_400_000_000,            // $9.4 billion (combined cuts to NSF $4.8B + EPA $4.6B)
+    source: 'Scientific American / Nature / E&E News',
+    sourceUrl: 'https://www.scientificamerican.com/article/trump-administration-proposes-massive-budget-cuts-to-science/',
     lastVerified: '2026-04-06',
     category: 'general',
-    notes: 'Gas hit $4/gal nationally (up $1+ since Feb 28); diesel at $5.45 (up 45%); Strait of Hormuz disrupted; analysts warn Brent could hit $120-200/barrel; recession fears mounting'
+    notes: 'NSF cut 55% ($4.8B); EPA cut 52% ($4.6B) in FY2027 proposal; Congress rejected similar FY26 cuts; OMB delaying release of already-approved FY26 science funds; research community alarmed',
+    isSavings: true
   }
 };
 
