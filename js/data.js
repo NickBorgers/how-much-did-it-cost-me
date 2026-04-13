@@ -156,67 +156,68 @@ const PERMANENT_SPENDING = {
 const TRENDING_SPENDING = {
   trending1: {
     label: 'Iran War - Operation Epic Fury (So Far)',
-    value: 45_000_000_000,           // ~$45 billion (direct military + economic costs through April 4)
-    source: 'CSIS / Pentagon / European Business Magazine',
-    sourceUrl: 'https://www.csis.org/analysis/iran-war-cost-estimate-update-113-billion-day-6-165-billion-day-12',
-    lastVerified: '2026-04-06',
+    value: 60_000_000_000,           // ~$60 billion (direct military costs through mid-April, day 44)
+    source: 'Penn Wharton Budget Model / NPR / CSIS',
+    sourceUrl: 'https://www.thedp.com/article/2026/04/penn-wharton-budget-model-iran-strike-cost-operation-epic-fury-trump',
+    lastVerified: '2026-04-13',
     category: 'defense',
-    notes: 'Operation Epic Fury began Feb 28; $11.3B in first 6 days; burning ~$1-2B/day; 13 US service members killed; Penn Wharton projects $65B if war continues; Brent crude up 55%+'
+    notes: 'Day 44 of Operation Epic Fury; Penn Wharton projects $47B through April; burning $1-2B/day; 15 US service members killed; Congress bracing for fight over war funding price tag; broader economic impact estimated at $210B'
   },
   trending2: {
-    label: 'F-15E Rescue Mission with FARP in Iran',
-    value: 2_000_000_000,            // ~$2 billion (estimated cost of rescue including lost aircraft)
-    source: 'Defence Security Asia / The Aviationist / Washington Post',
-    sourceUrl: 'https://defencesecurityasia.com/en/us-2-billion-burned-iran-f15e-rescue-mission-hc130-helicopter-losses/',
-    lastVerified: '2026-04-06',
-    category: 'defense',
-    notes: 'Costliest rescue mission in history; FARP set up deep inside Iran near Isfahan; lost F-15E, 2 MC-130Js, MH-6 Little Birds, A-10; WSO evaded capture 24+ hours in mountains; 160th SOAR Night Stalkers deployed'
-  },
-  trending3: {
     label: 'Trump FY2027 Defense Budget Proposal',
     value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
-    source: 'NPR / Breaking Defense / Washington Post',
+    source: 'NPR / Military Times / Federal News Network',
     sourceUrl: 'https://www.npr.org/2026/04/03/nx-s1-5772701/trump-budget-defense-spending',
-    lastVerified: '2026-04-06',
+    lastVerified: '2026-04-13',
     category: 'defense',
-    notes: 'Largest defense request in history; 44% increase over FY26; $1.15T base + $350B reconciliation; first time base budget exceeds $1T; accompanied by 10% nondefense cuts'
+    notes: 'Largest defense request in history; 44% increase over FY26; $1.15T base + $350B reconciliation; first time base budget exceeds $1T; accompanied by 10% nondefense cuts ($73B reduction)'
+  },
+  trending3: {
+    label: 'One Big Beautiful Bill Act (Deficit Impact)',
+    value: 4_200_000_000_000,        // $4.2 trillion added to debt through FY2034
+    source: 'Congressional Budget Office / Committee for a Responsible Federal Budget',
+    sourceUrl: 'https://www.crfb.org/blogs/obbba-dynamic-score-comes-47-trillion',
+    lastVerified: '2026-04-13',
+    category: 'general',
+    notes: 'CBO estimates $3.4T conventional, $4.2T dynamic score; includes $5.9T in tax cuts offset by $2.5T in spending cuts; boosts FY2026 deficit by $500B; Republicans claim it reduces deficit vs current policy baseline'
   },
   trending4: {
-    label: 'DOGE Claimed Savings (Disputed)',
-    value: 214_000_000_000,          // $214 billion (DOGE claimed savings as of April 2026)
-    source: 'DOGE.gov / CBS News',
-    sourceUrl: 'https://doge.gov/savings',
-    lastVerified: '2026-04-06',
+    label: 'IEEPA Tariff Refunds (Supreme Court Order)',
+    value: 175_000_000_000,          // $175 billion in tariff refunds owed
+    source: 'Penn Wharton Budget Model / SCOTUSblog',
+    sourceUrl: 'https://budgetmodel.wharton.upenn.edu/issues/2026/2/20/supreme-court-tariff-ruling-ieepa-revenue-and-potential-refunds',
+    lastVerified: '2026-04-13',
     category: 'general',
-    notes: 'DOGE claims $214B saved (~$1,400/taxpayer); CBS analysis finds cuts actually cost $135B; 13,440 contract + 15,887 grant terminations; Musk dropped goal from $2T to $150B',
-    isSavings: true
+    notes: 'SCOTUS struck down IEEPA tariffs 6-3; $166B collected from 330,000+ importers; Court of International Trade ordered CBP refunds; interest accruing at $650M/month; refund process expected to take months to years'
   },
   trending5: {
+    label: 'DOGE Claimed Savings (Disputed)',
+    value: 170_000_000_000,          // $170 billion (DOGE claimed savings as of April 2026)
+    source: 'DOGE.gov / CBS News / NPR',
+    sourceUrl: 'https://doge.gov/savings',
+    lastVerified: '2026-04-13',
+    category: 'general',
+    notes: 'DOGE claims $170B saved; only $70.9B itemized; independent analysis suggests ~$80B actual; some estimates say cuts cost govt $21.7B; Musk dropped goal from $2T to $150B; journalists found billions in miscounting',
+    isSavings: true
+  },
+  trending6: {
+    label: 'Proposed HHS Budget Cuts (FY2027)',
+    value: 15_800_000_000,           // $15.8 billion cut to HHS discretionary spending
+    source: 'STAT News / KFF / Chief Healthcare Executive',
+    sourceUrl: 'https://www.statnews.com/2026/04/03/trump-budget-health-care-12-percent-cut-hhs/',
+    lastVerified: '2026-04-13',
+    category: 'medicare',
+    notes: '12.5% cut to HHS; CDC cut 31% ($3B); eliminates $1.4B Prevention and Public Health Fund; HIV/AIDS activities cut $1B; new "Administration for a Healthy America" consolidation plan championed by RFK Jr.',
+    isSavings: true
+  },
+  trending7: {
     label: 'National Debt Interest Payments (FY26)',
     value: 1_040_000_000_000,        // $1.04 trillion (projected FY2026 net interest)
     source: 'Congressional Budget Office / Peter G. Peterson Foundation',
     sourceUrl: 'https://www.pgpf.org/programs-and-projects/fiscal-policy/monthly-interest-tracker-national-debt/',
-    lastVerified: '2026-04-06',
+    lastVerified: '2026-04-13',
     category: 'interest',
-    notes: 'First time exceeding $1T; tripled since 2020; $7,700 per household; will surpass Medicare spending by FY2028; debt past $39T'
-  },
-  trending6: {
-    label: 'DHS Shutdown - TSA Back Pay Crisis',
-    value: 1_000_000_000,            // ~$1 billion (unpaid TSA wages during DHS shutdown)
-    source: 'TSA Congressional Testimony / TheStreet',
-    sourceUrl: 'https://www.tsa.gov/news/press/testimony/2026/03/25/oversight-hearing-dhs-shutdown-impacts',
-    lastVerified: '2026-04-06',
-    category: 'defense',
-    notes: 'DHS shutdown since Feb 14; 61,000 TSA workers unpaid; 480+ officers lost; 4.5-hour airport waits; only unfunded department while Iran war rages'
-  },
-  trending7: {
-    label: 'Iran War Gas Price Surge - Consumer Cost',
-    value: 150_000_000_000,          // ~$150 billion (estimated annualized extra consumer fuel cost)
-    source: 'CNBC / Center for American Progress / PBS',
-    sourceUrl: 'https://www.americanprogress.org/article/the-war-in-iran-will-raise-fuel-prices-and-costs-throughout-the-economy/',
-    lastVerified: '2026-04-06',
-    category: 'general',
-    notes: 'Gas hit $4/gal nationally (up $1+ since Feb 28); diesel at $5.45 (up 45%); Strait of Hormuz disrupted; analysts warn Brent could hit $120-200/barrel; recession fears mounting'
+    notes: 'First time exceeding $1T; tripled since 2020; $7,700 per household; national debt past $39T; One Big Beautiful Bill projected to add $4.2T more; will surpass Medicare spending by FY2028'
   }
 };
 
