@@ -155,68 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War - Operation Epic Fury (So Far)',
-    value: 45_000_000_000,           // ~$45 billion (direct military + economic costs through April 4)
-    source: 'CSIS / Pentagon / European Business Magazine',
-    sourceUrl: 'https://www.csis.org/analysis/iran-war-cost-estimate-update-113-billion-day-6-165-billion-day-12',
-    lastVerified: '2026-04-06',
+    label: 'Iran War - Projected Total Cost',
+    value: 1_000_000_000_000,        // $1 trillion (Harvard projection of total war cost)
+    source: 'Harvard Kennedy School / CNBC / Fortune',
+    sourceUrl: 'https://www.cnbc.com/2026/04/14/iran-war-cost-us-taxpayer-trillion-harvard.html',
+    lastVerified: '2026-04-20',
     category: 'defense',
-    notes: 'Operation Epic Fury began Feb 28; $11.3B in first 6 days; burning ~$1-2B/day; 13 US service members killed; Penn Wharton projects $65B if war continues; Brent crude up 55%+'
+    notes: 'Harvard expert Linda Bilmes projects $1T total cost; ~$2B/day during 40+ days of conflict; Pentagon requested $200B supplemental; war began Feb 28; at least $100B/yr added to base defense budget'
   },
   trending2: {
-    label: 'F-15E Rescue Mission with FARP in Iran',
-    value: 2_000_000_000,            // ~$2 billion (estimated cost of rescue including lost aircraft)
-    source: 'Defence Security Asia / The Aviationist / Washington Post',
-    sourceUrl: 'https://defencesecurityasia.com/en/us-2-billion-burned-iran-f15e-rescue-mission-hc130-helicopter-losses/',
-    lastVerified: '2026-04-06',
-    category: 'defense',
-    notes: 'Costliest rescue mission in history; FARP set up deep inside Iran near Isfahan; lost F-15E, 2 MC-130Js, MH-6 Little Birds, A-10; WSO evaded capture 24+ hours in mountains; 160th SOAR Night Stalkers deployed'
-  },
-  trending3: {
     label: 'Trump FY2027 Defense Budget Proposal',
     value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
-    source: 'NPR / Breaking Defense / Washington Post',
+    source: 'NPR / Breaking Defense / White House',
     sourceUrl: 'https://www.npr.org/2026/04/03/nx-s1-5772701/trump-budget-defense-spending',
-    lastVerified: '2026-04-06',
+    lastVerified: '2026-04-20',
     category: 'defense',
-    notes: 'Largest defense request in history; 44% increase over FY26; $1.15T base + $350B reconciliation; first time base budget exceeds $1T; accompanied by 10% nondefense cuts'
+    notes: 'Largest defense request in history; 42% increase; $1.15T base + $350B reconciliation; 10% cut to non-defense ($73B); NASA cut 23%, State Dept cut 30%, EPA cut 50%+; hearings ongoing in Congress'
   },
-  trending4: {
+  trending3: {
     label: 'DOGE Claimed Savings (Disputed)',
     value: 214_000_000_000,          // $214 billion (DOGE claimed savings as of April 2026)
     source: 'DOGE.gov / CBS News',
     sourceUrl: 'https://doge.gov/savings',
-    lastVerified: '2026-04-06',
+    lastVerified: '2026-04-20',
     category: 'general',
-    notes: 'DOGE claims $214B saved (~$1,400/taxpayer); CBS analysis finds cuts actually cost $135B; 13,440 contract + 15,887 grant terminations; Musk dropped goal from $2T to $150B',
+    notes: 'DOGE claims $214B saved; CBS analysis says cuts actually cost $135B; quietly removed 1,000+ contracts ($4B) from records; DOGE set to conclude by July 4; 300,000+ federal employees eliminated',
     isSavings: true
   },
+  trending4: {
+    label: 'Federal Workforce Cuts - Economic Cost',
+    value: 165_600_000_000,          // $165.6 billion (economic cost of federal workforce changes)
+    source: 'Partnership for Public Service / Government Executive',
+    sourceUrl: 'https://www.govexec.com/workforce/2026/04/trumps-federal-workforce-changes-cost-economy-more-1656b-analysis-finds/412818/',
+    lastVerified: '2026-04-20',
+    category: 'general',
+    notes: 'Includes $53.2B from disengaged civil servants, $94.6B from science grant cuts, $4.5B deferred resignation payments, $764M in severance; 300,000+ federal employees shed'
+  },
   trending5: {
-    label: 'National Debt Interest Payments (FY26)',
-    value: 1_040_000_000_000,        // $1.04 trillion (projected FY2026 net interest)
-    source: 'Congressional Budget Office / Peter G. Peterson Foundation',
-    sourceUrl: 'https://www.pgpf.org/programs-and-projects/fiscal-policy/monthly-interest-tracker-national-debt/',
-    lastVerified: '2026-04-06',
-    category: 'interest',
-    notes: 'First time exceeding $1T; tripled since 2020; $7,700 per household; will surpass Medicare spending by FY2028; debt past $39T'
+    label: 'Federal Improper Payments (FY2024)',
+    value: 162_000_000_000,          // $162 billion (GAO reported improper payments)
+    source: 'U.S. Government Accountability Office',
+    sourceUrl: 'https://www.gao.gov/products/gao-25-107753',
+    lastVerified: '2026-04-20',
+    category: 'general',
+    notes: 'GAO FY2024 report: 16 agencies, 68 programs; 74% were overpayments; concentrated in Medicare, Medicaid, unemployment, EITC; $2.7T cumulative since 2003; down from $236B in FY2023'
   },
   trending6: {
-    label: 'DHS Shutdown - TSA Back Pay Crisis',
-    value: 1_000_000_000,            // ~$1 billion (unpaid TSA wages during DHS shutdown)
-    source: 'TSA Congressional Testimony / TheStreet',
-    sourceUrl: 'https://www.tsa.gov/news/press/testimony/2026/03/25/oversight-hearing-dhs-shutdown-impacts',
-    lastVerified: '2026-04-06',
+    label: 'DHS Shutdown - 60+ Days Without Funding',
+    value: 4_500_000_000,            // $4.5 billion (cost of deferred resignation payments used to fund TSA workaround)
+    source: 'Federal News Network / CNBC / CBS News',
+    sourceUrl: 'https://www.cnbc.com/2026/04/02/tsa-dhs-shutdown-senate-house.html',
+    lastVerified: '2026-04-20',
     category: 'defense',
-    notes: 'DHS shutdown since Feb 14; 61,000 TSA workers unpaid; 480+ officers lost; 4.5-hour airport waits; only unfunded department while Iran war rages'
+    notes: 'DHS unfunded since Feb 14; Trump used $4.5B in unspent funds to pay TSA; Senate passed partial funding but House has not acted; nearly 500 TSA officers quit; longest DHS shutdown ever; immigration hearings ongoing'
   },
   trending7: {
     label: 'Iran War Gas Price Surge - Consumer Cost',
-    value: 150_000_000_000,          // ~$150 billion (estimated annualized extra consumer fuel cost)
-    source: 'CNBC / Center for American Progress / PBS',
-    sourceUrl: 'https://www.americanprogress.org/article/the-war-in-iran-will-raise-fuel-prices-and-costs-throughout-the-economy/',
-    lastVerified: '2026-04-06',
+    value: 200_000_000_000,          // ~$200 billion (estimated annualized extra consumer fuel/economic cost)
+    source: 'CNBC / NBC News / Washington Post',
+    sourceUrl: 'https://www.cnbc.com/2026/04/18/iran-war-gas-prices-consumer-spending-economy.html',
+    lastVerified: '2026-04-20',
     category: 'general',
-    notes: 'Gas hit $4/gal nationally (up $1+ since Feb 28); diesel at $5.45 (up 45%); Strait of Hormuz disrupted; analysts warn Brent could hit $120-200/barrel; recession fears mounting'
+    notes: 'Gas at $4.11/gal nationally (up 38%); diesel $5.62 (up 49%); FedEx 26.5% fuel surcharge; USPS 8% package surcharge; airlines raising fees; peace talks may bring relief but prices still elevated'
   }
 };
 
