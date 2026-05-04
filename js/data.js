@@ -155,68 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War - Operation Epic Fury (So Far)',
-    value: 45_000_000_000,           // ~$45 billion (direct military + economic costs through April 4)
-    source: 'CSIS / Pentagon / European Business Magazine',
-    sourceUrl: 'https://www.csis.org/analysis/iran-war-cost-estimate-update-113-billion-day-6-165-billion-day-12',
-    lastVerified: '2026-04-06',
+    label: 'Iran War True Cost (Pentagon Lowball Disputed)',
+    value: 50_000_000_000,           // ~$50 billion (sources say real cost; Pentagon admits $25B)
+    source: 'CNN / Pentagon / NPR',
+    sourceUrl: 'https://www.cnn.com/2026/04/29/politics/us-iran-war-25-billion-cost-estimate-low',
+    lastVerified: '2026-05-04',
     category: 'defense',
-    notes: 'Operation Epic Fury began Feb 28; $11.3B in first 6 days; burning ~$1-2B/day; 13 US service members killed; Penn Wharton projects $65B if war continues; Brent crude up 55%+'
+    notes: 'Pentagon Comptroller told Congress Apr 29 cost is $25B, but CNN sources say real cost is $40-50B including base damage; 9 US bases hit in first 48 hrs; Navy 5th Fleet HQ alone needs $200M repair; not reflected in $1.5T FY27 request'
   },
   trending2: {
-    label: 'F-15E Rescue Mission with FARP in Iran',
-    value: 2_000_000_000,            // ~$2 billion (estimated cost of rescue including lost aircraft)
-    source: 'Defence Security Asia / The Aviationist / Washington Post',
-    sourceUrl: 'https://defencesecurityasia.com/en/us-2-billion-burned-iran-f15e-rescue-mission-hc130-helicopter-losses/',
-    lastVerified: '2026-04-06',
+    label: 'Trump FY2027 Defense Budget Request',
+    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
+    source: 'Breaking Defense / NPR / CSIS',
+    sourceUrl: 'https://breakingdefense.com/2026/04/trumps-1-5t-defense-budget-to-weather-harsh-scrutiny-on-capitol-hill/',
+    lastVerified: '2026-05-04',
     category: 'defense',
-    notes: 'Costliest rescue mission in history; FARP set up deep inside Iran near Isfahan; lost F-15E, 2 MC-130Js, MH-6 Little Birds, A-10; WSO evaded capture 24+ hours in mountains; 160th SOAR Night Stalkers deployed'
+    notes: 'Largest defense budget in history (even inflation-adjusted, larger than any WWII year); $1.15T base + $350B reconciliation; 40% real increase from FY26; paid for with $73B in domestic cuts; AEI says US lacks manufacturing capacity to execute'
   },
   trending3: {
-    label: 'Trump FY2027 Defense Budget Proposal',
-    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
-    source: 'NPR / Breaking Defense / Washington Post',
-    sourceUrl: 'https://www.npr.org/2026/04/03/nx-s1-5772701/trump-budget-defense-spending',
-    lastVerified: '2026-04-06',
+    label: 'Golden Dome Missile Defense Program',
+    value: 185_000_000_000,          // $185B Pentagon objective (AEI estimates up to $3.6T over 20 yrs)
+    source: 'Federal News Network / Defense One / AEI',
+    sourceUrl: 'https://federalnewsnetwork.com/defense-news/2026/03/as-golden-domes-price-tag-rises-some-say-new-estimate-is-no-more-credible/',
+    lastVerified: '2026-05-04',
     category: 'defense',
-    notes: 'Largest defense request in history; 44% increase over FY26; $1.15T base + $350B reconciliation; first time base budget exceeds $1T; accompanied by 10% nondefense cuts'
+    notes: 'Pentagon program manager now says $185B objective architecture; AEI analysis says full robust system could hit $3.6 trillion over 20 years; Space Force general just told Congress space-based interceptors may "never be affordable"; critics call it "gold brick"'
   },
   trending4: {
-    label: 'DOGE Claimed Savings (Disputed)',
-    value: 214_000_000_000,          // $214 billion (DOGE claimed savings as of April 2026)
-    source: 'DOGE.gov / CBS News',
-    sourceUrl: 'https://doge.gov/savings',
-    lastVerified: '2026-04-06',
-    category: 'general',
-    notes: 'DOGE claims $214B saved (~$1,400/taxpayer); CBS analysis finds cuts actually cost $135B; 13,440 contract + 15,887 grant terminations; Musk dropped goal from $2T to $150B',
-    isSavings: true
+    label: 'Trump-Class Battleship (Per Ship)',
+    value: 20_000_000_000,           // ~$20 billion per ship (Cato estimate; CBO says $20B+ for first)
+    source: 'Fortune / Breaking Defense / CBO / Cato Institute',
+    sourceUrl: 'https://fortune.com/2026/05/03/trump-defense-budget-wwii-battleship-modern-missiles/',
+    lastVerified: '2026-05-04',
+    category: 'defense',
+    notes: 'New Trump-class battleship costs MORE than a Ford-class nuclear carrier; CBO says first hull tops $20B; 3 ships = $43B+; experts say modern hypersonic missiles will easily destroy it; battleships were retired 30 years ago for good reasons'
   },
   trending5: {
-    label: 'National Debt Interest Payments (FY26)',
-    value: 1_040_000_000_000,        // $1.04 trillion (projected FY2026 net interest)
-    source: 'Congressional Budget Office / Peter G. Peterson Foundation',
-    sourceUrl: 'https://www.pgpf.org/programs-and-projects/fiscal-policy/monthly-interest-tracker-national-debt/',
-    lastVerified: '2026-04-06',
-    category: 'interest',
-    notes: 'First time exceeding $1T; tripled since 2020; $7,700 per household; will surpass Medicare spending by FY2028; debt past $39T'
+    label: 'Federal Improper Payments (FY2025)',
+    value: 186_000_000_000,          // $186 billion (GAO estimate, FY2025)
+    source: 'U.S. GAO / Nextgov',
+    sourceUrl: 'https://www.gao.gov/products/gao-26-108694',
+    lastVerified: '2026-05-04',
+    category: 'medicare',
+    notes: 'GAO report Apr 27: agencies made $186B in improper payments FY25, up $24B from prior year despite Trump anti-fraud claims; Medicare ($57B) + Medicaid ($37B) = $94B alone; EITC and SNAP also major contributors; 82% are overpayments; likely an undercount'
   },
   trending6: {
-    label: 'DHS Shutdown - TSA Back Pay Crisis',
-    value: 1_000_000_000,            // ~$1 billion (unpaid TSA wages during DHS shutdown)
-    source: 'TSA Congressional Testimony / TheStreet',
-    sourceUrl: 'https://www.tsa.gov/news/press/testimony/2026/03/25/oversight-hearing-dhs-shutdown-impacts',
-    lastVerified: '2026-04-06',
-    category: 'defense',
-    notes: 'DHS shutdown since Feb 14; 61,000 TSA workers unpaid; 480+ officers lost; 4.5-hour airport waits; only unfunded department while Iran war rages'
+    label: 'ICE & Border Patrol Reconciliation Funding',
+    value: 70_000_000_000,           // $70 billion (Senate-approved budget reconciliation amount)
+    source: 'Al Jazeera / CBS News / Senate Budget Committee',
+    sourceUrl: 'https://www.aljazeera.com/news/2026/4/23/us-senate-passes-70bn-funding-plan-for-ice-border-patrol',
+    lastVerified: '2026-05-04',
+    category: 'general',
+    notes: 'Senate passed budget resolution 50-48 on Apr 23 unlocking $70B for ICE and CBP via reconciliation; House adopted; bill drafting due May 15; Trump wants signed by June 1; bypasses Democratic vote; ended 75-day DHS shutdown'
   },
   trending7: {
-    label: 'Iran War Gas Price Surge - Consumer Cost',
-    value: 150_000_000_000,          // ~$150 billion (estimated annualized extra consumer fuel cost)
-    source: 'CNBC / Center for American Progress / PBS',
-    sourceUrl: 'https://www.americanprogress.org/article/the-war-in-iran-will-raise-fuel-prices-and-costs-throughout-the-economy/',
-    lastVerified: '2026-04-06',
+    label: 'DOGE Claimed Savings (Disputed)',
+    value: 215_000_000_000,          // $215 billion (DOGE.gov claim as of early 2026)
+    source: 'DOGE.gov / Yahoo Finance / Fortune',
+    sourceUrl: 'https://doge.gov/savings',
+    lastVerified: '2026-05-04',
     category: 'general',
-    notes: 'Gas hit $4/gal nationally (up $1+ since Feb 28); diesel at $5.45 (up 45%); Strait of Hormuz disrupted; analysts warn Brent could hit $120-200/barrel; recession fears mounting'
+    notes: 'DOGE claims $215B saved (vs original $2T promise); independent analyses say cuts actually COST taxpayers $135B; IRS predicts $500B revenue loss from DOGE-driven cuts; DOGE staffer admitted in deposition agency was unable to lower federal deficit',
+    isSavings: true
   }
 };
 
