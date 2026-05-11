@@ -155,68 +155,69 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War - Operation Epic Fury (So Far)',
-    value: 45_000_000_000,           // ~$45 billion (direct military + economic costs through April 4)
-    source: 'CSIS / Pentagon / European Business Magazine',
-    sourceUrl: 'https://www.csis.org/analysis/iran-war-cost-estimate-update-113-billion-day-6-165-billion-day-12',
-    lastVerified: '2026-04-06',
+    label: 'Trump FY2027 Defense Budget Request',
+    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 national security budget)
+    source: 'Washington Post / Pentagon / DefenseScoop',
+    sourceUrl: 'https://www.washingtonpost.com/national-security/2026/04/21/pentagon-15-trillion-budget-details/',
+    lastVerified: '2026-05-11',
     category: 'defense',
-    notes: 'Operation Epic Fury began Feb 28; $11.3B in first 6 days; burning ~$1-2B/day; 13 US service members killed; Penn Wharton projects $65B if war continues; Brent crude up 55%+'
+    notes: 'Historic $1.5T request: $1.15T discretionary + $350B reconciliation; first time base budget tops $1T; ~40% jump over FY26; paired with 10% non-defense cuts'
   },
   trending2: {
-    label: 'F-15E Rescue Mission with FARP in Iran',
-    value: 2_000_000_000,            // ~$2 billion (estimated cost of rescue including lost aircraft)
-    source: 'Defence Security Asia / The Aviationist / Washington Post',
-    sourceUrl: 'https://defencesecurityasia.com/en/us-2-billion-burned-iran-f15e-rescue-mission-hc130-helicopter-losses/',
-    lastVerified: '2026-04-06',
-    category: 'defense',
-    notes: 'Costliest rescue mission in history; FARP set up deep inside Iran near Isfahan; lost F-15E, 2 MC-130Js, MH-6 Little Birds, A-10; WSO evaded capture 24+ hours in mountains; 160th SOAR Night Stalkers deployed'
+    label: 'Senate $70B ICE & Border Patrol Funding',
+    value: 70_000_000_000,           // $70 billion (Senate-passed funding plan)
+    source: 'Al Jazeera / CNBC / House Appropriations Democrats',
+    sourceUrl: 'https://www.aljazeera.com/news/2026/4/23/us-senate-passes-70bn-funding-plan-for-ice-border-patrol',
+    lastVerified: '2026-05-11',
+    category: 'general',
+    notes: 'Senate passed 50-48 on April 23 after all-night session, ending DHS shutdown that began Feb 14; $38.2B ICE + $26B CBP + $5B DHS slush fund + $1.5B DOJ + $1B for Secret Service tied to Trump ballroom; runs through Jan 2029'
   },
   trending3: {
-    label: 'Trump FY2027 Defense Budget Proposal',
-    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
-    source: 'NPR / Breaking Defense / Washington Post',
-    sourceUrl: 'https://www.npr.org/2026/04/03/nx-s1-5772701/trump-budget-defense-spending',
-    lastVerified: '2026-04-06',
-    category: 'defense',
-    notes: 'Largest defense request in history; 44% increase over FY26; $1.15T base + $350B reconciliation; first time base budget exceeds $1T; accompanied by 10% nondefense cuts'
+    label: 'White House Ballroom Taxpayer Security Funding',
+    value: 1_000_000_000,            // $1 billion (Senate GOP proposed Secret Service "East Wing Modernization")
+    source: 'NBC News / Washington Post / The Hill',
+    sourceUrl: 'https://www.nbcnews.com/politics/white-house/republicans-propose-1-billion-taxpayer-dollars-secure-trump-ballroom-rcna343637',
+    lastVerified: '2026-05-11',
+    category: 'general',
+    notes: 'Senate GOP proposal (May 5-6) gives Secret Service $1B for "East Wing Modernization" security tied to Trump\'s ballroom; ballroom itself reportedly $200M-$400M and "privately funded"; critics say taxpayers were misled; some Senate GOP fear political landmine'
   },
   trending4: {
     label: 'DOGE Claimed Savings (Disputed)',
-    value: 214_000_000_000,          // $214 billion (DOGE claimed savings as of April 2026)
+    value: 214_000_000_000,          // $214 billion (DOGE claimed savings as of May 2026)
     source: 'DOGE.gov / CBS News',
     sourceUrl: 'https://doge.gov/savings',
-    lastVerified: '2026-04-06',
+    lastVerified: '2026-05-11',
     category: 'general',
-    notes: 'DOGE claims $214B saved (~$1,400/taxpayer); CBS analysis finds cuts actually cost $135B; 13,440 contract + 15,887 grant terminations; Musk dropped goal from $2T to $150B',
+    notes: 'DOGE claims $214B+ saved (~$1,400/taxpayer); CBS analysis finds cuts have actually cost taxpayers $135B; IRS projects $500B+ revenue loss from DOGE-driven cuts; 13,440 contract + 15,887 grant terminations',
     isSavings: true
   },
   trending5: {
     label: 'National Debt Interest Payments (FY26)',
-    value: 1_040_000_000_000,        // $1.04 trillion (projected FY2026 net interest)
-    source: 'Congressional Budget Office / Peter G. Peterson Foundation',
+    value: 1_000_000_000_000,        // $1.0 trillion (projected FY2026 net interest)
+    source: 'Peter G. Peterson Foundation / CBO',
     sourceUrl: 'https://www.pgpf.org/programs-and-projects/fiscal-policy/monthly-interest-tracker-national-debt/',
-    lastVerified: '2026-04-06',
+    lastVerified: '2026-05-11',
     category: 'interest',
-    notes: 'First time exceeding $1T; tripled since 2020; $7,700 per household; will surpass Medicare spending by FY2028; debt past $39T'
+    notes: 'First fiscal year interest tops $1T (3.3% of GDP); more than national defense ($947B), Medicaid ($708B), and veterans benefits combined; Treasury borrowing on track for $2T this year; debt-to-GDP eclipses post-WWII high'
   },
   trending6: {
-    label: 'DHS Shutdown - TSA Back Pay Crisis',
-    value: 1_000_000_000,            // ~$1 billion (unpaid TSA wages during DHS shutdown)
-    source: 'TSA Congressional Testimony / TheStreet',
-    sourceUrl: 'https://www.tsa.gov/news/press/testimony/2026/03/25/oversight-hearing-dhs-shutdown-impacts',
-    lastVerified: '2026-04-06',
+    label: 'Golden Dome Missile Defense Program',
+    value: 185_000_000_000,          // $185 billion (latest official program cost estimate)
+    source: 'National Defense Magazine / Breaking Defense / Taxpayers for Common Sense',
+    sourceUrl: 'https://www.nationaldefensemagazine.org/articles/2026/4/10/pentagons-flagship-golden-dome-missile-defense-program-spinning-its-wheels',
+    lastVerified: '2026-05-11',
     category: 'defense',
-    notes: 'DHS shutdown since Feb 14; 61,000 TSA workers unpaid; 480+ officers lost; 4.5-hour airport waits; only unfunded department while Iran war rages'
+    notes: 'Renamed from "Iron Dome for America"; official estimate jumped from $175B to $185B in March; Taxpayers for Common Sense projects up to $3.6T over 20 years; $17B requested for FY27 alone; critics say it is unlikely to work'
   },
   trending7: {
-    label: 'Iran War Gas Price Surge - Consumer Cost',
-    value: 150_000_000_000,          // ~$150 billion (estimated annualized extra consumer fuel cost)
-    source: 'CNBC / Center for American Progress / PBS',
-    sourceUrl: 'https://www.americanprogress.org/article/the-war-in-iran-will-raise-fuel-prices-and-costs-throughout-the-economy/',
-    lastVerified: '2026-04-06',
-    category: 'general',
-    notes: 'Gas hit $4/gal nationally (up $1+ since Feb 28); diesel at $5.45 (up 45%); Strait of Hormuz disrupted; analysts warn Brent could hit $120-200/barrel; recession fears mounting'
+    label: 'OBBBA Medicaid Cuts (10-Year Total)',
+    value: 863_000_000_000,          // $863 billion in Medicaid cuts over 10 years
+    source: 'AMA / Center for Children and Families / Center for American Progress',
+    sourceUrl: 'https://www.ama-assn.org/health-care-advocacy/federal-advocacy/changes-medicaid-aca-and-other-key-provisions-one-big',
+    lastVerified: '2026-05-11',
+    category: 'medicare',
+    notes: 'One Big Beautiful Bill Act (signed July 2025) cuts Medicaid by $863B over 10 years; projected to drop enrollment by 10.3M people by 2034; work-reporting requirements kick in December 2026; first major rollout phase generating renewed controversy',
+    isSavings: true
   }
 };
 
