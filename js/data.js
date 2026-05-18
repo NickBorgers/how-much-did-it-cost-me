@@ -155,68 +155,69 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War - Operation Epic Fury (So Far)',
-    value: 45_000_000_000,           // ~$45 billion (direct military + economic costs through April 4)
-    source: 'CSIS / Pentagon / European Business Magazine',
-    sourceUrl: 'https://www.csis.org/analysis/iran-war-cost-estimate-update-113-billion-day-6-165-billion-day-12',
-    lastVerified: '2026-04-06',
+    label: 'Golden Dome Missile Defense (CBO 20-Year Estimate)',
+    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year cost estimate)
+    source: 'Congressional Budget Office / NPR / Defense One',
+    sourceUrl: 'https://www.cbo.gov/publication/62379',
+    lastVerified: '2026-05-18',
     category: 'defense',
-    notes: 'Operation Epic Fury began Feb 28; $11.3B in first 6 days; burning ~$1-2B/day; 13 US service members killed; Penn Wharton projects $65B if war continues; Brent crude up 55%+'
+    notes: 'CBO released May 13 estimate of $1.2T over 20 years; Trump claimed $175B, Space Force estimated $185B through 2035; ~70% goes to space-based portion including ~7,800 satellites; CBO says even at full cost would stop ~10 incoming ballistic missiles'
   },
   trending2: {
-    label: 'F-15E Rescue Mission with FARP in Iran',
-    value: 2_000_000_000,            // ~$2 billion (estimated cost of rescue including lost aircraft)
-    source: 'Defence Security Asia / The Aviationist / Washington Post',
-    sourceUrl: 'https://defencesecurityasia.com/en/us-2-billion-burned-iran-f15e-rescue-mission-hc130-helicopter-losses/',
-    lastVerified: '2026-04-06',
+    label: 'Iran War Total Cost (Pentagon Estimate)',
+    value: 29_000_000_000,           // $29 billion (Pentagon estimate as of May 12, 2026)
+    source: 'Pentagon Comptroller Testimony / NOTUS / Al Jazeera',
+    sourceUrl: 'https://www.notus.org/defense/pentagon-iran-war-cost-29-billion',
+    lastVerified: '2026-05-18',
     category: 'defense',
-    notes: 'Costliest rescue mission in history; FARP set up deep inside Iran near Isfahan; lost F-15E, 2 MC-130Js, MH-6 Little Birds, A-10; WSO evaded capture 24+ hours in mountains; 160th SOAR Night Stalkers deployed'
+    notes: 'Pentagon told Congress May 12 that Iran war cost has climbed to $29B (up from $25B last month); experts say true cost likely exceeds $1 trillion; Brown University estimates broader economic cost at $37B+ including $20B in gas prices'
   },
   trending3: {
-    label: 'Trump FY2027 Defense Budget Proposal',
-    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
-    source: 'NPR / Breaking Defense / Washington Post',
-    sourceUrl: 'https://www.npr.org/2026/04/03/nx-s1-5772701/trump-budget-defense-spending',
-    lastVerified: '2026-04-06',
-    category: 'defense',
-    notes: 'Largest defense request in history; 44% increase over FY26; $1.15T base + $350B reconciliation; first time base budget exceeds $1T; accompanied by 10% nondefense cuts'
+    label: 'ICE/CBP $70B Reconciliation Funding Bill',
+    value: 70_000_000_000,           // $70 billion (proposed via reconciliation)
+    source: 'NPR / Roll Call / American Immigration Council',
+    sourceUrl: 'https://www.npr.org/2026/05/11/nx-s1-5816261/congress-likely-to-pass-republicans-plan-to-fund-ice',
+    lastVerified: '2026-05-18',
+    category: 'general',
+    notes: 'Senate committees holding markup week of May 19; adds $70B over 10 years on top of $170B from OBBBA; ICE gets $38.2B for enforcement/detention; controversy after federal agents killed 2 citizens in Minnesota; Democrats blocked funding since Feb 14'
   },
   trending4: {
-    label: 'DOGE Claimed Savings (Disputed)',
-    value: 214_000_000_000,          // $214 billion (DOGE claimed savings as of April 2026)
-    source: 'DOGE.gov / CBS News',
-    sourceUrl: 'https://doge.gov/savings',
-    lastVerified: '2026-04-06',
+    label: 'Federal Improper Payments (FY2025 GAO Report)',
+    value: 186_000_000_000,          // $186 billion (FY2025 improper payments per GAO)
+    source: 'Government Accountability Office',
+    sourceUrl: 'https://www.gao.gov/products/gao-26-108694',
+    lastVerified: '2026-05-18',
     category: 'general',
-    notes: 'DOGE claims $214B saved (~$1,400/taxpayer); CBS analysis finds cuts actually cost $135B; 13,440 contract + 15,887 grant terminations; Musk dropped goal from $2T to $150B',
-    isSavings: true
+    notes: 'New GAO report shows $186B in improper payments across 64 programs in FY25 — up $24B from prior year; Medicare $57B, Medicaid $37B; 19 programs had rates above 10%, six above 25%; actual total likely higher (excludes some uncounted programs)'
   },
   trending5: {
-    label: 'National Debt Interest Payments (FY26)',
-    value: 1_040_000_000_000,        // $1.04 trillion (projected FY2026 net interest)
-    source: 'Congressional Budget Office / Peter G. Peterson Foundation',
-    sourceUrl: 'https://www.pgpf.org/programs-and-projects/fiscal-policy/monthly-interest-tracker-national-debt/',
-    lastVerified: '2026-04-06',
-    category: 'interest',
-    notes: 'First time exceeding $1T; tripled since 2020; $7,700 per household; will surpass Medicare spending by FY2028; debt past $39T'
+    label: 'NASA Science Mission Cut (FY27 Proposal)',
+    value: 3_400_000_000,            // $3.4 billion (proposed cut from $7.25B to $3.9B)
+    source: 'Space.com / CNN / The Planetary Society',
+    sourceUrl: 'https://www.space.com/space-exploration/what-a-waste-us-scientists-decry-trumps-47-percent-cuts-to-nasa-science-budget',
+    lastVerified: '2026-05-18',
+    category: 'general',
+    notes: 'Trump FY27 budget proposes cutting NASA Science Mission Directorate 47% from $7.25B to $3.9B — largest single-year science cut in agency history; threatens dozens of planetary/astrophysics/Earth missions; Senate rejected nearly identical FY26 proposal',
+    isSavings: true
   },
   trending6: {
-    label: 'DHS Shutdown - TSA Back Pay Crisis',
-    value: 1_000_000_000,            // ~$1 billion (unpaid TSA wages during DHS shutdown)
-    source: 'TSA Congressional Testimony / TheStreet',
-    sourceUrl: 'https://www.tsa.gov/news/press/testimony/2026/03/25/oversight-hearing-dhs-shutdown-impacts',
-    lastVerified: '2026-04-06',
-    category: 'defense',
-    notes: 'DHS shutdown since Feb 14; 61,000 TSA workers unpaid; 480+ officers lost; 4.5-hour airport waits; only unfunded department while Iran war rages'
+    label: 'DOGE Final Claimed Savings (Disputed)',
+    value: 214_000_000_000,          // $214 billion (DOGE final claimed savings)
+    source: 'DOGE.gov / CBS News / TIME',
+    sourceUrl: 'https://www.cbsnews.com/news/doge-wall-of-receipts-misleading-inaccurate-claims/',
+    lastVerified: '2026-05-18',
+    category: 'general',
+    notes: 'DOGE disbanded with claimed $214B savings — but only $70.9B itemized and analyses find true number is $1-80B; CBS found cuts cost $135B; AEI estimates ~$80B; IRS predicts $500B+ in lost revenue from DOGE-driven cuts; far short of Musk\'s $1T promise',
+    isSavings: true
   },
   trending7: {
-    label: 'Iran War Gas Price Surge - Consumer Cost',
-    value: 150_000_000_000,          // ~$150 billion (estimated annualized extra consumer fuel cost)
-    source: 'CNBC / Center for American Progress / PBS',
-    sourceUrl: 'https://www.americanprogress.org/article/the-war-in-iran-will-raise-fuel-prices-and-costs-throughout-the-economy/',
-    lastVerified: '2026-04-06',
-    category: 'general',
-    notes: 'Gas hit $4/gal nationally (up $1+ since Feb 28); diesel at $5.45 (up 45%); Strait of Hormuz disrupted; analysts warn Brent could hit $120-200/barrel; recession fears mounting'
+    label: 'Trump FY2027 Defense Budget Request',
+    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
+    source: 'Washington Post / Breaking Defense / Arms Control Association',
+    sourceUrl: 'https://www.washingtonpost.com/opinions/2026/05/12/raising-defense-spending-15-trillion-requires-congressional-oversight/',
+    lastVerified: '2026-05-18',
+    category: 'defense',
+    notes: 'Largest defense request since WWII; $1.15T base + $350B reconciliation (latter delayed indefinitely); watchdogs warn it adds $5.8T to debt; Pentagon has failed every annual audit since 2018; paired with 10% non-defense cuts'
   }
 };
 
