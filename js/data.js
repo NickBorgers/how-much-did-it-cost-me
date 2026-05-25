@@ -155,68 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War - Operation Epic Fury (So Far)',
-    value: 45_000_000_000,           // ~$45 billion (direct military + economic costs through April 4)
-    source: 'CSIS / Pentagon / European Business Magazine',
-    sourceUrl: 'https://www.csis.org/analysis/iran-war-cost-estimate-update-113-billion-day-6-165-billion-day-12',
-    lastVerified: '2026-04-06',
+    label: 'Golden Dome Missile Shield (CBO Estimate)',
+    value: 1_200_000_000_000,        // $1.2 trillion over 20 years (CBO estimate, May 12 2026)
+    source: 'Congressional Budget Office / Defense One / Bloomberg',
+    sourceUrl: 'https://www.defenseone.com/defense-systems/2026/05/golden-dome-cost-trillion-cbo/413485/',
+    lastVerified: '2026-05-25',
     category: 'defense',
-    notes: 'Operation Epic Fury began Feb 28; $11.3B in first 6 days; burning ~$1-2B/day; 13 US service members killed; Penn Wharton projects $65B if war continues; Brent crude up 55%+'
+    notes: 'CBO May 12 estimate is 7x the Trump administration\'s $175B figure; space-based interceptors are 70% of acquisition cost; CBO notes system would not be an "impenetrable shield"'
   },
   trending2: {
-    label: 'F-15E Rescue Mission with FARP in Iran',
-    value: 2_000_000_000,            // ~$2 billion (estimated cost of rescue including lost aircraft)
-    source: 'Defence Security Asia / The Aviationist / Washington Post',
-    sourceUrl: 'https://defencesecurityasia.com/en/us-2-billion-burned-iran-f15e-rescue-mission-hc130-helicopter-losses/',
-    lastVerified: '2026-04-06',
+    label: 'Trump FY2027 Defense Budget Request',
+    value: 1_500_000_000_000,        // $1.5 trillion proposed for FY2027
+    source: 'Department of War / Washington Post / Federal News Network',
+    sourceUrl: 'https://www.washingtonpost.com/opinions/2026/05/12/raising-defense-spending-15-trillion-requires-congressional-oversight/',
+    lastVerified: '2026-05-25',
     category: 'defense',
-    notes: 'Costliest rescue mission in history; FARP set up deep inside Iran near Isfahan; lost F-15E, 2 MC-130Js, MH-6 Little Birds, A-10; WSO evaded capture 24+ hours in mountains; 160th SOAR Night Stalkers deployed'
+    notes: 'Largest US military budget request in history (larger than WWII peak); 42-44% jump over FY26; $1.15T base + $350B reconciliation; $350B reconciliation portion now stalled in Congress per Breaking Defense May 2026'
   },
   trending3: {
-    label: 'Trump FY2027 Defense Budget Proposal',
-    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
-    source: 'NPR / Breaking Defense / Washington Post',
-    sourceUrl: 'https://www.npr.org/2026/04/03/nx-s1-5772701/trump-budget-defense-spending',
-    lastVerified: '2026-04-06',
+    label: 'Iran War Cost (Pentagon Comptroller Update)',
+    value: 29_000_000_000,           // $29 billion Pentagon-reported total cost as of May 12, 2026
+    source: 'Pentagon Comptroller (Jules Hurst) / Al Jazeera / Military Times',
+    sourceUrl: 'https://www.militarytimes.com/news/pentagon-congress/2026/05/12/pentagon-seeks-additional-funding-as-cost-of-iran-war-tops-29-billon/',
+    lastVerified: '2026-05-25',
     category: 'defense',
-    notes: 'Largest defense request in history; 44% increase over FY26; $1.15T base + $350B reconciliation; first time base budget exceeds $1T; accompanied by 10% nondefense cuts'
+    notes: 'Pentagon revealed $29B figure in Senate testimony May 12; up from $25B in late April; experts say true cost is higher and excludes installation repairs; supplemental spending request expected'
   },
   trending4: {
-    label: 'DOGE Claimed Savings (Disputed)',
-    value: 214_000_000_000,          // $214 billion (DOGE claimed savings as of April 2026)
-    source: 'DOGE.gov / CBS News',
-    sourceUrl: 'https://doge.gov/savings',
-    lastVerified: '2026-04-06',
+    label: 'Federal Improper Payments FY2025 (GAO)',
+    value: 186_000_000_000,          // $186 billion in improper payments reported by GAO
+    source: 'U.S. Government Accountability Office (GAO-26-108694)',
+    sourceUrl: 'https://www.gao.gov/products/gao-26-108694',
+    lastVerified: '2026-05-25',
     category: 'general',
-    notes: 'DOGE claims $214B saved (~$1,400/taxpayer); CBS analysis finds cuts actually cost $135B; 13,440 contract + 15,887 grant terminations; Musk dropped goal from $2T to $150B',
-    isSavings: true
+    notes: 'GAO report widely covered May 20; up $24B from prior year; 15 agencies, 64 programs; Medicare ($57B) and Medicaid ($37B) are largest contributors; $3T cumulative since 2003'
   },
   trending5: {
-    label: 'National Debt Interest Payments (FY26)',
-    value: 1_040_000_000_000,        // $1.04 trillion (projected FY2026 net interest)
-    source: 'Congressional Budget Office / Peter G. Peterson Foundation',
-    sourceUrl: 'https://www.pgpf.org/programs-and-projects/fiscal-policy/monthly-interest-tracker-national-debt/',
-    lastVerified: '2026-04-06',
-    category: 'interest',
-    notes: 'First time exceeding $1T; tripled since 2020; $7,700 per household; will surpass Medicare spending by FY2028; debt past $39T'
+    label: 'Congressional Pork Earmarks (2026 Pig Book)',
+    value: 23_700_000_000,           // $23.7 billion in earmarks identified by CAGW
+    source: 'Citizens Against Government Waste 2026 Congressional Pig Book',
+    sourceUrl: 'https://www.cagw.org/this-week-in-waste-may-15-2026/',
+    lastVerified: '2026-05-25',
+    category: 'general',
+    notes: 'Released May 14; 8,392 earmarks, 4.4% more than FY24; fourth-highest total since 1991; Sen. Patty Murray got "Whole Hog Award" with 96 earmarks worth $484M; Rep. Chuck Fleischmann led the House'
   },
   trending6: {
-    label: 'DHS Shutdown - TSA Back Pay Crisis',
-    value: 1_000_000_000,            // ~$1 billion (unpaid TSA wages during DHS shutdown)
-    source: 'TSA Congressional Testimony / TheStreet',
-    sourceUrl: 'https://www.tsa.gov/news/press/testimony/2026/03/25/oversight-hearing-dhs-shutdown-impacts',
-    lastVerified: '2026-04-06',
-    category: 'defense',
-    notes: 'DHS shutdown since Feb 14; 61,000 TSA workers unpaid; 480+ officers lost; 4.5-hour airport waits; only unfunded department while Iran war rages'
+    label: 'ICE & Border Patrol Reconciliation Funding',
+    value: 70_000_000_000,           // $70 billion proposed for ICE/CBP via reconciliation
+    source: 'CBS News / Brennan Center / Cato Institute',
+    sourceUrl: 'https://www.cbsnews.com/news/house-vote-senate-approved-budget-resolution-ice-funding/',
+    lastVerified: '2026-05-25',
+    category: 'general',
+    notes: 'Reconciliation bill due by June 1 Trump deadline; would 400% increase ICE annual detention budget; aims for 1M deportations/year; critics note 74% of ICE detainees have no criminal record'
   },
   trending7: {
-    label: 'Iran War Gas Price Surge - Consumer Cost',
-    value: 150_000_000_000,          // ~$150 billion (estimated annualized extra consumer fuel cost)
-    source: 'CNBC / Center for American Progress / PBS',
-    sourceUrl: 'https://www.americanprogress.org/article/the-war-in-iran-will-raise-fuel-prices-and-costs-throughout-the-economy/',
-    lastVerified: '2026-04-06',
-    category: 'general',
-    notes: 'Gas hit $4/gal nationally (up $1+ since Feb 28); diesel at $5.45 (up 45%); Strait of Hormuz disrupted; analysts warn Brent could hit $120-200/barrel; recession fears mounting'
+    label: 'Medicaid Cuts in Reconciliation (10-yr)',
+    value: 911_000_000_000,          // $911 billion in Medicaid cuts over 10 years per CBO
+    source: 'Congressional Budget Office / KFF / CBPP',
+    sourceUrl: 'https://www.kff.org/policy-watch/how-might-federal-medicaid-cuts-in-the-senate-passed-reconciliation-bill-affect-rural-areas/',
+    lastVerified: '2026-05-25',
+    category: 'medicare',
+    notes: 'CBO estimates reconciliation package reduces federal Medicaid spending by $911B over 10 years; 10M more uninsured; work requirements take effect Dec 31, 2026; rural hospitals hit hardest',
+    isSavings: true
   }
 };
 
