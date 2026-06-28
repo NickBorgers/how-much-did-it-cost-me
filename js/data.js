@@ -155,68 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War - Operation Epic Fury (So Far)',
-    value: 45_000_000_000,           // ~$45 billion (direct military + economic costs through April 4)
-    source: 'CSIS / Pentagon / European Business Magazine',
-    sourceUrl: 'https://www.csis.org/analysis/iran-war-cost-estimate-update-113-billion-day-6-165-billion-day-12',
-    lastVerified: '2026-04-06',
+    label: 'F-35 Fighter Program - Lifetime Cost',
+    value: 2_000_000_000_000,        // $2 trillion (projected lifetime acquisition + sustainment cost)
+    source: 'U.S. Government Accountability Office (GAO-26-108113)',
+    sourceUrl: 'https://www.gao.gov/blog/f-35-will-now-exceed-2-trillion-military-plans-fly-it-less',
+    lastVerified: '2026-06-22',
     category: 'defense',
-    notes: 'Operation Epic Fury began Feb 28; $11.3B in first 6 days; burning ~$1-2B/day; 13 US service members killed; Penn Wharton projects $65B if war continues; Brent crude up 55%+'
+    notes: 'June 11, 2026 GAO report: lifetime cost now exceeds $2T while readiness collapses - only 1 in 4 jets (25%) fully mission capable, down from 38%; most expensive weapons system ever built'
   },
   trending2: {
-    label: 'F-15E Rescue Mission with FARP in Iran',
-    value: 2_000_000_000,            // ~$2 billion (estimated cost of rescue including lost aircraft)
-    source: 'Defence Security Asia / The Aviationist / Washington Post',
-    sourceUrl: 'https://defencesecurityasia.com/en/us-2-billion-burned-iran-f15e-rescue-mission-hc130-helicopter-losses/',
-    lastVerified: '2026-04-06',
+    label: 'Trump FY2027 Defense Budget Request',
+    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
+    source: 'NPR / Quincy Institute / Breaking Defense',
+    sourceUrl: 'https://www.npr.org/2026/04/03/nx-s1-5772701/trump-budget-defense-spending',
+    lastVerified: '2026-06-22',
     category: 'defense',
-    notes: 'Costliest rescue mission in history; FARP set up deep inside Iran near Isfahan; lost F-15E, 2 MC-130Js, MH-6 Little Birds, A-10; WSO evaded capture 24+ hours in mountains; 160th SOAR Night Stalkers deployed'
+    notes: 'Largest defense request in history; ~40% real increase over FY26; $1.15T base + $350B reconciliation; critics call it "unhinged, unaffordable"; facing harsh scrutiny on Capitol Hill'
   },
   trending3: {
-    label: 'Trump FY2027 Defense Budget Proposal',
-    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
-    source: 'NPR / Breaking Defense / Washington Post',
-    sourceUrl: 'https://www.npr.org/2026/04/03/nx-s1-5772701/trump-budget-defense-spending',
-    lastVerified: '2026-04-06',
+    label: 'Pentagon Year-End Spending Binge',
+    value: 90_000_000_000,           // ~$90 billion (DoD spending in final month of FY2025)
+    source: 'The National Interest / CNN',
+    sourceUrl: 'https://nationalinterest.org/blog/buzz/pentagon-went-on-90-billion-spending-bender-lobster-pianos-ps-031226',
+    lastVerified: '2026-06-22',
     category: 'defense',
-    notes: 'Largest defense request in history; 44% increase over FY26; $1.15T base + $350B reconciliation; first time base budget exceeds $1T; accompanied by 10% nondefense cuts'
+    notes: 'DoD spent ~$90B in the final month of FY2025 to avoid "use it or lose it" cuts - including $9M on Alaskan king crab and lobster, $200M+ on furniture, $5.3M on Apple devices'
   },
   trending4: {
-    label: 'DOGE Claimed Savings (Disputed)',
-    value: 214_000_000_000,          // $214 billion (DOGE claimed savings as of April 2026)
-    source: 'DOGE.gov / CBS News',
-    sourceUrl: 'https://doge.gov/savings',
-    lastVerified: '2026-04-06',
+    label: 'Secure America Act - ICE & Border Funding',
+    value: 69_500_000_000,           // $69.5 billion (ICE + CBP funding through 2029)
+    source: 'TIME / American Immigration Council',
+    sourceUrl: 'https://time.com/article/2026/06/10/house-passes-secure-america-act-senate-reconciliation-bill-funding-immigration-enforcement-trump/',
+    lastVerified: '2026-06-22',
     category: 'general',
-    notes: 'DOGE claims $214B saved (~$1,400/taxpayer); CBS analysis finds cuts actually cost $135B; 13,440 contract + 15,887 grant terminations; Musk dropped goal from $2T to $150B',
-    isSavings: true
+    notes: 'Signed June 10, 2026; ~$69.5B for ICE and CBP through 2029 ($38.5B to ICE) via reconciliation; passed House 214-212; on top of $75B ICE received in the 2025 reconciliation bill'
   },
   trending5: {
-    label: 'National Debt Interest Payments (FY26)',
-    value: 1_040_000_000_000,        // $1.04 trillion (projected FY2026 net interest)
-    source: 'Congressional Budget Office / Peter G. Peterson Foundation',
-    sourceUrl: 'https://www.pgpf.org/programs-and-projects/fiscal-policy/monthly-interest-tracker-national-debt/',
-    lastVerified: '2026-04-06',
-    category: 'interest',
-    notes: 'First time exceeding $1T; tripled since 2020; $7,700 per household; will surpass Medicare spending by FY2028; debt past $39T'
+    label: 'Federal Improper Payments (FY2025)',
+    value: 186_000_000_000,          // $186 billion (estimated improper payments FY2025)
+    source: 'U.S. Government Accountability Office (GAO-26-108694)',
+    sourceUrl: 'https://www.gao.gov/products/gao-26-108694',
+    lastVerified: '2026-06-22',
+    category: 'general',
+    notes: 'GAO: agencies made an estimated $186B in improper payments in FY2025 (up $24B); ~82% were overpayments; Medicare, Medicaid, EITC and SNAP led the list; ~$3T lost since FY2003'
   },
   trending6: {
-    label: 'DHS Shutdown - TSA Back Pay Crisis',
-    value: 1_000_000_000,            // ~$1 billion (unpaid TSA wages during DHS shutdown)
-    source: 'TSA Congressional Testimony / TheStreet',
-    sourceUrl: 'https://www.tsa.gov/news/press/testimony/2026/03/25/oversight-hearing-dhs-shutdown-impacts',
-    lastVerified: '2026-04-06',
-    category: 'defense',
-    notes: 'DHS shutdown since Feb 14; 61,000 TSA workers unpaid; 480+ officers lost; 4.5-hour airport waits; only unfunded department while Iran war rages'
+    label: 'ACA Improper Enrollment Subsidies',
+    value: 25_000_000_000,           // up to $25 billion (improper ACA exchange subsidy payments)
+    source: 'Paragon Health Institute / Citizens Against Government Waste',
+    sourceUrl: 'https://www.cagw.org/this-week-in-waste-june-19-2026/',
+    lastVerified: '2026-06-22',
+    category: 'medicare',
+    notes: 'June 2026 Paragon report: 6.2M (27%) of 2026 ACA exchange sign-ups were improper, costing taxpayers up to $25B in subsidy payments; figure is disputed and politically charged'
   },
   trending7: {
-    label: 'Iran War Gas Price Surge - Consumer Cost',
-    value: 150_000_000_000,          // ~$150 billion (estimated annualized extra consumer fuel cost)
-    source: 'CNBC / Center for American Progress / PBS',
-    sourceUrl: 'https://www.americanprogress.org/article/the-war-in-iran-will-raise-fuel-prices-and-costs-throughout-the-economy/',
-    lastVerified: '2026-04-06',
+    label: 'DOGE Claimed Savings (Disputed)',
+    value: 170_000_000_000,          // $170 billion (DOGE claimed total savings)
+    source: 'DOGE.gov / NPR / CBS News',
+    sourceUrl: 'https://doge.gov/savings',
+    lastVerified: '2026-06-22',
     category: 'general',
-    notes: 'Gas hit $4/gal nationally (up $1+ since Feb 28); diesel at $5.45 (up 45%); Strait of Hormuz disrupted; analysts warn Brent could hit $120-200/barrel; recession fears mounting'
+    notes: 'DOGE claims ~$170B saved but only $70.9B is itemized; NPR estimates real savings near $2B and AEI puts contract savings near $10B; "wall of receipts" riddled with documented errors',
+    isSavings: true
   }
 };
 
