@@ -155,67 +155,67 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'F-35 Fighter Program - Lifetime Cost',
-    value: 2_000_000_000_000,        // $2 trillion (projected lifetime acquisition + sustainment cost)
-    source: 'U.S. Government Accountability Office (GAO-26-108113)',
-    sourceUrl: 'https://www.gao.gov/blog/f-35-will-now-exceed-2-trillion-military-plans-fly-it-less',
-    lastVerified: '2026-06-22',
-    category: 'defense',
-    notes: 'June 11, 2026 GAO report: lifetime cost now exceeds $2T while readiness collapses - only 1 in 4 jets (25%) fully mission capable, down from 38%; most expensive weapons system ever built'
-  },
-  trending2: {
     label: 'Trump FY2027 Defense Budget Request',
     value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
-    source: 'NPR / Quincy Institute / Breaking Defense',
-    sourceUrl: 'https://www.npr.org/2026/04/03/nx-s1-5772701/trump-budget-defense-spending',
-    lastVerified: '2026-06-22',
+    source: 'The Washington Post / Center for American Progress',
+    sourceUrl: 'https://www.washingtonpost.com/national-security/2026/04/21/pentagon-15-trillion-budget-details/',
+    lastVerified: '2026-06-29',
     category: 'defense',
-    notes: 'Largest defense request in history; ~40% real increase over FY26; $1.15T base + $350B reconciliation; critics call it "unhinged, unaffordable"; facing harsh scrutiny on Capitol Hill'
+    notes: 'Largest defense request in history (~50% jump); $1.15T base + $350B resting on a third reconciliation bill; largest defense increase since the Korean War; a Democratic amendment to cut $150B failed 25-31 but signaled a rare showdown over Pentagon size'
   },
-  trending3: {
-    label: 'Pentagon Year-End Spending Binge',
-    value: 90_000_000_000,           // ~$90 billion (DoD spending in final month of FY2025)
-    source: 'The National Interest / CNN',
-    sourceUrl: 'https://nationalinterest.org/blog/buzz/pentagon-went-on-90-billion-spending-bender-lobster-pianos-ps-031226',
-    lastVerified: '2026-06-22',
-    category: 'defense',
-    notes: 'DoD spent ~$90B in the final month of FY2025 to avoid "use it or lose it" cuts - including $9M on Alaskan king crab and lobster, $200M+ on furniture, $5.3M on Apple devices'
-  },
-  trending4: {
+  trending2: {
     label: 'Secure America Act - ICE & Border Funding',
     value: 69_500_000_000,           // $69.5 billion (ICE + CBP funding through 2029)
-    source: 'TIME / American Immigration Council',
-    sourceUrl: 'https://time.com/article/2026/06/10/house-passes-secure-america-act-senate-reconciliation-bill-funding-immigration-enforcement-trump/',
-    lastVerified: '2026-06-22',
+    source: 'Federal News Network / American Immigration Council',
+    sourceUrl: 'https://federalnewsnetwork.com/congress/2026/06/a-stretch-of-capitol-hill-work-is-shifting-from-debate-to-decisions/',
+    lastVerified: '2026-06-29',
     category: 'general',
-    notes: 'Signed June 10, 2026; ~$69.5B for ICE and CBP through 2029 ($38.5B to ICE) via reconciliation; passed House 214-212; on top of $75B ICE received in the 2025 reconciliation bill'
+    notes: 'Signed June 10, 2026; ~$69.5B for ICE and CBP through 2029 ($38.5B to ICE, $26B to CBP) via reconciliation; passed House 214-212; routes spending around the regular appropriations process; on top of $75B ICE received in the 2025 reconciliation bill'
   },
-  trending5: {
+  trending3: {
     label: 'Federal Improper Payments (FY2025)',
     value: 186_000_000_000,          // $186 billion (estimated improper payments FY2025)
-    source: 'U.S. Government Accountability Office (GAO-26-108694)',
-    sourceUrl: 'https://www.gao.gov/products/gao-26-108694',
-    lastVerified: '2026-06-22',
+    source: 'U.S. Government Accountability Office / Washington Times',
+    sourceUrl: 'https://www.washingtontimes.com/news/2026/jun/6/federal-agencies-made-186-billion-improper-payments-last-year/',
+    lastVerified: '2026-06-29',
     category: 'general',
-    notes: 'GAO: agencies made an estimated $186B in improper payments in FY2025 (up $24B); ~82% were overpayments; Medicare, Medicaid, EITC and SNAP led the list; ~$3T lost since FY2003'
+    notes: 'GAO: agencies made an estimated $186B in improper payments in FY2025 (up ~$24B); mostly overpayments to ineligible recipients; ~$3T in payment errors since 2003; Medicare, Medicaid, EITC and SNAP led the list'
+  },
+  trending4: {
+    label: 'ACA Enhanced Subsidies Expired',
+    value: 31_000_000_000,           // $31 billion (CBO cost to restore the expired enhanced premium tax credits)
+    source: 'NPR / CBO / KFF',
+    sourceUrl: 'https://www.npr.org/2026/06/26/nx-s1-5860746/aca-health-insurance-subsidies-rates-premiums',
+    lastVerified: '2026-06-29',
+    category: 'medicare',
+    notes: 'Enhanced ACA premium tax credits expired end of 2025; ~5M people dropped marketplace coverage as premiums roughly doubled; CBO pegs the cost to restore the credits at ~$31B/yr (~$335B over 10 years) - a live budget fight in Congress'
+  },
+  trending5: {
+    label: '2026 Health Care Fraud Takedown',
+    value: 6_500_000_000,            // $6.5 billion (alleged fraud in the 2026 national takedown)
+    source: 'U.S. Department of Justice',
+    sourceUrl: 'https://www.justice.gov/opa/pr/national-health-care-fraud-takedown-results-455-defendants-charged-connection-over-65',
+    lastVerified: '2026-06-29',
+    category: 'medicare',
+    notes: 'DOJ charged 455 defendants (including 90 doctors) across 56 districts over $6.5B in alleged Medicare/Medicaid fraud and opioid schemes; over $182M in cash and luxury assets seized; the most state Medicaid units ever to participate'
   },
   trending6: {
-    label: 'ACA Improper Enrollment Subsidies',
-    value: 25_000_000_000,           // up to $25 billion (improper ACA exchange subsidy payments)
-    source: 'Paragon Health Institute / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-june-19-2026/',
-    lastVerified: '2026-06-22',
-    category: 'medicare',
-    notes: 'June 2026 Paragon report: 6.2M (27%) of 2026 ACA exchange sign-ups were improper, costing taxpayers up to $25B in subsidy payments; figure is disputed and politically charged'
+    label: 'Annual Interest on the National Debt',
+    value: 1_200_000_000_000,        // ~$1.2 trillion (annual net interest on the federal debt)
+    source: 'NPR / CBS News / Committee for a Responsible Federal Budget',
+    sourceUrl: 'https://www.npr.org/2026/05/02/nx-s1-5807628/federal-debt-exceeds-39-trillion-for-the-1st-time-why-is-this-milestone-significant',
+    lastVerified: '2026-06-29',
+    category: 'interest',
+    notes: 'Total national debt topped $39.28T and publicly held debt briefly exceeded the entire U.S. economy (100%+ of GDP) for the first time since WWII; interest on the debt now runs more than $1 trillion a year, crowding out other spending'
   },
   trending7: {
     label: 'DOGE Claimed Savings (Disputed)',
     value: 170_000_000_000,          // $170 billion (DOGE claimed total savings)
     source: 'DOGE.gov / NPR / CBS News',
     sourceUrl: 'https://doge.gov/savings',
-    lastVerified: '2026-06-22',
+    lastVerified: '2026-06-29',
     category: 'general',
-    notes: 'DOGE claims ~$170B saved but only $70.9B is itemized; NPR estimates real savings near $2B and AEI puts contract savings near $10B; "wall of receipts" riddled with documented errors',
+    notes: 'DOGE claims ~$170B saved but only ~$70.9B is itemized; NPR estimates real savings near $2B and AEI puts it around $80B; "wall of receipts" riddled with documented errors (an $8M ICE contract listed as $8B, a $560K contract listed as $232M)',
     isSavings: true
   }
 };
