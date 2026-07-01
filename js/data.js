@@ -133,7 +133,7 @@ const PERMANENT_SPENDING = {
     value: 13_300_000_000,           // $13.3 billion (USS Gerald R. Ford total program cost)
     source: 'Congressional Research Service',
     sourceUrl: 'https://crsreports.congress.gov/product/pdf/RS/RS20643',
-    lastVerified: DATA_LAST_UPDATED,
+    lastVerified: '2026-07-01',
     category: 'defense',
     notes: 'Total acquisition cost for lead ship CVN-78',
     multiYear: true                  // Spent over construction period, not in one year
@@ -142,8 +142,8 @@ const PERMANENT_SPENDING = {
     label: 'James Webb Space Telescope',
     value: 10_000_000_000,           // $10 billion (total development cost)
     source: 'NASA',
-    sourceUrl: 'https://www.nasa.gov/mission_pages/webb/about/index.html',
-    lastVerified: DATA_LAST_UPDATED,
+    sourceUrl: 'https://science.nasa.gov/mission/webb/about-overview',
+    lastVerified: '2026-07-01',
     category: 'general',
     notes: 'Total lifecycle development cost',
     multiYear: true                  // Spent over development period, not in one year
