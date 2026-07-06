@@ -155,68 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'F-35 Fighter Program - Lifetime Cost',
-    value: 2_000_000_000_000,        // $2 trillion (projected lifetime acquisition + sustainment cost)
-    source: 'U.S. Government Accountability Office (GAO-26-108113)',
-    sourceUrl: 'https://www.gao.gov/blog/f-35-will-now-exceed-2-trillion-military-plans-fly-it-less',
-    lastVerified: '2026-06-22',
+    label: 'Golden Dome Missile Defense Shield',
+    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year buildout estimate)
+    source: 'Congressional Budget Office / Defense News',
+    sourceUrl: 'https://www.defensenews.com/news/pentagon-congress/2026/05/12/trumps-golden-dome-missile-shield-estimated-to-cost-12-trillion/',
+    lastVerified: '2026-07-06',
     category: 'defense',
-    notes: 'June 11, 2026 GAO report: lifetime cost now exceeds $2T while readiness collapses - only 1 in 4 jets (25%) fully mission capable, down from 38%; most expensive weapons system ever built'
+    notes: 'CBO pegs Trump\'s space-based missile shield at $1.2T over 20 years vs the $175B the White House claims; July 2 watchdog report urges Congress to revoke ~$18B in FY27 funding; ~70% of cost is a proposed 7,800-satellite constellation many say may never work'
   },
   trending2: {
     label: 'Trump FY2027 Defense Budget Request',
     value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
-    source: 'NPR / Quincy Institute / Breaking Defense',
+    source: 'NPR / Quincy Institute / Bloomberg Government',
     sourceUrl: 'https://www.npr.org/2026/04/03/nx-s1-5772701/trump-budget-defense-spending',
-    lastVerified: '2026-06-22',
+    lastVerified: '2026-07-06',
     category: 'defense',
-    notes: 'Largest defense request in history; ~40% real increase over FY26; $1.15T base + $350B reconciliation; critics call it "unhinged, unaffordable"; facing harsh scrutiny on Capitol Hill'
+    notes: 'Largest defense request in history and biggest one-year jump since the Korean War (~40% real increase over FY26); critics call it "unhinged, unaffordable, unnecessary"; now unraveling amid GOP pushback ("we\'re broke") on Capitol Hill'
   },
   trending3: {
-    label: 'Pentagon Year-End Spending Binge',
-    value: 90_000_000_000,           // ~$90 billion (DoD spending in final month of FY2025)
-    source: 'The National Interest / CNN',
-    sourceUrl: 'https://nationalinterest.org/blog/buzz/pentagon-went-on-90-billion-spending-bender-lobster-pianos-ps-031226',
-    lastVerified: '2026-06-22',
+    label: 'Army 250th Anniversary Military Parade',
+    value: 45_000_000,               // up to $45 million (parade cost estimate)
+    source: 'NBC Washington / AP-NORC poll',
+    sourceUrl: 'https://www.nbcwashington.com/news/local/how-much-will-the-dc-military-parade-cost-heres-a-tally/3932636/',
+    lastVerified: '2026-07-06',
     category: 'defense',
-    notes: 'DoD spent ~$90B in the final month of FY2025 to avoid "use it or lose it" cuts - including $9M on Alaskan king crab and lobster, $200M+ on furniture, $5.3M on Apple devices'
+    notes: 'Army 250th birthday parade cost taxpayers up to $45M (incl. up to $16M for tank damage to DC streets); 64% of Americans called it "not a good use" of government money in AP-NORC polling'
   },
   trending4: {
-    label: 'Secure America Act - ICE & Border Funding',
-    value: 69_500_000_000,           // $69.5 billion (ICE + CBP funding through 2029)
-    source: 'TIME / American Immigration Council',
-    sourceUrl: 'https://time.com/article/2026/06/10/house-passes-secure-america-act-senate-reconciliation-bill-funding-immigration-enforcement-trump/',
-    lastVerified: '2026-06-22',
+    label: 'DOGE Final Claimed Savings (Disputed)',
+    value: 215_000_000_000,          // $215 billion (DOGE final claimed savings before July 4 shutdown)
+    source: 'DOGE.gov / Fox Business / CBS News',
+    sourceUrl: 'https://www.foxbusiness.com/politics/doge-website-deactivates-after-reaching-self-termination-deadline-come-end',
+    lastVerified: '2026-07-06',
     category: 'general',
-    notes: 'Signed June 10, 2026; ~$69.5B for ICE and CBP through 2029 ($38.5B to ICE) via reconciliation; passed House 214-212; on top of $75B ICE received in the 2025 reconciliation bill'
+    notes: 'DOGE website went dark July 4, 2026 claiming ~$215B in savings; independent analysts say documented savings are far lower (~$2B per NPR) and one study estimates DOGE cuts actually cost taxpayers $135B; "wall of receipts" riddled with errors ($8B ICE contract was really $8M)',
+    isSavings: true
   },
   trending5: {
     label: 'Federal Improper Payments (FY2025)',
     value: 186_000_000_000,          // $186 billion (estimated improper payments FY2025)
     source: 'U.S. Government Accountability Office (GAO-26-108694)',
     sourceUrl: 'https://www.gao.gov/products/gao-26-108694',
-    lastVerified: '2026-06-22',
+    lastVerified: '2026-07-06',
     category: 'general',
     notes: 'GAO: agencies made an estimated $186B in improper payments in FY2025 (up $24B); ~82% were overpayments; Medicare, Medicaid, EITC and SNAP led the list; ~$3T lost since FY2003'
   },
   trending6: {
-    label: 'ACA Improper Enrollment Subsidies',
+    label: 'ACA "Obamacare" Improper Enrollment Subsidies',
     value: 25_000_000_000,           // up to $25 billion (improper ACA exchange subsidy payments)
-    source: 'Paragon Health Institute / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-june-19-2026/',
-    lastVerified: '2026-06-22',
+    source: 'Paragon Health Institute',
+    sourceUrl: 'https://paragoninstitute.org/private-health/the-persistent-obamacare-enrollment-fraud/',
+    lastVerified: '2026-07-06',
     category: 'medicare',
-    notes: 'June 2026 Paragon report: 6.2M (27%) of 2026 ACA exchange sign-ups were improper, costing taxpayers up to $25B in subsidy payments; figure is disputed and politically charged'
+    notes: 'Back in the news July 3-5 ("Obamacare\'s fraud bill just came due"); Paragon estimates 6.2M (27%) of 2026 ACA sign-ups were improper, costing up to $25B in subsidies; HHS says 1M+ enrollees lack a Social Security number; figure is disputed and politically charged'
   },
   trending7: {
-    label: 'DOGE Claimed Savings (Disputed)',
-    value: 170_000_000_000,          // $170 billion (DOGE claimed total savings)
-    source: 'DOGE.gov / NPR / CBS News',
-    sourceUrl: 'https://doge.gov/savings',
-    lastVerified: '2026-06-22',
-    category: 'general',
-    notes: 'DOGE claims ~$170B saved but only $70.9B is itemized; NPR estimates real savings near $2B and AEI puts contract savings near $10B; "wall of receipts" riddled with documented errors',
-    isSavings: true
+    label: 'Social Security Overpayments (Uncollected)',
+    value: 23_000_000_000,           // $23 billion (uncollected overpayment balance)
+    source: 'Congressional Research Service (R48251) / SSA OIG',
+    sourceUrl: 'https://www.congress.gov/crs-product/R48251',
+    lastVerified: '2026-07-06',
+    category: 'socialSecurity',
+    notes: 'SSA carries a ~$23B uncollected overpayment balance; controversy over reinstating aggressive 50-100% benefit clawbacks that critics say punish seniors for the agency\'s own mistakes; a May 2026 OIG audit found SSA spent more chasing some small overpayments than it recovered'
   }
 };
 
