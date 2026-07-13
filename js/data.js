@@ -155,68 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'F-35 Fighter Program - Lifetime Cost',
-    value: 2_000_000_000_000,        // $2 trillion (projected lifetime acquisition + sustainment cost)
-    source: 'U.S. Government Accountability Office (GAO-26-108113)',
-    sourceUrl: 'https://www.gao.gov/blog/f-35-will-now-exceed-2-trillion-military-plans-fly-it-less',
-    lastVerified: '2026-06-22',
-    category: 'defense',
-    notes: 'June 11, 2026 GAO report: lifetime cost now exceeds $2T while readiness collapses - only 1 in 4 jets (25%) fully mission capable, down from 38%; most expensive weapons system ever built'
+    label: 'DOGE Final Savings Tally (Disputed)',
+    value: 215_000_000_000,          // $215 billion (DOGE's final claimed savings)
+    source: 'The Washington Times / Fox Business / Cato Institute',
+    sourceUrl: 'https://www.washingtontimes.com/news/2026/jul/8/doge-shuts-tally-budget-savings-dispute/',
+    lastVerified: '2026-07-13',
+    category: 'general',
+    notes: 'DOGE shut down and took its website dark on July 4, 2026 claiming ~$215B saved, but OMB says it will produce no final after-action report; auditors found duplicate entries, arithmetic errors and contract "ceiling" values counted as savings - Cato projects the cuts may actually cost ~$135B once lost productivity, rehiring and litigation are counted',
+    isSavings: true
   },
   trending2: {
     label: 'Trump FY2027 Defense Budget Request',
     value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
-    source: 'NPR / Quincy Institute / Breaking Defense',
-    sourceUrl: 'https://www.npr.org/2026/04/03/nx-s1-5772701/trump-budget-defense-spending',
-    lastVerified: '2026-06-22',
+    source: 'NGAUS / Arms Control Association / Bloomberg Government',
+    sourceUrl: 'https://www.ngaus.org/newsroom/president-proposes-15-trillion-defense-budget',
+    lastVerified: '2026-07-13',
     category: 'defense',
-    notes: 'Largest defense request in history; ~40% real increase over FY26; $1.15T base + $350B reconciliation; critics call it "unhinged, unaffordable"; facing harsh scrutiny on Capitol Hill'
+    notes: 'Largest defense request in U.S. history - a ~$234B jump over FY26; $1.15T discretionary base plus ~$350B crammed into a party-line reconciliation package that is now "unraveling in Congress"; House vote expected mid-July 2026'
   },
   trending3: {
-    label: 'Pentagon Year-End Spending Binge',
-    value: 90_000_000_000,           // ~$90 billion (DoD spending in final month of FY2025)
-    source: 'The National Interest / CNN',
-    sourceUrl: 'https://nationalinterest.org/blog/buzz/pentagon-went-on-90-billion-spending-bender-lobster-pianos-ps-031226',
-    lastVerified: '2026-06-22',
+    label: 'F-35 Readiness Rescue Funding',
+    value: 13_700_000_000,           // $13.7 billion (new sustainment strategy funding)
+    source: 'U.S. Government Accountability Office (GAO-26-108113)',
+    sourceUrl: 'https://www.gao.gov/products/gao-26-108113',
+    lastVerified: '2026-07-13',
     category: 'defense',
-    notes: 'DoD spent ~$90B in the final month of FY2025 to avoid "use it or lose it" cuts - including $9M on Alaskan king crab and lobster, $200M+ on furniture, $5.3M on Apple devices'
+    notes: 'June 11, 2026 GAO report: Pentagon is spending $13.7B on a new strategy to fix F-35 readiness after the fleet full-mission-capable rate fell to just 25% (1 in 4 jets); Pratt & Whitney delivered engines late 100% of the time and Lockheed delivered jets late 91% of the time'
   },
   trending4: {
-    label: 'Secure America Act - ICE & Border Funding',
-    value: 69_500_000_000,           // $69.5 billion (ICE + CBP funding through 2029)
-    source: 'TIME / American Immigration Council',
-    sourceUrl: 'https://time.com/article/2026/06/10/house-passes-secure-america-act-senate-reconciliation-bill-funding-immigration-enforcement-trump/',
-    lastVerified: '2026-06-22',
+    label: 'Congressional Earmarks (2026 Pig Book)',
+    value: 24_000_000_000,           // $24 billion (total earmarks in FY2026)
+    source: 'Citizens Against Government Waste - 2026 Congressional Pig Book',
+    sourceUrl: 'https://www.cagw.org/costly-and-corrupt-earmarks-waste-taxpayer-resources/',
+    lastVerified: '2026-07-13',
     category: 'general',
-    notes: 'Signed June 10, 2026; ~$69.5B for ICE and CBP through 2029 ($38.5B to ICE) via reconciliation; passed House 214-212; on top of $75B ICE received in the 2025 reconciliation bill'
+    notes: "CAGW's 2026 Pig Book exposes 8,595 earmarks worth $24B - up 5.7% and the fourth-highest total on record; the 17% of members on the appropriations committees claimed ~39% of the money; Alaska got the most pork per capita at $444.55 per resident"
   },
   trending5: {
-    label: 'Federal Improper Payments (FY2025)',
-    value: 186_000_000_000,          // $186 billion (estimated improper payments FY2025)
-    source: 'U.S. Government Accountability Office (GAO-26-108694)',
-    sourceUrl: 'https://www.gao.gov/products/gao-26-108694',
-    lastVerified: '2026-06-22',
-    category: 'general',
-    notes: 'GAO: agencies made an estimated $186B in improper payments in FY2025 (up $24B); ~82% were overpayments; Medicare, Medicaid, EITC and SNAP led the list; ~$3T lost since FY2003'
+    label: 'Medicare Advantage Overpayments (2026)',
+    value: 76_000_000_000,           // $76 billion (estimated MA overpayment in 2026)
+    source: 'Medicare Payment Advisory Commission (MedPAC) / Center for Medicare Advocacy',
+    sourceUrl: 'https://medicareadvocacy.org/overpayments-to-medicare-advantage-in-2026-76-billion/',
+    lastVerified: '2026-07-13',
+    category: 'medicare',
+    notes: 'MedPAC estimates private Medicare Advantage plans will be overpaid ~14%, or $76B, in 2026; a WSJ/Senate Judiciary investigation tied $50B of extra payments (2018-2021) to "questionable diagnoses" insurers added to records - CMS is now moving to claw some of it back'
   },
   trending6: {
-    label: 'ACA Improper Enrollment Subsidies',
-    value: 25_000_000_000,           // up to $25 billion (improper ACA exchange subsidy payments)
-    source: 'Paragon Health Institute / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-june-19-2026/',
-    lastVerified: '2026-06-22',
-    category: 'medicare',
-    notes: 'June 2026 Paragon report: 6.2M (27%) of 2026 ACA exchange sign-ups were improper, costing taxpayers up to $25B in subsidy payments; figure is disputed and politically charged'
+    label: 'Social Security Improper Payments',
+    value: 72_000_000_000,           // ~$72 billion (improper payments FY2015-2022)
+    source: 'Social Security Administration Office of the Inspector General',
+    sourceUrl: 'https://oig.ssa.gov/news-releases/2024-08-19-ig-reports-nearly-72-billion-improperly-paid-recommended-improvements-go-unimplemented/',
+    lastVerified: '2026-07-13',
+    category: 'socialSecurity',
+    notes: 'SSA made nearly $72B in improper payments (mostly overpayments) over FY2015-2022; in 2026 the agency began defaulting to a 100% clawback of benefit checks to recover them, a policy critics (including a former commissioner) blast as "clawback cruelty"'
   },
   trending7: {
-    label: 'DOGE Claimed Savings (Disputed)',
-    value: 170_000_000_000,          // $170 billion (DOGE claimed total savings)
-    source: 'DOGE.gov / NPR / CBS News',
-    sourceUrl: 'https://doge.gov/savings',
-    lastVerified: '2026-06-22',
+    label: 'Pandemic Unemployment Fraud',
+    value: 43_600_000_000,           // $43.6 billion (improper PUA payments, FY23)
+    source: 'U.S. Government Accountability Office / Washington Times',
+    sourceUrl: 'https://www.washingtontimes.com/news/2026/jan/7/finally-stop-wasteful-fraudulent-government-spending/',
+    lastVerified: '2026-07-13',
     category: 'general',
-    notes: 'DOGE claims ~$170B saved but only $70.9B is itemized; NPR estimates real savings near $2B and AEI puts contract savings near $10B; "wall of receipts" riddled with documented errors',
-    isSavings: true
+    notes: 'GAO found $43.6B in improper payments in the Federal Pandemic Unemployment Assistance program; it is a centerpiece of the 2026 anti-fraud push behind the Protecting American Taxpayers Act (PATA), a bundle of 17 bills sponsors say could cut $240B in losses'
   }
 };
 
