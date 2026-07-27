@@ -155,68 +155,69 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'F-35 Fighter Program - Lifetime Cost',
-    value: 2_000_000_000_000,        // $2 trillion (projected lifetime acquisition + sustainment cost)
-    source: 'U.S. Government Accountability Office (GAO-26-108113)',
-    sourceUrl: 'https://www.gao.gov/blog/f-35-will-now-exceed-2-trillion-military-plans-fly-it-less',
-    lastVerified: '2026-06-22',
+    label: 'Trump Iran War Cost',
+    value: 37_500_000_000,           // $37.5 billion (direct military cost so far, per DoD)
+    source: 'CNN / Sec. Pete Hegseth testimony',
+    sourceUrl: 'https://www.cnn.com/2026/07/21/world/live-news/iran-war-trump',
+    lastVerified: '2026-07-27',
     category: 'defense',
-    notes: 'June 11, 2026 GAO report: lifetime cost now exceeds $2T while readiness collapses - only 1 in 4 jets (25%) fully mission capable, down from 38%; most expensive weapons system ever built'
+    notes: 'Defense Sec. Hegseth told Congress July 21, 2026 the war has cost $37.5B; experts say the real bill is higher - CSIS estimates ~$40B in DoD costs and Moody\'s puts the broader economic hit near $132B'
   },
   trending2: {
-    label: 'Trump FY2027 Defense Budget Request',
-    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
-    source: 'NPR / Quincy Institute / Breaking Defense',
-    sourceUrl: 'https://www.npr.org/2026/04/03/nx-s1-5772701/trump-budget-defense-spending',
-    lastVerified: '2026-06-22',
+    label: 'Golden Dome Missile Shield',
+    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year buildout estimate)
+    source: 'Congressional Budget Office',
+    sourceUrl: 'https://www.cbo.gov/system/files/2026-05/62379-golden-dome.pdf',
+    lastVerified: '2026-07-27',
     category: 'defense',
-    notes: 'Largest defense request in history; ~40% real increase over FY26; $1.15T base + $350B reconciliation; critics call it "unhinged, unaffordable"; facing harsh scrutiny on Capitol Hill'
+    notes: 'CBO estimates Trump\'s Golden Dome could cost $1.2T over 20 years - nearly 7x his original $175B promise; ~$730B would buy space interceptors able to stop only ~10 incoming missiles'
   },
   trending3: {
-    label: 'Pentagon Year-End Spending Binge',
-    value: 90_000_000_000,           // ~$90 billion (DoD spending in final month of FY2025)
-    source: 'The National Interest / CNN',
-    sourceUrl: 'https://nationalinterest.org/blog/buzz/pentagon-went-on-90-billion-spending-bender-lobster-pianos-ps-031226',
-    lastVerified: '2026-06-22',
+    label: 'Trump FY2027 Pentagon Budget Request',
+    value: 1_500_000_000_000,        // $1.5 trillion ($1.45T request)
+    source: 'Bloomberg Government / Arms Control Association',
+    sourceUrl: 'https://news.bgov.com/bloomberg-government-news/trumps-1-5-trillion-pentagon-request-is-unraveling-in-congress',
+    lastVerified: '2026-07-27',
     category: 'defense',
-    notes: 'DoD spent ~$90B in the final month of FY2025 to avoid "use it or lose it" cuts - including $9M on Alaskan king crab and lobster, $200M+ on furniture, $5.3M on Apple devices'
+    notes: 'Largest inflation-adjusted Pentagon request ever (~$420B one-year jump); "unraveling" in Congress because ~$350B relies on a party-line reconciliation bill lawmakers may not pass'
   },
   trending4: {
-    label: 'Secure America Act - ICE & Border Funding',
-    value: 69_500_000_000,           // $69.5 billion (ICE + CBP funding through 2029)
-    source: 'TIME / American Immigration Council',
-    sourceUrl: 'https://time.com/article/2026/06/10/house-passes-secure-america-act-senate-reconciliation-bill-funding-immigration-enforcement-trump/',
-    lastVerified: '2026-06-22',
-    category: 'general',
-    notes: 'Signed June 10, 2026; ~$69.5B for ICE and CBP through 2029 ($38.5B to ICE) via reconciliation; passed House 214-212; on top of $75B ICE received in the 2025 reconciliation bill'
+    label: 'Megabill Medicaid Cuts',
+    value: 625_000_000_000,          // $625 billion (CBO 10-year savings estimate)
+    source: 'Congressional Budget Office / CBPP',
+    sourceUrl: 'https://www.cbpp.org/research/health/congressional-republicans-cant-cut-medicaid-by-hundreds-of-billions-without-hurting',
+    lastVerified: '2026-07-27',
+    category: 'medicare',
+    notes: 'Largest Medicaid cut in the program\'s history, passed just before July 4; CBO scores ~$625B in savings but projects 7.6M+ people lose coverage; work requirements begin Jan 2027',
+    isSavings: true
   },
   trending5: {
     label: 'Federal Improper Payments (FY2025)',
     value: 186_000_000_000,          // $186 billion (estimated improper payments FY2025)
-    source: 'U.S. Government Accountability Office (GAO-26-108694)',
-    sourceUrl: 'https://www.gao.gov/products/gao-26-108694',
-    lastVerified: '2026-06-22',
+    source: 'U.S. Government Accountability Office',
+    sourceUrl: 'https://www.gao.gov/blog/186-billion-was-lost-improper-payments-last-year-how-can-we-prevent-them-future',
+    lastVerified: '2026-07-27',
     category: 'general',
-    notes: 'GAO: agencies made an estimated $186B in improper payments in FY2025 (up $24B); ~82% were overpayments; Medicare, Medicaid, EITC and SNAP led the list; ~$3T lost since FY2003'
+    notes: 'GAO: agencies made ~$186B in improper payments in FY2025 (up $24B); Medicare led at $57B, Medicaid $37B, EITC $21B; ~82% were overpayments; ~$3T lost since FY2003'
   },
   trending6: {
-    label: 'ACA Improper Enrollment Subsidies',
-    value: 25_000_000_000,           // up to $25 billion (improper ACA exchange subsidy payments)
-    source: 'Paragon Health Institute / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-june-19-2026/',
-    lastVerified: '2026-06-22',
-    category: 'medicare',
-    notes: 'June 2026 Paragon report: 6.2M (27%) of 2026 ACA exchange sign-ups were improper, costing taxpayers up to $25B in subsidy payments; figure is disputed and politically charged'
+    label: 'DOGE Claimed Savings (Disputed)',
+    value: 215_000_000_000,          // $215 billion (DOGE final claimed total savings)
+    source: 'Fox Business / CBS News / Washington Times',
+    sourceUrl: 'https://www.foxbusiness.com/politics/doge-website-deactivates-after-reaching-self-termination-deadline-come-end',
+    lastVerified: '2026-07-27',
+    category: 'general',
+    notes: 'DOGE shut down July 4, 2026 claiming $215B saved - far short of its $2T goal; analysts dispute the figure (a CNN review found ~2/3 came from inflated contract ceilings) and OMB won\'t issue a final report',
+    isSavings: true
   },
   trending7: {
-    label: 'DOGE Claimed Savings (Disputed)',
-    value: 170_000_000_000,          // $170 billion (DOGE claimed total savings)
-    source: 'DOGE.gov / NPR / CBS News',
-    sourceUrl: 'https://doge.gov/savings',
-    lastVerified: '2026-06-22',
+    label: 'Loyal Source Contractor Fraud',
+    value: 2_100_000_000,            // $2.1 billion (federal contracts retained after settlement)
+    source: 'Stars and Stripes',
+    sourceUrl: 'https://www.stripes.com/theaters/us/2026-07-24/contractor-settles-shell-company-allegations-22344655.html',
+    lastVerified: '2026-07-27',
     category: 'general',
-    notes: 'DOGE claims ~$170B saved but only $70.9B is itemized; NPR estimates real savings near $2B and AEI puts contract savings near $10B; "wall of receipts" riddled with documented errors',
-    isSavings: true
+    notes: 'Medical-staffing firm Loyal Source settled allegations it fraudulently won contracts set aside for service-disabled-veteran businesses for just $1.8M - yet keeps ~$2.1B in active federal contracts and stays eligible for more'
   }
 };
 
