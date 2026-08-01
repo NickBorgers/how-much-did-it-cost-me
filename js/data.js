@@ -66,7 +66,7 @@ const FEDERAL_BUDGET = {
     otherMandatory: 1_000_000_000_000,      // $1.0 trillion
     netInterest: 900_000_000_000            // $0.9 trillion
   },
-  deficit: 1_900_000_000_000                // $1.9 trillion (~28% of spending)
+  deficit: 1_833_000_000_000                // $1.833 trillion actual (~27% of spending); revenue/spending above are rounded to $0.1T
 };
 
 // Funding source categories for the selector
@@ -130,22 +130,22 @@ const COMPARISONS = [
 const PERMANENT_SPENDING = {
   geraldRFordCarrier: {
     label: 'Gerald R. Ford Aircraft Carrier',
-    value: 13_300_000_000,           // $13.3 billion (USS Gerald R. Ford total program cost)
-    source: 'Congressional Research Service',
+    value: 13_300_000_000,           // $13.3 billion (CVN-78 final procurement cost: $13,316.5M in then-year dollars)
+    source: 'Congressional Research Service (RS20643)',
     sourceUrl: 'https://crsreports.congress.gov/product/pdf/RS/RS20643',
-    lastVerified: DATA_LAST_UPDATED,
+    lastVerified: '2026-08-01',
     category: 'defense',
-    notes: 'Total acquisition cost for lead ship CVN-78',
+    notes: 'Final procurement cost for lead ship CVN-78 ($13,316.5M, then-year dollars); excludes Ford-class research and development',
     multiYear: true                  // Spent over construction period, not in one year
   },
   jamesWebbTelescope: {
     label: 'James Webb Space Telescope',
-    value: 10_000_000_000,           // $10 billion (total development cost)
-    source: 'NASA',
-    sourceUrl: 'https://www.nasa.gov/mission_pages/webb/about/index.html',
-    lastVerified: DATA_LAST_UPDATED,
+    value: 10_000_000_000,           // ~$10 billion (NASA development spending through FY2021)
+    source: 'U.S. GAO (GAO-21-406) / NASA budget documents',
+    sourceUrl: 'https://www.gao.gov/products/gao-21-406',
+    lastVerified: '2026-08-01',
     category: 'general',
-    notes: 'Total lifecycle development cost',
+    notes: 'NASA development spending through FY2021 (~$10B); GAO puts the 24-year lifecycle cost at $9.7B ($8.8B development plus $861M for the first five years of operations). Excludes ESA and CSA contributions.',
     multiYear: true                  // Spent over development period, not in one year
   }
 };

@@ -21,10 +21,10 @@ Most of us can't easily translate billions of dollars into something personally 
   <img src="docs/screenshots/dark-mode.png" alt="Dark Mode Screenshot" width="45%">
 </p>
 
-Instead of abstract billions, you'll see:
-- "That $1 billion in waste cost you **$2.37**"
-- "That $50 billion infrastructure package cost you **$118.50**"
-- "That $10 billion Pentagon loss cost you **$23.70**"
+Instead of abstract billions, you'll see (example: a single filer earning $75,000/year):
+- "That $1 billion in waste cost you **$3.48**"
+- "That $50 billion infrastructure package cost you **$173.77**"
+- "That $10 billion Pentagon loss cost you **$34.75**"
 
 Now you can make informed decisions about what's worth your outrage, activism, or support.
 
@@ -41,12 +41,12 @@ Now you can make informed decisions about what's worth your outrage, activism, o
 
 Let's say you:
 - Make $75,000/year as a single filer
-- Pay approximately $9,400 in federal income tax
+- Pay approximately $8,341 in federal income tax (2024 brackets, standard deduction)
 - Hear about a $10 billion defense spending program
 
-**Your share:** $22.26
+**Your share:** $34.75
 
-That's about the cost of a nice dinner. Now you can decide if that spending is worth it to you.
+That's about the cost of a tank of gas. Now you can decide if that spending is worth it to you.
 
 ## Features
 

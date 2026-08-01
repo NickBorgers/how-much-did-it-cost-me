@@ -447,7 +447,7 @@ describe('calculateShare', () => {
         category: 'defense'
       });
 
-      expect(result.deficitNote).toContain('28%');
+      expect(result.deficitNote).toContain('27%');
       expect(result.deficitNote).toContain('deficit');
     });
   });
