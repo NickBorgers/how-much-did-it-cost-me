@@ -155,67 +155,67 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'F-35 Fighter Program - Lifetime Cost',
-    value: 2_000_000_000_000,        // $2 trillion (projected lifetime acquisition + sustainment cost)
-    source: 'U.S. Government Accountability Office (GAO-26-108113)',
-    sourceUrl: 'https://www.gao.gov/blog/f-35-will-now-exceed-2-trillion-military-plans-fly-it-less',
-    lastVerified: '2026-06-22',
+    label: 'Iran War Supplemental Request',
+    value: 87_600_000_000,           // $87.6 billion (White House emergency supplemental request)
+    source: 'CSIS / PBS NewsHour / Military Times',
+    sourceUrl: 'https://www.csis.org/analysis/war-costs-make-third-876-billion-supplemental-request',
+    lastVerified: '2026-08-03',
     category: 'defense',
-    notes: 'June 11, 2026 GAO report: lifetime cost now exceeds $2T while readiness collapses - only 1 in 4 jets (25%) fully mission capable, down from 38%; most expensive weapons system ever built'
+    notes: 'White House asked Congress on June 24, 2026 for $87.6B, with $67.1B (77%) going to the Pentagon; DoD says the war has cost $37.5B so far but outside analysts put the real figure near $200B; the Pentagon warns it runs out of war funding within weeks'
   },
   trending2: {
-    label: 'Trump FY2027 Defense Budget Request',
-    value: 1_500_000_000_000,        // $1.5 trillion (proposed FY2027 defense budget)
-    source: 'NPR / Quincy Institute / Breaking Defense',
-    sourceUrl: 'https://www.npr.org/2026/04/03/nx-s1-5772701/trump-budget-defense-spending',
-    lastVerified: '2026-06-22',
+    label: 'Golden Dome Missile Shield',
+    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year build + maintain estimate)
+    source: 'Congressional Budget Office (via NPR / Defense News)',
+    sourceUrl: 'https://www.npr.org/2026/05/13/g-s1-121780/trumps-golden-dome-cost',
+    lastVerified: '2026-08-03',
     category: 'defense',
-    notes: 'Largest defense request in history; ~40% real increase over FY26; $1.15T base + $350B reconciliation; critics call it "unhinged, unaffordable"; facing harsh scrutiny on Capitol Hill'
+    notes: 'CBO says $1.2T over 20 years - roughly 6x the $185B the administration budgeted in FY2027; space-based interceptors alone are ~70% of acquisition cost; Pentagon disputes the estimate and still will not publish a price tag of its own'
   },
   trending3: {
-    label: 'Pentagon Year-End Spending Binge',
-    value: 90_000_000_000,           // ~$90 billion (DoD spending in final month of FY2025)
-    source: 'The National Interest / CNN',
-    sourceUrl: 'https://nationalinterest.org/blog/buzz/pentagon-went-on-90-billion-spending-bender-lobster-pianos-ps-031226',
-    lastVerified: '2026-06-22',
-    category: 'defense',
-    notes: 'DoD spent ~$90B in the final month of FY2025 to avoid "use it or lose it" cuts - including $9M on Alaskan king crab and lobster, $200M+ on furniture, $5.3M on Apple devices'
+    label: 'ICE Detention Expansion',
+    value: 45_000_000_000,           // $45 billion (detention expansion funding in the 2025 reconciliation law)
+    source: 'Brennan Center for Justice / Washington Post',
+    sourceUrl: 'https://www.brennancenter.org/our-work/research-reports/how-ices-budget-boom-changing-immigration-detention',
+    lastVerified: '2026-08-03',
+    category: 'general',
+    notes: '$45B for detention expansion - a ~400% increase that exceeds the entire federal prison system budget; ICE plans $38.3B on converting 24 warehouses into detention centers, and on July 27, 2026 extended a no-bid El Paso contract worth up to $776M more amid nationwide protests'
   },
   trending4: {
-    label: 'Secure America Act - ICE & Border Funding',
-    value: 69_500_000_000,           // $69.5 billion (ICE + CBP funding through 2029)
-    source: 'TIME / American Immigration Council',
-    sourceUrl: 'https://time.com/article/2026/06/10/house-passes-secure-america-act-senate-reconciliation-bill-funding-immigration-enforcement-trump/',
-    lastVerified: '2026-06-22',
+    label: 'Record 2026 Farm Bailout Payments',
+    value: 55_300_000_000,           // $55.3 billion (total 2026 federal farm program payments if the new request is approved)
+    source: 'Environmental Working Group / USDA',
+    sourceUrl: 'https://www.ewg.org/news-insights/news/2026/07/triple-dipping-taxpayer-dollars-trump-eyes-billions-more-subsidies',
+    lastVerified: '2026-08-03',
     category: 'general',
-    notes: 'Signed June 10, 2026; ~$69.5B for ICE and CBP through 2029 ($38.5B to ICE) via reconciliation; passed House 214-212; on top of $75B ICE received in the 2025 reconciliation bill'
+    notes: 'A new $11B tariff-relief request on top of $44B already promised would push 2026 farm payments to a record $55.3B; critics call it "triple dipping" - roughly 40% is projected to flow to the largest farms, and the money comes from USDA accounts, not tariff revenue'
   },
   trending5: {
-    label: 'Federal Improper Payments (FY2025)',
-    value: 186_000_000_000,          // $186 billion (estimated improper payments FY2025)
-    source: 'U.S. Government Accountability Office (GAO-26-108694)',
-    sourceUrl: 'https://www.gao.gov/products/gao-26-108694',
-    lastVerified: '2026-06-22',
-    category: 'general',
-    notes: 'GAO: agencies made an estimated $186B in improper payments in FY2025 (up $24B); ~82% were overpayments; Medicare, Medicaid, EITC and SNAP led the list; ~$3T lost since FY2003'
+    label: 'Medicare Fraud Identified (HHS Claim)',
+    value: 42_000_000_000,           // $42 billion (fraud HHS says it has identified to date)
+    source: 'U.S. Department of Health and Human Services / CMS',
+    sourceUrl: 'https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html',
+    lastVerified: '2026-08-03',
+    category: 'medicare',
+    notes: 'HHS said on July 21, 2026 it has identified $42B in Medicare fraud while deferring $1B+ in Medicaid payments to California and Minnesota; the figure is a claim, not an audited total - GAO separately pegged FY2025 improper payments at $57B for Medicare and $37B for Medicaid'
   },
   trending6: {
-    label: 'ACA Improper Enrollment Subsidies',
-    value: 25_000_000_000,           // up to $25 billion (improper ACA exchange subsidy payments)
-    source: 'Paragon Health Institute / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-june-19-2026/',
-    lastVerified: '2026-06-22',
-    category: 'medicare',
-    notes: 'June 2026 Paragon report: 6.2M (27%) of 2026 ACA exchange sign-ups were improper, costing taxpayers up to $25B in subsidy payments; figure is disputed and politically charged'
+    label: 'Interest on the Debt (9 Months of FY2026)',
+    value: 857_000_000_000,          // $857 billion (net interest, first 9 months of FY2026)
+    source: 'Congressional Budget Office (via Taxpayers for Common Sense)',
+    sourceUrl: 'https://www.taxpayer.net/budget-appropriations-tax/nine-months-1-4-trillion-the-congressional-budget-office-releases-monthly-budget-review/',
+    lastVerified: '2026-08-03',
+    category: 'interest',
+    notes: 'CBO: $857B in net interest through nine months of FY2026 - over $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
   },
   trending7: {
-    label: 'DOGE Claimed Savings (Disputed)',
-    value: 170_000_000_000,          // $170 billion (DOGE claimed total savings)
-    source: 'DOGE.gov / NPR / CBS News',
-    sourceUrl: 'https://doge.gov/savings',
-    lastVerified: '2026-06-22',
+    label: 'Protecting American Taxpayers Act (Claimed Savings)',
+    value: 240_000_000_000,          // $240 billion (sponsor's projected savings)
+    source: 'Sen. Joni Ernst (S. 4378) / Citizens Against Government Waste',
+    sourceUrl: 'https://www.cagw.org/this-week-in-waste-july-17-2026/',
+    lastVerified: '2026-08-03',
     category: 'general',
-    notes: 'DOGE claims ~$170B saved but only $70.9B is itemized; NPR estimates real savings near $2B and AEI puts contract savings near $10B; "wall of receipts" riddled with documented errors',
+    notes: 'Introduced July 2026, bundling 15 separate bills that the sponsor projects would save $240B; the estimate comes from the sponsor rather than CBO and has not been independently scored',
     isSavings: true
   }
 };
