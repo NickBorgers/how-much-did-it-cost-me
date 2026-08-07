@@ -201,12 +201,12 @@ const TRENDING_SPENDING = {
   },
   trending6: {
     label: 'Interest on the Debt (9 Months of FY2026)',
-    value: 628_000_000_000,          // $628 billion (interest paid, first 9 months of FY2026)
+    value: 857_000_000_000,          // $857 billion (net interest, first 9 months of FY2026)
     source: 'Congressional Budget Office (via Taxpayers for Common Sense)',
     sourceUrl: 'https://www.taxpayer.net/budget-appropriations-tax/nine-months-1-4-trillion-the-congressional-budget-office-releases-monthly-budget-review/',
     lastVerified: '2026-08-03',
     category: 'interest',
-    notes: 'CBO: $628B in interest through nine months of FY2026 - nearly $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
+    notes: 'CBO: $857B in net interest through nine months of FY2026 - over $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
   },
   trending7: {
     label: 'Protecting American Taxpayers Act (Claimed Savings)',
