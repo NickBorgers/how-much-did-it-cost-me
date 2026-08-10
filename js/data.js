@@ -155,68 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War Supplemental Request',
-    value: 87_600_000_000,           // $87.6 billion (White House emergency supplemental request)
-    source: 'CSIS / PBS NewsHour / Military Times',
-    sourceUrl: 'https://www.csis.org/analysis/war-costs-make-third-876-billion-supplemental-request',
-    lastVerified: '2026-08-03',
+    label: 'Trump-Class Battleship Program',
+    value: 275_000_000_000,          // $275 billion (CBO estimate for all 15 ships, FY2028-FY2056)
+    source: 'Congressional Budget Office',
+    sourceUrl: 'https://www.cbo.gov/publication/62644',
+    lastVerified: '2026-08-10',
     category: 'defense',
-    notes: 'White House asked Congress on June 24, 2026 for $87.6B, with $67.1B (77%) going to the Pentagon; DoD says the war has cost $37.5B so far but outside analysts put the real figure near $200B; the Pentagon warns it runs out of war funding within weeks'
+    notes: 'CBO said on Aug 5, 2026 that 15 nuclear-powered Trump-class battleships would cost $275B - $23.4B for the lead ship and ~$18B each after that, roughly $6B above the Navy\'s own estimate; a single ship would cost nearly twice the entire Gerald R. Ford carrier program. Senators just stripped the $1B in advance procurement the White House wanted in the stopgap bill'
   },
   trending2: {
-    label: 'Golden Dome Missile Shield',
-    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year build + maintain estimate)
-    source: 'Congressional Budget Office (via NPR / Defense News)',
-    sourceUrl: 'https://www.npr.org/2026/05/13/g-s1-121780/trumps-golden-dome-cost',
-    lastVerified: '2026-08-03',
-    category: 'defense',
-    notes: 'CBO says $1.2T over 20 years - roughly 6x the $185B the administration budgeted in FY2027; space-based interceptors alone are ~70% of acquisition cost; Pentagon disputes the estimate and still will not publish a price tag of its own'
+    label: 'Medicare Drug Pricing Law Cost Reversal',
+    value: 700_000_000_000,          // $700 billion (CBO's upward revision to Part D spending)
+    source: 'Congressional Budget Office',
+    sourceUrl: 'https://www.cbo.gov/publication/62549',
+    lastVerified: '2026-08-10',
+    category: 'medicare',
+    notes: 'A July 29, 2026 CBO analysis found the Inflation Reduction Act\'s Medicare Part D redesign and drug "negotiation" provisions raised projected spending by about $700B rather than saving $129B as originally scored; per-member monthly drug spending rose to $3,500 instead of falling to $2,300. Republicans are citing it constantly; defenders say it reflects higher drug use, not the negotiations themselves'
   },
   trending3: {
-    label: 'ICE Detention Expansion',
-    value: 45_000_000_000,           // $45 billion (detention expansion funding in the 2025 reconciliation law)
-    source: 'Brennan Center for Justice / Washington Post',
-    sourceUrl: 'https://www.brennancenter.org/our-work/research-reports/how-ices-budget-boom-changing-immigration-detention',
-    lastVerified: '2026-08-03',
+    label: 'DOGE "Wall of Receipts" Claimed Savings',
+    value: 110_000_000_000,          // $110 billion (contract, grant and lease savings GAO reviewed)
+    source: 'U.S. Government Accountability Office (GAO-26-108615)',
+    sourceUrl: 'https://www.gao.gov/products/gao-26-108615',
+    lastVerified: '2026-08-10',
     category: 'general',
-    notes: '$45B for detention expansion - a ~400% increase that exceeds the entire federal prison system budget; ICE plans $38.3B on converting 24 warehouses into detention centers, and on July 27, 2026 extended a no-bid El Paso contract worth up to $776M more amid nationwide protests'
+    notes: 'GAO reported Aug 6, 2026 that it could not verify much of the $110B in contract, grant and lease savings DOGE advertised - 2,503 of 13,476 "terminated" contracts worth $27.4B were never actually cancelled, 108 lease cancellations were already in motion beforehand, and 96% of grant savings lacked a verifiable method. DOGE\'s full claim across all categories is $215B; DOGE did not respond to GAO',
+    isSavings: true
   },
   trending4: {
-    label: 'Record 2026 Farm Bailout Payments',
-    value: 55_300_000_000,           // $55.3 billion (total 2026 federal farm program payments if the new request is approved)
-    source: 'Environmental Working Group / USDA',
-    sourceUrl: 'https://www.ewg.org/news-insights/news/2026/07/triple-dipping-taxpayer-dollars-trump-eyes-billions-more-subsidies',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: 'A new $11B tariff-relief request on top of $44B already promised would push 2026 farm payments to a record $55.3B; critics call it "triple dipping" - roughly 40% is projected to flow to the largest farms, and the money comes from USDA accounts, not tariff revenue'
+    label: 'Iran War, Farm Aid & Election Package',
+    value: 95_000_000_000,           // $95 billion (House GOP FY2027 reconciliation instruction ceiling)
+    source: 'PBS NewsHour / House Budget Committee',
+    sourceUrl: 'https://www.pbs.org/newshour/politics/house-republicans-adopt-95-billion-package-for-the-iran-war-and-trumps-priorities',
+    lastVerified: '2026-08-10',
+    category: 'defense',
+    notes: 'House Republicans adopted a budget resolution teeing up as much as $95B - $73B for the Iran war and defense, $12B in farm aid, $10B to push states toward the SAVE America Act voter-ID rules - with no offsetting cuts, on top of a deficit already near $2T. It is far short of the $350B the White House asked for'
   },
   trending5: {
-    label: 'Medicare Fraud Identified (HHS Claim)',
-    value: 42_000_000_000,           // $42 billion (fraud HHS says it has identified to date)
-    source: 'U.S. Department of Health and Human Services / CMS',
-    sourceUrl: 'https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html',
-    lastVerified: '2026-08-03',
-    category: 'medicare',
-    notes: 'HHS said on July 21, 2026 it has identified $42B in Medicare fraud while deferring $1B+ in Medicaid payments to California and Minnesota; the figure is a claim, not an audited total - GAO separately pegged FY2025 improper payments at $57B for Medicare and $37B for Medicaid'
+    label: 'FY2026 Earmarks in Spending Bills',
+    value: 24_000_000_000,           // $24 billion (earmarks across the FY2026 appropriations bills)
+    source: 'Citizens Against Government Waste (via Reason)',
+    sourceUrl: 'https://reason.com/2026/08/05/senators-want-to-claw-back-trumps-spending-power-they-should-just-pass-a-real-budget-instead/',
+    lastVerified: '2026-08-10',
+    category: 'general',
+    notes: 'Roughly $24B in earmarks across the FY2026 funding bills - including $41.7M to "combat underwater pests" - has set off a Republican civil war between appropriators and fiscal hawks; separately, Congress added $34B in defense program funding the Pentagon never requested'
   },
   trending6: {
-    label: 'Interest on the Debt (9 Months of FY2026)',
-    value: 857_000_000_000,          // $857 billion (net interest, first 9 months of FY2026)
-    source: 'Congressional Budget Office (via Taxpayers for Common Sense)',
-    sourceUrl: 'https://www.taxpayer.net/budget-appropriations-tax/nine-months-1-4-trillion-the-congressional-budget-office-releases-monthly-budget-review/',
-    lastVerified: '2026-08-03',
-    category: 'interest',
-    notes: 'CBO: $857B in net interest through nine months of FY2026 - over $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
+    label: 'White House Ballroom Project',
+    value: 600_000_000,              // $600 million (contractor estimate reported by the Washington Post)
+    source: 'Washington Post (Clark Construction estimate)',
+    sourceUrl: 'https://www.washingtonpost.com/investigations/2026/06/16/records-reveal-600m-estimate-trumps-ballroom-project-with-half-taxpayers/',
+    lastVerified: '2026-08-10',
+    category: 'general',
+    notes: 'Internal contractor records put the ballroom at $600M - up from the $200M announced in 2025 - with about $307M coming from taxpayers via the Secret Service ($155M), White House Military Office ($149M) and Executive Residence, despite repeated promises no public money would be used. A federal appeals court ruled in early August 2026 that the project needs congressional authorization it never got'
   },
   trending7: {
-    label: 'Protecting American Taxpayers Act (Claimed Savings)',
-    value: 240_000_000_000,          // $240 billion (sponsor's projected savings)
-    source: 'Sen. Joni Ernst (S. 4378) / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-july-17-2026/',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: 'Introduced July 2026, bundling 15 separate bills that the sponsor projects would save $240B; the estimate comes from the sponsor rather than CBO and has not been independently scored',
-    isSavings: true
+    label: 'Social Security Annual Cash Shortfall',
+    value: 230_000_000_000,          // $230 billion (2026 gap between payroll tax revenue and benefits paid)
+    source: 'Brookings Institution / 2026 Social Security Trustees Report',
+    sourceUrl: 'https://www.brookings.edu/articles/yes-social-security-can-run-budget-deficits/',
+    lastVerified: '2026-08-10',
+    category: 'socialSecurity',
+    notes: 'Social Security will take in about $1.44T and pay out about $1.67T in 2026 - a $230B cash shortfall, plus ~$20B in interest costs. The July 2026 Trustees Report moved retirement trust fund depletion to late 2032, which would trigger an automatic 22% benefit cut (about $16,900 a year for a typical dual-earner couple)'
   }
 };
 
