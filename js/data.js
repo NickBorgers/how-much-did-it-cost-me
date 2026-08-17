@@ -155,68 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War Supplemental Request',
-    value: 87_600_000_000,           // $87.6 billion (White House emergency supplemental request)
-    source: 'CSIS / PBS NewsHour / Military Times',
-    sourceUrl: 'https://www.csis.org/analysis/war-costs-make-third-876-billion-supplemental-request',
-    lastVerified: '2026-08-03',
+    label: 'Total Cost of the Iran War',
+    value: 113_300_000_000,          // $113.3 billion (108-day war tally based on Pentagon briefings to Congress)
+    source: 'Washington Post / Pentagon briefings to Congress',
+    sourceUrl: 'https://www.washingtonpost.com/world/2026/08/07/cost-iran-war-is-mounting-heres-latest-tally/',
+    lastVerified: '2026-08-17',
     category: 'defense',
-    notes: 'White House asked Congress on June 24, 2026 for $87.6B, with $67.1B (77%) going to the Pentagon; DoD says the war has cost $37.5B so far but outside analysts put the real figure near $200B; the Pentagon warns it runs out of war funding within weeks'
+    notes: 'Running tally published August 7, 2026 puts the 108-day war (Feb 26 - Jun 14) at $113.3B; the figure is hotly disputed - CSIS estimates only $34-42B in direct military costs and Hegseth told the Senate $37.5B, while the Pentagon still asked Congress for an $87.6B supplemental'
   },
   trending2: {
-    label: 'Golden Dome Missile Shield',
-    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year build + maintain estimate)
-    source: 'Congressional Budget Office (via NPR / Defense News)',
-    sourceUrl: 'https://www.npr.org/2026/05/13/g-s1-121780/trumps-golden-dome-cost',
-    lastVerified: '2026-08-03',
-    category: 'defense',
-    notes: 'CBO says $1.2T over 20 years - roughly 6x the $185B the administration budgeted in FY2027; space-based interceptors alone are ~70% of acquisition cost; Pentagon disputes the estimate and still will not publish a price tag of its own'
+    label: 'Funding Blocked by the White House',
+    value: 410_000_000_000,          // $410 billion (Democrats' impoundment tracker total)
+    source: 'House Appropriations Committee Democrats / Sen. Patty Murray',
+    sourceUrl: 'https://democrats-appropriations.house.gov/news/press-releases/new-weeks-away-end-fiscal-year-trump-blocking-410-billion-funding-owed',
+    lastVerified: '2026-08-17',
+    category: 'general',
+    notes: 'With weeks left in FY2026, Reps. DeLauro and Sen. Murray say OMB Director Russ Vought is withholding $410B+ that Congress already appropriated; the administration says it is lawful impoundment, GAO has repeatedly ruled otherwise - this is a running Democratic tally, not an audited figure'
   },
   trending3: {
-    label: 'ICE Detention Expansion',
-    value: 45_000_000_000,           // $45 billion (detention expansion funding in the 2025 reconciliation law)
-    source: 'Brennan Center for Justice / Washington Post',
-    sourceUrl: 'https://www.brennancenter.org/our-work/research-reports/how-ices-budget-boom-changing-immigration-detention',
-    lastVerified: '2026-08-03',
+    label: 'Fraud-Risk Federal Money Run Through States',
+    value: 1_100_000_000_000,        // $1.1 trillion (FY2025 spending in the 20 largest state-administered federal programs)
+    source: 'Government Accountability Office',
+    sourceUrl: 'https://www.gao.gov/fraud-improper-payments',
+    lastVerified: '2026-08-17',
     category: 'general',
-    notes: '$45B for detention expansion - a ~400% increase that exceeds the entire federal prison system budget; ICE plans $38.3B on converting 24 warehouses into detention centers, and on July 27, 2026 extended a no-bid El Paso contract worth up to $776M more amid nationwide protests'
+    notes: 'An August 7, 2026 GAO report found substantial fraud risk across the 20 largest state-administered federal programs - Medicaid, SNAP, disaster relief and more - covering $1.1T of FY2025 spending, with only five having documented fraud controls; this is money at risk, not money proven lost (GAO puts actual government-wide fraud at $233B-$521B a year)'
   },
   trending4: {
-    label: 'Record 2026 Farm Bailout Payments',
-    value: 55_300_000_000,           // $55.3 billion (total 2026 federal farm program payments if the new request is approved)
-    source: 'Environmental Working Group / USDA',
-    sourceUrl: 'https://www.ewg.org/news-insights/news/2026/07/triple-dipping-taxpayer-dollars-trump-eyes-billions-more-subsidies',
-    lastVerified: '2026-08-03',
+    label: 'Tariff Refunds Paid Back to Importers',
+    value: 100_000_000_000,          // $100 billion (refunded as of an August 2026 court filing)
+    source: 'NBC News / U.S. government court filing',
+    sourceUrl: 'https://www.nbcnews.com/news/us-news/trump-administration-refunded-100-billion-tariffs-struck-supreme-court-rcna591099',
+    lastVerified: '2026-08-17',
     category: 'general',
-    notes: 'A new $11B tariff-relief request on top of $44B already promised would push 2026 farm payments to a record $55.3B; critics call it "triple dipping" - roughly 40% is projected to flow to the largest farms, and the money comes from USDA accounts, not tariff revenue'
+    notes: 'An August 2026 court filing shows Treasury has refunded about $100B of the $166B in IEEPA tariffs the Supreme Court struck down in February 2026; the refunds are a major reason CBO just raised the FY2026 deficit to $2.1T'
   },
   trending5: {
-    label: 'Medicare Fraud Identified (HHS Claim)',
-    value: 42_000_000_000,           // $42 billion (fraud HHS says it has identified to date)
-    source: 'U.S. Department of Health and Human Services / CMS',
-    sourceUrl: 'https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html',
-    lastVerified: '2026-08-03',
-    category: 'medicare',
-    notes: 'HHS said on July 21, 2026 it has identified $42B in Medicare fraud while deferring $1B+ in Medicaid payments to California and Minnesota; the figure is a claim, not an audited total - GAO separately pegged FY2025 improper payments at $57B for Medicare and $37B for Medicaid'
+    label: 'White House Ballroom Project',
+    value: 600_000_000,              // $600 million (contractor's March 2026 total project estimate)
+    source: 'USA Today / House Appropriations Committee Democrats',
+    sourceUrl: 'https://democrats-appropriations.house.gov/news/press-releases/trump-administration-spent-tens-millions-taxpayer-funds-ballroom-and-then-lied',
+    lastVerified: '2026-08-17',
+    category: 'general',
+    notes: 'The contractor pegged the total at $600M+, with more than half traced to government sources despite claims it is "taxpayer-free"; Sens. Murray and Murphy have asked GAO to investigate a transfer of nearly $397M in Secret Service funds, arguing the reconciliation law barred spending it this way'
   },
   trending6: {
-    label: 'Interest on the Debt (9 Months of FY2026)',
-    value: 857_000_000_000,          // $857 billion (net interest, first 9 months of FY2026)
-    source: 'Congressional Budget Office (via Taxpayers for Common Sense)',
-    sourceUrl: 'https://www.taxpayer.net/budget-appropriations-tax/nine-months-1-4-trillion-the-congressional-budget-office-releases-monthly-budget-review/',
-    lastVerified: '2026-08-03',
-    category: 'interest',
-    notes: 'CBO: $857B in net interest through nine months of FY2026 - over $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
+    label: 'Automatic Medicare Cuts (PAYGO Sequester)',
+    value: 536_000_000_000,          // $536 billion (projected automatic Medicare reductions over nine years)
+    source: 'Sen. Sheldon Whitehouse / Congressional Budget Office',
+    sourceUrl: 'https://www.whitehouse.senate.gov/news/release/trumps-big-beautiful-for-billionaires-law-triggers-536-billion-cut-to-medicare-over-next-decade/',
+    lastVerified: '2026-08-17',
+    category: 'medicare',
+    notes: 'Because the 2025 reconciliation law added to the deficit, statutory PAYGO triggers automatic Medicare reductions - $45B in 2026 and $536B over nine years; supporters call it a spending cut, critics call it a benefit cut Congress never voted on directly',
+    isSavings: true
   },
   trending7: {
-    label: 'Protecting American Taxpayers Act (Claimed Savings)',
-    value: 240_000_000_000,          // $240 billion (sponsor's projected savings)
-    source: 'Sen. Joni Ernst (S. 4378) / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-july-17-2026/',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: 'Introduced July 2026, bundling 15 separate bills that the sponsor projects would save $240B; the estimate comes from the sponsor rather than CBO and has not been independently scored',
-    isSavings: true
+    label: 'Troop Deployments to U.S. Cities',
+    value: 1_100_000_000,            // $1.1 billion (CBO estimate for calendar year 2026 if deployments continue)
+    source: 'Congressional Budget Office (via Senate Budget Committee)',
+    sourceUrl: 'https://www.cbo.gov/publication/61943',
+    lastVerified: '2026-08-17',
+    category: 'defense',
+    notes: 'CBO says National Guard and Marine deployments to six cities cost $496M through December 2025 and would reach roughly $1.1B across 2026 if they continue as directed; deploying 1,000 troops to a city runs $18M-$21M a month'
   }
 };
 
