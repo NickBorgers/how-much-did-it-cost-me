@@ -155,67 +155,74 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War Supplemental Request',
-    value: 87_600_000_000,           // $87.6 billion (White House emergency supplemental request)
-    source: 'CSIS / PBS NewsHour / Military Times',
-    sourceUrl: 'https://www.csis.org/analysis/war-costs-make-third-876-billion-supplemental-request',
-    lastVerified: '2026-08-03',
+    label: 'Artillery Plant That Made Nothing',
+    value: 533_000_000,              // $533 million (paid to General Dynamics for the Mesquite, TX shell factory)
+    source: 'ProPublica',
+    sourceUrl: 'https://www.propublica.org/article/general-dynamics-artillery-factory-failed',
+    lastVerified: '2026-08-31',
     category: 'defense',
-    notes: 'White House asked Congress on June 24, 2026 for $87.6B, with $67.1B (77%) going to the Pentagon; DoD says the war has cost $37.5B so far but outside analysts put the real figure near $200B; the Pentagon warns it runs out of war funding within weeks'
+    notes: 'ProPublica reported Aug 12, 2026 that taxpayers paid $533M for a no-bid artillery shell factory near Dallas that never produced a single usable shell; robots caught fire, the Army halted two of three lines, no money was clawed back, and the same General Dynamics unit has since won $2.5B in new contracts',
+    multiYear: true                  // Paid out across the multi-year contract
   },
   trending2: {
-    label: 'Golden Dome Missile Shield',
-    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year build + maintain estimate)
-    source: 'Congressional Budget Office (via NPR / Defense News)',
-    sourceUrl: 'https://www.npr.org/2026/05/13/g-s1-121780/trumps-golden-dome-cost',
-    lastVerified: '2026-08-03',
-    category: 'defense',
-    notes: 'CBO says $1.2T over 20 years - roughly 6x the $185B the administration budgeted in FY2027; space-based interceptors alone are ~70% of acquisition cost; Pentagon disputes the estimate and still will not publish a price tag of its own'
+    label: 'DHS Jets Bought, Then Parked',
+    value: 464_000_000,              // $464 million (no-bid purchase of 10 used aircraft)
+    source: 'Washington Post (via Philadelphia Inquirer)',
+    sourceUrl: 'https://www.inquirer.com/news/nation-world/homeland-security-planes-unused-no-bid-contract-deportations-fbi-noem-mullin-20260814.html',
+    lastVerified: '2026-08-31',
+    category: 'general',
+    notes: 'Reported Aug 14, 2026: DHS spent $464M on a no-bid contract for 10 used jets it said were urgently needed for deportation flights, then barely flew them - seven Boeing 737s sat parked in Lake Charles, LA for months because the agency lacked staff to operate them',
+    multiYear: false
   },
   trending3: {
-    label: 'ICE Detention Expansion',
-    value: 45_000_000_000,           // $45 billion (detention expansion funding in the 2025 reconciliation law)
-    source: 'Brennan Center for Justice / Washington Post',
-    sourceUrl: 'https://www.brennancenter.org/our-work/research-reports/how-ices-budget-boom-changing-immigration-detention',
-    lastVerified: '2026-08-03',
+    label: 'White House Ballroom & Construction',
+    value: 900_000_000,              // $900 million (expected total White House construction spend)
+    source: 'U.S. Senate (Whitehouse/Reed GAO audit request) / Washington Post',
+    sourceUrl: 'https://www.whitehouse.senate.gov/news/release/whitehouse-reed-seek-watchdog-audit-of-trumps-glitzy-ballroom-boondoggle/',
+    lastVerified: '2026-08-31',
     category: 'general',
-    notes: '$45B for detention expansion - a ~400% increase that exceeds the entire federal prison system budget; ICE plans $38.3B on converting 24 warehouses into detention centers, and on July 27, 2026 extended a no-bid El Paso contract worth up to $776M more amid nationwide protests'
+    notes: 'Eight Senate Democrats asked GAO on Aug 14, 2026 to audit the project; reporting puts expected White House construction spending at $900M+, with the ballroom alone at $600M funded by a mix of private donations and appropriated federal money Congress never approved for this purpose',
+    multiYear: true                  // Construction spending spread across several budget years
   },
   trending4: {
-    label: 'Record 2026 Farm Bailout Payments',
-    value: 55_300_000_000,           // $55.3 billion (total 2026 federal farm program payments if the new request is approved)
-    source: 'Environmental Working Group / USDA',
-    sourceUrl: 'https://www.ewg.org/news-insights/news/2026/07/triple-dipping-taxpayer-dollars-trump-eyes-billions-more-subsidies',
-    lastVerified: '2026-08-03',
+    label: 'FY2026 Federal Deficit (Revised Up)',
+    value: 2_100_000_000_000,        // $2.1 trillion (CBO revised FY2026 deficit projection)
+    source: 'Congressional Budget Office, Monthly Budget Review',
+    sourceUrl: 'https://www.cbo.gov/system/files/2026-08/61983-2026-07-MBR.pdf',
+    lastVerified: '2026-08-31',
     category: 'general',
-    notes: 'A new $11B tariff-relief request on top of $44B already promised would push 2026 farm payments to a record $55.3B; critics call it "triple dipping" - roughly 40% is projected to flow to the largest farms, and the money comes from USDA accounts, not tariff revenue'
+    notes: 'CBO raised its FY2026 deficit projection to $2.1T in August 2026 - $200B worse than its February estimate - mostly because tariff collections came in ~$250B short after the Supreme Court struck down the tariffs; the deficit already hit $1.8T through 10 months, and July alone ran $432B, the worst month since the pandemic',
+    multiYear: false
   },
   trending5: {
-    label: 'Medicare Fraud Identified (HHS Claim)',
-    value: 42_000_000_000,           // $42 billion (fraud HHS says it has identified to date)
-    source: 'U.S. Department of Health and Human Services / CMS',
-    sourceUrl: 'https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html',
-    lastVerified: '2026-08-03',
-    category: 'medicare',
-    notes: 'HHS said on July 21, 2026 it has identified $42B in Medicare fraud while deferring $1B+ in Medicaid payments to California and Minnesota; the figure is a claim, not an audited total - GAO separately pegged FY2025 improper payments at $57B for Medicare and $37B for Medicaid'
+    label: 'Yearly Interest on the National Debt',
+    value: 1_100_000_000_000,        // $1.1 trillion (annual debt service)
+    source: 'U.S. Treasury / NPR / Al Jazeera',
+    sourceUrl: 'https://www.npr.org/2026/08/19/nx-s1-5937552/the-u-s-debt-tops-a-record-shattering-40-trillion-yes-with-a-t',
+    lastVerified: '2026-08-31',
+    category: 'interest',
+    notes: 'The national debt topped $40 trillion on Aug 18, 2026 - just five months after crossing $39T - and the government now pays about $1.1T a year just to service it, slightly more than it spends on defense; interest is up 15% year over year and is now the second-largest line in the budget after Social Security',
+    multiYear: false
   },
   trending6: {
-    label: 'Interest on the Debt (9 Months of FY2026)',
-    value: 857_000_000_000,          // $857 billion (net interest, first 9 months of FY2026)
-    source: 'Congressional Budget Office (via Taxpayers for Common Sense)',
-    sourceUrl: 'https://www.taxpayer.net/budget-appropriations-tax/nine-months-1-4-trillion-the-congressional-budget-office-releases-monthly-budget-review/',
-    lastVerified: '2026-08-03',
-    category: 'interest',
-    notes: 'CBO: $857B in net interest through nine months of FY2026 - over $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
+    label: 'ICE Contract Awards Since Jan 2025',
+    value: 8_400_000_000,            // $8.4 billion (contracts awarded to 1,100+ companies)
+    source: 'The Appeal (federal contract database analysis)',
+    sourceUrl: 'https://theappeal.org/ice-local-business-contracts/',
+    lastVerified: '2026-08-31',
+    category: 'general',
+    notes: 'An Aug 19, 2026 analysis found ICE has awarded $8.4B to 1,100+ companies across 48 states since Jan 20, 2025 - including $1B+ to CoreCivic and GEO Group, $154M on weapons and combat training, and $52M on office furniture; on Aug 28 ICE added a no-bid $16.7M order for 6,000 pairs of electric-shock gloves',
+    multiYear: true                  // Awards span from January 2025 through August 2026
   },
   trending7: {
-    label: 'Protecting American Taxpayers Act (Claimed Savings)',
-    value: 240_000_000_000,          // $240 billion (sponsor's projected savings)
-    source: 'Sen. Joni Ernst (S. 4378) / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-july-17-2026/',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: 'Introduced July 2026, bundling 15 separate bills that the sponsor projects would save $240B; the estimate comes from the sponsor rather than CBO and has not been independently scored',
+    label: 'Medicare Lab Fraud Blocked (CMS Claim)',
+    value: 1_600_000_000,            // $1.6 billion (CMS claimed savings from lab payment enforcement)
+    source: 'Centers for Medicare & Medicaid Services',
+    sourceUrl: 'https://www.cms.gov/newsroom/press-releases/cms-prevents-1-6-billion-fraudulent-medicare-laboratory-payments',
+    lastVerified: '2026-08-31',
+    category: 'medicare',
+    notes: 'CMS announced Aug 28, 2026 it has stopped $1.6B in potentially improper Medicare lab payments using AI billing analytics - $732M from revoking 157 labs, $500M+ from 185 payment suspensions, $276M recouped, $127M from law-enforcement referrals; this is an agency claim of prevented spending, not an audited figure',
+    multiYear: true,                 // Cumulative since the start of the administration
     isSavings: true
   }
 };
