@@ -155,68 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War Supplemental Request',
-    value: 87_600_000_000,           // $87.6 billion (White House emergency supplemental request)
-    source: 'CSIS / PBS NewsHour / Military Times',
-    sourceUrl: 'https://www.csis.org/analysis/war-costs-make-third-876-billion-supplemental-request',
-    lastVerified: '2026-08-03',
-    category: 'defense',
-    notes: 'White House asked Congress on June 24, 2026 for $87.6B, with $67.1B (77%) going to the Pentagon; DoD says the war has cost $37.5B so far but outside analysts put the real figure near $200B; the Pentagon warns it runs out of war funding within weeks'
+    label: 'Interest on the National Debt',
+    value: 1_250_000_000_000,        // $1.25 trillion per year in interest payments
+    source: 'U.S. Treasury / DoubleLine (via Fortune)',
+    sourceUrl: 'https://fortune.com/2026/09/07/us-national-debt-interest-1-trillion-1991-bond-yields-scott-bessent/',
+    lastVerified: '2026-09-07',
+    category: 'interest',
+    notes: 'The national debt crossed $40 trillion on August 18, 2026; interest now eats 18.5% of all federal revenue - a record that beats 1991 - and costs more per year than the entire defense budget. CBO projects it reaches 25% of revenue by 2036'
   },
   trending2: {
-    label: 'Golden Dome Missile Shield',
-    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year build + maintain estimate)
-    source: 'Congressional Budget Office (via NPR / Defense News)',
-    sourceUrl: 'https://www.npr.org/2026/05/13/g-s1-121780/trumps-golden-dome-cost',
-    lastVerified: '2026-08-03',
-    category: 'defense',
-    notes: 'CBO says $1.2T over 20 years - roughly 6x the $185B the administration budgeted in FY2027; space-based interceptors alone are ~70% of acquisition cost; Pentagon disputes the estimate and still will not publish a price tag of its own'
+    label: '$2,000 Tariff Dividend Checks',
+    value: 450_000_000_000,          // $450 billion (Yale Budget Lab estimate for one round of checks)
+    source: 'Yale Budget Lab (via Axios) / Tax Foundation',
+    sourceUrl: 'https://www.axios.com/2025/11/18/2000-tariff-dividend-trump-check-2026-growth',
+    lastVerified: '2026-09-07',
+    category: 'general',
+    notes: 'One round of $2,000-per-person checks would cost about $450B - roughly twice the ~$208B tariffs are expected to raise in 2026; other estimates run to $600B. As of September 2026 it is still an unfunded promise with no bill passed, and Section 122 authority has expired'
   },
   trending3: {
-    label: 'ICE Detention Expansion',
-    value: 45_000_000_000,           // $45 billion (detention expansion funding in the 2025 reconciliation law)
-    source: 'Brennan Center for Justice / Washington Post',
-    sourceUrl: 'https://www.brennancenter.org/our-work/research-reports/how-ices-budget-boom-changing-immigration-detention',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: '$45B for detention expansion - a ~400% increase that exceeds the entire federal prison system budget; ICE plans $38.3B on converting 24 warehouses into detention centers, and on July 27, 2026 extended a no-bid El Paso contract worth up to $776M more amid nationwide protests'
+    label: 'Extending Enhanced ACA Subsidies',
+    value: 350_000_000_000,          // $350 billion over 10 years (CBO)
+    source: 'Congressional Budget Office (via CNBC / KFF)',
+    sourceUrl: 'https://www.congress.gov/crs-product/R48290',
+    lastVerified: '2026-09-07',
+    category: 'medicare',
+    notes: 'CBO puts a 10-year extension at ~$350B ($23B in 2026 alone). The enhanced credits expired at the end of 2025, roughly doubling premiums for ~22 million enrollees; the fight helped drive the 2025 shutdown and is back on the table before the December 11, 2026 funding deadline'
   },
   trending4: {
-    label: 'Record 2026 Farm Bailout Payments',
-    value: 55_300_000_000,           // $55.3 billion (total 2026 federal farm program payments if the new request is approved)
-    source: 'Environmental Working Group / USDA',
-    sourceUrl: 'https://www.ewg.org/news-insights/news/2026/07/triple-dipping-taxpayer-dollars-trump-eyes-billions-more-subsidies',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: 'A new $11B tariff-relief request on top of $44B already promised would push 2026 farm payments to a record $55.3B; critics call it "triple dipping" - roughly 40% is projected to flow to the largest farms, and the money comes from USDA accounts, not tariff revenue'
+    label: 'Pentagon September Spending Spree',
+    value: 93_400_000_000,           // $93.4 billion spent in a single month
+    source: 'Open the Books / Department of Defense (via CNN)',
+    sourceUrl: 'https://www.cnn.com/2026/03/12/politics/use-it-or-lose-it-pentagon-spending-binge-set-record-in-final-days-of-fiscal-year',
+    lastVerified: '2026-09-07',
+    category: 'defense',
+    notes: 'DoD obligated $93.4B in grants and contracts in one month under "use-it-or-lose-it" rules - the biggest September since at least 2008, with over half of it in the final five working days. It included $15.1M on ribeye, $6.9M on lobster tail, $2M on king crab and $124K on ice cream machines. September 2026 closes FY2026, and watchdogs are pressing Secretary Hegseth not to repeat it'
   },
   trending5: {
-    label: 'Medicare Fraud Identified (HHS Claim)',
-    value: 42_000_000_000,           // $42 billion (fraud HHS says it has identified to date)
-    source: 'U.S. Department of Health and Human Services / CMS',
-    sourceUrl: 'https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html',
-    lastVerified: '2026-08-03',
-    category: 'medicare',
-    notes: 'HHS said on July 21, 2026 it has identified $42B in Medicare fraud while deferring $1B+ in Medicaid payments to California and Minnesota; the figure is a claim, not an audited total - GAO separately pegged FY2025 improper payments at $57B for Medicare and $37B for Medicaid'
+    label: 'DOGE Savings GAO Says Never Happened',
+    value: 110_000_000_000,          // $110 billion in claimed savings GAO found unsupported
+    source: 'U.S. Government Accountability Office (via Washington Post / GovExec)',
+    sourceUrl: 'https://www.govexec.com/management/2026/08/doge-took-credit-savings-never-happened-watchdog-finds/415270/',
+    lastVerified: '2026-09-07',
+    category: 'general',
+    notes: 'GAO reported in 2026 that $110B of DOGE\'s claimed contract, grant and lease savings were incorrect or unsupported: 2,503 of 13,476 "terminated" contracts worth $27.4B were never cancelled, and 108 of 264 "terminated" leases were already being ended before DOGE existed. DOGE still claims $215B saved overall',
+    isSavings: true
   },
   trending6: {
-    label: 'Interest on the Debt (9 Months of FY2026)',
-    value: 857_000_000_000,          // $857 billion (net interest, first 9 months of FY2026)
-    source: 'Congressional Budget Office (via Taxpayers for Common Sense)',
-    sourceUrl: 'https://www.taxpayer.net/budget-appropriations-tax/nine-months-1-4-trillion-the-congressional-budget-office-releases-monthly-budget-review/',
-    lastVerified: '2026-08-03',
-    category: 'interest',
-    notes: 'CBO: $857B in net interest through nine months of FY2026 - over $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
+    label: 'National Guard Deployments to U.S. Cities',
+    value: 1_700_000_000,            // $1.7 billion through the end of 2026
+    source: 'Center for American Progress / Congressional Budget Office',
+    sourceUrl: 'https://www.cbo.gov/publication/61943',
+    lastVerified: '2026-09-07',
+    category: 'defense',
+    notes: 'CBO confirmed $496M spent in 2025 alone on troop deployments to Los Angeles, Washington, Memphis, Portland, Chicago and New Orleans, at roughly $93M a month; CAP projects over $1.7B through the end of 2026 and found no measurable effect on violent crime'
   },
   trending7: {
-    label: 'Protecting American Taxpayers Act (Claimed Savings)',
-    value: 240_000_000_000,          // $240 billion (sponsor's projected savings)
-    source: 'Sen. Joni Ernst (S. 4378) / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-july-17-2026/',
-    lastVerified: '2026-08-03',
+    label: 'White House Construction Projects',
+    value: 900_000_000,              // $900 million (Washington Post review of contracts)
+    source: 'Washington Post investigation (via The Hill / Al Jazeera)',
+    sourceUrl: 'https://www.washingtonpost.com/investigations/2026/08/12/trump-administration-set-spend-least-900-million-white-house-construction/',
+    lastVerified: '2026-09-07',
     category: 'general',
-    notes: 'Introduced July 2026, bundling 15 separate bills that the sponsor projects would save $240B; the estimate comes from the sponsor rather than CBO and has not been independently scored',
-    isSavings: true
+    notes: 'A review of confidential contracts found at least $900M committed to the ballroom, a granite helipad, a visitor screening center and Lafayette Park fountains, with ~$875M routed through a repair-and-restoration account that normally holds a few million. Trump said taxpayers would not pay "one dime"; separately, Republicans proposed $1B in taxpayer funds for ballroom security'
   }
 };
 
