@@ -155,68 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War Supplemental Request',
-    value: 87_600_000_000,           // $87.6 billion (White House emergency supplemental request)
-    source: 'CSIS / PBS NewsHour / Military Times',
-    sourceUrl: 'https://www.csis.org/analysis/war-costs-make-third-876-billion-supplemental-request',
-    lastVerified: '2026-08-03',
+    label: 'FY2027 Pentagon Budget Request',
+    value: 1_500_000_000_000,        // $1.5 trillion (full FY2027 defense request)
+    source: 'Air & Space Forces Magazine / CSIS FY27 defense tracker',
+    sourceUrl: 'https://www.airandspaceforces.com/congress-cr-pentagon-december-1-5t-budget-request/',
+    lastVerified: '2026-09-14',
     category: 'defense',
-    notes: 'White House asked Congress on June 24, 2026 for $87.6B, with $67.1B (77%) going to the Pentagon; DoD says the war has cost $37.5B so far but outside analysts put the real figure near $200B; the Pentagon warns it runs out of war funding within weeks'
+    notes: 'The first-ever $1.5T defense request - $1.15T in regular appropriations plus $350B through reconciliation. The Sept 1, 2026 continuing resolution froze DoD at $838.5B (44% below the request) through Dec 11, and Congress has yet to act on the $350B piece at all'
   },
   trending2: {
-    label: 'Golden Dome Missile Shield',
-    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year build + maintain estimate)
-    source: 'Congressional Budget Office (via NPR / Defense News)',
-    sourceUrl: 'https://www.npr.org/2026/05/13/g-s1-121780/trumps-golden-dome-cost',
-    lastVerified: '2026-08-03',
-    category: 'defense',
-    notes: 'CBO says $1.2T over 20 years - roughly 6x the $185B the administration budgeted in FY2027; space-based interceptors alone are ~70% of acquisition cost; Pentagon disputes the estimate and still will not publish a price tag of its own'
+    label: 'Interest on the Debt (10 Months of FY2026)',
+    value: 931_000_000_000,          // $931 billion (interest costs through July 2026)
+    source: 'Peter G. Peterson Foundation monthly interest tracker (Treasury data)',
+    sourceUrl: 'https://www.pgpf.org/programs-and-projects/fiscal-policy/monthly-interest-tracker-national-debt/',
+    lastVerified: '2026-09-14',
+    category: 'interest',
+    notes: '$931B in interest through 10 months of FY2026, up 11% from $842B a year earlier. CBO reported Sept 11 that the 11-month deficit hit $2.0 trillion - already more than all of FY2025 - as gross debt crossed $40 trillion. Interest now outruns the entire defense budget'
   },
   trending3: {
-    label: 'ICE Detention Expansion',
-    value: 45_000_000_000,           // $45 billion (detention expansion funding in the 2025 reconciliation law)
-    source: 'Brennan Center for Justice / Washington Post',
-    sourceUrl: 'https://www.brennancenter.org/our-work/research-reports/how-ices-budget-boom-changing-immigration-detention',
-    lastVerified: '2026-08-03',
+    label: 'DOGE Claimed Savings (GAO Disputed)',
+    value: 110_000_000_000,          // $110 billion (savings claimed on the "Wall of Receipts" GAO reviewed)
+    source: 'U.S. Government Accountability Office (GAO-26-108615)',
+    sourceUrl: 'https://www.gao.gov/products/gao-26-108615',
+    lastVerified: '2026-09-14',
     category: 'general',
-    notes: '$45B for detention expansion - a ~400% increase that exceeds the entire federal prison system budget; ICE plans $38.3B on converting 24 warehouses into detention centers, and on July 27, 2026 extended a no-bid El Paso contract worth up to $776M more amid nationwide protests'
+    notes: 'GAO found the $110B claim inflated and largely unverifiable: ~$34.6B of $61B in "cancelled contract" savings came from contracts never actually terminated, 96% of grant savings could not be verified, and 108 lease cancellations were already underway before DOGE existed. DOGE ended July 4 but still advertises $215B total; Democrats asked Sept 2026 for Musk to testify',
+    isSavings: true
   },
   trending4: {
-    label: 'Record 2026 Farm Bailout Payments',
-    value: 55_300_000_000,           // $55.3 billion (total 2026 federal farm program payments if the new request is approved)
-    source: 'Environmental Working Group / USDA',
-    sourceUrl: 'https://www.ewg.org/news-insights/news/2026/07/triple-dipping-taxpayer-dollars-trump-eyes-billions-more-subsidies',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: 'A new $11B tariff-relief request on top of $44B already promised would push 2026 farm payments to a record $55.3B; critics call it "triple dipping" - roughly 40% is projected to flow to the largest farms, and the money comes from USDA accounts, not tariff revenue'
+    label: 'Social Security Cash Shortfall (2026)',
+    value: 270_000_000_000,          // $270 billion (combined OASDI cash deficit this year)
+    source: '2026 Social Security Trustees Report (via CRFB)',
+    sourceUrl: 'https://www.crfb.org/papers/analysis-2026-social-security-trustees-report',
+    lastVerified: '2026-09-14',
+    category: 'socialSecurity',
+    notes: 'Trustees project a $270B combined cash deficit in 2026 - benefits paid out exceed payroll taxes collected, with general revenue covering the gap. The retirement (OASI) trust fund is projected insolvent in 2032; the combined funds in 2034. Back in the news as the $40T debt milestone reignites the entitlement fight'
   },
   trending5: {
-    label: 'Medicare Fraud Identified (HHS Claim)',
-    value: 42_000_000_000,           // $42 billion (fraud HHS says it has identified to date)
-    source: 'U.S. Department of Health and Human Services / CMS',
-    sourceUrl: 'https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html',
-    lastVerified: '2026-08-03',
-    category: 'medicare',
-    notes: 'HHS said on July 21, 2026 it has identified $42B in Medicare fraud while deferring $1B+ in Medicaid payments to California and Minnesota; the figure is a claim, not an audited total - GAO separately pegged FY2025 improper payments at $57B for Medicare and $37B for Medicaid'
+    label: 'Pentagon September Spending Surge',
+    value: 93_400_000_000,           // $93.4 billion (DoD obligations in a single September)
+    source: 'Open the Books (via CNN / The Fiscal Times)',
+    sourceUrl: 'https://www.thefiscaltimes.com/2026/03/10/Pentagons-93-Billion-Use-It-or-Lose-It-September',
+    lastVerified: '2026-09-14',
+    category: 'defense',
+    notes: 'The largest "use it or lose it" year-end binge since 2008 - more than half of it in the final five working days. Purchases included ~$9M of Alaskan king crab and lobster tails, $200M+ of furniture and $5.3M of Apple devices. Timely again: FY2026 ends Sept 30 and the same incentive is live right now'
   },
   trending6: {
-    label: 'Interest on the Debt (9 Months of FY2026)',
-    value: 857_000_000_000,          // $857 billion (net interest, first 9 months of FY2026)
-    source: 'Congressional Budget Office (via Taxpayers for Common Sense)',
-    sourceUrl: 'https://www.taxpayer.net/budget-appropriations-tax/nine-months-1-4-trillion-the-congressional-budget-office-releases-monthly-budget-review/',
-    lastVerified: '2026-08-03',
-    category: 'interest',
-    notes: 'CBO: $857B in net interest through nine months of FY2026 - over $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
+    label: 'Congressional Earmarks in FY2027 Spending Bills',
+    value: 6_500_000_000,            // $6.5 billion (earmarks across three House appropriations bills)
+    source: 'Fox News / The Hill (House Appropriations Committee bills)',
+    sourceUrl: 'https://www.foxnews.com/politics/house-gop-spending-bills-pack-billions-earmarks-sparking-backlash-from-fiscal-hawks',
+    lastVerified: '2026-09-14',
+    category: 'general',
+    notes: 'Over 3,000 earmarks worth $6.5B packed into three House spending bills - $3B in Energy and Water, $1.7B in Interior, $1.7B in Commerce-Justice-Science. Fiscal hawks call it a betrayal of spending-cut promises; Sen. Rick Scott called the package "another slush fund for political passion projects"'
   },
   trending7: {
-    label: 'Protecting American Taxpayers Act (Claimed Savings)',
-    value: 240_000_000_000,          // $240 billion (sponsor's projected savings)
-    source: 'Sen. Joni Ernst (S. 4378) / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-july-17-2026/',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: 'Introduced July 2026, bundling 15 separate bills that the sponsor projects would save $240B; the estimate comes from the sponsor rather than CBO and has not been independently scored',
-    isSavings: true
+    label: 'Medicare Equipment Supplier Fraud Scheme',
+    value: 3_400_000_000,            // $3.4 billion (suspected fraudulent billing by 11 suppliers)
+    source: 'Centers for Medicare & Medicaid Services (CMS)',
+    sourceUrl: 'https://www.cms.gov/newsroom/press-releases/cms-cracks-down-massive-3-4-billion-medical-equipment-supplier-fraud-scheme',
+    lastVerified: '2026-09-14',
+    category: 'medicare',
+    notes: 'CMS announced Sept 8, 2026 it is barring 11 medical equipment suppliers over $3.4B in suspected fraudulent billing - including claims for beneficiaries who were already dead, $18.4M of catheter claims filed by one Florida provider in two days, and four suppliers already kicked out of Original Medicare who simply switched to billing Medicare Advantage'
   }
 };
 
