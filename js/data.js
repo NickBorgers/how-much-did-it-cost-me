@@ -155,68 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War Supplemental Request',
-    value: 87_600_000_000,           // $87.6 billion (White House emergency supplemental request)
-    source: 'CSIS / PBS NewsHour / Military Times',
-    sourceUrl: 'https://www.csis.org/analysis/war-costs-make-third-876-billion-supplemental-request',
-    lastVerified: '2026-08-03',
+    label: 'Iran War Cost So Far (Pentagon Estimate)',
+    value: 45_100_000_000,           // $45.1 billion (CENTCOM estimate given to Congress)
+    source: 'U.S. Central Command estimate to Congress (via CNN)',
+    sourceUrl: 'https://www.cnn.com/2026/09/18/politics/us-iran-war-cost',
+    lastVerified: '2026-09-21',
     category: 'defense',
-    notes: 'White House asked Congress on June 24, 2026 for $87.6B, with $67.1B (77%) going to the Pentagon; DoD says the war has cost $37.5B so far but outside analysts put the real figure near $200B; the Pentagon warns it runs out of war funding within weeks'
+    notes: 'CENTCOM told Congress the week of Sept 15, 2026 that seven months of war has cost $45.1B - $28.1B to replace spent munitions, $11.2B in operations, $4.3B in "lost" weapons and $1.5B in extra fuel; the figure excludes damage to U.S. bases, and the Pentagon says it needs $28B more just to refill munitions stocks'
   },
   trending2: {
-    label: 'Golden Dome Missile Shield',
-    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year build + maintain estimate)
-    source: 'Congressional Budget Office (via NPR / Defense News)',
-    sourceUrl: 'https://www.npr.org/2026/05/13/g-s1-121780/trumps-golden-dome-cost',
-    lastVerified: '2026-08-03',
+    label: 'Proposed $1.5 Trillion Defense Budget',
+    value: 1_500_000_000_000,        // $1.5 trillion (FY2027 request: $1.15T discretionary + $350B mandatory)
+    source: 'CSIS / Air & Space Forces Magazine',
+    sourceUrl: 'https://www.csis.org/analysis/unpacking-15-trillion-fy-2027-defense-budget-topline',
+    lastVerified: '2026-09-21',
     category: 'defense',
-    notes: 'CBO says $1.2T over 20 years - roughly 6x the $185B the administration budgeted in FY2027; space-based interceptors alone are ~70% of acquisition cost; Pentagon disputes the estimate and still will not publish a price tag of its own'
+    notes: 'The FY2027 request is the largest single-year defense topline since World War II - a 28% discretionary increase; the Sept 1, 2026 continuing resolution froze the Pentagon at current levels through Dec 11, and budget analysts openly doubt the $1.5T number survives'
   },
   trending3: {
-    label: 'ICE Detention Expansion',
-    value: 45_000_000_000,           // $45 billion (detention expansion funding in the 2025 reconciliation law)
-    source: 'Brennan Center for Justice / Washington Post',
-    sourceUrl: 'https://www.brennancenter.org/our-work/research-reports/how-ices-budget-boom-changing-immigration-detention',
-    lastVerified: '2026-08-03',
+    label: 'Federal Workers Paid Not to Work (2025)',
+    value: 9_500_000_000,            // $9.5 billion (GAO estimate of 2025 paid administrative leave salary costs)
+    source: 'Government Accountability Office (GAO-26-108477)',
+    sourceUrl: 'https://www.gao.gov/products/gao-26-108477',
+    lastVerified: '2026-09-21',
     category: 'general',
-    notes: '$45B for detention expansion - a ~400% increase that exceeds the entire federal prison system budget; ICE plans $38.3B on converting 24 warehouses into detention centers, and on July 27, 2026 extended a no-bid El Paso contract worth up to $776M more amid nationwide protests'
+    notes: 'GAO reported Sept 15, 2026 that agencies spent $9.5B on paid administrative leave in 2025 - a sixfold jump - with $6.7B of it tied to the DOGE-era deferred resignation buyouts; OPM counters that the workforce cuts should save $20B a year, so this is a one-time cost'
   },
   trending4: {
-    label: 'Record 2026 Farm Bailout Payments',
-    value: 55_300_000_000,           // $55.3 billion (total 2026 federal farm program payments if the new request is approved)
-    source: 'Environmental Working Group / USDA',
-    sourceUrl: 'https://www.ewg.org/news-insights/news/2026/07/triple-dipping-taxpayer-dollars-trump-eyes-billions-more-subsidies',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: 'A new $11B tariff-relief request on top of $44B already promised would push 2026 farm payments to a record $55.3B; critics call it "triple dipping" - roughly 40% is projected to flow to the largest farms, and the money comes from USDA accounts, not tariff revenue'
+    label: 'Interest on the National Debt (FY2026)',
+    value: 1_020_000_000_000,        // $1.02 trillion (interest costs, first 11 months of FY2026)
+    source: 'Peter G. Peterson Foundation interest tracker (Treasury data)',
+    sourceUrl: 'https://www.pgpf.org/programs-and-projects/fiscal-policy/monthly-interest-tracker-national-debt/',
+    lastVerified: '2026-09-21',
+    category: 'interest',
+    notes: 'Interest costs passed $1 trillion in a single fiscal year for the first time ever, up 9% year over year with a month still to go; CBO put the 11-month deficit at $2.0T on Sept 9, 2026 as gross debt crossed $40 trillion - the government now spends more on interest than on national defense'
   },
   trending5: {
-    label: 'Medicare Fraud Identified (HHS Claim)',
-    value: 42_000_000_000,           // $42 billion (fraud HHS says it has identified to date)
-    source: 'U.S. Department of Health and Human Services / CMS',
-    sourceUrl: 'https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html',
-    lastVerified: '2026-08-03',
+    label: '340B Drug Discount Program',
+    value: 100_000_000_000,          // $100 billion (2025 discounted drug purchases)
+    source: 'HRSA data via Citizens Against Government Waste / Drug Channels',
+    sourceUrl: 'https://www.cagw.org/this-week-in-waste-september-18-2026/',
+    lastVerified: '2026-09-21',
     category: 'medicare',
-    notes: 'HHS said on July 21, 2026 it has identified $42B in Medicare fraud while deferring $1B+ in Medicaid payments to California and Minnesota; the figure is a claim, not an audited total - GAO separately pegged FY2025 improper payments at $57B for Medicare and $37B for Medicaid'
+    notes: 'Discounted purchases hit $100B in 2025, up 23% in a single year; critics say weak oversight and no clear definition of an eligible "patient" let hospitals and contract pharmacies pocket the spread - note this is the value of drugs bought at a discount, not a direct federal outlay, and oversight is being moved from HRSA to CMS'
   },
   trending6: {
-    label: 'Interest on the Debt (9 Months of FY2026)',
-    value: 857_000_000_000,          // $857 billion (net interest, first 9 months of FY2026)
-    source: 'Congressional Budget Office (via Taxpayers for Common Sense)',
-    sourceUrl: 'https://www.taxpayer.net/budget-appropriations-tax/nine-months-1-4-trillion-the-congressional-budget-office-releases-monthly-budget-review/',
-    lastVerified: '2026-08-03',
-    category: 'interest',
-    notes: 'CBO: $857B in net interest through nine months of FY2026 - over $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
+    label: 'EPA Carbon Rule Repeal (Claimed Savings)',
+    value: 310_000_000_000,          // $310 billion (EPA's claimed savings from repealing the 2024 power plant rule)
+    source: 'U.S. Environmental Protection Agency',
+    sourceUrl: 'https://www.epa.gov/newsreleases/what-they-are-saying-huge-support-across-america-after-trump-epa-delivers-largest',
+    lastVerified: '2026-09-21',
+    category: 'general',
+    notes: 'EPA finalized the repeal of the 2024 power plant greenhouse gas standards on Sept 14, 2026 and claims $310B in savings; this is avoided private compliance cost, not federal budget savings, and EDF, NRDC, the Sierra Club and New York\'s attorney general have all said they will sue',
+    isSavings: true
   },
   trending7: {
-    label: 'Protecting American Taxpayers Act (Claimed Savings)',
-    value: 240_000_000_000,          // $240 billion (sponsor's projected savings)
-    source: 'Sen. Joni Ernst (S. 4378) / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-july-17-2026/',
-    lastVerified: '2026-08-03',
+    label: 'Pandemic Unemployment Fraud',
+    value: 135_000_000_000,          // $135 billion (high end of GAO's estimated range)
+    source: 'Government Accountability Office (GAO-23-106696)',
+    sourceUrl: 'https://www.gao.gov/products/gao-23-106696',
+    lastVerified: '2026-09-21',
     category: 'general',
-    notes: 'Introduced July 2026, bundling 15 separate bills that the sponsor projects would save $240B; the estimate comes from the sponsor rather than CBO and has not been independently scored',
-    isSavings: true
+    notes: 'Back in the headlines in September 2026 as reporting revisits how identity verification was simply switched off: GAO estimates $100B-$135B of pandemic unemployment benefits went to fraud, 11-15% of everything paid; states have clawed back only about $1.2B, and the Labor Department disputes the methodology'
   }
 };
 
