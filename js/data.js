@@ -155,68 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War Supplemental Request',
-    value: 87_600_000_000,           // $87.6 billion (White House emergency supplemental request)
-    source: 'CSIS / PBS NewsHour / Military Times',
-    sourceUrl: 'https://www.csis.org/analysis/war-costs-make-third-876-billion-supplemental-request',
-    lastVerified: '2026-08-03',
+    label: 'Pentagon "Use It or Lose It" September Spree',
+    value: 93_400_000_000,           // $93.4 billion spent on contracts and grants in a single month
+    source: 'Open the Books (via CNN)',
+    sourceUrl: 'https://www.cnn.com/2026/03/12/politics/use-it-or-lose-it-pentagon-spending-binge-set-record-in-final-days-of-fiscal-year',
+    lastVerified: '2026-09-28',
     category: 'defense',
-    notes: 'White House asked Congress on June 24, 2026 for $87.6B, with $67.1B (77%) going to the Pentagon; DoD says the war has cost $37.5B so far but outside analysts put the real figure near $200B; the Pentagon warns it runs out of war funding within weeks'
+    notes: 'Back in the news as FY2026 ends September 30: no federal agency has ever spent more in one month than the Pentagon\'s record $93.4B last September, over half of it in the final five working days - including $15.1M on ribeye steaks, $6.9M on lobster tails and $124K on ice cream machines. Average non-September month since 2008 is $28.9B'
   },
   trending2: {
-    label: 'Golden Dome Missile Shield',
-    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year build + maintain estimate)
-    source: 'Congressional Budget Office (via NPR / Defense News)',
-    sourceUrl: 'https://www.npr.org/2026/05/13/g-s1-121780/trumps-golden-dome-cost',
-    lastVerified: '2026-08-03',
-    category: 'defense',
-    notes: 'CBO says $1.2T over 20 years - roughly 6x the $185B the administration budgeted in FY2027; space-based interceptors alone are ~70% of acquisition cost; Pentagon disputes the estimate and still will not publish a price tag of its own'
+    label: '340B Drug Discount Program',
+    value: 100_000_000_000,          // ~$100 billion in 2025 discounted drug purchases
+    source: 'Citizens Against Government Waste / HRSA program data',
+    sourceUrl: 'https://www.cagw.org/this-week-in-waste-september-18-2026/',
+    lastVerified: '2026-09-28',
+    category: 'medicare',
+    notes: 'Covered entities bought ~$100B in discounted outpatient drugs in 2025, up 86% from $53.7B in 2022, with hospitals alone accounting for $79B. Critics say the missing patient definition lets hospitals and contract pharmacies pocket the spread; competing Senate and House reform bills are fighting over it right now. This is drug purchase volume, not a federal appropriation'
   },
   trending3: {
-    label: 'ICE Detention Expansion',
-    value: 45_000_000_000,           // $45 billion (detention expansion funding in the 2025 reconciliation law)
-    source: 'Brennan Center for Justice / Washington Post',
-    sourceUrl: 'https://www.brennancenter.org/our-work/research-reports/how-ices-budget-boom-changing-immigration-detention',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: '$45B for detention expansion - a ~400% increase that exceeds the entire federal prison system budget; ICE plans $38.3B on converting 24 warehouses into detention centers, and on July 27, 2026 extended a no-bid El Paso contract worth up to $776M more amid nationwide protests'
+    label: 'National Guard Deployments to U.S. Cities',
+    value: 1_700_000_000,            // $1.7 billion through the end of 2026
+    source: 'Center for American Progress / Congressional Budget Office',
+    sourceUrl: 'https://www.americanprogress.org/article/the-trump-administrations-1-7-billion-national-guard-deployments-fail-to-reduce-urban-crime/',
+    lastVerified: '2026-09-28',
+    category: 'defense',
+    notes: 'CBO put 2025 deployments to LA, DC, Memphis, Portland and Chicago at $496M; CAP projects $1.7B once extended 2026 deployments are counted, at roughly $93M a month and $18-21M per 1,000 soldiers. CAP found no measurable reduction in violent crime, homicides or gun violence'
   },
   trending4: {
-    label: 'Record 2026 Farm Bailout Payments',
-    value: 55_300_000_000,           // $55.3 billion (total 2026 federal farm program payments if the new request is approved)
-    source: 'Environmental Working Group / USDA',
-    sourceUrl: 'https://www.ewg.org/news-insights/news/2026/07/triple-dipping-taxpayer-dollars-trump-eyes-billions-more-subsidies',
-    lastVerified: '2026-08-03',
+    label: 'Trump Pocket Rescission (Claimed Savings)',
+    value: 810_000_000,              // $810 million in enacted appropriations cancelled
+    source: 'The White House / CBS News / Senate Appropriations Committee',
+    sourceUrl: 'https://www.whitehouse.gov/briefings-statements/2026/09/president-trump-takes-historic-action-to-eliminate-wasteful-and-harmful-spending/',
+    lastVerified: '2026-09-28',
     category: 'general',
-    notes: 'A new $11B tariff-relief request on top of $44B already promised would push 2026 farm payments to a record $55.3B; critics call it "triple dipping" - roughly 40% is projected to flow to the largest farms, and the money comes from USDA accounts, not tariff revenue'
+    notes: 'Announced September 25, 2026: $810M in funds Congress already appropriated, cancelled by running out the fiscal-year clock - $567M for refugee and migrant services, $70M for international education, $56M for HUD housing counseling. GAO has called pocket rescissions illegal and Appropriations Chair Susan Collins called it "a clear violation of the law"',
+    isSavings: true
   },
   trending5: {
-    label: 'Medicare Fraud Identified (HHS Claim)',
-    value: 42_000_000_000,           // $42 billion (fraud HHS says it has identified to date)
-    source: 'U.S. Department of Health and Human Services / CMS',
-    sourceUrl: 'https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html',
-    lastVerified: '2026-08-03',
-    category: 'medicare',
-    notes: 'HHS said on July 21, 2026 it has identified $42B in Medicare fraud while deferring $1B+ in Medicaid payments to California and Minnesota; the figure is a claim, not an audited total - GAO separately pegged FY2025 improper payments at $57B for Medicare and $37B for Medicaid'
+    label: 'ICE Warehouses Bought Then Scrapped',
+    value: 1_070_000_000,            // $1.07 billion spent on 11 warehouses
+    source: 'U.S. Government Accountability Office (GAO-26-108663)',
+    sourceUrl: 'https://www.gao.gov/products/gao-26-108663',
+    lastVerified: '2026-09-28',
+    category: 'general',
+    notes: 'GAO reported September 24, 2026 that ICE bought 11 warehouses for $1.07B to convert into detention space, then abandoned the plan before housing a single detainee. Seven are now being sold, with $20M in unrecoverable costs already sunk and $3M more on unused tents at Guantanamo Bay'
   },
   trending6: {
-    label: 'Interest on the Debt (9 Months of FY2026)',
-    value: 857_000_000_000,          // $857 billion (net interest, first 9 months of FY2026)
-    source: 'Congressional Budget Office (via Taxpayers for Common Sense)',
-    sourceUrl: 'https://www.taxpayer.net/budget-appropriations-tax/nine-months-1-4-trillion-the-congressional-budget-office-releases-monthly-budget-review/',
-    lastVerified: '2026-08-03',
-    category: 'interest',
-    notes: 'CBO: $857B in net interest through nine months of FY2026 - over $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
+    label: 'White House East Wing Ballroom',
+    value: 600_000_000,              // $600 million total project cost per contractor invoices
+    source: 'Washington Post / USA Today (via Rep. Katherine Clark)',
+    sourceUrl: 'https://katherineclark.house.gov/2026/06/16/usa-today-trump-ballroom-soars-to-600m-with-taxpayers-on-hook-for-half-report/',
+    lastVerified: '2026-09-28',
+    category: 'general',
+    notes: 'Announced at $200M and promised to cost taxpayers "not one dime," the ballroom is now pegged at $600M by contractor invoices, with reporting attributing roughly half to the Secret Service and White House Military Office. An appeals court halted construction in August 2026 pending congressional approval, teeing up a Supreme Court fight'
   },
   trending7: {
-    label: 'Protecting American Taxpayers Act (Claimed Savings)',
-    value: 240_000_000_000,          // $240 billion (sponsor's projected savings)
-    source: 'Sen. Joni Ernst (S. 4378) / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-july-17-2026/',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: 'Introduced July 2026, bundling 15 separate bills that the sponsor projects would save $240B; the estimate comes from the sponsor rather than CBO and has not been independently scored',
-    isSavings: true
+    label: 'Improper SSI Payments (SSA Watchdog)',
+    value: 1_000_000_000,            // ~$1 billion in improper payments identified
+    source: 'Social Security Administration Office of the Inspector General',
+    sourceUrl: 'https://oig.ssa.gov/news-releases/2026-09-23-oig-report-identifies-1-billion-in-improper-ssi-payments-due-to-unresolved-earnings-alerts/',
+    lastVerified: '2026-09-28',
+    category: 'socialSecurity',
+    notes: 'SSA OIG found on September 23, 2026 that roughly $1B went to 333,800 SSI recipients whose earnings alerts were never resolved - pending an average of 733 days. Only 20 of 100 sampled cases were handled correctly, and an estimated $664M can never be clawed back'
   }
 };
 
