@@ -2,7 +2,7 @@
 // Sources: IRS, CBO, Tax Foundation, U.S. Treasury Fiscal Data
 
 const DATA_YEAR = 2024;
-const DATA_LAST_UPDATED = '2025-01-10';  // Updated verification date
+const DATA_LAST_UPDATED = '2026-10-01';  // Updated verification date
 
 // Standard Deductions (2024)
 const STANDARD_DEDUCTIONS = {
@@ -131,21 +131,21 @@ const PERMANENT_SPENDING = {
   geraldRFordCarrier: {
     label: 'Gerald R. Ford Aircraft Carrier',
     value: 13_300_000_000,           // $13.3 billion (USS Gerald R. Ford total program cost)
-    source: 'Congressional Research Service',
-    sourceUrl: 'https://crsreports.congress.gov/product/pdf/RS/RS20643',
+    source: 'Congressional Research Service (RS20643)',
+    sourceUrl: 'https://www.congress.gov/crs-product/RS20643',
     lastVerified: DATA_LAST_UPDATED,
     category: 'defense',
-    notes: 'Total acquisition cost for lead ship CVN-78',
+    notes: 'Final procurement cost for lead ship CVN-78: $13,316.5 million in then-year dollars',
     multiYear: true                  // Spent over construction period, not in one year
   },
   jamesWebbTelescope: {
     label: 'James Webb Space Telescope',
-    value: 10_000_000_000,           // $10 billion (total development cost)
-    source: 'NASA',
-    sourceUrl: 'https://www.nasa.gov/mission_pages/webb/about/index.html',
+    value: 9_700_000_000,            // $9.7 billion (NASA life-cycle cost: $8.8B development + $861M operations)
+    source: 'GAO / NASA (GAO-21-406)',
+    sourceUrl: 'https://www.gao.gov/products/gao-21-406',
     lastVerified: DATA_LAST_UPDATED,
     category: 'general',
-    notes: 'Total lifecycle development cost',
+    notes: 'NASA life-cycle cost: $8.8B development (2003-2021) plus $861M for five years of operations',
     multiYear: true                  // Spent over development period, not in one year
   }
 };
