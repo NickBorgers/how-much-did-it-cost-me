@@ -155,67 +155,67 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War Supplemental Request',
-    value: 87_600_000_000,           // $87.6 billion (White House emergency supplemental request)
-    source: 'CSIS / PBS NewsHour / Military Times',
-    sourceUrl: 'https://www.csis.org/analysis/war-costs-make-third-876-billion-supplemental-request',
-    lastVerified: '2026-08-03',
+    label: 'Pentagon FY2027 Budget Request',
+    value: 1_500_000_000_000,        // $1.5 trillion (administration's FY2027 defense request)
+    source: 'The Hill / NPR / Mother Jones',
+    sourceUrl: 'https://thehill.com/policy/defense/6110595-pentagon-trump-budget-briefings-senate/',
+    lastVerified: '2026-10-05',
     category: 'defense',
-    notes: 'White House asked Congress on June 24, 2026 for $87.6B, with $67.1B (77%) going to the Pentagon; DoD says the war has cost $37.5B so far but outside analysts put the real figure near $200B; the Pentagon warns it runs out of war funding within weeks'
+    notes: 'A ~50% jump that would be the first $1.5T defense budget ever - more, inflation-adjusted, than the WWII peak; the Pentagon ramped up closed-door Senate briefings on Oct 1, 2026 and GOP senators say the push came too late; critics argue the true military total is $1T higher once non-Pentagon accounts are counted'
   },
   trending2: {
-    label: 'Golden Dome Missile Shield',
-    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year build + maintain estimate)
-    source: 'Congressional Budget Office (via NPR / Defense News)',
-    sourceUrl: 'https://www.npr.org/2026/05/13/g-s1-121780/trumps-golden-dome-cost',
-    lastVerified: '2026-08-03',
+    label: 'Pentagon September "Use-It-or-Lose-It" Spree',
+    value: 93_400_000_000,           // $93.4 billion (single-month September obligations)
+    source: 'Open The Books (watchdog report)',
+    sourceUrl: 'https://www.foxla.com/news/pete-hegseth-pentagon-lobster-spending-93-billion',
+    lastVerified: '2026-10-05',
     category: 'defense',
-    notes: 'CBO says $1.2T over 20 years - roughly 6x the $185B the administration budgeted in FY2027; space-based interceptors alone are ~70% of acquisition cost; Pentagon disputes the estimate and still will not publish a price tag of its own'
+    notes: '"Lobstergate" - the Pentagon burned $93.4B in a single September to avoid losing the money, the biggest September since at least 2008; receipts include $15.1M of ribeye, $6.9M of lobster tail, $2M of king crab and $124K of ice cream machines, landing awkwardly next to the administration\'s efficiency push'
   },
   trending3: {
-    label: 'ICE Detention Expansion',
-    value: 45_000_000_000,           // $45 billion (detention expansion funding in the 2025 reconciliation law)
-    source: 'Brennan Center for Justice / Washington Post',
-    sourceUrl: 'https://www.brennancenter.org/our-work/research-reports/how-ices-budget-boom-changing-immigration-detention',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: '$45B for detention expansion - a ~400% increase that exceeds the entire federal prison system budget; ICE plans $38.3B on converting 24 warehouses into detention centers, and on July 27, 2026 extended a no-bid El Paso contract worth up to $776M more amid nationwide protests'
+    label: 'Interest on the National Debt (FY2026)',
+    value: 1_100_000_000_000,        // $1.1 trillion (full-year FY2026 net interest)
+    source: 'Committee for a Responsible Federal Budget',
+    sourceUrl: 'https://www.crfb.org/blogs/us-ran-2-trillion-deficit-last-year-we-estimate',
+    lastVerified: '2026-10-05',
+    category: 'interest',
+    notes: 'FY2026 closed Sept 30 with a $2.0T deficit (6.2% of GDP) and a record $1.1T in interest - 3.4% of GDP, now the second largest line item in the budget, ahead of both defense and Medicare; debt held by the public hit ~$32.3T, or 100% of GDP'
   },
   trending4: {
-    label: 'Record 2026 Farm Bailout Payments',
-    value: 55_300_000_000,           // $55.3 billion (total 2026 federal farm program payments if the new request is approved)
-    source: 'Environmental Working Group / USDA',
-    sourceUrl: 'https://www.ewg.org/news-insights/news/2026/07/triple-dipping-taxpayer-dollars-trump-eyes-billions-more-subsidies',
-    lastVerified: '2026-08-03',
+    label: 'Federal Funding Blocked by Impoundment',
+    value: 410_000_000_000,          // $410 billion (appropriated funds being withheld)
+    source: 'Senate Appropriations Committee Democrats (Sen. Patty Murray)',
+    sourceUrl: 'https://www.murray.senate.gov/new-weeks-away-from-end-of-fiscal-year-trump-is-blocking-410-billion-dollars-in-funding-owed-to-communities-nationwide/',
+    lastVerified: '2026-10-05',
     category: 'general',
-    notes: 'A new $11B tariff-relief request on top of $44B already promised would push 2026 farm payments to a record $55.3B; critics call it "triple dipping" - roughly 40% is projected to flow to the largest farms, and the money comes from USDA accounts, not tariff revenue'
+    notes: 'Democratic appropriators tally at least $410B in appropriated money the White House and OMB are sitting on; California and six other states sued Trump and OMB Director Russ Vought in early October 2026 over the impoundments. The figure is a minority-staff count, not an audited total'
   },
   trending5: {
-    label: 'Medicare Fraud Identified (HHS Claim)',
-    value: 42_000_000_000,           // $42 billion (fraud HHS says it has identified to date)
-    source: 'U.S. Department of Health and Human Services / CMS',
-    sourceUrl: 'https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html',
-    lastVerified: '2026-08-03',
+    label: 'Health Care Fraud Loss Estimate',
+    value: 521_000_000_000,          // $521 billion (upper-bound annual federal fraud estimate)
+    source: 'House Energy & Commerce Committee report (citing GAO)',
+    sourceUrl: 'https://www.foxnews.com/politics/bombshell-report-exposes-healthcare-fraud-schemes-taxpayers-lose-521-billion-annually',
+    lastVerified: '2026-10-05',
     category: 'medicare',
-    notes: 'HHS said on July 21, 2026 it has identified $42B in Medicare fraud while deferring $1B+ in Medicaid payments to California and Minnesota; the figure is a claim, not an audited total - GAO separately pegged FY2025 improper payments at $57B for Medicare and $37B for Medicaid'
+    notes: 'A Sept 29, 2026 House E&C report pegged losses at up to $521B a year - "$1 million a minute" - and 14 GOP anti-fraud bills followed. The number is badly stretched: GAO\'s 2024 estimate of $233B-$521B covers ALL federal programs, not just Medicare and Medicaid'
   },
   trending6: {
-    label: 'Interest on the Debt (9 Months of FY2026)',
-    value: 857_000_000_000,          // $857 billion (net interest, first 9 months of FY2026)
-    source: 'Congressional Budget Office (via Taxpayers for Common Sense)',
-    sourceUrl: 'https://www.taxpayer.net/budget-appropriations-tax/nine-months-1-4-trillion-the-congressional-budget-office-releases-monthly-budget-review/',
-    lastVerified: '2026-08-03',
-    category: 'interest',
-    notes: 'CBO: $857B in net interest through nine months of FY2026 - over $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
+    label: 'White House Ballroom Project',
+    value: 600_000_000,              // $600 million (contractor's internal full-project estimate)
+    source: 'Leaked Clark Construction estimate / House Appropriations Democrats',
+    sourceUrl: 'https://democrats-appropriations.house.gov/news/press-releases/trump-administration-spent-tens-millions-taxpayer-funds-ballroom-and-then-lied',
+    lastVerified: '2026-10-05',
+    category: 'general',
+    notes: 'Public price tags have run from $200M to $1B; a leaked contractor summary puts the full bill at $600M with just under half from private sources, leaving ~$307M on taxpayers via the Secret Service ($155M), White House Military Office ($149M) and Executive Residence ($3M) - despite repeated claims that it costs taxpayers nothing'
   },
   trending7: {
-    label: 'Protecting American Taxpayers Act (Claimed Savings)',
-    value: 240_000_000_000,          // $240 billion (sponsor's projected savings)
-    source: 'Sen. Joni Ernst (S. 4378) / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-july-17-2026/',
-    lastVerified: '2026-08-03',
+    label: 'Pocket Rescission (Claimed Savings)',
+    value: 810_000_000,              // $810 million (funds cancelled 5 days before fiscal year end)
+    source: 'Office of Management and Budget (via ABC News)',
+    sourceUrl: 'https://abcnews.com/Politics/white-house-orders-800m-funds-rescinded-collins-calls/story?id=136772703',
+    lastVerified: '2026-10-05',
     category: 'general',
-    notes: 'Introduced July 2026, bundling 15 separate bills that the sponsor projects would save $240B; the estimate comes from the sponsor rather than CBO and has not been independently scored',
+    notes: 'OMB cancelled $810M on Sept 25, 2026 - five days before the money expired, so Congress had no time to vote it down; it hit HHS and DHS programs including refugee services and aid for unaccompanied minors. GAO and Senate Appropriations Chair Susan Collins (R) both call the maneuver an unlawful impoundment, and it is now in court',
     isSavings: true
   }
 };
