@@ -155,67 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War Supplemental Request',
-    value: 87_600_000_000,           // $87.6 billion (White House emergency supplemental request)
-    source: 'CSIS / PBS NewsHour / Military Times',
-    sourceUrl: 'https://www.csis.org/analysis/war-costs-make-third-876-billion-supplemental-request',
-    lastVerified: '2026-08-03',
-    category: 'defense',
-    notes: 'White House asked Congress on June 24, 2026 for $87.6B, with $67.1B (77%) going to the Pentagon; DoD says the war has cost $37.5B so far but outside analysts put the real figure near $200B; the Pentagon warns it runs out of war funding within weeks'
+    label: 'FY2026 Federal Deficit',
+    value: 2_000_000_000_000,        // ~$2 trillion (fiscal year ended Sept 30, 2026)
+    source: 'Congressional Budget Office (via Washington Times / Reason / CRFB)',
+    sourceUrl: 'https://www.washingtontimes.com/news/2026/oct/8/federal-budget-deficit-climbed-2-trillion-fiscal-26/',
+    lastVerified: '2026-10-12',
+    category: 'general',
+    notes: 'CBO says the deficit hit roughly $2T for FY2026 (about 6.2% of GDP), up ~12% from last year; corporate tax receipts fell 16% after the 2025 tax law and interest costs passed $1T - with no war or pandemic to blame. Approximate; final Treasury figures pending'
   },
   trending2: {
     label: 'Golden Dome Missile Shield',
-    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year build + maintain estimate)
-    source: 'Congressional Budget Office (via NPR / Defense News)',
-    sourceUrl: 'https://www.npr.org/2026/05/13/g-s1-121780/trumps-golden-dome-cost',
-    lastVerified: '2026-08-03',
+    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year build + operate estimate)
+    source: 'Congressional Budget Office (via Committee for a Responsible Federal Budget / Axios)',
+    sourceUrl: 'https://www.crfb.org/blogs/cbo-estimates-golden-dome-could-cost-more-1-trillion',
+    lastVerified: '2026-10-12',
     category: 'defense',
-    notes: 'CBO says $1.2T over 20 years - roughly 6x the $185B the administration budgeted in FY2027; space-based interceptors alone are ~70% of acquisition cost; Pentagon disputes the estimate and still will not publish a price tag of its own'
+    notes: 'At a Sept 29 Senate hearing, CBO defended its $1.2T 20-year estimate ($734B just for ~7,800 interceptor satellites that must be constantly replaced) while the program director insisted it will stay within $185B; senators from both parties questioned cost and feasibility'
   },
   trending3: {
-    label: 'ICE Detention Expansion',
-    value: 45_000_000_000,           // $45 billion (detention expansion funding in the 2025 reconciliation law)
-    source: 'Brennan Center for Justice / Washington Post',
-    sourceUrl: 'https://www.brennancenter.org/our-work/research-reports/how-ices-budget-boom-changing-immigration-detention',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: '$45B for detention expansion - a ~400% increase that exceeds the entire federal prison system budget; ICE plans $38.3B on converting 24 warehouses into detention centers, and on July 27, 2026 extended a no-bid El Paso contract worth up to $776M more amid nationwide protests'
+    label: 'Pentagon Contracts to Trump Sons-Backed Firms',
+    value: 6_000_000_000,            // $6 billion+ (ABC News analysis)
+    source: 'ABC News analysis (via Common Dreams)',
+    sourceUrl: 'https://www.commondreams.org/news/trump-brothers-pentagon-contracts',
+    lastVerified: '2026-10-12',
+    category: 'defense',
+    notes: 'ABC News found companies backed by Donald Trump Jr. and Eric Trump (largely via 1789 Capital) have won over $6B in Defense Department contracts and loans since the 2024 election; critics call it self-dealing, while the brothers say it reflects independent business judgment and no wrongdoing has been found'
   },
   trending4: {
-    label: 'Record 2026 Farm Bailout Payments',
-    value: 55_300_000_000,           // $55.3 billion (total 2026 federal farm program payments if the new request is approved)
-    source: 'Environmental Working Group / USDA',
-    sourceUrl: 'https://www.ewg.org/news-insights/news/2026/07/triple-dipping-taxpayer-dollars-trump-eyes-billions-more-subsidies',
-    lastVerified: '2026-08-03',
+    label: 'Record Farm Safety-Net Payments',
+    value: 13_800_000_000,           // $13.8 billion (ARC/PLC payments for 2025 crop year)
+    source: 'U.S. Department of Agriculture',
+    sourceUrl: 'https://www.usda.gov/about-usda/news/press-releases/2026/10/07/usda-announces-record-payments-138-billion-2025-crop-year-revenue-and-price-safety-net-programs',
+    lastVerified: '2026-10-12',
     category: 'general',
-    notes: 'A new $11B tariff-relief request on top of $44B already promised would push 2026 farm payments to a record $55.3B; critics call it "triple dipping" - roughly 40% is projected to flow to the largest farms, and the money comes from USDA accounts, not tariff revenue'
+    notes: 'USDA announced Oct 7, 2026 the largest ARC/PLC payout since the programs began in 2014, boosted by higher reference prices in the 2025 tax law; it lands on top of $12B+ in tariff "bridge" aid, fueling criticism that farm subsidies keep stacking up'
   },
   trending5: {
-    label: 'Medicare Fraud Identified (HHS Claim)',
-    value: 42_000_000_000,           // $42 billion (fraud HHS says it has identified to date)
-    source: 'U.S. Department of Health and Human Services / CMS',
-    sourceUrl: 'https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html',
-    lastVerified: '2026-08-03',
-    category: 'medicare',
-    notes: 'HHS said on July 21, 2026 it has identified $42B in Medicare fraud while deferring $1B+ in Medicaid payments to California and Minnesota; the figure is a claim, not an audited total - GAO separately pegged FY2025 improper payments at $57B for Medicare and $37B for Medicaid'
+    label: 'Federal Reserve HQ Renovation',
+    value: 2_500_000_000,            // ~$2.5 billion (estimated total project cost)
+    source: 'Federal Reserve Office of Inspector General (via CBS News)',
+    sourceUrl: 'https://www.cbsnews.com/news/federal-reserve-renovations-inspector-general-report/',
+    lastVerified: '2026-10-12',
+    category: 'general',
+    notes: 'The Fed watchdog found no crimes in the renovation Trump called "disgraceful", but cited serious mismanagement as costs rose from $1.9B to nearly $2.5B; the IG says the marble, private elevator and terrace did not materially drive costs. Technically paid from Fed earnings, which otherwise go to the Treasury'
   },
   trending6: {
-    label: 'Interest on the Debt (9 Months of FY2026)',
-    value: 857_000_000_000,          // $857 billion (net interest, first 9 months of FY2026)
-    source: 'Congressional Budget Office (via Taxpayers for Common Sense)',
-    sourceUrl: 'https://www.taxpayer.net/budget-appropriations-tax/nine-months-1-4-trillion-the-congressional-budget-office-releases-monthly-budget-review/',
-    lastVerified: '2026-08-03',
-    category: 'interest',
-    notes: 'CBO: $857B in net interest through nine months of FY2026 - over $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
+    label: 'Medicaid Drug Price Deals (Claimed Savings)',
+    value: 64_300_000_000,           // $64.3 billion over 10 years (White House CEA estimate)
+    source: 'White House Council of Economic Advisers (via FactCheck.org)',
+    sourceUrl: 'https://factcheck.org/2026/10/trump-touts-medicaid-drug-savings-but-details-remain-murky',
+    lastVerified: '2026-10-12',
+    category: 'medicare',
+    notes: 'Trump says pharma deals will save Medicaid "over $64 billion" (maybe $100B); FactCheck.org (Oct 5) says the details are murky - independent studies estimate only $3.1B-$8.6B a year, and the deals cover only select drugs',
+    isSavings: true
   },
   trending7: {
-    label: 'Protecting American Taxpayers Act (Claimed Savings)',
-    value: 240_000_000_000,          // $240 billion (sponsor's projected savings)
-    source: 'Sen. Joni Ernst (S. 4378) / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-july-17-2026/',
-    lastVerified: '2026-08-03',
+    label: 'Pocket Rescission of Approved Funds',
+    value: 810_000_000,              // $810 million (funds the White House moved to cancel)
+    source: 'NBC News / Office of Management and Budget',
+    sourceUrl: 'https://www.nbcnews.com/politics/congress/lawmakers-slam-trumps-unlawful-move-cut-810-million-federal-funds-rcna599942',
+    lastVerified: '2026-10-12',
     category: 'general',
-    notes: 'Introduced July 2026, bundling 15 separate bills that the sponsor projects would save $240B; the estimate comes from the sponsor rather than CBO and has not been independently scored',
+    notes: 'The White House used a late-fiscal-year "pocket rescission" to cancel $810M Congress already approved, including $547M for refugee assistance; GOP Appropriations Chair Susan Collins called it "unlawful" and GAO has previously said pocket rescissions are illegal',
     isSavings: true
   }
 };
