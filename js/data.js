@@ -155,67 +155,67 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War Supplemental Request',
-    value: 87_600_000_000,           // $87.6 billion (White House emergency supplemental request)
-    source: 'CSIS / PBS NewsHour / Military Times',
-    sourceUrl: 'https://www.csis.org/analysis/war-costs-make-third-876-billion-supplemental-request',
-    lastVerified: '2026-08-03',
-    category: 'defense',
-    notes: 'White House asked Congress on June 24, 2026 for $87.6B, with $67.1B (77%) going to the Pentagon; DoD says the war has cost $37.5B so far but outside analysts put the real figure near $200B; the Pentagon warns it runs out of war funding within weeks'
+    label: 'FY2026 Federal Deficit',
+    value: 1_992_000_000_000,        // $1.992 trillion (Treasury final FY2026 deficit)
+    source: 'U.S. Treasury (via Reuters / U.S. News)',
+    sourceUrl: 'https://money.usnews.com/investing/news/articles/2026-10-16/us-fiscal-2026-budget-deficit-rises-to-1-99-trillion-largest-in-5-years',
+    lastVerified: '2026-10-19',
+    category: 'general',
+    notes: 'Treasury reported on Oct. 16, 2026 that the FY2026 deficit hit $1.99T, the largest in five years and behind only the 2020 and 2021 pandemic years; reported as a reality check on promised cost cutting, with interest costs and $145B in tariff refunds both adding to the gap'
   },
   trending2: {
-    label: 'Golden Dome Missile Shield',
-    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year build + maintain estimate)
-    source: 'Congressional Budget Office (via NPR / Defense News)',
-    sourceUrl: 'https://www.npr.org/2026/05/13/g-s1-121780/trumps-golden-dome-cost',
-    lastVerified: '2026-08-03',
+    label: 'Proposed $1.5 Trillion Pentagon Budget',
+    value: 1_500_000_000_000,        // $1.5 trillion (administration FY2027 defense request)
+    source: 'Forbes / Taxpayers for Common Sense',
+    sourceUrl: 'https://www.forbes.com/sites/williamhartung/2026/10/17/how-to-cut-the-pentagons-15-trillion-budget-proposal-down-to-size/',
+    lastVerified: '2026-10-19',
     category: 'defense',
-    notes: 'CBO says $1.2T over 20 years - roughly 6x the $185B the administration budgeted in FY2027; space-based interceptors alone are ~70% of acquisition cost; Pentagon disputes the estimate and still will not publish a price tag of its own'
+    notes: 'The proposal includes a roughly $500B one-year increase that is drawing pushback on Capitol Hill; critics point out that the Pentagon has never passed an audit and is dealing with overruns like the Sentinel ICBM (81% over budget). The figure is a request, not an enacted appropriation'
   },
   trending3: {
-    label: 'ICE Detention Expansion',
-    value: 45_000_000_000,           // $45 billion (detention expansion funding in the 2025 reconciliation law)
-    source: 'Brennan Center for Justice / Washington Post',
-    sourceUrl: 'https://www.brennancenter.org/our-work/research-reports/how-ices-budget-boom-changing-immigration-detention',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: '$45B for detention expansion - a ~400% increase that exceeds the entire federal prison system budget; ICE plans $38.3B on converting 24 warehouses into detention centers, and on July 27, 2026 extended a no-bid El Paso contract worth up to $776M more amid nationwide protests'
+    label: 'Pentagon Contracts to Trump Sons-Backed Firms',
+    value: 6_000_000_000,            // $6 billion+ (ABC News estimate)
+    source: 'ABC News analysis (via Common Dreams)',
+    sourceUrl: 'https://abcnews.com/Politics/trump-sons-investments-won-billions-pentagon-contracts-election/story?id=137049598',
+    lastVerified: '2026-10-19',
+    category: 'defense',
+    notes: 'ABC News estimated in early October 2026 that firms backed by Donald Trump Jr. and Eric Trump (often through 1789 Capital) have won more than $6B in Pentagon contracts and loans, including a $620M loan to Vulcan Elements; Democrats call it corruption, and the brothers say they do not try to influence procurement. The total is ABC\'s estimate'
   },
   trending4: {
-    label: 'Record 2026 Farm Bailout Payments',
-    value: 55_300_000_000,           // $55.3 billion (total 2026 federal farm program payments if the new request is approved)
-    source: 'Environmental Working Group / USDA',
-    sourceUrl: 'https://www.ewg.org/news-insights/news/2026/07/triple-dipping-taxpayer-dollars-trump-eyes-billions-more-subsidies',
-    lastVerified: '2026-08-03',
+    label: 'Tariff Refunds Paid Out (FY2026)',
+    value: 145_000_000_000,          // $145 billion (IEEPA tariff refunds in FY2026)
+    source: 'U.S. Treasury (via Reuters / Yahoo Finance)',
+    sourceUrl: 'https://finance.yahoo.com/economy/policy/article/the-us-federal-budget-deficit-for-2026-just-came-in-its-1992-trillion-191917669.html',
+    lastVerified: '2026-10-19',
     category: 'general',
-    notes: 'A new $11B tariff-relief request on top of $44B already promised would push 2026 farm payments to a record $55.3B; critics call it "triple dipping" - roughly 40% is projected to flow to the largest farms, and the money comes from USDA accounts, not tariff revenue'
+    notes: 'After the IEEPA tariffs were ruled unlawful, the government refunded about $145B to importers in FY2026, cutting net tariff income by 11%; CAP calls it a windfall for big corporations rather than the consumers who paid higher prices. Up to $166B is eligible, so more refunds are still coming'
   },
   trending5: {
-    label: 'Medicare Fraud Identified (HHS Claim)',
-    value: 42_000_000_000,           // $42 billion (fraud HHS says it has identified to date)
-    source: 'U.S. Department of Health and Human Services / CMS',
-    sourceUrl: 'https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html',
-    lastVerified: '2026-08-03',
+    label: '$90 Medicare Premium Rebate',
+    value: 2_000_000_000,            // ~$2 billion (one-time $90 payments to ~20.8M enrollees)
+    source: 'Associated Press (via PBS NewsHour)',
+    sourceUrl: 'https://www.pbs.org/newshour/politics/trumps-90-medicare-rebate-rolls-out-but-millions-arent-eligible-critics-see-a-political-stunt',
+    lastVerified: '2026-10-19',
     category: 'medicare',
-    notes: 'HHS said on July 21, 2026 it has identified $42B in Medicare fraud while deferring $1B+ in Medicaid payments to California and Minnesota; the figure is a claim, not an audited total - GAO separately pegged FY2025 improper payments at $57B for Medicare and $37B for Medicaid'
+    notes: 'One-time $90 Part B payments paid from the Medicare Improvement Fund are going out weeks before the Nov. 3 midterms; only about 20.8M people qualify (Medicare Advantage enrollees are excluded). Critics call it a political stunt, and the payment covers less than a quarter of the $202.90 monthly Part B premium'
   },
   trending6: {
-    label: 'Interest on the Debt (9 Months of FY2026)',
-    value: 857_000_000_000,          // $857 billion (net interest, first 9 months of FY2026)
-    source: 'Congressional Budget Office (via Taxpayers for Common Sense)',
-    sourceUrl: 'https://www.taxpayer.net/budget-appropriations-tax/nine-months-1-4-trillion-the-congressional-budget-office-releases-monthly-budget-review/',
-    lastVerified: '2026-08-03',
-    category: 'interest',
-    notes: 'CBO: $857B in net interest through nine months of FY2026 - over $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
+    label: 'Record Farm Safety-Net Payouts',
+    value: 13_800_000_000,           // $13.8 billion (ARC/PLC payments for the 2025 crop year)
+    source: 'U.S. Department of Agriculture',
+    sourceUrl: 'https://www.usda.gov/about-usda/news/press-releases/2026/10/07/usda-announces-record-payments-138-billion-2025-crop-year-revenue-and-price-safety-net-programs',
+    lastVerified: '2026-10-19',
+    category: 'general',
+    notes: 'USDA announced on Oct. 7, 2026 the largest ARC/PLC payout since the programs began in 2014; total 2026 farm aid is on track to top $50B, and Republicans are pushing another $11B in direct aid. Subsidies are projected to exceed 30% of net farm income'
   },
   trending7: {
-    label: 'Protecting American Taxpayers Act (Claimed Savings)',
-    value: 240_000_000_000,          // $240 billion (sponsor's projected savings)
-    source: 'Sen. Joni Ernst (S. 4378) / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-july-17-2026/',
-    lastVerified: '2026-08-03',
+    label: 'Pocket Rescission (Claimed Savings)',
+    value: 810_000_000,              // $810 million (itemized total; White House says "nearly $1 billion")
+    source: 'White House / OMB (GAO ruled it unlawful)',
+    sourceUrl: 'https://www.whitehouse.gov/briefings-statements/2026/09/president-trump-takes-historic-action-to-eliminate-wasteful-and-harmful-spending/',
+    lastVerified: '2026-10-19',
     category: 'general',
-    notes: 'Introduced July 2026, bundling 15 separate bills that the sponsor projects would save $240B; the estimate comes from the sponsor rather than CBO and has not been independently scored',
+    notes: 'On Sept. 25, 2026, OMB cancelled $810M in appropriated funds that were set to expire Oct. 1, the largest cut being $567M in HHS refugee aid. GAO said on Sept. 29 that the move violates the Impoundment Control Act. The White House describes it as "nearly $1 billion", but the itemized cuts add up to $810M',
     isSavings: true
   }
 };
