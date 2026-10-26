@@ -155,67 +155,67 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War Supplemental Request',
-    value: 87_600_000_000,           // $87.6 billion (White House emergency supplemental request)
-    source: 'CSIS / PBS NewsHour / Military Times',
-    sourceUrl: 'https://www.csis.org/analysis/war-costs-make-third-876-billion-supplemental-request',
-    lastVerified: '2026-08-03',
+    label: 'Lame-Duck Pentagon Funding Package',
+    value: 350_000_000_000,          // $350 billion (minimum size of the reconciliation package Hegseth wants after the midterms)
+    source: 'The Hill (via Yahoo News)',
+    sourceUrl: 'https://www.yahoo.com/news/politics/articles/republicans-warn-pentagon-funds-hinge-100000461.html',
+    lastVerified: '2026-10-26',
     category: 'defense',
-    notes: 'White House asked Congress on June 24, 2026 for $87.6B, with $67.1B (77%) going to the Pentagon; DoD says the war has cost $37.5B so far but outside analysts put the real figure near $200B; the Pentagon warns it runs out of war funding within weeks'
+    notes: 'The administration wants at least $350B in new military money passed in the lame-duck session after the Nov. 3 midterms; around Oct. 18, 2026, a group of House Republicans (incl. Reps. Bacon and Fitzpatrick) threatened to withhold votes unless Trump gets tougher on Russia after his Oct. 16 sanctions waiver; the package sits on top of a proposed $1.5T Pentagon budget'
   },
   trending2: {
-    label: 'Golden Dome Missile Shield',
-    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year build + maintain estimate)
-    source: 'Congressional Budget Office (via NPR / Defense News)',
-    sourceUrl: 'https://www.npr.org/2026/05/13/g-s1-121780/trumps-golden-dome-cost',
-    lastVerified: '2026-08-03',
-    category: 'defense',
-    notes: 'CBO says $1.2T over 20 years - roughly 6x the $185B the administration budgeted in FY2027; space-based interceptors alone are ~70% of acquisition cost; Pentagon disputes the estimate and still will not publish a price tag of its own'
+    label: 'DHS Immigration Funding With "No Oversight Plan"',
+    value: 260_000_000_000,          // $260 billion (DHS funding from OBBBA + Secure America Act)
+    source: 'Senate Homeland Security & Governmental Affairs Committee (Ranking Member Peters)',
+    sourceUrl: 'https://www.hsgac.senate.gov/wp-content/uploads/101426-Letter-from-RM-Peters-to-Secretary-of-DHS_OBBA-Spending.pdf',
+    lastVerified: '2026-10-26',
+    category: 'general',
+    notes: 'In an Oct. 14, 2026 letter, Sen. Gary Peters said DHS has no meaningful plan to oversee the $260B it was given; CBP awarded every border wall contract even though the government owns or has access to less than half of the 700 planned miles, and he cited a $1.3B detention contract to a firm with no detention experience'
   },
   trending3: {
-    label: 'ICE Detention Expansion',
-    value: 45_000_000_000,           // $45 billion (detention expansion funding in the 2025 reconciliation law)
-    source: 'Brennan Center for Justice / Washington Post',
-    sourceUrl: 'https://www.brennancenter.org/our-work/research-reports/how-ices-budget-boom-changing-immigration-detention',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: '$45B for detention expansion - a ~400% increase that exceeds the entire federal prison system budget; ICE plans $38.3B on converting 24 warehouses into detention centers, and on July 27, 2026 extended a no-bid El Paso contract worth up to $776M more amid nationwide protests'
+    label: 'Pentagon Wall Street-Style Investment Offices',
+    value: 90_000_000_000,           // $90 billion (~$20B Office of Strategic Capital + $70B IBAS/Defense Production Act request)
+    source: 'The American Prospect',
+    sourceUrl: 'https://prospect.org/2026/10/22/as-lawmakers-scrutinize-pentagon-equity-deals-pentagon-keeps-making-them/',
+    lastVerified: '2026-10-26',
+    category: 'defense',
+    notes: 'The FY2027 request seeks $20B+ for the Office of Strategic Capital (up from $300M) and $70B for industrial-base/DPA programs (up from $2B); the Pentagon keeps taking equity stakes in private companies, including $775M in four new deals, even as the Senate NDAA tries to strip an unauthorized "Economic Defense Unit" of that power; critics cite conflicts of interest; the $90B is a combined approximation'
   },
   trending4: {
-    label: 'Record 2026 Farm Bailout Payments',
-    value: 55_300_000_000,           // $55.3 billion (total 2026 federal farm program payments if the new request is approved)
-    source: 'Environmental Working Group / USDA',
-    sourceUrl: 'https://www.ewg.org/news-insights/news/2026/07/triple-dipping-taxpayer-dollars-trump-eyes-billions-more-subsidies',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: 'A new $11B tariff-relief request on top of $44B already promised would push 2026 farm payments to a record $55.3B; critics call it "triple dipping" - roughly 40% is projected to flow to the largest farms, and the money comes from USDA accounts, not tariff revenue'
+    label: 'Medicaid Spending (FY2026)',
+    value: 723_000_000_000,          // $723 billion (federal Medicaid outlays in FY2026)
+    source: 'Monthly Treasury Statement (via Issues & Insights)',
+    sourceUrl: 'https://issuesinsights.com/2026/10/20/draconian-cuts-medicaid-spending-shot-up-8-this-year',
+    lastVerified: '2026-10-26',
+    category: 'medicare',
+    notes: 'Final FY2026 Treasury figures show federal Medicaid spending up about 8% to $723B, $15B above CBO\'s February projection; conservatives say this undercuts claims of "draconian cuts," while the reconciliation law\'s major Medicaid cuts phase in later; the source is an opinion piece citing Treasury data'
   },
   trending5: {
-    label: 'Medicare Fraud Identified (HHS Claim)',
-    value: 42_000_000_000,           // $42 billion (fraud HHS says it has identified to date)
-    source: 'U.S. Department of Health and Human Services / CMS',
-    sourceUrl: 'https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html',
-    lastVerified: '2026-08-03',
-    category: 'medicare',
-    notes: 'HHS said on July 21, 2026 it has identified $42B in Medicare fraud while deferring $1B+ in Medicaid payments to California and Minnesota; the figure is a claim, not an audited total - GAO separately pegged FY2025 improper payments at $57B for Medicare and $37B for Medicaid'
+    label: 'Trump "Vanity Projects"',
+    value: 2_300_000_000,            // $2.3 billion (CAP high-end estimate; $1.6B low end)
+    source: 'Center for American Progress',
+    sourceUrl: 'https://www.americanprogress.org/article/the-trump-administration-has-devoted-at-least-1-6-billion-in-taxpayer-dollars-to-vanity-projects/',
+    lastVerified: '2026-10-26',
+    category: 'general',
+    notes: 'An Oct. 23, 2026 CAP analysis puts taxpayer spending on presidential "vanity projects" at $1.6B to $2.3B+: the Qatari jet\'s Air Force One refit, the National Garden of American Heroes, the 2025 military parade and the "Arc de Trump"; the ballroom is only partly counted; this is a left-leaning think tank estimate, and JEC Democrats separately estimated $1.8B'
   },
   trending6: {
-    label: 'Interest on the Debt (9 Months of FY2026)',
-    value: 857_000_000_000,          // $857 billion (net interest, first 9 months of FY2026)
-    source: 'Congressional Budget Office (via Taxpayers for Common Sense)',
-    sourceUrl: 'https://www.taxpayer.net/budget-appropriations-tax/nine-months-1-4-trillion-the-congressional-budget-office-releases-monthly-budget-review/',
-    lastVerified: '2026-08-03',
-    category: 'interest',
-    notes: 'CBO: $857B in net interest through nine months of FY2026 - over $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
+    label: 'Improper SSI Payments (Unresolved Earnings Alerts)',
+    value: 1_000_000_000,            // $1 billion (SSA OIG estimated improper SSI payments)
+    source: 'Social Security Administration Office of the Inspector General (via The Fulcrum)',
+    sourceUrl: 'https://thefulcrum.us/economy/social-security-backlog',
+    lastVerified: '2026-10-26',
+    category: 'socialSecurity',
+    notes: 'SSA OIG estimates about $1B in improper SSI payments to 333,800 recipients because wage-mismatch alerts sat unresolved for an average of 733 days; roughly $664M is now legally unrecoverable; this reflects an agency backlog, not beneficiary fraud, and it is extrapolated from a 100-case sample'
   },
   trending7: {
-    label: 'Protecting American Taxpayers Act (Claimed Savings)',
-    value: 240_000_000_000,          // $240 billion (sponsor's projected savings)
-    source: 'Sen. Joni Ernst (S. 4378) / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-july-17-2026/',
-    lastVerified: '2026-08-03',
+    label: 'GSA OneGov Software Discounts (Claimed Savings)',
+    value: 1_620_000_000,            // $1.62 billion (claimed savings since April 2025)
+    source: 'Citizens Against Government Waste / GSA',
+    sourceUrl: 'https://www.cagw.org/this-week-in-waste-october-16-2026/',
+    lastVerified: '2026-10-26',
     category: 'general',
-    notes: 'Introduced July 2026, bundling 15 separate bills that the sponsor projects would save $240B; the estimate comes from the sponsor rather than CBO and has not been independently scored',
+    notes: 'GSA says consolidating federal software purchases has saved $1.62B since April 2025, but $1.4B (86%) comes from temporary AI software discounts; CAGW warns the "discounts won\'t last"',
     isSavings: true
   }
 };
