@@ -155,67 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War Supplemental Request',
-    value: 87_600_000_000,           // $87.6 billion (White House emergency supplemental request)
-    source: 'CSIS / PBS NewsHour / Military Times',
-    sourceUrl: 'https://www.csis.org/analysis/war-costs-make-third-876-billion-supplemental-request',
-    lastVerified: '2026-08-03',
+    label: 'Iran War Cost to Date (Pentagon Estimate)',
+    value: 47_100_000_000,           // $47.1 billion (Pentagon estimate through Oct 16, 2026)
+    source: 'Pentagon estimate to Congress (via Associated Press / PBS NewsHour)',
+    sourceUrl: 'https://www.pbs.org/newshour/world/american-taxpayers-bill-for-iran-war-grows-to-estimated-47-1-billion',
+    lastVerified: '2026-11-02',
     category: 'defense',
-    notes: 'White House asked Congress on June 24, 2026 for $87.6B, with $67.1B (77%) going to the Pentagon; DoD says the war has cost $37.5B so far but outside analysts put the real figure near $200B; the Pentagon warns it runs out of war funding within weeks'
+    notes: 'Reported Oct 28, 2026: about $29B for replacing munitions (mostly Patriot/THAAD interceptors), $11.9B for operations, $6B for lost equipment. Congressional officials say the estimate is low because it leaves out base damage and some fuel costs. The White House is still pushing a supplemental of roughly $95B, and the war is a major midterm issue'
   },
   trending2: {
-    label: 'Golden Dome Missile Shield',
-    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year build + maintain estimate)
-    source: 'Congressional Budget Office (via NPR / Defense News)',
-    sourceUrl: 'https://www.npr.org/2026/05/13/g-s1-121780/trumps-golden-dome-cost',
-    lastVerified: '2026-08-03',
+    label: 'Record $1.5 Trillion Defense Budget Request',
+    value: 1_500_000_000_000,        // $1.5 trillion (FY2027 national defense request)
+    source: 'White House FY2027 budget / Roll Call / CSIS',
+    sourceUrl: 'https://rollcall.com/2026/10/27/defense-priorities-tied-up-in-lame-duck-jumble',
+    lastVerified: '2026-11-02',
     category: 'defense',
-    notes: 'CBO says $1.2T over 20 years - roughly 6x the $185B the administration budgeted in FY2027; space-based interceptors alone are ~70% of acquisition cost; Pentagon disputes the estimate and still will not publish a price tag of its own'
+    notes: 'Record request: $1.15T through regular appropriations plus $350B through party-line reconciliation. Senate Democrats call it bloated and are holding up the NDAA, partly in protest of the Iran war. The fight now moves to the post-election lame duck ahead of the Dec 11 funding deadline'
   },
   trending3: {
-    label: 'ICE Detention Expansion',
-    value: 45_000_000_000,           // $45 billion (detention expansion funding in the 2025 reconciliation law)
-    source: 'Brennan Center for Justice / Washington Post',
-    sourceUrl: 'https://www.brennancenter.org/our-work/research-reports/how-ices-budget-boom-changing-immigration-detention',
-    lastVerified: '2026-08-03',
+    label: 'ICE Purchase of Minnesota Prison (Alleged $420M Overpayment)',
+    value: 495_600_000,              // $495.6 million (DHS purchase price for the Appleton, MN facility)
+    source: 'KARE 11 / Bring Me The News / Minnesota Attorney General',
+    sourceUrl: 'https://www.yahoo.com/news/politics/articles/ice-paid-private-prison-firm-190044965.html',
+    lastVerified: '2026-11-02',
     category: 'general',
-    notes: '$45B for detention expansion - a ~400% increase that exceeds the entire federal prison system budget; ICE plans $38.3B on converting 24 warehouses into detention centers, and on July 27, 2026 extended a no-bid El Paso contract worth up to $776M more amid nationwide protests'
+    notes: 'Reported Oct 30, 2026: DHS paid CoreCivic $495.6M for the empty 1,600-bed Appleton prison, which CoreCivic had offered to Minnesota for $75M (local assessed value: $14.75M). MN AG Keith Ellison calls it a $420M overpayment and wants a congressional investigation. CoreCivic says the government set the price. The same week, GEO Group got a $1.5B contract to keep running the Tacoma detention center'
   },
   trending4: {
-    label: 'Record 2026 Farm Bailout Payments',
-    value: 55_300_000_000,           // $55.3 billion (total 2026 federal farm program payments if the new request is approved)
-    source: 'Environmental Working Group / USDA',
-    sourceUrl: 'https://www.ewg.org/news-insights/news/2026/07/triple-dipping-taxpayer-dollars-trump-eyes-billions-more-subsidies',
-    lastVerified: '2026-08-03',
+    label: 'Tariff Refunds Paid Out (FY2026)',
+    value: 144_600_000_000,          // $144.6 billion (total customs refunds in FY2026, per Treasury data)
+    source: 'Treasury Monthly Treasury Statement (via Voronoi / La Voce di New York)',
+    sourceUrl: 'https://www.voronoiapp.com/economy/Charted-134B-in-US-Tariff-Refunds-vs-119B-Collected-Since-May-9292',
+    lastVerified: '2026-11-02',
     category: 'general',
-    notes: 'A new $11B tariff-relief request on top of $44B already promised would push 2026 farm payments to a record $55.3B; critics call it "triple dipping" - roughly 40% is projected to flow to the largest farms, and the money comes from USDA accounts, not tariff revenue'
+    notes: 'After the Supreme Court struck down the IEEPA tariffs in Feb 2026, Treasury refunded about $145B in FY2026 (it refunded $7.5B the year before). From May through Sept, refunds ($134B) were larger than new tariff collections ($119B). Critics say the money goes to importing corporations, not to the consumers who paid higher prices. Treasury does not separate IEEPA refunds from other customs refunds, so the figure is approximate'
   },
   trending5: {
-    label: 'Medicare Fraud Identified (HHS Claim)',
-    value: 42_000_000_000,           // $42 billion (fraud HHS says it has identified to date)
-    source: 'U.S. Department of Health and Human Services / CMS',
-    sourceUrl: 'https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html',
-    lastVerified: '2026-08-03',
-    category: 'medicare',
-    notes: 'HHS said on July 21, 2026 it has identified $42B in Medicare fraud while deferring $1B+ in Medicaid payments to California and Minnesota; the figure is a claim, not an audited total - GAO separately pegged FY2025 improper payments at $57B for Medicare and $37B for Medicaid'
+    label: 'Interest on the Debt (FY2026)',
+    value: 1_100_000_000_000,        // $1.1 trillion (record FY2026 interest costs)
+    source: 'Committee for a Responsible Federal Budget / CBO',
+    sourceUrl: 'https://www.crfb.org/blogs/us-ran-2-trillion-deficit-last-year-we-estimate',
+    lastVerified: '2026-11-02',
+    category: 'interest',
+    notes: 'FY2026 ended with a roughly $2.0T deficit, and interest hit a record of about $1.1T (3.4% of GDP), up roughly $115B (11%) from FY2025. That is more than the entire defense budget. Treasury counts net interest a bit lower, at about $1.05T, and some outlets cite $1.36T in gross interest'
   },
   trending6: {
-    label: 'Interest on the Debt (9 Months of FY2026)',
-    value: 857_000_000_000,          // $857 billion (net interest, first 9 months of FY2026)
-    source: 'Congressional Budget Office (via Taxpayers for Common Sense)',
-    sourceUrl: 'https://www.taxpayer.net/budget-appropriations-tax/nine-months-1-4-trillion-the-congressional-budget-office-releases-monthly-budget-review/',
-    lastVerified: '2026-08-03',
-    category: 'interest',
-    notes: 'CBO: $857B in net interest through nine months of FY2026 - over $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
+    label: 'Restoring Expired ACA Subsidies (10-Year Cost)',
+    value: 350_000_000_000,          // $350 billion (CBO estimate for a permanent extension over 10 years)
+    source: 'Congressional Budget Office (via Becker\'s / KFF)',
+    sourceUrl: 'https://www.kff.org/series/health-2026-midterm-elections/',
+    lastVerified: '2026-11-02',
+    category: 'medicare',
+    multiYear: true,                 // 10-year cost, not a single year
+    notes: 'The enhanced ACA tax credits expired at the end of 2025. Benchmark premiums rose from $497 to $625 a month, and KFF projects another ~13% increase in 2027, while marketplace enrollment fell by 4.6M. Democrats are campaigning on restoring the credits. CBO estimated a permanent extension at about $350B over 10 years (a 3-year extension would be about $85-95B)'
   },
   trending7: {
-    label: 'Protecting American Taxpayers Act (Claimed Savings)',
-    value: 240_000_000_000,          // $240 billion (sponsor's projected savings)
-    source: 'Sen. Joni Ernst (S. 4378) / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-july-17-2026/',
-    lastVerified: '2026-08-03',
+    label: '$810M Pocket Rescission (Claimed Savings)',
+    value: 810_000_000,              // $810 million (FY2026 funds the White House moved to cancel)
+    source: 'White House / OMB; GAO ruled it unlawful (via NPR / Roll Call)',
+    sourceUrl: 'https://rollcall.com/2026/10/02/court-challenges-mount-over-trumps-funding-clawback/',
+    lastVerified: '2026-11-02',
     category: 'general',
-    notes: 'Introduced July 2026, bundling 15 separate bills that the sponsor projects would save $240B; the estimate comes from the sponsor rather than CBO and has not been independently scored',
+    notes: 'The White House moved on Sept 25 to cancel $810M that Congress had approved, across 11 accounts ($567M of it from HHS refugee assistance), just days before the money expired. GAO calls the move unlawful under the Impoundment Control Act, Sen. Susan Collins criticized it, and California, Maine and other states have sued. Litigation continues through October',
     isSavings: true
   }
 };
