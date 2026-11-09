@@ -155,68 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War Supplemental Request',
-    value: 87_600_000_000,           // $87.6 billion (White House emergency supplemental request)
-    source: 'CSIS / PBS NewsHour / Military Times',
-    sourceUrl: 'https://www.csis.org/analysis/war-costs-make-third-876-billion-supplemental-request',
-    lastVerified: '2026-08-03',
+    label: '$1.5 Trillion FY2027 Defense Request',
+    value: 1_500_000_000_000,        // $1.5 trillion (White House FY2027 defense request)
+    source: 'Defense One / Forecast International',
+    sourceUrl: 'https://www.defenseone.com/policy/2026/11/blue-wave-presages-defense-spending-showdown/417111/',
+    lastVerified: '2026-11-09',
     category: 'defense',
-    notes: 'White House asked Congress on June 24, 2026 for $87.6B, with $67.1B (77%) going to the Pentagon; DoD says the war has cost $37.5B so far but outside analysts put the real figure near $200B; the Pentagon warns it runs out of war funding within weeks'
+    notes: 'The lame-duck Congress returned Nov 9 facing a Dec 11 funding deadline; the request relies on $350B via reconciliation, which now looks dead after the midterms. Incoming HASC chair Adam Smith wants FY27 defense capped at $1T, and the House reconciliation plan offered only a fraction of the $350B'
   },
   trending2: {
-    label: 'Golden Dome Missile Shield',
-    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year build + maintain estimate)
-    source: 'Congressional Budget Office (via NPR / Defense News)',
-    sourceUrl: 'https://www.npr.org/2026/05/13/g-s1-121780/trumps-golden-dome-cost',
-    lastVerified: '2026-08-03',
+    label: 'Iran War Cost to Date (Pentagon)',
+    value: 47_100_000_000,           // $47.1 billion (Pentagon estimate through Oct 16, 2026)
+    source: 'Pentagon / CENTCOM estimate (via Al Jazeera / Al-Monitor)',
+    sourceUrl: 'https://www.aljazeera.com/news/2026/10/29/pentagon-says-iran-war-has-cost-us-taxpayers-47bn-what-that-means',
+    lastVerified: '2026-11-09',
     category: 'defense',
-    notes: 'CBO says $1.2T over 20 years - roughly 6x the $185B the administration budgeted in FY2027; space-based interceptors alone are ~70% of acquisition cost; Pentagon disputes the estimate and still will not publish a price tag of its own'
+    notes: 'Pentagon puts the war at $47.1B through Oct 16 - nearly $30B of it munitions - and the figure excludes $5-15B in base repairs; Trump now says allies will "pay us back" (no agreement exists), and some Democrats want to use the December stopgap to defund the war'
   },
   trending3: {
-    label: 'ICE Detention Expansion',
-    value: 45_000_000_000,           // $45 billion (detention expansion funding in the 2025 reconciliation law)
-    source: 'Brennan Center for Justice / Washington Post',
-    sourceUrl: 'https://www.brennancenter.org/our-work/research-reports/how-ices-budget-boom-changing-immigration-detention',
-    lastVerified: '2026-08-03',
+    label: 'Federal Improper Payments (FY2025)',
+    value: 186_000_000_000,          // $186 billion (GAO government-wide estimate)
+    source: 'U.S. Government Accountability Office',
+    sourceUrl: 'https://www.gao.gov/fraud-improper-payments',
+    lastVerified: '2026-11-09',
     category: 'general',
-    notes: '$45B for detention expansion - a ~400% increase that exceeds the entire federal prison system budget; ICE plans $38.3B on converting 24 warehouses into detention centers, and on July 27, 2026 extended a no-bid El Paso contract worth up to $776M more amid nationwide protests'
+    notes: 'GAO says agencies made ~$186B in improper payments in FY2025, up $24B from the prior year, led by Medicare ($57B) and Medicaid ($37B); back in the headlines this month and likely an undercount since TANF is excluded. Improper does not always mean fraud'
   },
   trending4: {
-    label: 'Record 2026 Farm Bailout Payments',
-    value: 55_300_000_000,           // $55.3 billion (total 2026 federal farm program payments if the new request is approved)
-    source: 'Environmental Working Group / USDA',
-    sourceUrl: 'https://www.ewg.org/news-insights/news/2026/07/triple-dipping-taxpayer-dollars-trump-eyes-billions-more-subsidies',
-    lastVerified: '2026-08-03',
+    label: 'Pre-Election Farm Aid Package',
+    value: 15_000_000_000,           // $15 billion (USDA package announced late Oct 2026)
+    source: 'U.S. Department of Agriculture (via Associated Press)',
+    sourceUrl: 'https://www.fox5dc.com/news/trump-administration-promises-farmers',
+    lastVerified: '2026-11-09',
     category: 'general',
-    notes: 'A new $11B tariff-relief request on top of $44B already promised would push 2026 farm payments to a record $55.3B; critics call it "triple dipping" - roughly 40% is projected to flow to the largest farms, and the money comes from USDA accounts, not tariff revenue'
+    notes: 'Announced days before the midterms: $8B in one-time diesel relief, $5B in guaranteed loans for ranchers and fishermen, and $1.8B for conservation; critics call it a political payout to rural voters, and payment rates and timing are still not set'
   },
   trending5: {
-    label: 'Medicare Fraud Identified (HHS Claim)',
-    value: 42_000_000_000,           // $42 billion (fraud HHS says it has identified to date)
-    source: 'U.S. Department of Health and Human Services / CMS',
-    sourceUrl: 'https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html',
-    lastVerified: '2026-08-03',
-    category: 'medicare',
-    notes: 'HHS said on July 21, 2026 it has identified $42B in Medicare fraud while deferring $1B+ in Medicaid payments to California and Minnesota; the figure is a claim, not an audited total - GAO separately pegged FY2025 improper payments at $57B for Medicare and $37B for Medicaid'
+    label: 'Air Traffic Control Overhaul (Modern Skies Act)',
+    value: 30_000_000_000,           // $30 billion (additional funding requested)
+    source: 'U.S. Department of Transportation (via Nextgov)',
+    sourceUrl: 'https://www.nextgov.com/modernization/2026/09/30b-more-needed-air-traffic-control-modernization-transportation-secretary-says/416324/',
+    lastVerified: '2026-11-09',
+    category: 'general',
+    notes: 'Sec. Duffy wants $30B more on top of the $12.5B Congress already approved, and it is on the lame-duck to-do list; federal auditors warn the FAA still lacks a reliable cost estimate or integrated schedule for the project'
   },
   trending6: {
-    label: 'Interest on the Debt (9 Months of FY2026)',
-    value: 857_000_000_000,          // $857 billion (net interest, first 9 months of FY2026)
-    source: 'Congressional Budget Office (via Taxpayers for Common Sense)',
-    sourceUrl: 'https://www.taxpayer.net/budget-appropriations-tax/nine-months-1-4-trillion-the-congressional-budget-office-releases-monthly-budget-review/',
-    lastVerified: '2026-08-03',
-    category: 'interest',
-    notes: 'CBO: $857B in net interest through nine months of FY2026 - over $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
+    label: 'Medicaid Cuts in 2025 Reconciliation Law',
+    value: 911_000_000_000,          // $911 billion (federal Medicaid reduction over 10 years)
+    source: 'KFF analysis of CBO estimates',
+    sourceUrl: 'https://www.kff.org/medicaid/allocating-cbos-estimates-of-federal-medicaid-spending-reductions-across-the-states-enacted-reconciliation-package/',
+    lastVerified: '2026-11-09',
+    category: 'medicare',
+    notes: 'The largest Medicaid reduction ever, and a central issue in the midterms that just flipped Congress; 10-year figure (most cuts phase in 2027-2028), with CBO projecting ~7.5M more uninsured. Estimates range from $793B to ~$1T depending on version and method',
+    isSavings: true
   },
   trending7: {
-    label: 'Protecting American Taxpayers Act (Claimed Savings)',
-    value: 240_000_000_000,          // $240 billion (sponsor's projected savings)
-    source: 'Sen. Joni Ernst (S. 4378) / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-july-17-2026/',
-    lastVerified: '2026-08-03',
+    label: 'FY2026 Federal Deficit',
+    value: 2_000_000_000_000,        // $2.0 trillion (full-year FY2026 deficit)
+    source: 'Congressional Budget Office (via Committee for a Responsible Federal Budget)',
+    sourceUrl: 'https://www.crfb.org/press-releases/cbo-estimates-20-trillion-deficit-fiscal-year-2026',
+    lastVerified: '2026-11-09',
     category: 'general',
-    notes: 'Introduced July 2026, bundling 15 separate bills that the sponsor projects would save $240B; the estimate comes from the sponsor rather than CBO and has not been independently scored',
-    isSavings: true
+    notes: 'CBO confirms FY2026 ended with a ~$2T deficit, driven by rising interest costs and entitlement spending plus lost revenue after the Supreme Court struck down the IEEPA tariffs (>$100B refunded so far); this is borrowing, not one program'
   }
 };
 
