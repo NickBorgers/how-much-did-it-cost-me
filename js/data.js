@@ -155,68 +155,68 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War Supplemental Request',
-    value: 87_600_000_000,           // $87.6 billion (White House emergency supplemental request)
-    source: 'CSIS / PBS NewsHour / Military Times',
-    sourceUrl: 'https://www.csis.org/analysis/war-costs-make-third-876-billion-supplemental-request',
-    lastVerified: '2026-08-03',
+    label: '$350B Defense Reconciliation Push',
+    value: 350_000_000_000,          // $350 billion (proposed defense money via party-line reconciliation)
+    source: 'Defense Daily / The Fiscal Times / The Hill',
+    sourceUrl: 'https://www.defensedaily.com/trump-urges-senate-to-move-immediately-on-350-billion-defense-reconciliation-bill-in-lame-duck/congress/',
+    lastVerified: '2026-11-16',
     category: 'defense',
-    notes: 'White House asked Congress on June 24, 2026 for $87.6B, with $67.1B (77%) going to the Pentagon; DoD says the war has cost $37.5B so far but outside analysts put the real figure near $200B; the Pentagon warns it runs out of war funding within weeks'
+    notes: 'On Nov. 12, 2026 Trump urged the Senate to move "IMMEDIATELY" on a lame-duck reconciliation bill with $350B for defense, and Hegseth called it a minimum; GOP Sen. Mike Rounds and Senate Democrats warn it could trigger a shutdown before the Dec. 11 funding deadline, and it is still stalled over how to pay for it'
   },
   trending2: {
-    label: 'Golden Dome Missile Shield',
-    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year build + maintain estimate)
-    source: 'Congressional Budget Office (via NPR / Defense News)',
-    sourceUrl: 'https://www.npr.org/2026/05/13/g-s1-121780/trumps-golden-dome-cost',
-    lastVerified: '2026-08-03',
+    label: 'Iran War Emergency Funding Request',
+    value: 70_000_000_000,           // $70 billion (up to, per administration request)
+    source: 'Congressional Budget Office / The Hill (via Yahoo News)',
+    sourceUrl: 'https://www.yahoo.com/news/politics/articles/trump-says-iran-war-effectively-110000130.html',
+    lastVerified: '2026-11-16',
     category: 'defense',
-    notes: 'CBO says $1.2T over 20 years - roughly 6x the $185B the administration budgeted in FY2027; space-based interceptors alone are ~70% of acquisition cost; Pentagon disputes the estimate and still will not publish a price tag of its own'
+    notes: 'The administration wants up to $70B in emergency money for war costs, new weapons and personnel, even though Trump calls the war "effectively over"; CBO puts costs at $47.1B as of Oct. 16 and rising $2-3B a month, excluding $65B+ to repair damaged bases; Senate Democrats will not back a stopgap that funds the war without restrictions'
   },
   trending3: {
-    label: 'ICE Detention Expansion',
-    value: 45_000_000_000,           // $45 billion (detention expansion funding in the 2025 reconciliation law)
-    source: 'Brennan Center for Justice / Washington Post',
-    sourceUrl: 'https://www.brennancenter.org/our-work/research-reports/how-ices-budget-boom-changing-immigration-detention',
-    lastVerified: '2026-08-03',
+    label: 'Air Traffic Control Funding Request',
+    value: 50_000_000_000,           // $50 billion (up to; original request was ~$30.1B)
+    source: 'Roll Call',
+    sourceUrl: 'https://rollcall.com/2026/11/16/aviation-funding-becomes-political-football-in-lame-duck-session/',
+    lastVerified: '2026-11-16',
     category: 'general',
-    notes: '$45B for detention expansion - a ~400% increase that exceeds the entire federal prison system budget; ICE plans $38.3B on converting 24 warehouses into detention centers, and on July 27, 2026 extended a no-bid El Paso contract worth up to $776M more amid nationwide protests'
+    notes: 'After a nationwide FAA ground stop, the administration raised its aviation ask from about $30.1B to as much as $50B; the extra ~$20B has not been explained, and Democrats say ~$9B of the $14.4B appropriated since last July is still unspent'
   },
   trending4: {
-    label: 'Record 2026 Farm Bailout Payments',
-    value: 55_300_000_000,           // $55.3 billion (total 2026 federal farm program payments if the new request is approved)
-    source: 'Environmental Working Group / USDA',
-    sourceUrl: 'https://www.ewg.org/news-insights/news/2026/07/triple-dipping-taxpayer-dollars-trump-eyes-billions-more-subsidies',
-    lastVerified: '2026-08-03',
+    label: 'ICE & Border Patrol Funding (2025-2026)',
+    value: 240_000_000_000,          // ~$240 billion (NPR count; Brennan Center counts ~$183B available)
+    source: 'NPR / Brennan Center for Justice',
+    sourceUrl: 'https://www.npr.org/2026/11/09/nx-s1-6032870/immigration-enforcement-ice-democrats-election',
+    lastVerified: '2026-11-16',
     category: 'general',
-    notes: 'A new $11B tariff-relief request on top of $44B already promised would push 2026 farm payments to a record $55.3B; critics call it "triple dipping" - roughly 40% is projected to flow to the largest farms, and the money comes from USDA accounts, not tariff revenue'
+    notes: 'NPR says Congress gave ICE and CBP about $240B in 2025-2026 combined; incoming Democratic majorities vow to rein in ICE after record deportations, but most of the money is multi-year and already appropriated; totals vary by outlet depending on which bills are counted'
   },
   trending5: {
-    label: 'Medicare Fraud Identified (HHS Claim)',
-    value: 42_000_000_000,           // $42 billion (fraud HHS says it has identified to date)
-    source: 'U.S. Department of Health and Human Services / CMS',
-    sourceUrl: 'https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html',
-    lastVerified: '2026-08-03',
+    label: 'Medicare for All (10-Year Cost Estimate)',
+    value: 47_000_000_000_000,       // $47 trillion over 10 years (White House CEA estimate)
+    source: 'White House Council of Economic Advisers (via House Budget Committee)',
+    sourceUrl: 'https://budget.house.gov/press-release/exposing-the-true-cost-of-medicare-for-all',
+    lastVerified: '2026-11-16',
     category: 'medicare',
-    notes: 'HHS said on July 21, 2026 it has identified $42B in Medicare fraud while deferring $1B+ in Medicaid payments to California and Minnesota; the figure is a claim, not an audited total - GAO separately pegged FY2025 improper payments at $57B for Medicare and $37B for Medicaid'
+    notes: 'Republicans are attacking the proposal with a CEA estimate of $47T over 10 years as Democrats take power; disputed - CBO has never scored a full bill, older independent estimates ranged $25-32.6T, and supporters argue it would replace (not add to) most private health spending'
   },
   trending6: {
-    label: 'Interest on the Debt (9 Months of FY2026)',
-    value: 857_000_000_000,          // $857 billion (net interest, first 9 months of FY2026)
-    source: 'Congressional Budget Office (via Taxpayers for Common Sense)',
-    sourceUrl: 'https://www.taxpayer.net/budget-appropriations-tax/nine-months-1-4-trillion-the-congressional-budget-office-releases-monthly-budget-review/',
-    lastVerified: '2026-08-03',
-    category: 'interest',
-    notes: 'CBO: $857B in net interest through nine months of FY2026 - over $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
+    label: 'SNAP Food Stamp Cuts (Claimed Savings)',
+    value: 44_600_000_000,           // $44.6 billion over five years (projected reduction)
+    source: 'New Jersey Monitor / USDA proposed rule',
+    sourceUrl: 'https://newjerseymonitor.com/2026/11/13/more-people-could-lose-food-stamp-benefits-under-trump-administration-proposal/',
+    lastVerified: '2026-11-16',
+    category: 'general',
+    notes: 'A Trump administration proposal to restrict food stamp eligibility is projected to cut spending by about $44.6B over five years and could end benefits for more than 6 million people; critics say it is about cutting aid, not eliminating waste',
+    isSavings: true
   },
   trending7: {
-    label: 'Protecting American Taxpayers Act (Claimed Savings)',
-    value: 240_000_000_000,          // $240 billion (sponsor's projected savings)
-    source: 'Sen. Joni Ernst (S. 4378) / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-july-17-2026/',
-    lastVerified: '2026-08-03',
+    label: 'FY2026 Federal Budget Deficit',
+    value: 2_000_000_000_000,        // $2.0 trillion (CBO, fiscal year ended Sept. 30, 2026)
+    source: 'Congressional Budget Office Monthly Budget Review',
+    sourceUrl: 'https://www.cbo.gov/publication/61986',
+    lastVerified: '2026-11-16',
     category: 'general',
-    notes: 'Introduced July 2026, bundling 15 separate bills that the sponsor projects would save $240B; the estimate comes from the sponsor rather than CBO and has not been independently scored',
-    isSavings: true
+    notes: 'CBO says the FY2026 deficit hit about $2.0T, up $217B (12%) from FY2025 and $140B above its February forecast; interest costs rose ~$115B, and October 2026 alone ran a $404B deficit as defense and homeland security outlays jumped'
   }
 };
 
