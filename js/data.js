@@ -155,68 +155,67 @@ const PERMANENT_SPENDING = {
 // The workflow searches for spending scandals, controversies, and hot topics
 const TRENDING_SPENDING = {
   trending1: {
-    label: 'Iran War Supplemental Request',
-    value: 87_600_000_000,           // $87.6 billion (White House emergency supplemental request)
-    source: 'CSIS / PBS NewsHour / Military Times',
-    sourceUrl: 'https://www.csis.org/analysis/war-costs-make-third-876-billion-supplemental-request',
-    lastVerified: '2026-08-03',
-    category: 'defense',
-    notes: 'White House asked Congress on June 24, 2026 for $87.6B, with $67.1B (77%) going to the Pentagon; DoD says the war has cost $37.5B so far but outside analysts put the real figure near $200B; the Pentagon warns it runs out of war funding within weeks'
+    label: 'IEEPA Tariff Refunds',
+    value: 166_000_000_000,          // $166 billion (government's estimate of total IEEPA duty refunds)
+    source: 'U.S. Customs and Border Protection court filings (via Fortune / NPR)',
+    sourceUrl: 'https://fortune.com/2026/11/12/tariff-refund-class-action-lawsuit-universal-tariff-refunds-trump-administration/',
+    lastVerified: '2026-11-23',
+    category: 'general',
+    notes: 'After the Supreme Court struck down the IEEPA tariffs in February 2026, the government estimated refunds at ~$166B ($144.6B paid out so far, adding ~$140B to the FY2026 deficit); a Nov. 23 ProPublica investigation found some companies used refunds to pay executive bonuses while consumers who paid higher prices get nothing'
   },
   trending2: {
-    label: 'Golden Dome Missile Shield',
-    value: 1_200_000_000_000,        // $1.2 trillion (CBO 20-year build + maintain estimate)
-    source: 'Congressional Budget Office (via NPR / Defense News)',
-    sourceUrl: 'https://www.npr.org/2026/05/13/g-s1-121780/trumps-golden-dome-cost',
-    lastVerified: '2026-08-03',
+    label: 'Trump $350B Defense Reconciliation Plan',
+    value: 350_000_000_000,          // $350 billion (proposed defense reconciliation package)
+    source: 'Federal News Network / The Hill',
+    sourceUrl: 'https://federalnewsnetwork.com/congress/2026/11/while-350-billion-reconciliation-bill-is-dead-top-republican-says-there-is-path-for-smaller-package',
+    lastVerified: '2026-11-23',
     category: 'defense',
-    notes: 'CBO says $1.2T over 20 years - roughly 6x the $185B the administration budgeted in FY2027; space-based interceptors alone are ~70% of acquisition cost; Pentagon disputes the estimate and still will not publish a price tag of its own'
+    notes: 'Included $48B for critical minerals and $17B for Golden Dome; Republicans clashed over it and House Armed Services Chair Mike Rogers now calls it dead, floating a ~$100B version instead, as a Dec. 11 shutdown deadline looms'
   },
   trending3: {
-    label: 'ICE Detention Expansion',
-    value: 45_000_000_000,           // $45 billion (detention expansion funding in the 2025 reconciliation law)
-    source: 'Brennan Center for Justice / Washington Post',
-    sourceUrl: 'https://www.brennancenter.org/our-work/research-reports/how-ices-budget-boom-changing-immigration-detention',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: '$45B for detention expansion - a ~400% increase that exceeds the entire federal prison system budget; ICE plans $38.3B on converting 24 warehouses into detention centers, and on July 27, 2026 extended a no-bid El Paso contract worth up to $776M more amid nationwide protests'
+    label: 'Iran War Cost to Date',
+    value: 48_300_000_000,           // $48.3 billion (Pentagon estimate as of Nov. 13, 2026)
+    source: 'Pentagon testimony to Senate Armed Services (via Washington Post / AP)',
+    sourceUrl: 'https://www.washingtonpost.com/politics/2026/11/19/iran-war-costs-base-damage-congress/66ca62b0-e452-11f1-a99e-b3e3805c6b8b_story.html',
+    lastVerified: '2026-11-23',
+    category: 'defense',
+    notes: 'Pentagon says the war has cost $48.3B, rising $2-3B a month, but the total excludes damage to U.S. bases that lawmakers say the Pentagon is withholding; a $67B supplemental request is stalled and Democrats are eyeing the Dec. 11 funding deadline'
   },
   trending4: {
-    label: 'Record 2026 Farm Bailout Payments',
-    value: 55_300_000_000,           // $55.3 billion (total 2026 federal farm program payments if the new request is approved)
-    source: 'Environmental Working Group / USDA',
-    sourceUrl: 'https://www.ewg.org/news-insights/news/2026/07/triple-dipping-taxpayer-dollars-trump-eyes-billions-more-subsidies',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: 'A new $11B tariff-relief request on top of $44B already promised would push 2026 farm payments to a record $55.3B; critics call it "triple dipping" - roughly 40% is projected to flow to the largest farms, and the money comes from USDA accounts, not tariff revenue'
+    label: 'Restoring Enhanced ACA Subsidies',
+    value: 405_000_000_000,          // $405 billion (CRFB estimate through 2037)
+    source: 'Committee for a Responsible Federal Budget (via Washington Times)',
+    sourceUrl: 'https://washingtontimes.com/news/2026/nov/19/house-democrats-first-100-day-agenda-costs-41-trillion-watchdog-says',
+    lastVerified: '2026-11-23',
+    category: 'medicare',
+    notes: 'Incoming House Democrats plan to revive the expired enhanced Obamacare subsidies; CRFB prices that piece at $405B of a $4.1T first-100-days agenda (another analyst says $4.9T) - estimates of proposals, not enacted law'
   },
   trending5: {
-    label: 'Medicare Fraud Identified (HHS Claim)',
-    value: 42_000_000_000,           // $42 billion (fraud HHS says it has identified to date)
-    source: 'U.S. Department of Health and Human Services / CMS',
-    sourceUrl: 'https://www.hhs.gov/press-room/hhs-defers-medicaid-payments-california-minnesota-fraud-review.html',
-    lastVerified: '2026-08-03',
-    category: 'medicare',
-    notes: 'HHS said on July 21, 2026 it has identified $42B in Medicare fraud while deferring $1B+ in Medicaid payments to California and Minnesota; the figure is a claim, not an audited total - GAO separately pegged FY2025 improper payments at $57B for Medicare and $37B for Medicaid'
+    label: 'ICE Detention Facility Buying Spree',
+    value: 3_300_000_000,            // $3.3 billion (warehouse and detention facility purchases)
+    source: 'Government Accountability Office (via ABC News / Axios)',
+    sourceUrl: 'https://abcnews.com/US/federal-auditors-raise-concerns-billions-ice-spending-expand/story?id=138293636',
+    lastVerified: '2026-11-23',
+    category: 'general',
+    notes: 'A Nov. 19 GAO report found ICE bought facilities without cost analysis - paying over triple assessed value for some warehouses it now plans to sell and ~$13M a month for empty beds; The Intercept reports ICE paid nearly $500M for a prison its owner valued at $67M; totals vary by outlet ($3B-$3.3B)'
   },
   trending6: {
-    label: 'Interest on the Debt (9 Months of FY2026)',
-    value: 857_000_000_000,          // $857 billion (net interest, first 9 months of FY2026)
-    source: 'Congressional Budget Office (via Taxpayers for Common Sense)',
-    sourceUrl: 'https://www.taxpayer.net/budget-appropriations-tax/nine-months-1-4-trillion-the-congressional-budget-office-releases-monthly-budget-review/',
-    lastVerified: '2026-08-03',
+    label: 'Interest on the Debt (FY2026)',
+    value: 1_143_000_000_000,        // $1.143 trillion (net interest on the public debt, FY2026)
+    source: 'Congressional Budget Office Monthly Budget Review',
+    sourceUrl: 'https://www.cbo.gov/system/files/2026-11/61986-MBR.pdf',
+    lastVerified: '2026-11-23',
     category: 'interest',
-    notes: 'CBO: $857B in net interest through nine months of FY2026 - over $3B a day, against a $1.4T deficit; the deficit is only holding steady because tariff revenue is up, not because spending slowed'
+    notes: 'Net interest on the public debt topped $1.1T in FY2026, up 11%, as the year closed with a ~$1.99T deficit - the worst non-pandemic year on record; CBO notes its broader "net interest outlays" measure is somewhat smaller'
   },
   trending7: {
-    label: 'Protecting American Taxpayers Act (Claimed Savings)',
-    value: 240_000_000_000,          // $240 billion (sponsor's projected savings)
-    source: 'Sen. Joni Ernst (S. 4378) / Citizens Against Government Waste',
-    sourceUrl: 'https://www.cagw.org/this-week-in-waste-july-17-2026/',
-    lastVerified: '2026-08-03',
-    category: 'general',
-    notes: 'Introduced July 2026, bundling 15 separate bills that the sponsor projects would save $240B; the estimate comes from the sponsor rather than CBO and has not been independently scored',
-    isSavings: true
+    label: 'F-35 Spare Parts Lost Track Of',
+    value: 2_500_000_000,            // $2.5 billion (value of untracked spare parts)
+    source: 'Government Accountability Office (via Citizens Against Government Waste)',
+    sourceUrl: 'https://www.cagw.org/this-week-in-waste-november-20-2026/',
+    lastVerified: '2026-11-23',
+    category: 'defense',
+    notes: 'A Nov. 9, 2026 GAO report found the F-35 logistics system failed to track 17,000 spare parts worth $2.5B - the latest in a long line of F-35 sustainment problems'
   }
 };
 
